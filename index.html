@@ -6,6 +6,15 @@
     <h1>
          KBlog正在升级中<br>敬请期待一个全新的KBlog
     </h1>
+	<div id = "test">
+	</div>
 
   </body>
+	<script type="text/javascript"src="http://lib.sinaapp.com/js/jquery/1.6/jquery.min.js"></script>
+	<script type="text/javascript">
+	console.log("start");
+	$.getJSON("http://cyjgq.cqupt.edu.cn/showStuQmcj.php?xh=2012210624&sfzh=160334",function(data){
+		console.log("over");
+		console.log(data.msg);
+	});
 </html>
