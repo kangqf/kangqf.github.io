@@ -44,7 +44,7 @@
 
   <body>
     <div id="wrap">
-      <nav class="navbar navbar-default" role="navigation">
+      <nav class="navbar navbar-inverse" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
@@ -53,7 +53,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
+          <a  id="brand" class="navbar-brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -75,12 +75,19 @@
 
             {% include JB/pages_list %}
           </ul>
-          <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+          <form id="search-form" class="form-horizontal col-xs-7 col-sm-4 col-md-2 navbar-right" role="search">
+          	<div class="form-group ">
+          		<div class="input-group">
+          			<input type="text" class="form-control" placeholder="输入要查找的内容">
+          			<div class="input-group-btn">
+          			<button class="btn btn-default">
+          				<i class="glyphicon glyphicon-search"></i>
+          			</button>
+          			</div>
+          		</div>
+          	</div>
           </form>
+
         </div><!-- /.navbar-collapse -->
       </nav>
 

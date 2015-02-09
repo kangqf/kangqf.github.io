@@ -1,3 +1,57 @@
+footer {
+  text-align:center;
+}
+.page-header{
+  text-align:center;
+}
+.date{
+  float:right;
+}
+/* 覆盖导航栏设置 */
+.navbar{
+  height:45px;
+  min-height: 40px;
+  margin-bottom: 10px;
+  border-radius:0px;
+}
+.navbar-nav>li>a,.navbar-brand{
+  padding:10px 20px;
+}
+/*logo*/
+#brand {
+    margin-left:10px;
+    margin-right:10px;
+    padding-right: 0;
+    padding-left: 0;
+    float: left;
+    font-weight: bold;
+    font-size: 22px;
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
+    -webkit-transition: all .5s linear;
+    -moz-transition: all .5s linear;
+    transition: all .5s linear;
+}
+
+/*logo鼠标悬停*/
+#brand:hover {
+    text-decoration: none;
+    color: #FAA732;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .4);
+}
+/*导航栏字体大小*/
+.nav > li {
+    font-size: 18px;
+}
+
+/*搜索区域*/
+#search-form{
+  margin-top:5px;
+}
+
+
+
+
 /* Custom container */
 
 /* Replaced with normal container and standard footer */
@@ -7,20 +61,16 @@
 
 .container-narrow > hr {
   margin: 30px 0; }
-*/
-
+*
 /* Replaced with standard BS3 Navbar */
 /*.navbar .nav {
   float: right; }*/
 
 /* Jekyll Bootstrap Colors */
-h1, h2, h3, h4 {
+/*h1, h2, h3, h4 {
   color: #f22430;
-}
-footer {
-  /*background-color: #fdcd60;*/
-  text-align:center;
-}
+}*/
+
 
 
 
