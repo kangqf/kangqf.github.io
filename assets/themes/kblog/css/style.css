@@ -59,6 +59,13 @@ footer {
 html, body, div.wrapper {
   background-color: #F3F3F3;
 }
+/*.item-info{
+  display:inline;
+}*/
+.item-info{
+  position: relative;
+  float:right;
+}
 
 
 
