@@ -24,7 +24,7 @@ footer {
 .navbar-brand,.navbar-nav>li>a{
   padding:10px 20px;
 }
-/*logo*/
+/* logo */
 #brand {
     margin-left:10px;
     margin-right:10px;
@@ -40,22 +40,25 @@ footer {
     transition: all .5s linear;
 }
 
-/*logo鼠标悬停*/
+/* logo鼠标悬停 */
 #brand:hover {
     text-decoration: none;
     color: #FAA732;
     text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .4);
 }
-/*导航栏字体大小*/
+/* 导航栏字体大小 */
 .nav > li {
     font-size: 18px;
 }
 
-/*搜索区域*/
+/* 搜索区域 */
 #search-form{
   margin-top:5px;
 }
-
+/* 主页中央区域颜色 */
+html, body, div.wrapper {
+  background-color: #F3F3F3;
+}
 
 
 

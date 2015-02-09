@@ -2,8 +2,8 @@
 layout: post
 title: "first article"
 description: ""
-category: test
-tags: [test,first,]
+category:
+tags: []
 ---
 {% include JB/setup %}
 
