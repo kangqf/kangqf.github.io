@@ -17,7 +17,7 @@
     <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <!-- Sticky Footer -->
     <link href="{{ ASSET_PATH }}/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
-    
+
     <!-- Custom styles -->
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
 
@@ -60,7 +60,19 @@
         <div class="collapse navbar-collapse" id="jb-navbar-collapse">
           <ul class="nav navbar-nav">
             {% assign pages_list = site.pages %}
-            {% assign group = 'navigation' %}
+
+            <!-- {% assign group = 'navigation' %} -->
+
+            {% for link in site.navigation %}
+      				{% assign current = nil %}
+        				{% if page.url == link.url %}
+        				<li class="active"><a href="{{ BASE_PATH }}{{ link.url }}" class="active">{{ link.text }}</a></li>
+        				{% else %}
+        				<li><a href="{{ BASE_PATH }}{{ link.url }}">{{ link.text }}</a></li>
+      				{% endif %}
+    			  {% endfor %}
+
+
             {% include JB/pages_list %}
           </ul>
           <form class="navbar-form navbar-right" role="search">
@@ -78,14 +90,14 @@
 
     </div>
 
-    <div id="footer">
+    <footer>
       <div class="container">
-        <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
-          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+        <p>&copy; {{ site.time | date: '%Y' }} <a href="http://github.com/kangqf">{{ site.author.name }}</a>
+          Powered by <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
           and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
         </p>
       </div>
-    </div>
+    </footer>
 
     {% include JB/analytics %}
 
