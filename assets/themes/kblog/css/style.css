@@ -24,6 +24,7 @@ footer {
 .navbar-brand,.navbar-nav>li>a{
   padding:10px 20px;
 }
+
 /* logo */
 #brand {
     margin-left:10px;
@@ -57,7 +58,7 @@ footer {
 }
 /* 主页中央区域颜色 */
 html, body, div.wrapper {
-  background-color: #F3F3F3;
+  backgroundz-index
 }
 /*.item-info{
   display:inline;
