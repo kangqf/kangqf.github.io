@@ -2,8 +2,8 @@
 layout: post
 title: "Bootstrap FileInput"
 description: ""
-category:
-tags: []
+category: Web
+tags: [BootStrap,FileInput,HTML5,XHR2]
 ---
 {% include JB/setup %}
 
