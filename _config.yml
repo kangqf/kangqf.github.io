@@ -5,6 +5,9 @@ permalink: /:year/:month/:day/:title
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 highlighter: pygments
 
+# 分页配置，每页最多显示几篇文章
+paginate: 4
+
 encoding: utf-8
 markdown: rdiscount
 
@@ -45,6 +48,8 @@ production_url : http://kangqingfei.cn
 #
 JB :
   version : 0.3.0
+#JB :
+#  version : 0.3.0
 
   # All links will be namespaced by BASE_PATH if defined.
   # Links in your website should always be prefixed with {{BASE_PATH}}
