@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Install ArchLinux to USB media or Virtual Machine | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="======================
+#是的，考完了，考完了，考完了！=======
+###那就来装个系统吧。
+
+打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
+fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
+格式化  mkfs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install ArchLinux to USB media or Virtual Machine">
+<meta property="og:url" content="http://kangqingfei.cn/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="======================
+#是的，考完了，考完了，考完了！=======
+###那就来装个系统吧。
+
+打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
+fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
+格式化  mkfs">
+<meta property="og:updated_time" content="2015-12-29T13:24:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Install ArchLinux to USB media or Virtual Machine">
+<meta name="twitter:description" content="======================
+#是的，考完了，考完了，考完了！=======
+###那就来装个系统吧。
+
+打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
+fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
+格式化  mkfs">
+  
+    <link rel="alternative" href="/atom.xml" title="kblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/assest/avatar/kqf.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">kangqingfei</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>關於</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/乱七八糟">乱七八糟</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="google" target="_blank" href="/#" title="google">google</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/virtualmachine/" style="font-size: 10px;">virtualmachine</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">冷小飞侠去哪了</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">kangqingfei</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/assest/avatar/kqf.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">kangqingfei</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/乱七八糟">乱七八糟</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="google" target="_blank" href="/#" title="google">google</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-install-archlinux-to-usb-media-or-virtual-machine" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/" class="article-date">
+  	<time datetime="2015-12-29T00:00:00.000Z" itemprop="datePublished">2015-12-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Install ArchLinux to USB media or Virtual Machine
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/archlinux/">archlinux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/media/">media</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/virtualmachine/">virtualmachine</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tips/">tips</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>======================</p>
+<h1 id="23_u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01"><a href="#23_u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01" class="headerlink" title="#是的，考完了，考完了，考完了！"></a>#是的，考完了，考完了，考完了！</h1><p>=======</p>
+<p>###那就来装个系统吧。</p>
+<ol>
+<li>打开VMware，新建一个虚拟机，使用<code>archlinux-2015.12.01-dual.iso</code>(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘</li>
+<li><code>fdisk -l</code>  <code>fdisk /dev/sda</code> 新建一个100M分区，剩下再建一个分区。</li>
+<li>格式化  <code>mkfs.ext4 /dev/sda1</code>   <code>mkfs.ext4 /dev/sda2</code></li>
+<li>挂载  <code>mount /dev/sda1 /boot</code>   <code>mount /dev/sda2 /mnt</code></li>
+<li>编辑源 <code>vi /etc/pacman.d/mirrorlist</code>   <code>467 dd</code> 删除前面的把最后一行改成北京交通大学的源 <code>Server = http://mirror.bjtu.edu.cn/archlinux/$repo/os/$arch</code></li>
+<li>安装基本的系统 <code>gacstrap -i /mnt base base-devel vim</code></li>
+<li>生成挂载信息 <code>genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab</code></li>
+<li>chroot 到新系统 <code>arch-chroot /mnt</code></li>
+<li>写入主机名 <code>echo xxx &gt; /etc/hostname</code></li>
+<li>生成文字编码 <code>vim /etc/locale.gen</code> 将<code>zh_CN</code>打头的 以及 <code>en_US.UTF8 UTF8</code> 取消注释 运行<code>locale-gen</code></li>
+<li>如果要安装到<strong><em>usb</em></strong>移动介质 就将<code>/etc/mkinitcpio.conf</code>里面的<code>HOOKS</code>加上 <code>block</code> 然后 <code>mkinitcpio -p linux</code></li>
+<li>然后设置密码 <code>passwd</code></li>
+<li><p>安装 <code>syslinux</code> 生成引导 <code>syslinux-install_update -iam</code><br><br>如果是usb介质 就还要将 <code>/boot/syslinux/syslinux.cfg</code> 里面的<code>arch archfallback</code> 的<code>APPEND</code> 中的<code>sdx</code><br><br>改成 <code>root=UUID=xxxx rw</code> 因为这样才能找到U盘 xxxx是U盘的<strong><em>/mnt所在分区的UUID</em></strong></p>
+</li>
+<li><p>安装一些必要的工具 <code>net-tools git zsh i3 xorg-server xorg-server-utils xorg-xinit xterm</code></p>
+</li>
+</ol>
+<h3 id="u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E"><a href="#u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E" class="headerlink" title="在虚拟机里面装没改syslinux.cfg发现还是错了 找不到/dev/sda3 又是在虚拟机上安装的 怎么办"></a>在虚拟机里面装没改<code>syslinux.cfg</code>发现还是错了 找不到<code>/dev/sda3</code> 又是在虚拟机上安装的 怎么办</h3><ol>
+<li>开机按<code>F2</code>然后将光盘的启动优先级放到最高 然后再次进到live里面</li>
+<li>按照之前的方法挂载 然后 <code>arch-chroot /mnt</code> 然后就把 <code>/sda3</code> 改成 <code>/sda2</code> 就ok<h3 id="u628A_u542F_u52A8_u9879_u6539_u56DE_u6765__u542F_u52A8_dhcpd__u83B7_u53D6_ip__u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765__u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009__u786E_u5B9A_u5B89_u88C5"><a href="#u628A_u542F_u52A8_u9879_u6539_u56DE_u6765__u542F_u52A8_dhcpd__u83B7_u53D6_ip__u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765__u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009__u786E_u5B9A_u5B89_u88C5" class="headerlink" title="把启动项改回来 启动 dhcpd 获取 ip  然后 startx 竟然没起来  无奈 pacman -S xorg 然后回车全选 确定安装"></a>把启动项改回来 启动 <code>dhcpd</code> 获取 ip  然后 <code>startx</code> 竟然没起来  无奈 <code>pacman -S xorg</code> 然后回车全选 确定安装</h3>####然后 还没起来 怒了 直接 <code>vim .xinitrc</code> 写入 <code>exec i3</code> 再<code>startx</code>就把i3 跑起来了</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/08/27/digitalocean-vps/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DigitalOcean VPS转移机房</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="install-archlinux-to-usb-media-or-virtual-machine" data-title="Install ArchLinux to USB media or Virtual Machine" data-url="http://kangqingfei.cn/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"kangqingfei"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 kangqingfei
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-59520224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
