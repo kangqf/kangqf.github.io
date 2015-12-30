@@ -2,6 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://kangqingfei.cn/2015/12/30/from-jekyll-to-hexo/</loc>
+    <lastmod>2015-12-30T15:49:14.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://kangqingfei.cn/assest/codes/configs/yilia_config.json</loc>
+    <lastmod>2015-12-30T12:57:00.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://kangqingfei.cn/assest/codes/configs/hexo_config.json</loc>
+    <lastmod>2015-12-30T12:52:27.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://kangqingfei.cn/2015/12/30/use-markdown/</loc>
+    <lastmod>2015-12-30T11:56:07.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://kangqingfei.cn/404.html</loc>
     <lastmod>2015-12-29T17:35:00.000Z</lastmod>
   </url>

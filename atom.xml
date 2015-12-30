@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://kangqingfei.cn/"/>
-  <updated>2015-12-29T13:24:19.000Z</updated>
+  <updated>2015-12-30T11:56:07.000Z</updated>
   <id>http://kangqingfei.cn/</id>
   
   <author>
@@ -13,6 +13,149 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[use markdown]]></title>
+    <link href="http://kangqingfei.cn/2015/12/30/use-markdown/"/>
+    <id>http://kangqingfei.cn/2015/12/30/use-markdown/</id>
+    <published>2015-12-30T10:41:53.000Z</published>
+    <updated>2015-12-30T11:56:07.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u5C06_u535A_u5BA2_u4ECEjekyll_u8FC1_u79FB_u5230hexo_u90FD_u8FD8_u7B97_u987A_u5229_uFF0C_u552F_u4E00_u8BA9_u4EBA_u6709_u70B9_u607C_u706B_u7684_u5C31_u662Fmarkdown_u7684_u8BED_u6CD5_u4E0D_u4E00_u81F4_u4E86_uFF08hexo_u8C8C_u4F3C_u6CA1_u90A3_u4E48_u4EFB_u6027_uFF09_uFF0C_u6240_u4EE5_u719F_u6089_u4E00_u4E0Bhexo_u4E0B_u7684markdown_u8BED_u6CD5_uFF0C_u987A_u4FBF_u590D_u4E60_u4E00_u4E0B_u3002_u4E3B_u8981_u662F_u53C2_u8003http_3A//www-appinn-com/markdown/_uFF0C_u628A_u4E00_u4E9B_u5E38_u7528_u7684_u8BB0_u5F55_u4E86_u4E00_u4E0B_u3002"><a href="#u5C06_u535A_u5BA2_u4ECEjekyll_u8FC1_u79FB_u5230hexo_u90FD_u8FD8_u7B97_u987A_u5229_uFF0C_u552F_u4E00_u8BA9_u4EBA_u6709_u70B9_u607C_u706B_u7684_u5C31_u662Fmarkdown_u7684_u8BED_u6CD5_u4E0D_u4E00_u81F4_u4E86_uFF08hexo_u8C8C_u4F3C_u6CA1_u90A3_u4E48_u4EFB_u6027_uFF09_uFF0C_u6240_u4EE5_u719F_u6089_u4E00_u4E0Bhexo_u4E0B_u7684markdown_u8BED_u6CD5_uFF0C_u987A_u4FBF_u590D_u4E60_u4E00_u4E0B_u3002_u4E3B_u8981_u662F_u53C2_u8003http_3A//www-appinn-com/markdown/_uFF0C_u628A_u4E00_u4E9B_u5E38_u7528_u7684_u8BB0_u5F55_u4E86_u4E00_u4E0B_u3002" class="headerlink" title="将博客从jekyll迁移到hexo都还算顺利，唯一让人有点恼火的就是markdown的语法不一致了（hexo貌似没那么任性），所以熟悉一下hexo下的markdown语法，顺便复习一下。主要是参考http://www.appinn.com/markdown/，把一些常用的记录了一下。"></a>将博客从<code>jekyll</code>迁移到<code>hexo</code>都还算顺利，唯一让人有点恼火的就是<code>markdown</code>的语法不一致了（hexo貌似没那么任性），所以熟悉一下<code>hexo</code>下的<code>markdown</code>语法，顺便复习一下。主要是参考<a href="http://www.appinn.com/markdown/" title="参考网址" target="_blank" rel="external">http://www.appinn.com/markdown/</a>，把一些常用的记录了一下。</h3><ol>
+<li><p>标题 使用 1-6 个 <code>#</code>，对应一级标题到六级标题。</p>
+<blockquote>
+<h1 id="u4E00_u7EA7_u6807_u9898"><a href="#u4E00_u7EA7_u6807_u9898" class="headerlink" title="一级标题"></a>一级标题</h1><h6 id="u516D_u7EA7_u6807_u9898"><a href="#u516D_u7EA7_u6807_u9898" class="headerlink" title="六级标题"></a>六级标题</h6></blockquote>
+</li>
+<li><p>列表 使用 <code>*</code>或<code>+</code>或<code>-</code>对应无序列表，使用<code>n.</code>来表示有序列表，列表标记上使用的数字并不会影响输出的 HTML 结果。列表项目包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符。列表项目内放进引用，那 <code>&gt;</code> 就需要缩进。</p>
+<blockquote>
+<ul>
+<li>无序列表</li>
+<li>无序列表</li>
+</ul>
+<ol>
+<li>有序列表</li>
+<li>列表段落<br>列表段落</li>
+<li><blockquote>
+<p>列表中的引用</p>
+</blockquote>
+</li>
+<li>code block in list</li>
+</ol>
+</blockquote>
+</li>
+<li><p>区块引用，使用 <code>&gt;</code> 来进行区块引用由于区块应用可以与本身和其他元素嵌套，只要根据层次加上不同数量的 <code>&gt;</code> 所以感觉很好用，例如这里就是用的区块嵌套以在演示和源文件之间保持更好的排版。</p>
+</li>
+<li>代码区块，缩进 4 个空格或是 1 个制表符。</li>
+<li><p>分割线，使用三个或以上的<code>*</code>、<code>-</code>、<code>_</code>来表示一条分割线。</p>
+<blockquote>
+<hr>
+<hr>
+<hr>
+</blockquote>
+</li>
+<li><p>使用<code>[text](url &quot;title&quot;)</code>来表示一个链接。</p>
+<blockquote>
+<p><a href="http://kangqingfei.cn/" title="kblog">an example link to kblog</a></p>
+</blockquote>
+</li>
+<li><p>强调，使用<code>**text**</code>或<code>_text_</code>来表示强调，一个斜体两个加粗。</p>
+<blockquote>
+<p><strong>这是一个强调加粗</strong><br><em>这是强调斜体</em></p>
+</blockquote>
+</li>
+<li><p>代码，使用反引号来表示一小段代码。</p>
+</li>
+<li><code>![Alt text](/path/to/img.jpg)</code>来插入一张图片。</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u5C06_u535A_u5BA2_u4ECEjekyll_u8FC1_u79FB_u5230hexo_u90FD_u8FD8_u7B97_u987A_u5229_uFF0C_u552F_u4E00_u8BA9_u4EBA_u6709_u70B9_u607C_u7]]>
+    </summary>
+    
+      <category term="hexo" scheme="http://kangqingfei.cn/tags/hexo/"/>
+    
+      <category term="markdown" scheme="http://kangqingfei.cn/tags/markdown/"/>
+    
+      <category term="tips" scheme="http://kangqingfei.cn/categories/tips/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[from jekyll to hexo]]></title>
+    <link href="http://kangqingfei.cn/2015/12/30/from-jekyll-to-hexo/"/>
+    <id>http://kangqingfei.cn/2015/12/30/from-jekyll-to-hexo/</id>
+    <published>2015-12-30T08:17:53.000Z</published>
+    <updated>2015-12-30T15:49:14.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="u4E0A_u9762_u5199_u4E86_u4E00_u7BC7_u6587_u7AE0_uFF0C_u611F_u89C9_u771F_u662F_u4E11_u7206_u4E86_uFF0C_u5185_u5BB9_u81ED_uFF0C_u754C_u9762_u4E11_uFF0C_u8FD8_u4E0D_u662F_u5F88_u9002_u914D_u624B_u673A_uFF0C_u6240_u4EE5_u5C31_u5F88_u607C_u706B_uFF0C_u8FD9_u65F6_u53D1_u73B0_u4E00_u4E2A_u5F88_u4E0D_u9519_u7684_u57FA_u4E8E_hexo_u7684_u4E3B_u9898yilia_uFF0C_u611F_u89C9_u53EF_u4EE5_u6709_u3002_u5176_u5B9E_u4E4B_u524D_u5C31_u542C_u8FC7_hexo_u7684_u5927_u540D_uFF0C_u53EA_u662F_u6CA1_u60F3_u5230_u6BD4_u60F3_u8C61_u4E2D_u7684_u8FD8_u597D_u73A9_uFF0C_u5BF9_u6BD4_u4E4B_u4E0B_uFF0Cjekyll_u76F8_u5F53_u4E8E_u628A_u4F60_u7684markdown_u653E_u5230_u4E86github_u7136_u540E_u8BA9_u5B83_u7ED9_u4F60_u7F16_u8BD1_uFF0C_u800Chexo_u5219_u662F_u628A_u4F60_u7684markdown_u7F16_u8BD1_u6210html_u540E_u53D1_u5E03_u5230github_uFF0C_u66F4_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u57FA_u4E8Enode_uFF0C_u53EF_u6269_u5C55_u5F3A_uFF0C_u4E0D_u7528_u90A3_u4E48_u70E6_u4E5F_u4E0D_u4F1A_u8001_u51FA_u95EE_u9898_uFF0C_u914D_u7F6E_u4E5F_u662F_u7B80_u5355_uFF0C_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u989C_u503C_u9AD8_u554A_uFF0C_u7136_u540E_u8FD8_u6709_u4EE5_u4E0B_u51E0_u70B9_u8BA9_u6211_u5F88_u5FC3_u52A8_uFF1A"><a href="#u4E0A_u9762_u5199_u4E86_u4E00_u7BC7_u6587_u7AE0_uFF0C_u611F_u89C9_u771F_u662F_u4E11_u7206_u4E86_uFF0C_u5185_u5BB9_u81ED_uFF0C_u754C_u9762_u4E11_uFF0C_u8FD8_u4E0D_u662F_u5F88_u9002_u914D_u624B_u673A_uFF0C_u6240_u4EE5_u5C31_u5F88_u607C_u706B_uFF0C_u8FD9_u65F6_u53D1_u73B0_u4E00_u4E2A_u5F88_u4E0D_u9519_u7684_u57FA_u4E8E_hexo_u7684_u4E3B_u9898yilia_uFF0C_u611F_u89C9_u53EF_u4EE5_u6709_u3002_u5176_u5B9E_u4E4B_u524D_u5C31_u542C_u8FC7_hexo_u7684_u5927_u540D_uFF0C_u53EA_u662F_u6CA1_u60F3_u5230_u6BD4_u60F3_u8C61_u4E2D_u7684_u8FD8_u597D_u73A9_uFF0C_u5BF9_u6BD4_u4E4B_u4E0B_uFF0Cjekyll_u76F8_u5F53_u4E8E_u628A_u4F60_u7684markdown_u653E_u5230_u4E86github_u7136_u540E_u8BA9_u5B83_u7ED9_u4F60_u7F16_u8BD1_uFF0C_u800Chexo_u5219_u662F_u628A_u4F60_u7684markdown_u7F16_u8BD1_u6210html_u540E_u53D1_u5E03_u5230github_uFF0C_u66F4_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u57FA_u4E8Enode_uFF0C_u53EF_u6269_u5C55_u5F3A_uFF0C_u4E0D_u7528_u90A3_u4E48_u70E6_u4E5F_u4E0D_u4F1A_u8001_u51FA_u95EE_u9898_uFF0C_u914D_u7F6E_u4E5F_u662F_u7B80_u5355_uFF0C_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u989C_u503C_u9AD8_u554A_uFF0C_u7136_u540E_u8FD8_u6709_u4EE5_u4E0B_u51E0_u70B9_u8BA9_u6211_u5F88_u5FC3_u52A8_uFF1A" class="headerlink" title="上面写了一篇文章，感觉真是丑爆了，内容臭，界面丑，还不是很适配手机，所以就很恼火，这时发现一个很不错的基于 hexo的主题yilia，感觉可以有。其实之前就听过 hexo的大名，只是没想到比想象中的还好玩，对比之下，jekyll相当于把你的markdown放到了github然后让它给你编译，而hexo则是把你的markdown编译成html后发布到github，更重要的是人家基于node，可扩展强，不用那么烦也不会老出问题，配置也是简单，重要的是人家颜值高啊，然后还有以下几点让我很心动："></a>上面写了一篇文章，感觉真是丑爆了，内容臭，界面丑，还不是很适配手机，所以就很恼火，这时发现一个很不错的基于 <a href="https://hexo.io/" target="_blank" rel="external">hexo</a>的主题<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a>，感觉可以有。其实之前就听过 <code>hexo</code>的大名，只是没想到比想象中的还好玩，对比之下，jekyll相当于把你的markdown放到了github然后让它给你编译，而hexo则是把你的markdown编译成html后发布到github，更重要的是人家基于node，可扩展强，不用那么烦也不会老出问题，配置也是简单，重要的是人家颜值高啊，然后还有以下几点让我很心动：</h4><ul>
+<li>自动生成rss，我都不记得当时是怎么搞的jekyll才让它弄成了rss，反正是很烦。</li>
+<li>看到有七牛的图片外链插件，你懂得github的速度，有了外链妈妈再也不怕我放图片了。</li>
+<li>可以引用代码文件，这个之前不知道在jekyll里是不是有这个功能。</li>
+<li>无痛迁移，可以从jekyll无痛迁移到hexo，虽然以前没有写多少东西，但是这就是人家的态度很端正啊。<h3 id="u6240_u4EE5_u679C_u65AD_u6362_u4E86_u3002_u90A3_u5C31_u8BA9_u6211_u4EEC_u4E00_u6B65_u6B65_u5730_u6765_u642D_u5EFA_u6211_u4EEC_u7684hexo_blog_u5427_u3002"><a href="#u6240_u4EE5_u679C_u65AD_u6362_u4E86_u3002_u90A3_u5C31_u8BA9_u6211_u4EEC_u4E00_u6B65_u6B65_u5730_u6765_u642D_u5EFA_u6211_u4EEC_u7684hexo_blog_u5427_u3002" class="headerlink" title="所以果断换了。那就让我们一步步地来搭建我们的hexo blog吧。"></a>所以果断换了。那就让我们一步步地来搭建我们的hexo blog吧。</h3></li>
+</ul>
+<ol>
+<li><p>准备工作，首先你要装好node，怎么装就自己去找了，这里提醒一点，就是以前（考研之前）我玩node的时候装插件是很慢的，但是这次我不知道咋地速度杠杠的，我怀疑是npm的配置问题，因为以前好像是配置过npm的源，我在win下输，<code>npm</code> 会出现</p>
+<blockquote>
+<blockquote>
+<p>Specify configs in the ini-formatted file:<br>  C:\Users\kqf\.npmrc</p>
+</blockquote>
+<p>然后我看了一下那个文件，是这样的</p>
+<blockquote>
+<p>prefix=c:\ProgramFiles\nodejs\gnode_modules<br>registry=<a href="http://r.cnpmjs.org" target="_blank" rel="external">http://r.cnpmjs.org</a></p>
+</blockquote>
+<p>并且我还差异的发现有个<code>C:\Users\kqf\.cnpmrc</code>，才想起来好像装过cnpm（刚推广那会儿装的），反正是好久之前弄得了，我记得当时速度还是很慢，不知道为啥现在这么快了，毕竟过去这么久了，咋们的基础设施肯定要跟上来啊，不然哪有那么多人学node。反正现在速度是没有问题的了，大家可以去官网看看<a href="http://cnpmjs.org/" target="_blank" rel="external">http://cnpmjs.org/</a>或者淘宝的镜像<a href="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a>。</p>
+</blockquote>
+</li>
+<li><p>安装一个博客，搞好上面的后就可以<code>npm install hexo-cli -g</code>安装一个hexo，然后建立一个博客，<code>hexo init blog</code>，安装模块<code>cd blog</code> <code>npm install</code> 然后选取一个主题，我的是之前提过的<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a>,所以<code>git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</code>,修改hexo根目录下的 <code>_config.yml</code> -&gt; <code>theme: yilia</code>，然后再<code>hexo server(hexo s)</code>你就能看到一个博客了。</p>
+</li>
+<li><p>安装插件，我们先要对博客进行配置，再对主题进行配置。考虑到其中还要对插件进行配置所以索性先把用到的几个插件装上,<code>npm install hexo-generator-feed hexo-generator-sitemap hexo-pdf hexo-qiniu-sync --save</code></p>
+<blockquote>
+<p><a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="external">hexo-generator-feed</a>     -&gt;生成rss<br><a href="https://github.com/hexojs/hexo-generator-sitemap" target="_blank" rel="external">hexo-generator-sitemap</a>  -&gt;生成sitemap<br><a href="https://github.com/superalsrk/hexo-pdf/" target="_blank" rel="external">hexo-pdf</a>                 -&gt;嵌入pdf<br><a href="https://github.com/gyk001/hexo-qiniu-sync" target="_blank" rel="external">hexo-qiniu-sync</a>          -&gt;插入图片外链，并且同步你的文件到七牛云</p>
+</blockquote>
+</li>
+<li><p>然后开始配置，具体细节我就不说了，主要是配一些基本信息还有插件信息还有<code>deploy（使用ssh而不是http）</code>的信息。我把我的配置文件拿上来给参考一下<a href="http://kangqingfei.qiniudn.com/blog%2Fcodes%2Fconfigs%2Fhexo_config.yml" target="_blank" rel="external">hexo_config.yml</a> ，下面主要说几个坑</p>
+<blockquote>
+<p><code>language: zh-Hans</code>  这个语言一开始看官网的doc直接就填了zh 后面发现貌似中文变成繁体的了（估计开发者是台湾人的缘故），之后看到<code>themes\yilia\languages\zh-Hans.yml</code>才知道该填这个。<br><code>code_dir: assest/codes</code>  这里要改成你存放代码的路径要不然后面会不能从文件引入代码块。<br><code>new_post_name: :year-:month-:day-:title.md</code> 这里改成这个一是为了搞清楚文章发表的时间，而是为了从jekyll迁移的时候不出错，原话如下</p>
+<blockquote>
+<p>Move all files in the Jekyll _posts folder to the source/_posts folder.<br>Modify the new_post_name setting in _config.yml:<br>new_post_name: :year-:month-:day-:title.md</p>
+</blockquote>
+<p><code>local_dir: source/assest</code> 这是七牛那个插件的配置，记得前面不能有<code>/</code>不然会出错，在这卡了好久。<br> 其他倒没啥了，就是<strong>rss和sitemap一直生成不了</strong>后来找到一个解决方案<code>hexo d -g</code>就有了。</p>
+</blockquote>
+</li>
+<li>配置主题，同样的我把我的配置文件拿上来给参考一下<a href="http://kangqingfei.qiniudn.com/blog%2Fcodes%2Fconfigs%2Fyilia_config.yml" target="_blank" rel="external">yilia_config.yml</a> ，要配置的东西有，自己的社交信息，<code>google_analytics</code>的ID,多少评论的ID。</li>
+<li>写文章了，在之前先讲下他的原理，我们可以通过<code>hexo new &quot;Hello Hexo&quot;</code>生成一个新的文章。这个文章会默认使用<code>scaffolds</code>下的模板（layout），然后把生成的markdown放到<code>source/_posts</code>下。同理你可以猜到，<code>hexo new(hexo n) page &quot;xxx&quot;</code>会把生成的markdown放到<code>source</code>下面，<code>hexo new draft &quot;xxx&quot;</code>会放到<code>source/_draft</code>下面（鸡肋的草稿没啥用，其实post不deploy就是draft了啊）。并且我们可以自己定义layout并放到<code>scaffolds</code>下面，通过<code>hexo new layoutname &quot;xxxxx&quot;</code>生成一篇基于自己定义的layout的文章，他会将我们自己模板生成的markdown同样放到<code>source/_posts</code>下。这样就允许我们自己把一些常用的标签放到里面了，我自己定义了一个article的layout，里面有我常用的一些东西，发给大家参考一下<a href="http://kangqingfei.qiniudn.com/blog%2Fcodes%2Fconfigs%2Fhexo_article_layout.mmd" target="_blank" rel="external">hexo_article_layout.mmd</a>（由于<strong>这里不能放md文件否则生成会报错</strong>，所以只好改成mmd）。这里主要搞清楚几个用法<blockquote>
+<ol>
+<li>设置categories，和tags的方法。</li>
+<li>include_code 的路径是相对配置中的code_dir而言的，不要搞错了。</li>
+<li>七牛云的图片的路径也是相对于你填的那个前缀而言的。</li>
+<li>七牛云的图片处理问题：这个问题主要去<a href="http://developer.qiniu.com/docs/v6/api/reference/fop/image/" target="_blank" rel="external">七牛</a>看看,就是大小和水印的问题</li>
+</ol>
+</blockquote>
+</li>
+<li>发布，我们的markdown可以通过<code>hexo generate(hexo g)</code>来生成静态页面即发布时的文件（至于public文件夹下）,通过<code>hexo clean</code>来清除，通过<code>hexo deploy(hexo d )</code>发布到指定的仓库。</li>
+</ol>
+<p>####接下来看看效果了。<br><a href="http://kangqingfei.cn" title="go to kblog">kblog</a></p>
+<p><a href="mailto:kangqingfei@gmail.com" title="Email" target="_blank" rel="external">Write to me</a></p>
+<figure class="highlight c"><figcaption><span>test.c</span><a href="/assest/codes/test.c">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test load code file</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><figcaption><span>yilia_config.ym</span><a href="http://kangqingfei.qiniudn.com/blog%2Fcodes%2Fconfigs%2Fyilia_config.yml" target="_blank" rel="external">源文件</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code snippet</span><br></pre></td></tr></table></figure>
+<img src="/assest/images/test.png" class="class names" width="32" height="32" title="图 图片">
+<p><img src="/assest/images/test.png" alt="图片"></p>
+<div class="row">
+  <iframe src="http://nagland.github.io/viewer/web/viewer.html?val=http://kangqingfei.qiniudn.com/blog%2Fpdf%2Ftest.pdf" style="width:100%; height:550px"> 
+  </iframe>
+</div>
+<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/test.png?imageView2/0/w/1000/h/1000/watermark/2/text/wqlrYW5ncWluZ2ZlaQ==/font/5a6L5L2T/fontsize/1000/fill/IzBCMDEwMQ==/dissolve/85/gravity/SouthEast/dx/20/dy/20">
+<img attr1="value1" attr2="value2" attr3="value31" [extend="?imageView2/2/w/600" src="http://kangqingfei.qiniudn.com/blog/images/test.png">
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="u4E0A_u9762_u5199_u4E86_u4E00_u7BC7_u6587_u7AE0_uFF0C_u611F_u89C9_u771F_u662F_u4E11_u7206_u4E86_uFF0C_u5185_u5BB9_u81ED_uFF0C_u754C_]]>
+    </summary>
+    
+      <category term="hexo" scheme="http://kangqingfei.cn/tags/hexo/"/>
+    
+      <category term="install" scheme="http://kangqingfei.cn/tags/install/"/>
+    
+      <category term="tips" scheme="http://kangqingfei.cn/categories/tips/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Install ArchLinux to USB media or Virtual Machine]]></title>
