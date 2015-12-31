@@ -6,34 +6,31 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Install ArchLinux to USB media or Virtual Machine | kblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="======================
-#是的，考完了，考完了，考完了！=======
-###那就来装个系统吧。
+  <meta name="description" content="是的，考完了，考完了，考完了！
 
+那就来装个系统吧。
 打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
 fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
-格式化  mkfs">
+格式化  mkfs.ext4 /dev/sda1   mkfs.ext4 /dev/s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Install ArchLinux to USB media or Virtual Machine">
 <meta property="og:url" content="http://kangqingfei.cn/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/index.html">
 <meta property="og:site_name" content="kblog">
-<meta property="og:description" content="======================
-#是的，考完了，考完了，考完了！=======
-###那就来装个系统吧。
+<meta property="og:description" content="是的，考完了，考完了，考完了！
 
+那就来装个系统吧。
 打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
 fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
-格式化  mkfs">
-<meta property="og:updated_time" content="2015-12-29T13:24:19.000Z">
+格式化  mkfs.ext4 /dev/sda1   mkfs.ext4 /dev/s">
+<meta property="og:updated_time" content="2015-12-31T06:51:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install ArchLinux to USB media or Virtual Machine">
-<meta name="twitter:description" content="======================
-#是的，考完了，考完了，考完了！=======
-###那就来装个系统吧。
+<meta name="twitter:description" content="是的，考完了，考完了，考完了！
 
+那就来装个系统吧。
 打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
 fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
-格式化  mkfs">
+格式化  mkfs.ext4 /dev/sda1   mkfs.ext4 /dev/s">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -248,10 +245,10 @@ fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>======================</p>
-<h1 id="23_u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01"><a href="#23_u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01" class="headerlink" title="#是的，考完了，考完了，考完了！"></a>#是的，考完了，考完了，考完了！</h1><p>=======</p>
-<p>###那就来装个系统吧。</p>
-<ol>
+        <hr>
+<h1 id="u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01"><a href="#u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01" class="headerlink" title="是的，考完了，考完了，考完了！"></a>是的，考完了，考完了，考完了！</h1><hr>
+<hr>
+<h3 id="u90A3_u5C31_u6765_u88C5_u4E2A_u7CFB_u7EDF_u5427_u3002"><a href="#u90A3_u5C31_u6765_u88C5_u4E2A_u7CFB_u7EDF_u5427_u3002" class="headerlink" title="那就来装个系统吧。"></a>那就来装个系统吧。</h3><ol>
 <li>打开VMware，新建一个虚拟机，使用<code>archlinux-2015.12.01-dual.iso</code>(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘</li>
 <li><code>fdisk -l</code>  <code>fdisk /dev/sda</code> 新建一个100M分区，剩下再建一个分区。</li>
 <li>格式化  <code>mkfs.ext4 /dev/sda1</code>   <code>mkfs.ext4 /dev/sda2</code></li>
@@ -271,7 +268,10 @@ fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
 </ol>
 <h3 id="u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E"><a href="#u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E" class="headerlink" title="在虚拟机里面装没改syslinux.cfg发现还是错了 找不到/dev/sda3 又是在虚拟机上安装的 怎么办"></a>在虚拟机里面装没改<code>syslinux.cfg</code>发现还是错了 找不到<code>/dev/sda3</code> 又是在虚拟机上安装的 怎么办</h3><ol>
 <li>开机按<code>F2</code>然后将光盘的启动优先级放到最高 然后再次进到live里面</li>
-<li>按照之前的方法挂载 然后 <code>arch-chroot /mnt</code> 然后就把 <code>/sda3</code> 改成 <code>/sda2</code> 就ok<h3 id="u628A_u542F_u52A8_u9879_u6539_u56DE_u6765__u542F_u52A8_dhcpd__u83B7_u53D6_ip__u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765__u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009__u786E_u5B9A_u5B89_u88C5"><a href="#u628A_u542F_u52A8_u9879_u6539_u56DE_u6765__u542F_u52A8_dhcpd__u83B7_u53D6_ip__u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765__u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009__u786E_u5B9A_u5B89_u88C5" class="headerlink" title="把启动项改回来 启动 dhcpd 获取 ip  然后 startx 竟然没起来  无奈 pacman -S xorg 然后回车全选 确定安装"></a>把启动项改回来 启动 <code>dhcpd</code> 获取 ip  然后 <code>startx</code> 竟然没起来  无奈 <code>pacman -S xorg</code> 然后回车全选 确定安装</h3>####然后 还没起来 怒了 直接 <code>vim .xinitrc</code> 写入 <code>exec i3</code> 再<code>startx</code>就把i3 跑起来了</li>
+<li>按照之前的方法挂载 然后 <code>arch-chroot /mnt</code> 然后就把<code>/boot/syslinux/syslinux.cfg</code>里面的<code>/sda3</code> 改成 <code>/sda2</code> 就ok<h4 id="u628A_u542F_u52A8_u9879_u6539_u56DE_u6765_uFF0C_u542F_u52A8_dhcpd__u83B7_u53D6_ip__uFF0C_u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765_u3002_u3002_u3002_u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009_uFF0C_u786E_u5B9A_u5B89_u88C5_u7136_u540E_u8FD8_u6CA1_u8D77_u6765__u6012_u4E86__u76F4_u63A5_vim_-xinitrc__u5199_u5165_exec_i3__u518Dstartx_u5C31_u628A_i3__u8DD1_u8D77_u6765_u4E86_u3002_u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F"><a href="#u628A_u542F_u52A8_u9879_u6539_u56DE_u6765_uFF0C_u542F_u52A8_dhcpd__u83B7_u53D6_ip__uFF0C_u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765_u3002_u3002_u3002_u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009_uFF0C_u786E_u5B9A_u5B89_u88C5_u7136_u540E_u8FD8_u6CA1_u8D77_u6765__u6012_u4E86__u76F4_u63A5_vim_-xinitrc__u5199_u5165_exec_i3__u518Dstartx_u5C31_u628A_i3__u8DD1_u8D77_u6765_u4E86_u3002_u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F" class="headerlink" title="把启动项改回来，启动 dhcpd 获取 ip ，然后 startx 竟然没起来。。。无奈 pacman -S xorg 然后回车全选，确定安装然后还没起来 怒了 直接 vim .xinitrc 写入 exec i3 再startx就把 i3 跑起来了。补充几个可能用到的东西"></a>把启动项改回来，启动 <code>dhcpd</code> 获取 ip ，然后 <code>startx</code> 竟然没起来。。。无奈 <code>pacman -S xorg</code> 然后回车全选，确定安装然后<strong><em>还没起来</em></strong> <strong>怒了</strong> 直接 <code>vim .xinitrc</code> 写入 <code>exec i3</code> 再<code>startx</code>就把 i3 跑起来了。补充几个可能用到的东西</h4><blockquote>
+<p><code>wifi-menu</code>(包含在<code>dialog</code>中) -&gt; 用来配合<code>netctl</code>连WiFi<br>持续更新中……….</p>
+</blockquote>
+</li>
 </ol>
 
       

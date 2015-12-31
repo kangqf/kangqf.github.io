@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://kangqingfei.cn/"/>
-  <updated>2015-12-30T11:56:07.000Z</updated>
+  <updated>2015-12-31T06:32:54.000Z</updated>
   <id>http://kangqingfei.cn/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <link href="http://kangqingfei.cn/2015/12/30/use-markdown/"/>
     <id>http://kangqingfei.cn/2015/12/30/use-markdown/</id>
     <published>2015-12-30T10:41:53.000Z</published>
-    <updated>2015-12-30T11:56:07.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="u5C06_u535A_u5BA2_u4ECEjekyll_u8FC1_u79FB_u5230hexo_u90FD_u8FD8_u7B97_u987A_u5229_uFF0C_u552F_u4E00_u8BA9_u4EBA_u6709_u70B9_u607C_u706B_u7684_u5C31_u662Fmarkdown_u7684_u8BED_u6CD5_u4E0D_u4E00_u81F4_u4E86_uFF08hexo_u8C8C_u4F3C_u6CA1_u90A3_u4E48_u4EFB_u6027_uFF09_uFF0C_u6240_u4EE5_u719F_u6089_u4E00_u4E0Bhexo_u4E0B_u7684markdown_u8BED_u6CD5_uFF0C_u987A_u4FBF_u590D_u4E60_u4E00_u4E0B_u3002_u4E3B_u8981_u662F_u53C2_u8003http_3A//www-appinn-com/markdown/_uFF0C_u628A_u4E00_u4E9B_u5E38_u7528_u7684_u8BB0_u5F55_u4E86_u4E00_u4E0B_u3002"><a href="#u5C06_u535A_u5BA2_u4ECEjekyll_u8FC1_u79FB_u5230hexo_u90FD_u8FD8_u7B97_u987A_u5229_uFF0C_u552F_u4E00_u8BA9_u4EBA_u6709_u70B9_u607C_u706B_u7684_u5C31_u662Fmarkdown_u7684_u8BED_u6CD5_u4E0D_u4E00_u81F4_u4E86_uFF08hexo_u8C8C_u4F3C_u6CA1_u90A3_u4E48_u4EFB_u6027_uFF09_uFF0C_u6240_u4EE5_u719F_u6089_u4E00_u4E0Bhexo_u4E0B_u7684markdown_u8BED_u6CD5_uFF0C_u987A_u4FBF_u590D_u4E60_u4E00_u4E0B_u3002_u4E3B_u8981_u662F_u53C2_u8003http_3A//www-appinn-com/markdown/_uFF0C_u628A_u4E00_u4E9B_u5E38_u7528_u7684_u8BB0_u5F55_u4E86_u4E00_u4E0B_u3002" class="headerlink" title="将博客从jekyll迁移到hexo都还算顺利，唯一让人有点恼火的就是markdown的语法不一致了（hexo貌似没那么任性），所以熟悉一下hexo下的markdown语法，顺便复习一下。主要是参考http://www.appinn.com/markdown/，把一些常用的记录了一下。"></a>将博客从<code>jekyll</code>迁移到<code>hexo</code>都还算顺利，唯一让人有点恼火的就是<code>markdown</code>的语法不一致了（hexo貌似没那么任性），所以熟悉一下<code>hexo</code>下的<code>markdown</code>语法，顺便复习一下。主要是参考<a href="http://www.appinn.com/markdown/" title="参考网址" target="_blank" rel="external">http://www.appinn.com/markdown/</a>，把一些常用的记录了一下。</h3><ol>
+    <updated>2015-12-31T06:32:54.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u5C06_u535A_u5BA2_u4ECEjekyll_u8FC1_u79FB_u5230hexo_u90FD_u8FD8_u7B97_u987A_u5229_uFF0C_u552F_u4E00_u8BA9_u4EBA_u6709_u70B9_u607C_u706B_u7684_u5C31_u662Fmarkdown_u7684_u8BED_u6CD5_u4E0D_u4E00_u81F4_u4E86_uFF08hexo_u8C8C_u4F3C_u6CA1_u90A3_u4E48_u4EFB_u6027_uFF0C_u4E3B_u8981_u662F_u50CF_u6807_u9898_u7684_23_23__u540E_u9762_u5FC5_u987B_u8981_u7A7A_u683C_uFF0C_u4E5F_u4E0D_u652F_u6301__3D_3D_uFF09_uFF0C_u6240_u4EE5_u719F_u6089_u4E00_u4E0Bhexo_u4E0B_u7684markdown_u8BED_u6CD5_uFF0C_u987A_u4FBF_u590D_u4E60_u4E00_u4E0B_u3002_u4E3B_u8981_u662F_u53C2_u8003http_3A//www-appinn-com/markdown/_uFF0C_u628A_u4E00_u4E9B_u5E38_u7528_u7684_u8BB0_u5F55_u4E86_u4E00_u4E0B_u3002"><a href="#u5C06_u535A_u5BA2_u4ECEjekyll_u8FC1_u79FB_u5230hexo_u90FD_u8FD8_u7B97_u987A_u5229_uFF0C_u552F_u4E00_u8BA9_u4EBA_u6709_u70B9_u607C_u706B_u7684_u5C31_u662Fmarkdown_u7684_u8BED_u6CD5_u4E0D_u4E00_u81F4_u4E86_uFF08hexo_u8C8C_u4F3C_u6CA1_u90A3_u4E48_u4EFB_u6027_uFF0C_u4E3B_u8981_u662F_u50CF_u6807_u9898_u7684_23_23__u540E_u9762_u5FC5_u987B_u8981_u7A7A_u683C_uFF0C_u4E5F_u4E0D_u652F_u6301__3D_3D_uFF09_uFF0C_u6240_u4EE5_u719F_u6089_u4E00_u4E0Bhexo_u4E0B_u7684markdown_u8BED_u6CD5_uFF0C_u987A_u4FBF_u590D_u4E60_u4E00_u4E0B_u3002_u4E3B_u8981_u662F_u53C2_u8003http_3A//www-appinn-com/markdown/_uFF0C_u628A_u4E00_u4E9B_u5E38_u7528_u7684_u8BB0_u5F55_u4E86_u4E00_u4E0B_u3002" class="headerlink" title="将博客从jekyll迁移到hexo都还算顺利，唯一让人有点恼火的就是markdown的语法不一致了（hexo貌似没那么任性，主要是像标题的## 后面必须要空格，也不支持 ==），所以熟悉一下hexo下的markdown语法，顺便复习一下。主要是参考http://www.appinn.com/markdown/，把一些常用的记录了一下。"></a>将博客从<code>jekyll</code>迁移到<code>hexo</code>都还算顺利，唯一让人有点恼火的就是<code>markdown</code>的语法不一致了（hexo貌似没那么任性，主要是像标题的<code>##</code> 后面必须要空格，也不支持 <code>==</code>），所以熟悉一下<code>hexo</code>下的<code>markdown</code>语法，顺便复习一下。主要是参考<a href="http://www.appinn.com/markdown/" title="参考网址" target="_blank" rel="external">http://www.appinn.com/markdown/</a>，把一些常用的记录了一下。</h3><ol>
 <li><p>标题 使用 1-6 个 <code>#</code>，对应一级标题到六级标题。</p>
 <blockquote>
 <h1 id="u4E00_u7EA7_u6807_u9898"><a href="#u4E00_u7EA7_u6807_u9898" class="headerlink" title="一级标题"></a>一级标题</h1><h6 id="u516D_u7EA7_u6807_u9898"><a href="#u516D_u7EA7_u6807_u9898" class="headerlink" title="六级标题"></a>六级标题</h6></blockquote>
@@ -84,8 +84,8 @@
     <link href="http://kangqingfei.cn/2015/12/30/from-jekyll-to-hexo/"/>
     <id>http://kangqingfei.cn/2015/12/30/from-jekyll-to-hexo/</id>
     <published>2015-12-30T08:17:53.000Z</published>
-    <updated>2015-12-30T15:49:14.000Z</updated>
-    <content type="html"><![CDATA[<h4 id="u4E0A_u9762_u5199_u4E86_u4E00_u7BC7_u6587_u7AE0_uFF0C_u611F_u89C9_u771F_u662F_u4E11_u7206_u4E86_uFF0C_u5185_u5BB9_u81ED_uFF0C_u754C_u9762_u4E11_uFF0C_u8FD8_u4E0D_u662F_u5F88_u9002_u914D_u624B_u673A_uFF0C_u6240_u4EE5_u5C31_u5F88_u607C_u706B_uFF0C_u8FD9_u65F6_u53D1_u73B0_u4E00_u4E2A_u5F88_u4E0D_u9519_u7684_u57FA_u4E8E_hexo_u7684_u4E3B_u9898yilia_uFF0C_u611F_u89C9_u53EF_u4EE5_u6709_u3002_u5176_u5B9E_u4E4B_u524D_u5C31_u542C_u8FC7_hexo_u7684_u5927_u540D_uFF0C_u53EA_u662F_u6CA1_u60F3_u5230_u6BD4_u60F3_u8C61_u4E2D_u7684_u8FD8_u597D_u73A9_uFF0C_u5BF9_u6BD4_u4E4B_u4E0B_uFF0Cjekyll_u76F8_u5F53_u4E8E_u628A_u4F60_u7684markdown_u653E_u5230_u4E86github_u7136_u540E_u8BA9_u5B83_u7ED9_u4F60_u7F16_u8BD1_uFF0C_u800Chexo_u5219_u662F_u628A_u4F60_u7684markdown_u7F16_u8BD1_u6210html_u540E_u53D1_u5E03_u5230github_uFF0C_u66F4_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u57FA_u4E8Enode_uFF0C_u53EF_u6269_u5C55_u5F3A_uFF0C_u4E0D_u7528_u90A3_u4E48_u70E6_u4E5F_u4E0D_u4F1A_u8001_u51FA_u95EE_u9898_uFF0C_u914D_u7F6E_u4E5F_u662F_u7B80_u5355_uFF0C_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u989C_u503C_u9AD8_u554A_uFF0C_u7136_u540E_u8FD8_u6709_u4EE5_u4E0B_u51E0_u70B9_u8BA9_u6211_u5F88_u5FC3_u52A8_uFF1A"><a href="#u4E0A_u9762_u5199_u4E86_u4E00_u7BC7_u6587_u7AE0_uFF0C_u611F_u89C9_u771F_u662F_u4E11_u7206_u4E86_uFF0C_u5185_u5BB9_u81ED_uFF0C_u754C_u9762_u4E11_uFF0C_u8FD8_u4E0D_u662F_u5F88_u9002_u914D_u624B_u673A_uFF0C_u6240_u4EE5_u5C31_u5F88_u607C_u706B_uFF0C_u8FD9_u65F6_u53D1_u73B0_u4E00_u4E2A_u5F88_u4E0D_u9519_u7684_u57FA_u4E8E_hexo_u7684_u4E3B_u9898yilia_uFF0C_u611F_u89C9_u53EF_u4EE5_u6709_u3002_u5176_u5B9E_u4E4B_u524D_u5C31_u542C_u8FC7_hexo_u7684_u5927_u540D_uFF0C_u53EA_u662F_u6CA1_u60F3_u5230_u6BD4_u60F3_u8C61_u4E2D_u7684_u8FD8_u597D_u73A9_uFF0C_u5BF9_u6BD4_u4E4B_u4E0B_uFF0Cjekyll_u76F8_u5F53_u4E8E_u628A_u4F60_u7684markdown_u653E_u5230_u4E86github_u7136_u540E_u8BA9_u5B83_u7ED9_u4F60_u7F16_u8BD1_uFF0C_u800Chexo_u5219_u662F_u628A_u4F60_u7684markdown_u7F16_u8BD1_u6210html_u540E_u53D1_u5E03_u5230github_uFF0C_u66F4_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u57FA_u4E8Enode_uFF0C_u53EF_u6269_u5C55_u5F3A_uFF0C_u4E0D_u7528_u90A3_u4E48_u70E6_u4E5F_u4E0D_u4F1A_u8001_u51FA_u95EE_u9898_uFF0C_u914D_u7F6E_u4E5F_u662F_u7B80_u5355_uFF0C_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u989C_u503C_u9AD8_u554A_uFF0C_u7136_u540E_u8FD8_u6709_u4EE5_u4E0B_u51E0_u70B9_u8BA9_u6211_u5F88_u5FC3_u52A8_uFF1A" class="headerlink" title="上面写了一篇文章，感觉真是丑爆了，内容臭，界面丑，还不是很适配手机，所以就很恼火，这时发现一个很不错的基于 hexo的主题yilia，感觉可以有。其实之前就听过 hexo的大名，只是没想到比想象中的还好玩，对比之下，jekyll相当于把你的markdown放到了github然后让它给你编译，而hexo则是把你的markdown编译成html后发布到github，更重要的是人家基于node，可扩展强，不用那么烦也不会老出问题，配置也是简单，重要的是人家颜值高啊，然后还有以下几点让我很心动："></a>上面写了一篇文章，感觉真是丑爆了，内容臭，界面丑，还不是很适配手机，所以就很恼火，这时发现一个很不错的基于 <a href="https://hexo.io/" target="_blank" rel="external">hexo</a>的主题<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a>，感觉可以有。其实之前就听过 <code>hexo</code>的大名，只是没想到比想象中的还好玩，对比之下，jekyll相当于把你的markdown放到了github然后让它给你编译，而hexo则是把你的markdown编译成html后发布到github，更重要的是人家基于node，可扩展强，不用那么烦也不会老出问题，配置也是简单，重要的是人家颜值高啊，然后还有以下几点让我很心动：</h4><ul>
+    <updated>2015-12-31T06:31:07.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="u4E0A_u9762_u5199_u4E86_u4E00_u7BC7_u6587_u7AE0_uFF0C_u611F_u89C9_u771F_u662F_u4E11_u7206_u4E86_uFF0C_u5185_u5BB9_u81ED_uFF0C_u754C_u9762_u4E11_uFF0C_u8FD8_u4E0D_u662F_u5F88_u9002_u914D_u624B_u673A_uFF0C_u6240_u4EE5_u5C31_u5F88_u607C_u706B_uFF0C_u8FD9_u65F6_u53D1_u73B0_u4E00_u4E2A_u5F88_u4E0D_u9519_u7684_u57FA_u4E8E_hexo_u7684_u4E3B_u9898yilia_uFF0C_u611F_u89C9_u53EF_u4EE5_u6709_u3002_u5176_u5B9E_u4E4B_u524D_u5C31_u542C_u8FC7_hexo_u7684_u5927_u540D_uFF0C_u53EA_u662F_u6CA1_u60F3_u5230_u6BD4_u60F3_u8C61_u4E2D_u7684_u8FD8_u597D_u73A9_uFF0C_u5BF9_u6BD4_u4E4B_u4E0B_uFF0Cjekyll_u76F8_u5F53_u4E8E_u628A_u4F60_u7684markdown_u653E_u5230_u4E86github_u7136_u540E_u8BA9_u5B83_u7ED9_u4F60_u7F16_u8BD1_uFF0C_u800Chexo_u5219_u662F_u628A_u4F60_u7684markdown_u7F16_u8BD1_u6210html_u540E_u53D1_u5E03_u5230github_uFF08_u6240_u4EE5_u4E0D_u5B58_u5728jekyll_u7684_u90A3_u79CD_u65F6_u5EF6_uFF09_uFF0C_u66F4_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u57FA_u4E8Enode_uFF0C_u53EF_u6269_u5C55_u5F3A_uFF0C_u4E0D_u7528_u90A3_u4E48_u70E6_u4E5F_u4E0D_u4F1A_u8001_u51FA_u95EE_u9898_uFF0C_u914D_u7F6E_u4E5F_u662F_u7B80_u5355_uFF0C_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u989C_u503C_u9AD8_u554A_uFF0C_u7136_u540E_u8FD8_u6709_u4EE5_u4E0B_u51E0_u70B9_u8BA9_u6211_u5F88_u5FC3_u52A8_uFF1A"><a href="#u4E0A_u9762_u5199_u4E86_u4E00_u7BC7_u6587_u7AE0_uFF0C_u611F_u89C9_u771F_u662F_u4E11_u7206_u4E86_uFF0C_u5185_u5BB9_u81ED_uFF0C_u754C_u9762_u4E11_uFF0C_u8FD8_u4E0D_u662F_u5F88_u9002_u914D_u624B_u673A_uFF0C_u6240_u4EE5_u5C31_u5F88_u607C_u706B_uFF0C_u8FD9_u65F6_u53D1_u73B0_u4E00_u4E2A_u5F88_u4E0D_u9519_u7684_u57FA_u4E8E_hexo_u7684_u4E3B_u9898yilia_uFF0C_u611F_u89C9_u53EF_u4EE5_u6709_u3002_u5176_u5B9E_u4E4B_u524D_u5C31_u542C_u8FC7_hexo_u7684_u5927_u540D_uFF0C_u53EA_u662F_u6CA1_u60F3_u5230_u6BD4_u60F3_u8C61_u4E2D_u7684_u8FD8_u597D_u73A9_uFF0C_u5BF9_u6BD4_u4E4B_u4E0B_uFF0Cjekyll_u76F8_u5F53_u4E8E_u628A_u4F60_u7684markdown_u653E_u5230_u4E86github_u7136_u540E_u8BA9_u5B83_u7ED9_u4F60_u7F16_u8BD1_uFF0C_u800Chexo_u5219_u662F_u628A_u4F60_u7684markdown_u7F16_u8BD1_u6210html_u540E_u53D1_u5E03_u5230github_uFF08_u6240_u4EE5_u4E0D_u5B58_u5728jekyll_u7684_u90A3_u79CD_u65F6_u5EF6_uFF09_uFF0C_u66F4_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u57FA_u4E8Enode_uFF0C_u53EF_u6269_u5C55_u5F3A_uFF0C_u4E0D_u7528_u90A3_u4E48_u70E6_u4E5F_u4E0D_u4F1A_u8001_u51FA_u95EE_u9898_uFF0C_u914D_u7F6E_u4E5F_u662F_u7B80_u5355_uFF0C_u91CD_u8981_u7684_u662F_u4EBA_u5BB6_u989C_u503C_u9AD8_u554A_uFF0C_u7136_u540E_u8FD8_u6709_u4EE5_u4E0B_u51E0_u70B9_u8BA9_u6211_u5F88_u5FC3_u52A8_uFF1A" class="headerlink" title="上面写了一篇文章，感觉真是丑爆了，内容臭，界面丑，还不是很适配手机，所以就很恼火，这时发现一个很不错的基于 hexo的主题yilia，感觉可以有。其实之前就听过 hexo的大名，只是没想到比想象中的还好玩，对比之下，jekyll相当于把你的markdown放到了github然后让它给你编译，而hexo则是把你的markdown编译成html后发布到github（所以不存在jekyll的那种时延），更重要的是人家基于node，可扩展强，不用那么烦也不会老出问题，配置也是简单，重要的是人家颜值高啊，然后还有以下几点让我很心动："></a>上面写了一篇文章，感觉真是丑爆了，内容臭，界面丑，还不是很适配手机，所以就很恼火，这时发现一个很不错的基于 <a href="https://hexo.io/" target="_blank" rel="external">hexo</a>的主题<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a>，感觉可以有。其实之前就听过 <code>hexo</code>的大名，只是没想到比想象中的还好玩，对比之下，jekyll相当于把你的markdown放到了github然后让它给你编译，而hexo则是把你的markdown编译成html后发布到github（所以不存在jekyll的那种时延），更重要的是人家基于node，可扩展强，不用那么烦也不会老出问题，配置也是简单，重要的是人家颜值高啊，然后还有以下几点让我很心动：</h4><ul>
 <li>自动生成rss，我都不记得当时是怎么搞的jekyll才让它弄成了rss，反正是很烦。</li>
 <li>看到有七牛的图片外链插件，你懂得github的速度，有了外链妈妈再也不怕我放图片了。</li>
 <li>可以引用代码文件，这个之前不知道在jekyll里是不是有这个功能。</li>
@@ -132,16 +132,16 @@
 </li>
 <li>发布，我们的markdown可以通过<code>hexo generate(hexo g)</code>来生成静态页面即发布时的文件（至于public文件夹下）,通过<code>hexo clean</code>来清除，通过<code>hexo deploy(hexo d )</code>发布到指定的仓库。</li>
 </ol>
-<p>####接下来看看效果了。<br><a href="http://kangqingfei.cn" title="go to kblog">kblog</a></p>
+<h4 id="u63A5_u4E0B_u6765_u770B_u770B_u6548_u679C_u4E86_u3002"><a href="#u63A5_u4E0B_u6765_u770B_u770B_u6548_u679C_u4E86_u3002" class="headerlink" title="接下来看看效果了。"></a>接下来看看效果了。</h4><a href="http://kangqingfei.cn" title="go to kblog">kblog</a>
 <p><a href="mailto:kangqingfei@gmail.com" title="Email" target="_blank" rel="external">Write to me</a></p>
 <figure class="highlight c"><figcaption><span>test.c</span><a href="/assest/codes/test.c">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test load code file</span><br></pre></td></tr></table></figure>
 <figure class="highlight"><figcaption><span>yilia_config.ym</span><a href="http://kangqingfei.qiniudn.com/blog%2Fcodes%2Fconfigs%2Fyilia_config.yml" target="_blank" rel="external">源文件</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code snippet</span><br></pre></td></tr></table></figure>
 <img src="/assest/images/test.png" class="class names" width="32" height="32" title="图 图片">
 <p><img src="/assest/images/test.png" alt="图片"></p>
-<div class="row">
+<p>顺便送本电子书<br><div class="row">
   <iframe src="http://nagland.github.io/viewer/web/viewer.html?val=http://kangqingfei.qiniudn.com/blog%2Fpdf%2Ftest.pdf" style="width:100%; height:550px"> 
   </iframe>
-</div>
+</div></p>
 <img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/test.png?imageView2/0/w/1000/h/1000/watermark/2/text/wqlrYW5ncWluZ2ZlaQ==/font/5a6L5L2T/fontsize/1000/fill/IzBCMDEwMQ==/dissolve/85/gravity/SouthEast/dx/20/dy/20">
 <img attr1="value1" attr2="value2" attr3="value31" [extend="?imageView2/2/w/600" src="http://kangqingfei.qiniudn.com/blog/images/test.png">
 ]]></content>
@@ -162,11 +162,11 @@
     <link href="http://kangqingfei.cn/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/"/>
     <id>http://kangqingfei.cn/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/</id>
     <published>2015-12-29T00:00:00.000Z</published>
-    <updated>2015-12-29T13:24:19.000Z</updated>
-    <content type="html"><![CDATA[<p>======================</p>
-<h1 id="23_u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01"><a href="#23_u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01" class="headerlink" title="#是的，考完了，考完了，考完了！"></a>#是的，考完了，考完了，考完了！</h1><p>=======</p>
-<p>###那就来装个系统吧。</p>
-<ol>
+    <updated>2015-12-31T06:51:35.000Z</updated>
+    <content type="html"><![CDATA[<hr>
+<h1 id="u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01"><a href="#u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01" class="headerlink" title="是的，考完了，考完了，考完了！"></a>是的，考完了，考完了，考完了！</h1><hr>
+<hr>
+<h3 id="u90A3_u5C31_u6765_u88C5_u4E2A_u7CFB_u7EDF_u5427_u3002"><a href="#u90A3_u5C31_u6765_u88C5_u4E2A_u7CFB_u7EDF_u5427_u3002" class="headerlink" title="那就来装个系统吧。"></a>那就来装个系统吧。</h3><ol>
 <li>打开VMware，新建一个虚拟机，使用<code>archlinux-2015.12.01-dual.iso</code>(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘</li>
 <li><code>fdisk -l</code>  <code>fdisk /dev/sda</code> 新建一个100M分区，剩下再建一个分区。</li>
 <li>格式化  <code>mkfs.ext4 /dev/sda1</code>   <code>mkfs.ext4 /dev/sda2</code></li>
@@ -186,12 +186,15 @@
 </ol>
 <h3 id="u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E"><a href="#u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E" class="headerlink" title="在虚拟机里面装没改syslinux.cfg发现还是错了 找不到/dev/sda3 又是在虚拟机上安装的 怎么办"></a>在虚拟机里面装没改<code>syslinux.cfg</code>发现还是错了 找不到<code>/dev/sda3</code> 又是在虚拟机上安装的 怎么办</h3><ol>
 <li>开机按<code>F2</code>然后将光盘的启动优先级放到最高 然后再次进到live里面</li>
-<li>按照之前的方法挂载 然后 <code>arch-chroot /mnt</code> 然后就把 <code>/sda3</code> 改成 <code>/sda2</code> 就ok<h3 id="u628A_u542F_u52A8_u9879_u6539_u56DE_u6765__u542F_u52A8_dhcpd__u83B7_u53D6_ip__u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765__u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009__u786E_u5B9A_u5B89_u88C5"><a href="#u628A_u542F_u52A8_u9879_u6539_u56DE_u6765__u542F_u52A8_dhcpd__u83B7_u53D6_ip__u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765__u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009__u786E_u5B9A_u5B89_u88C5" class="headerlink" title="把启动项改回来 启动 dhcpd 获取 ip  然后 startx 竟然没起来  无奈 pacman -S xorg 然后回车全选 确定安装"></a>把启动项改回来 启动 <code>dhcpd</code> 获取 ip  然后 <code>startx</code> 竟然没起来  无奈 <code>pacman -S xorg</code> 然后回车全选 确定安装</h3>####然后 还没起来 怒了 直接 <code>vim .xinitrc</code> 写入 <code>exec i3</code> 再<code>startx</code>就把i3 跑起来了</li>
+<li>按照之前的方法挂载 然后 <code>arch-chroot /mnt</code> 然后就把<code>/boot/syslinux/syslinux.cfg</code>里面的<code>/sda3</code> 改成 <code>/sda2</code> 就ok<h4 id="u628A_u542F_u52A8_u9879_u6539_u56DE_u6765_uFF0C_u542F_u52A8_dhcpd__u83B7_u53D6_ip__uFF0C_u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765_u3002_u3002_u3002_u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009_uFF0C_u786E_u5B9A_u5B89_u88C5_u7136_u540E_u8FD8_u6CA1_u8D77_u6765__u6012_u4E86__u76F4_u63A5_vim_-xinitrc__u5199_u5165_exec_i3__u518Dstartx_u5C31_u628A_i3__u8DD1_u8D77_u6765_u4E86_u3002_u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F"><a href="#u628A_u542F_u52A8_u9879_u6539_u56DE_u6765_uFF0C_u542F_u52A8_dhcpd__u83B7_u53D6_ip__uFF0C_u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765_u3002_u3002_u3002_u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009_uFF0C_u786E_u5B9A_u5B89_u88C5_u7136_u540E_u8FD8_u6CA1_u8D77_u6765__u6012_u4E86__u76F4_u63A5_vim_-xinitrc__u5199_u5165_exec_i3__u518Dstartx_u5C31_u628A_i3__u8DD1_u8D77_u6765_u4E86_u3002_u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F" class="headerlink" title="把启动项改回来，启动 dhcpd 获取 ip ，然后 startx 竟然没起来。。。无奈 pacman -S xorg 然后回车全选，确定安装然后还没起来 怒了 直接 vim .xinitrc 写入 exec i3 再startx就把 i3 跑起来了。补充几个可能用到的东西"></a>把启动项改回来，启动 <code>dhcpd</code> 获取 ip ，然后 <code>startx</code> 竟然没起来。。。无奈 <code>pacman -S xorg</code> 然后回车全选，确定安装然后<strong><em>还没起来</em></strong> <strong>怒了</strong> 直接 <code>vim .xinitrc</code> 写入 <code>exec i3</code> 再<code>startx</code>就把 i3 跑起来了。补充几个可能用到的东西</h4><blockquote>
+<p><code>wifi-menu</code>(包含在<code>dialog</code>中) -&gt; 用来配合<code>netctl</code>连WiFi<br>持续更新中……….</p>
+</blockquote>
+</li>
 </ol>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>======================</p>
-<h1 id="23_u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01"><a href=]]>
+    <![CDATA[<hr>
+<h1 id="u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01"><a href="#u662F_u7684_uFF0C_u8003_u5]]>
     </summary>
     
       <category term="archlinux" scheme="http://kangqingfei.cn/tags/archlinux/"/>
@@ -209,10 +212,10 @@
     <link href="http://kangqingfei.cn/2015/08/27/digitalocean-vps/"/>
     <id>http://kangqingfei.cn/2015/08/27/digitalocean-vps/</id>
     <published>2015-08-27T00:00:00.000Z</published>
-    <updated>2015-12-29T17:00:17.000Z</updated>
-    <content type="html"><![CDATA[<p>===================<br>今天又是折腾自己的VPS，发现以前只是把它关机了还是会收费的，，，真是脑残，应该把droplets删了才会停止收费！<br>所以很无语地发现自己的ss好慢啊，自从某博士的科学上网服务停止后，看视频都没劲了，果断给VPS换地方。在官网的测速网站<br><a href="http://speedtest-ams1.digitalocean.com/" target="_blank" rel="external">http://speedtest-ams1.digitalocean.com/</a>上测完后发现AMS1的速度快得达到满速，<br>可惜的是那个地方不提供创建droplets了，而AWS2的速度只有1M左右其他都不理想，不过SGP1的速度貌似有6、7M但是听说不稳定<br>管他呢，总比开始的NYC3好吧。所以先关机创建snapshot然后把它发到新加坡机房，貌似有点久半小时左右。然后创建新的droplets选择刚发过去的快照<br>最后拿到root密码改过密码后感觉贼快了，比开始的一卡一卡的好多了，至少ssh不会卡顿，恩还是很好地说。</p>
-<p>##问题来了</p>
-<p>转过来后发现自己网站的头像图片挂了其他的却正常，一想自己的头像图片是存在mongo里面的其他就没有，可能是mongo的问题<br>仔细一查果然 node 起不来了 mongo 也有问题了，其中mongo报错  </p>
+    <updated>2015-12-31T06:37:40.000Z</updated>
+    <content type="html"><![CDATA[<hr>
+<p>今天又是折腾自己的VPS，发现以前只是把它关机了还是会收费的，，，真是脑残，应该把droplets删了才会停止收费！所以很无语地发现自己的ss好慢啊，自从某博士的科学上网服务停止后，看视频都没劲了，果断给VPS换地方。在官网的测速网站<a href="http://speedtest-ams1.digitalocean.com/" target="_blank" rel="external">http://speedtest-ams1.digitalocean.com/</a>上测完后发现AMS1的速度快得达到满速，可惜的是那个地方不提供创建droplets了，而AWS2的速度只有1M左右其他都不理想，不过SGP1的速度貌似有6、7M但是听说不稳定管他呢，总比开始的NYC3好吧。所以先关机创建snapshot然后把它发到新加坡机房，貌似有点久半小时左右。然后创建新的droplets选择刚发过去的快照最后拿到root密码改过密码后感觉贼快了，比开始的一卡一卡的好多了，至少ssh不会卡顿，恩还是很好地说。</p>
+<h2 id="u95EE_u9898_u6765_u4E86"><a href="#u95EE_u9898_u6765_u4E86" class="headerlink" title="问题来了"></a>问题来了</h2><p>转过来后发现自己网站的头像图片挂了其他的却正常，一想自己的头像图片是存在mongo里面的其他就没有，可能是mongo的问题<br>仔细一查果然 node 起不来了 mongo 也有问题了，其中mongo报错  </p>
 <pre><code>Error: couldn&apos;t connect to server 127.0.0.1:27017 (127.0.0.1),
 connection attempt failed at src/mongo/shell/mongo.js:146
 exception: connect failed
@@ -220,10 +223,11 @@ exception: connect failed
 <pre><code>Running &quot;connect:server&quot; (connect) task
 Waiting forever...
 Fatal error: listen EADDRNOTAVAIL
-</code></pre><p>然后各种查一开始以为是两个东西的问题，就把啥锁也清了，也修复了。<br>后面发现远程能进入mongo，本地却不行，觉得特别地奇葩，然后搜到可能是hosts的原因，可以cat /etc/hosts 发现有<br>127.0.0.1解析到localhost啊，，，怎么办呢。我就ping 127.0.0.1 发现 unreachable ，在一搜 发现可能是<br>hosts ,lo ,firewall ,icmp_echo_ignore出了问题。果然 ifconfig 发现没有 lo，，，，，，顿时晕了。。<br>所以，ifconfig lo up 后<strong>整个世界都亮了</strong>。PS：本人的vps会开一段时间，恩，<code>需要ss</code>的可以微博或邮件联系我</p>
+</code></pre><p>然后各种查一开始以为是两个东西的问题，就把啥锁也清了，也修复了。后面发现远程能进入mongo，本地却不行，觉得特别地奇葩，然后搜到可能是hosts的原因，可以cat /etc/hosts 发现有127.0.0.1解析到localhost啊，，，怎么办呢。我就ping 127.0.0.1 发现 unreachable ，在一搜 发现可能是hosts ,lo ,firewall ,icmp_echo_ignore出了问题。果然 ifconfig 发现没有 lo，，，，，，顿时晕了。。所以，ifconfig lo up 后<strong>整个世界都亮了</strong>。PS：本人的vps会开一段时间，恩，<code>需要ss</code>的可以<strong>微博或邮件联系我</strong></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>===================<br>今天又是折腾自己的VPS，发现以前只是把它关机了还是会收费的，，，真是脑残，应该把droplets删了才会停止收费！<br>所以很无语地发现自己的ss好慢啊，自从某博士的科学上网服务停止后，看视频都没劲了，果断给VPS换地方。在]]>
+    <![CDATA[<hr>
+<p>今天又是折腾自己的VPS，发现以前只是把它关机了还是会收费的，，，真是脑残，应该把droplets删了才会停止收费！所以很无语地发现自己的ss好慢啊，自从某博士的科学上网服务停止后，看视频都没劲了，果断给VPS换地方。在官网的测速网站<a href="http:/]]>
     </summary>
     
       <category term="grunt" scheme="http://kangqingfei.cn/tags/grunt/"/>
@@ -241,7 +245,7 @@ Fatal error: listen EADDRNOTAVAIL
     <link href="http://kangqingfei.cn/2015/08/26/using-jekyll-gracefully/"/>
     <id>http://kangqingfei.cn/2015/08/26/using-jekyll-gracefully/</id>
     <published>2015-08-26T00:00:00.000Z</published>
-    <updated>2015-12-29T16:59:28.000Z</updated>
+    <updated>2015-12-31T06:34:52.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u4E3A_u5565_u53C8_u6298_u817E_u8FD9_u8D27_uFF1F"><a href="#u4E3A_u5565_u53C8_u6298_u817E_u8FD9_u8D27_uFF1F" class="headerlink" title="为啥又折腾这货？"></a>为啥又折腾这货？</h2><ol>
 <li>在家，看不进书，有时间没事干，所以。。。。。。</li>
 <li>鉴于各种社交平台的太那啥，想拥有自己的一个小港湾（好扯淡）</li>
@@ -326,7 +330,8 @@ Fatal error: listen EADDRNOTAVAIL
 </blockquote>
 </li>
 </ol>
-<h2 id="u914D_u7F6E"><a href="#u914D_u7F6E" class="headerlink" title="配置"></a>配置</h2><h3 id="u4E3B_u8981_u662F__config-yml__u91CC_u9762_u7684_u4E1C_u897F_uFF0C_u4E00_u770B_u5C31_u61C2_uFF01_uFF01_uFF01"><a href="#u4E3B_u8981_u662F__config-yml__u91CC_u9762_u7684_u4E1C_u897F_uFF0C_u4E00_u770B_u5C31_u61C2_uFF01_uFF01_uFF01" class="headerlink" title="主要是 _config.yml 里面的东西，一看就懂！！！"></a>主要是 _config.yml 里面的东西，一看就懂！！！</h3><p>============<br><a href="http://blog.csdn.net/maoxunxing/article/details/40479753" target="_blank" rel="external">参考文章</a></p>
+<h2 id="u914D_u7F6E"><a href="#u914D_u7F6E" class="headerlink" title="配置"></a>配置</h2><h3 id="u4E3B_u8981_u662F__config-yml__u91CC_u9762_u7684_u4E1C_u897F_uFF0C_u4E00_u770B_u5C31_u61C2_uFF01_uFF01_uFF01"><a href="#u4E3B_u8981_u662F__config-yml__u91CC_u9762_u7684_u4E1C_u897F_uFF0C_u4E00_u770B_u5C31_u61C2_uFF01_uFF01_uFF01" class="headerlink" title="主要是 _config.yml 里面的东西，一看就懂！！！"></a>主要是 _config.yml 里面的东西，一看就懂！！！</h3><hr>
+<p><a href="http://blog.csdn.net/maoxunxing/article/details/40479753" target="_blank" rel="external">参考文章</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[using jekyll gracefully]]>
@@ -344,12 +349,13 @@ Fatal error: listen EADDRNOTAVAIL
     <link href="http://kangqingfei.cn/2015/02/25/bootstrap-fileinput/"/>
     <id>http://kangqingfei.cn/2015/02/25/bootstrap-fileinput/</id>
     <published>2015-02-24T16:00:00.000Z</published>
-    <updated>2015-12-29T17:00:00.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="bootstrap-fileinput"><a href="#bootstrap-fileinput" class="headerlink" title="bootstrap-fileinput"></a><a href="http://plugins.krajee.com/file-input" target="_blank" rel="external">bootstrap-fileinput</a></h1><p>这是一个基于<code>Bootstrap3.x</code>的加强版的文件选取插件，支持各种文件的预览功能，多选等。这个插件允许你设置一个高大上的文件选取/上传器通过使用<code>Bootstrap CSS3</code>样式。通过提供各种文件（包括images, text, html, video, audio, flash）的预览支持进一步地加强了文件选择器的功能。另外还支持AJAX上传，拖拽上传，上传进度可视，添加移除文件等</p>
-<p>这个插件最初是由<a href="http://www.abeautifulsite.net/blog/2013/08/whipping-file-inputs-into-shape-with-bootstrap-3/" target="_blank" rel="external">这个博客</a>和<a href="http://jasny.github.io/bootstrap/javascript/#fileinput" target="_blank" rel="external"> Jasny的文件选择插件</a>启发 ，但是现在通过各种新加的特性使得这个插件相比以前更加成熟，使得这个插件已经成为web开发者的全面的文件管理工具。</p>
+    <updated>2015-12-31T06:44:11.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://plugins.krajee.com/file-input" target="_blank" rel="external">bootstrap-fileinput</a></p>
+<hr>
+<p>这是一个基于<code>Bootstrap3.x</code>的加强版的文件选取插件，支持各种文件的预览功能，多选等。这个插件允许你设置一个高大上的文件选取/上传器通过使用<code>Bootstrap CSS3</code>样式。通过提供各种文件（包括images, text, html, video, audio,flash）的预览支持进一步地加强了文件选择器的功能。另外还支持AJAX上传，拖拽上传，上传进度可视，添加移除文件等</p>
+<p>这个插件最初是由<a href="http://www.abeautifulsite.net/blog/2013/08/whipping-file-inputs-into-shape-with-bootstrap-3/" target="_blank" rel="external">这个博客</a>和<a href="http://jasny.github.io/bootstrap/javascript/#fileinput" target="_blank" rel="external"> Jasny的文件选择插件</a>启发，但是现在通过各种新加的特性使得这个插件相比以前更加成熟，使得这个插件已经成为web开发者的全面的文件管理工具。</p>
 <p>伴随着<code>v4.0.0</code>版本的发布，这个插件已经支持AJAX上传—持基于大多浏览器支持的<code>HTML5 FormData</code>和<code>XHR2</code>协议。并且还内置支持以AJAX方式删除服务器端的文件。这就拥有了一个能够快速的删除、添加和移除文件的特性。这个插件还支持拖拽形式的AJAX文件上传。对于浏览器不支持<code>HTML5 FormData</code>和<code>XHR2</code>的情况，会自动使用普通的表单提交方式。</p>
-<p>###文件选取特性</p>
-<ol>
+<h3 id="u6587_u4EF6_u9009_u53D6_u7279_u6027"><a href="#u6587_u4EF6_u9009_u53D6_u7279_u6027" class="headerlink" title="文件选取特性"></a>文件选取特性</h3><ol>
 <li><p>这个插件将一个普通的 HTML文件选取变成一个高级的文件选取器，但是对于那些不支持<code>JQuery</code>h和<code>Javascript</code>的浏览器，将使用原生的HTML文件选取。</p>
 </li>
 <li><p>这个文件选择器由以下三个部分组成，可以通过选项和模板来控制器各部分的显示：</p>
@@ -404,7 +410,9 @@ Fatal error: listen EADDRNOTAVAIL
 </ol>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="bootstrap-fileinput"><a href="#bootstrap-fileinput" class="headerlink" title="bootstrap-fileinput"></a><a href="http://plugins.kraje]]>
+    <![CDATA[<p><a href="http://plugins.krajee.com/file-input" target="_blank" rel="external">bootstrap-fileinput</a></p>
+<hr>
+<p>这是一个基于<code>Bootstrap3.]]>
     </summary>
     
       <category term="BootStrap" scheme="http://kangqingfei.cn/tags/BootStrap/"/>
