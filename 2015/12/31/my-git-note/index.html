@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>my git note | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="my git note">
+<meta property="og:url" content="http://kangqingfei.cn/2015/12/31/my-git-note/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代">
+<meta property="og:updated_time" content="2016-01-02T06:34:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="my git note">
+<meta name="twitter:description" content="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/assest/images/kqf.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">kangqingfei</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/tips">乱七八糟</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/kangqingfei" title="weibo">weibo</a>
+					        
+								<a class="google" target="_blank" href="https://plus.google.com/115553302156535564722" title="google">google</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/git-note/" style="font-size: 10px;">git note</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/install/" style="font-size: 10px;">install</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note-ubuntu/" style="font-size: 10px;">note ubuntu</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/virtualmachine/" style="font-size: 10px;">virtualmachine</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.baidu.com/">奥巴马的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">冷小飞侠去哪了,来个友链吧</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">kangqingfei</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/assest/images/kqf.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">kangqingfei</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/tips">乱七八糟</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/kangqingfei" title="weibo">weibo</a>
+			        
+						<a class="google" target="_blank" href="https://plus.google.com/115553302156535564722" title="google">google</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-my-git-note" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/31/my-git-note/" class="article-date">
+  	<time datetime="2015-12-31T15:47:42.000Z" itemprop="datePublished">2015-12-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      my git note
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-note/">git note</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tips/">tips</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u4ECE13_u5E74_u63A5_u89E6git_u5230_u73B0_u5728_u5DF2_u7ECF_u4E24_u5E74_u534A_u4E86_uFF0C_u4ECD_u7136_u4E0D_u80FD_u5F88_u719F_u7EC3_u7684_u4F7F_u7528_uFF0C_u9047_u5230_u9EBB_u70E6_u7684_u95EE_u9898_u8FD8_u8981_u5728_u7F51_u4E0A_u641C_u547D_u4EE4_uFF0C_u867D_u7136_u4EE5_u524D_u6709_u5728_u672C_u5B50_u4E0A_u5199_u7B14_u8BB0_uFF0C_u4F46_u662F_u8C01_u6CA1_u4E8B_u5E26_u672C_u672C_u5B50_u554A_uFF0C_u6240_u4EE5_u5728_u8FD9_u91CC_u603B_u7ED3_u4E00_u4E0Bgit_u7684_u4F7F_u7528_u3002"><a href="#u4ECE13_u5E74_u63A5_u89E6git_u5230_u73B0_u5728_u5DF2_u7ECF_u4E24_u5E74_u534A_u4E86_uFF0C_u4ECD_u7136_u4E0D_u80FD_u5F88_u719F_u7EC3_u7684_u4F7F_u7528_uFF0C_u9047_u5230_u9EBB_u70E6_u7684_u95EE_u9898_u8FD8_u8981_u5728_u7F51_u4E0A_u641C_u547D_u4EE4_uFF0C_u867D_u7136_u4EE5_u524D_u6709_u5728_u672C_u5B50_u4E0A_u5199_u7B14_u8BB0_uFF0C_u4F46_u662F_u8C01_u6CA1_u4E8B_u5E26_u672C_u672C_u5B50_u554A_uFF0C_u6240_u4EE5_u5728_u8FD9_u91CC_u603B_u7ED3_u4E00_u4E0Bgit_u7684_u4F7F_u7528_u3002" class="headerlink" title="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。"></a>从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。</h3><h4 id="u9996_u5148git_u662F_u4E00_u4E2A_u5F88_u6709_u540D_u7684_u7248_u672C_u63A7_u5236_u7CFB_u7EDF_uFF0C_u4E00_u5F00_u59CB_u63A5_u89E6_uFF08github_uFF09_u7684_u65F6_u5019_uFF0C_u6211_u4EE5_u4E3A_u5B83_u53EA_u662F_u4E00_u4E2A_u7528_u6765_u627E_u4EE3_u7801_u7684_u5730_u65B9_uFF0C_u5F53_u65F6_u8981_u548C_u5B66_u957F_u5728_u90A3_u91CC_u641E_u4E86_u534A_u5929_u624D_u628A_u4EE3_u7801_u4E0A_u4F20_u5230github_uFF0C_u60F3_u60F3_u771F_u662F_u8270_u8F9B_u3002github_u53C8_u79F0gayhub_u662F_u4F7F_u7528git_u8BA9_u4F60_u514D_u8D39_u6258_u7BA1_u4EE3_u7801_uFF08_u5C31_u50CF_u8FD9_u7BC7_u535A_u5BA2_u7684html_u4EE3_u7801_uFF09_u7684_u5730_u65B9_uFF08_u56FD_u5185_u4E5F_u6709_u7C7B_u4F3C_u7684Coding-net__uFF09_uFF0C_u76F8_u5F53_u4E8E_u662F_u4E00_u4E2A_u8FDC_u7A0B_u7684_u4ED3_u5E93_u3002gitlab_u662F_u4E00_u4E2A_u4F7F_u7528git_u7684_u5F00_u6E90_u7684_u5DE5_u5177_uFF0C_u53EF_u4EE5_u8BA9_u4F60_u642D_u5EFA_u8D77_u7C7B_u4F3Cgithub_u8FD9_u6837_u7684_u73AF_u5883_u3002"><a href="#u9996_u5148git_u662F_u4E00_u4E2A_u5F88_u6709_u540D_u7684_u7248_u672C_u63A7_u5236_u7CFB_u7EDF_uFF0C_u4E00_u5F00_u59CB_u63A5_u89E6_uFF08github_uFF09_u7684_u65F6_u5019_uFF0C_u6211_u4EE5_u4E3A_u5B83_u53EA_u662F_u4E00_u4E2A_u7528_u6765_u627E_u4EE3_u7801_u7684_u5730_u65B9_uFF0C_u5F53_u65F6_u8981_u548C_u5B66_u957F_u5728_u90A3_u91CC_u641E_u4E86_u534A_u5929_u624D_u628A_u4EE3_u7801_u4E0A_u4F20_u5230github_uFF0C_u60F3_u60F3_u771F_u662F_u8270_u8F9B_u3002github_u53C8_u79F0gayhub_u662F_u4F7F_u7528git_u8BA9_u4F60_u514D_u8D39_u6258_u7BA1_u4EE3_u7801_uFF08_u5C31_u50CF_u8FD9_u7BC7_u535A_u5BA2_u7684html_u4EE3_u7801_uFF09_u7684_u5730_u65B9_uFF08_u56FD_u5185_u4E5F_u6709_u7C7B_u4F3C_u7684Coding-net__uFF09_uFF0C_u76F8_u5F53_u4E8E_u662F_u4E00_u4E2A_u8FDC_u7A0B_u7684_u4ED3_u5E93_u3002gitlab_u662F_u4E00_u4E2A_u4F7F_u7528git_u7684_u5F00_u6E90_u7684_u5DE5_u5177_uFF0C_u53EF_u4EE5_u8BA9_u4F60_u642D_u5EFA_u8D77_u7C7B_u4F3Cgithub_u8FD9_u6837_u7684_u73AF_u5883_u3002" class="headerlink" title="首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代码（就像这篇博客的html代码）的地方（国内也有类似的Coding.net ），相当于是一个远程的仓库。gitlab是一个使用git的开源的工具，可以让你搭建起类似github这样的环境。"></a>首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代码（就像这篇博客的html代码）的地方（国内也有类似的<a href="https://coding.net/" target="_blank" rel="external">Coding.net</a> ），相当于是一个远程的仓库。gitlab是一个使用git的开源的工具，可以让你搭建起类似github这样的环境。</h4><h4 id="u600E_u4E48_u5B66_u4E60git_3F_u9996_u5148_u63A8_u8350_u4E00_u4E2A_u53EF_u89C6_u5316_u5B66_u4E60git_u7684_u7F51_u7AD9_uFF0C_u8FD9_u4E2A_u7F51_u7AD9_u57FA_u672C_u4E0A_u8986_u76D6_u4E86_u5E38_u7528_u7684_u547D_u4EE4_uFF0C_u800C_u4E14_u975E_u5E38_u5F62_u8C61_u751F_u52A8_uFF0C_u5199_u8FD9_u7BC7_u6587_u7AE0_u4E4B_u524D_u6211_u4E5F_u662F_u628A_u91CC_u9762_u7684_u6240_u6709level_u8FC7_u4E86_u4E00_u904D_u3002_u518D_u8005_u5C31_u662F_u770B_u4E00_u4E9B_u535A_u5BA2_uFF0C_u5C31_u50CF_u6211_u4E0B_u9762_u9644_u4E0A_u7684_u962E_u8001_u5E08_u7684_u535A_u5BA2_u3002_u5982_u679C_u60F3_u5F88_u7CFB_u7EDF_u5730_u4E86_u89E3_u7684_u8BDD_u53EF_u4EE5_u770B_u770B_u4E66_uFF0C_u6BD4_u8F83_u6709_u540D_u7684_u6709progit_uFF0C_u56E0_u4E3Agit_u63A8_u51FA_u4E862-0_u7248_u672C_uFF0C_u6240_u4EE5_u4E5F_u5C31_u6709_u4E86progit2-zh_uFF0C_u76F8_u5173_u7684_u4E66_u8FD8_u6709_uFF1A"><a href="#u600E_u4E48_u5B66_u4E60git_3F_u9996_u5148_u63A8_u8350_u4E00_u4E2A_u53EF_u89C6_u5316_u5B66_u4E60git_u7684_u7F51_u7AD9_uFF0C_u8FD9_u4E2A_u7F51_u7AD9_u57FA_u672C_u4E0A_u8986_u76D6_u4E86_u5E38_u7528_u7684_u547D_u4EE4_uFF0C_u800C_u4E14_u975E_u5E38_u5F62_u8C61_u751F_u52A8_uFF0C_u5199_u8FD9_u7BC7_u6587_u7AE0_u4E4B_u524D_u6211_u4E5F_u662F_u628A_u91CC_u9762_u7684_u6240_u6709level_u8FC7_u4E86_u4E00_u904D_u3002_u518D_u8005_u5C31_u662F_u770B_u4E00_u4E9B_u535A_u5BA2_uFF0C_u5C31_u50CF_u6211_u4E0B_u9762_u9644_u4E0A_u7684_u962E_u8001_u5E08_u7684_u535A_u5BA2_u3002_u5982_u679C_u60F3_u5F88_u7CFB_u7EDF_u5730_u4E86_u89E3_u7684_u8BDD_u53EF_u4EE5_u770B_u770B_u4E66_uFF0C_u6BD4_u8F83_u6709_u540D_u7684_u6709progit_uFF0C_u56E0_u4E3Agit_u63A8_u51FA_u4E862-0_u7248_u672C_uFF0C_u6240_u4EE5_u4E5F_u5C31_u6709_u4E86progit2-zh_uFF0C_u76F8_u5173_u7684_u4E66_u8FD8_u6709_uFF1A" class="headerlink" title="怎么学习git?首先推荐一个可视化学习git的网站，这个网站基本上覆盖了常用的命令，而且非常形象生动，写这篇文章之前我也是把里面的所有level过了一遍。再者就是看一些博客，就像我下面附上的阮老师的博客。如果想很系统地了解的话可以看看书，比较有名的有progit，因为git推出了2.0版本，所以也就有了progit2-zh，相关的书还有："></a>怎么学习git?首先推荐一个<a href="http://pcottle.github.io/learnGitBranching/" target="_blank" rel="external">可视化学习git</a>的网站，这个网站基本上覆盖了常用的命令，而且非常形象生动，写这篇文章之前我也是把里面的所有level过了一遍。再者就是看一些博客，就像我下面附上的阮老师的博客。如果想很系统地了解的话可以看看书，比较有名的有progit，因为git推出了2.0版本，所以也就有了<a href="https://github.com/progit/progit2-zh" target="_blank" rel="external">progit2-zh</a>，相关的书还有：</h4><ul>
+<li><code>Manning.Learn.Git.in.a.Month.of.Lunches.2015.9.pdf</code>  </li>
+<li><code>O&#39;Reilly.Git.for.Teams.2015.8.pdf</code></li>
+<li><code>OReilly.Introducing.GitHub.2014.11.pdf</code>  </li>
+<li><code>Manning.Git.in.Practice.2014.9.pdf</code>  </li>
+<li><code>[Git.Pocket.Guide(2013.6)].Richard.E.Silverman.文字版.pdf</code></li>
+<li><code>[Version.Control.with.Git(2nd,2012.8)].Jon.Loeliger.文字版.pdf</code>  </li>
+<li><code>[Pragmatic.Guide.to.Git(2010.11)].Travis.Swicegood.文字版.pdf</code></li>
+</ul>
+<h4 id="u6211_u5217_u51FA_u7684_u5927_u90FD_u662F_u82F1_u6587_u7684_uFF0C_u800C_u4E14_u6709_u70B9_u591A_uFF0C_u6211_u4E5F_u6CA1_u770B_u8FC7_uFF0C_u4E5F_u4E0D_u77E5_u9053_u54EA_u672C_u597D_uFF0C_u53EF_u4EE5_u81EA_u5DF1_u770B_u770B_u9009_u62E9_u4E00_u4E0B_u3002"><a href="#u6211_u5217_u51FA_u7684_u5927_u90FD_u662F_u82F1_u6587_u7684_uFF0C_u800C_u4E14_u6709_u70B9_u591A_uFF0C_u6211_u4E5F_u6CA1_u770B_u8FC7_uFF0C_u4E5F_u4E0D_u77E5_u9053_u54EA_u672C_u597D_uFF0C_u53EF_u4EE5_u81EA_u5DF1_u770B_u770B_u9009_u62E9_u4E00_u4E0B_u3002" class="headerlink" title="我列出的大都是英文的，而且有点多，我也没看过，也不知道哪本好，可以自己看看选择一下。"></a>我列出的大都是英文的，而且有点多，我也没看过，也不知道哪本好，可以自己看看选择一下。</h4><ol>
+<li><p>git 术语。首先先讲一下git的一些术语，参考了阮老师的博客，大概是</p>
+<ul>
+<li>Workspace：工作区，就是当前工作目录的内容</li>
+<li>Index / Stage：暂存区，就是被git管理的当前的工作区的内容</li>
+<li>Repository：仓库区（或本地仓库），就是暂存区的内容保存的地方</li>
+<li>Remote：远程仓库 ，就是协同开发的时候多个开发者一起维护的仓库</li>
+<li>快照，就是一系列的提交构成的仓库的一个版本</li>
+<li>检出，就是复制某一快照然后新建一个分支</li>
+<li>hashValue，git用哈希值来表示一个快照，hashValue一般很长，我们使用的话一般取4位（前面）及以上就可以了。</li>
+<li>HEAD，指向当前工作快照的一个指针类似的，一般指向当前分支，也可分离指向hash值代表的快照</li>
+</ul>
+</li>
+<li><p>config &amp; help</p>
+</li>
+<li><p>init &amp; clone &amp; add &amp; rm &amp; mv</p>
+</li>
+<li><p>commit</p>
+</li>
+<li><p>branch &amp; checkout</p>
+</li>
+<li><p>log &amp; status &amp; show</p>
+</li>
+<li><p>rabase &amp; merge</p>
+</li>
+<li><p>reset &amp; revert &amp; tag</p>
+</li>
+<li><p>remote</p>
+</li>
+<li><p>fetch + merge = pull</p>
+</li>
+<li><p>push</p>
+</li>
+<li><p>diff &amp; blame &amp; reflog &amp; grep</p>
+</li>
+<li><p>git flow</p>
+</li>
+</ol>
+<h3 id="u53C2_u8003_u6587_u7AE0"><a href="#u53C2_u8003_u6587_u7AE0" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" title="进入" target="_blank" rel="external">常用 Git 命令清单</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/07/git.html" title="进入" target="_blank" rel="external">Git分支管理策略</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2015/12/git-workflow.html" title="进入" target="_blank" rel="external">Git 协作流程</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2015/09/git-bitmap.html" title="进入" target="_blank" rel="external">Github 的清点对象算法</a>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/03/ubuntu-note/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ubuntu note
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/30/use-markdown/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">use markdown</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="my-git-note" data-title="my git note" data-url="http://kangqingfei.cn/2015/12/31/my-git-note/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"kangqingfei"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 kangqingfei
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-59520224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

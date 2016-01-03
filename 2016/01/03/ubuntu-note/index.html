@@ -4,18 +4,39 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>DigitalOcean VPS转移机房 | kblog</title>
+  <title>ubuntu note | kblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天又是折腾自己的VPS，发现以前只是把它关机了还是会收费的，，，真是脑残，应该把droplets删了才会停止收费！所以很无语地发现自己的ss好慢啊，自从某博士的科学上网服务停止后，看视频都没劲了，果断给VPS换地方。在官网的测速网站http://speedtest-ams1.digitalocean.com/上测完后发现AMS1的速度快得达到满速，可惜的是那个地方不提供创建droplets了，而">
+  <meta name="description" content="这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的
+ubuntu 的源
+ubuntu 中一些软件的源
+禁用（启用）一些软件的更新
+定时任务备份自己的命令历史以待以后查阅
+一些常见的配置文件
+DNS 配置文件：/etc/resolv.conf
+主机名： /etc/hostname*">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DigitalOcean VPS转移机房">
-<meta property="og:url" content="http://kangqingfei.cn/2015/08/27/digitalocean-vps/index.html">
+<meta property="og:title" content="ubuntu note">
+<meta property="og:url" content="http://kangqingfei.cn/2016/01/03/ubuntu-note/index.html">
 <meta property="og:site_name" content="kblog">
-<meta property="og:description" content="今天又是折腾自己的VPS，发现以前只是把它关机了还是会收费的，，，真是脑残，应该把droplets删了才会停止收费！所以很无语地发现自己的ss好慢啊，自从某博士的科学上网服务停止后，看视频都没劲了，果断给VPS换地方。在官网的测速网站http://speedtest-ams1.digitalocean.com/上测完后发现AMS1的速度快得达到满速，可惜的是那个地方不提供创建droplets了，而">
-<meta property="og:updated_time" content="2015-12-31T06:37:40.000Z">
+<meta property="og:description" content="这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的
+ubuntu 的源
+ubuntu 中一些软件的源
+禁用（启用）一些软件的更新
+定时任务备份自己的命令历史以待以后查阅
+一些常见的配置文件
+DNS 配置文件：/etc/resolv.conf
+主机名： /etc/hostname*">
+<meta property="og:updated_time" content="2016-01-03T08:21:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DigitalOcean VPS转移机房">
-<meta name="twitter:description" content="今天又是折腾自己的VPS，发现以前只是把它关机了还是会收费的，，，真是脑残，应该把droplets删了才会停止收费！所以很无语地发现自己的ss好慢啊，自从某博士的科学上网服务停止后，看视频都没劲了，果断给VPS换地方。在官网的测速网站http://speedtest-ams1.digitalocean.com/上测完后发现AMS1的速度快得达到满速，可惜的是那个地方不提供创建droplets了，而">
+<meta name="twitter:title" content="ubuntu note">
+<meta name="twitter:description" content="这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的
+ubuntu 的源
+ubuntu 中一些软件的源
+禁用（启用）一些软件的更新
+定时任务备份自己的命令历史以待以后查阅
+一些常见的配置文件
+DNS 配置文件：/etc/resolv.conf
+主机名： /etc/hostname*">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -189,11 +210,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-digitalocean-vps" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-ubuntu-note" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/27/digitalocean-vps/" class="article-date">
-  	<time datetime="2015-08-27T00:00:00.000Z" itemprop="datePublished">2015-08-27</time>
+      <a href="/2016/01/03/ubuntu-note/" class="article-date">
+  	<time datetime="2016-01-03T08:13:54.000Z" itemprop="datePublished">2016-01-03</time>
 </a>
     </div>
   
@@ -206,7 +227,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      DigitalOcean VPS转移机房
+      ubuntu note
     </h1>
   
 
@@ -215,7 +236,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note-ubuntu/">note ubuntu</a></li></ul>
 	</div>
 
         
@@ -230,17 +251,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>今天又是折腾自己的VPS，发现以前只是把它关机了还是会收费的，，，真是脑残，应该把droplets删了才会停止收费！所以很无语地发现自己的ss好慢啊，自从某博士的科学上网服务停止后，看视频都没劲了，果断给VPS换地方。在官网的测速网站<a href="http://speedtest-ams1.digitalocean.com/" target="_blank" rel="external">http://speedtest-ams1.digitalocean.com/</a>上测完后发现AMS1的速度快得达到满速，可惜的是那个地方不提供创建droplets了，而AWS2的速度只有1M左右其他都不理想，不过SGP1的速度貌似有6、7M但是听说不稳定管他呢，总比开始的NYC3好吧。所以先关机创建snapshot然后把它发到新加坡机房，貌似有点久半小时左右。然后创建新的droplets选择刚发过去的快照最后拿到root密码改过密码后感觉贼快了，比开始的一卡一卡的好多了，至少ssh不会卡顿，恩还是很好地说。</p>
-<h2 id="u95EE_u9898_u6765_u4E86"><a href="#u95EE_u9898_u6765_u4E86" class="headerlink" title="问题来了"></a>问题来了</h2><p>转过来后发现自己网站的头像图片挂了其他的却正常，一想自己的头像图片是存在mongo里面的其他就没有，可能是mongo的问题<br>仔细一查果然 node 起不来了 mongo 也有问题了，其中mongo报错  </p>
-<pre><code>Error: couldn&apos;t connect to server 127.0.0.1:27017 (127.0.0.1),
-connection attempt failed at src/mongo/shell/mongo.js:146
-exception: connect failed
-</code></pre><p>Node 报错：</p>
-<pre><code>Running &quot;connect:server&quot; (connect) task
-Waiting forever...
-Fatal error: listen EADDRNOTAVAIL
-</code></pre><p>然后各种查一开始以为是两个东西的问题，就把啥锁也清了，也修复了。后面发现远程能进入mongo，本地却不行，觉得特别地奇葩，然后搜到可能是hosts的原因，可以cat /etc/hosts 发现有127.0.0.1解析到localhost啊，，，怎么办呢。我就ping 127.0.0.1 发现 unreachable ，在一搜 发现可能是hosts ,lo ,firewall ,icmp_echo_ignore出了问题。果然 ifconfig 发现没有 lo，，，，，，顿时晕了。。所以，ifconfig lo up 后<strong>整个世界都亮了</strong>。PS：本人的vps会开一段时间，恩，<code>需要ss</code>的可以<strong>微博或邮件联系我</strong></p>
+        <h3 id="u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728ubuntu_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE_u9898_u53CA_u5176_u89E3_u51B3_u65B9_u6CD5_u7684"><a href="#u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728ubuntu_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE_u9898_u53CA_u5176_u89E3_u51B3_u65B9_u6CD5_u7684" class="headerlink" title="这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的"></a>这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的</h3><ol>
+<li>ubuntu 的源</li>
+<li>ubuntu 中一些软件的源</li>
+<li>禁用（启用）一些软件的更新</li>
+<li>定时任务备份自己的命令历史以待以后查阅</li>
+<li>一些常见的配置文件<ul>
+<li>DNS 配置文件：/etc/resolv.conf</li>
+<li>主机名： /etc/hostname<br>*</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -250,18 +271,9 @@ Fatal error: listen EADDRNOTAVAIL
     
 <nav id="article-nav">
   
-    <a href="/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Install ArchLinux to USB media or Virtual Machine
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/26/using-jekyll-gracefully/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">using jekyll gracefully</div>
+    <a href="/2015/12/31/my-git-note/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">my git note</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -296,7 +308,7 @@ Fatal error: listen EADDRNOTAVAIL
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="digitalocean-vps" data-title="DigitalOcean VPS转移机房" data-url="http://kangqingfei.cn/2015/08/27/digitalocean-vps/"></div>
+	<div class="ds-thread" data-thread-key="ubuntu-note" data-title="ubuntu note" data-url="http://kangqingfei.cn/2016/01/03/ubuntu-note/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
