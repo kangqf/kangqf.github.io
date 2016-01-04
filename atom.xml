@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://kangqingfei.cn/"/>
-  <updated>2016-01-03T08:21:54.000Z</updated>
+  <updated>2016-01-04T15:01:15.000Z</updated>
   <id>http://kangqingfei.cn/</id>
   
   <author>
@@ -15,19 +15,65 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[windows note]]></title>
+    <link href="http://kangqingfei.cn/2016/01/04/windows-note/"/>
+    <id>http://kangqingfei.cn/2016/01/04/windows-note/</id>
+    <published>2016-01-04T11:11:09.000Z</published>
+    <updated>2016-01-04T15:01:15.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728windows_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE_u9898_u53CA_u5176_u89E3_u51B3_u65B9_u6CD5_u7684_uFF0C_u6301_u7EED_u66F4_u65B0_u2026"><a href="#u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728windows_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE_u9898_u53CA_u5176_u89E3_u51B3_u65B9_u6CD5_u7684_uFF0C_u6301_u7EED_u66F4_u65B0_u2026" class="headerlink" title="这篇文章主要是用来记录在windows使用过程中遇到的问题及其解决方法的，持续更新…"></a>这篇文章主要是用来记录在windows使用过程中遇到的问题及其解决方法的，持续更新…</h4><h5 id="u4ECA_u5929_u548C_u5C0F_u4F19_u4F34_u4E00_u8D77_u6253_u7B97_u505A_u4E2A_u4E1C_u897F_uFF0C_u7ED3_u679C_u53D1_u73B0_u4EE5_u524D_u642D_u8FC7_u7684_u73AF_u5883_uFF0C_u5373_u4F7F_u5728_u5F53_u65F6_u719F_u5230_u900F_u73B0_u5728_u5F88_u591A_u90FD_u5FD8_u4E86_uFF0C_u6240_u4EE5_u53D1_u73B0_u5199_u5199_u6587_u7AE0_u8FD8_u662F_u5FC5_u8981_u7684_u3002_u6240_u4EE5_u4ECE_u4ECA_u5929_u8D77_u4F1A_u5728_u8FD9_u7BC7_u6587_u7AE0_u4E2D_u8BB0_u5F55windows_u5E73_u53F0_u7684_u4E00_u4E9B_u4F7F_u7528_u3002_u7531_u4E8E_u4ECA_u5929_u5C0F_u4F19_u4F34_u8BF4_u4E3A_u4E86_u8FDEVPS_u4E0B_u4E86_u4E2Aputty_u7ED3_u679C_u4E2D_u4E86_u4E2A_u5168_u5BB6_u6876_uFF0C_uFF0C_uFF0C_uFF0C_uFF0C_u771F_u662F_u60B2_u50AC_uFF0C_u6240_u4EE5_u5C31_u4ECE_u547D_u4EE4_u884C_u5F00_u59CB_u5427_u3002"><a href="#u4ECA_u5929_u548C_u5C0F_u4F19_u4F34_u4E00_u8D77_u6253_u7B97_u505A_u4E2A_u4E1C_u897F_uFF0C_u7ED3_u679C_u53D1_u73B0_u4EE5_u524D_u642D_u8FC7_u7684_u73AF_u5883_uFF0C_u5373_u4F7F_u5728_u5F53_u65F6_u719F_u5230_u900F_u73B0_u5728_u5F88_u591A_u90FD_u5FD8_u4E86_uFF0C_u6240_u4EE5_u53D1_u73B0_u5199_u5199_u6587_u7AE0_u8FD8_u662F_u5FC5_u8981_u7684_u3002_u6240_u4EE5_u4ECE_u4ECA_u5929_u8D77_u4F1A_u5728_u8FD9_u7BC7_u6587_u7AE0_u4E2D_u8BB0_u5F55windows_u5E73_u53F0_u7684_u4E00_u4E9B_u4F7F_u7528_u3002_u7531_u4E8E_u4ECA_u5929_u5C0F_u4F19_u4F34_u8BF4_u4E3A_u4E86_u8FDEVPS_u4E0B_u4E86_u4E2Aputty_u7ED3_u679C_u4E2D_u4E86_u4E2A_u5168_u5BB6_u6876_uFF0C_uFF0C_uFF0C_uFF0C_uFF0C_u771F_u662F_u60B2_u50AC_uFF0C_u6240_u4EE5_u5C31_u4ECE_u547D_u4EE4_u884C_u5F00_u59CB_u5427_u3002" class="headerlink" title="今天和小伙伴一起打算做个东西，结果发现以前搭过的环境，即使在当时熟到透现在很多都忘了，所以发现写写文章还是必要的。所以从今天起会在这篇文章中记录windows平台的一些使用。由于今天小伙伴说为了连VPS下了个putty结果中了个全家桶，，，，，真是悲催，所以就从命令行开始吧。"></a>今天和小伙伴一起打算做个东西，结果发现以前搭过的环境，即使在当时熟到透现在很多都忘了，所以发现写写文章还是必要的。所以从今天起会在这篇文章中记录windows平台的一些使用。由于今天小伙伴说为了连VPS下了个putty结果中了个全家桶，，，，，真是悲催，所以就从命令行开始吧。</h5><ol>
+<li><h3 id="u5728windows_u4E0B_u4F7F_u7528_u547D_u4EE4_u884C_u3002"><a href="#u5728windows_u4E0B_u4F7F_u7528_u547D_u4EE4_u884C_u3002" class="headerlink" title="在windows下使用命令行。"></a>在windows下使用命令行。</h3><ol>
+<li><h4 id="babun_u3002_u4ECA_u5929_u5728_u5C0F_u4F19_u4F34_u7684_u7535_u8111_u4E0A_u4F7F_u7528_u4E00_u4E2A_u4E0D_u77E5_u540D_u7684_u7EC8_u7AEF_u7B80_u76F4_u96BE_u7528_u6B7B_u4E86_uFF0C_u8FDEBackspace_u90FD_u4E0D_u80FD_u4F7F_uFF08_u6211_u80AF_u5B9A_u5728vim_u91CC_u9762_u914D_u4E86_u7684_uFF0C_u4F30_u8BA1_u662F_u5F00_u53D1_u8005_u5077_u61D2_u6CA1_u6709_u5B9A_u4E49_u4E00_u90E8_u5206_u5B8F_uFF09_uFF0Cvim_u63D0_u793A_u4E5F_u6CA1_u6709_uFF0C_u8FD8_u4E00_u5361_u4E00_u5361_u7684_uFF0C_u7B80_u76F4_u4E0D_u80FD_u5FCD_uFF0C_u5BF9_u6BD4_u6211_u7684babun_uFF0C_u5404_u79CD_u517C_u5BB9_uFF0C_u6240_u4EE5_u7B2C_u4E00_u4E2A_u63A8_u8350_u5927_u5BB6_u4F7F_u7528_u7684_u5C31_u662F_u5B83_u4E86_u3002_u6211_u662F_u505A_u85AA_u706B_u676F_u7684_u65F6_u5019_u88C5_u7684_u4E86_u90FD_u5FD8_u8BB0_u4E86_uFF0C_u6240_u4EE5_u53C2_u8003_u4E86_u7F51_u4E0A_u7684_u4E00_u4E9B_u6587_u7AE0_u3002_u521A_u597D_u628A_u5B83_u5378_u8F7D_uFF08_u5C31_u662F_u628A-babun__u6587_u4EF6_u5939_u5168_u5220_u4E86_3A_29__uFF09_u4E86_uFF0C_u91CD_u65B0_u914D_u4E00_u4E0B_u3002"><a href="#babun_u3002_u4ECA_u5929_u5728_u5C0F_u4F19_u4F34_u7684_u7535_u8111_u4E0A_u4F7F_u7528_u4E00_u4E2A_u4E0D_u77E5_u540D_u7684_u7EC8_u7AEF_u7B80_u76F4_u96BE_u7528_u6B7B_u4E86_uFF0C_u8FDEBackspace_u90FD_u4E0D_u80FD_u4F7F_uFF08_u6211_u80AF_u5B9A_u5728vim_u91CC_u9762_u914D_u4E86_u7684_uFF0C_u4F30_u8BA1_u662F_u5F00_u53D1_u8005_u5077_u61D2_u6CA1_u6709_u5B9A_u4E49_u4E00_u90E8_u5206_u5B8F_uFF09_uFF0Cvim_u63D0_u793A_u4E5F_u6CA1_u6709_uFF0C_u8FD8_u4E00_u5361_u4E00_u5361_u7684_uFF0C_u7B80_u76F4_u4E0D_u80FD_u5FCD_uFF0C_u5BF9_u6BD4_u6211_u7684babun_uFF0C_u5404_u79CD_u517C_u5BB9_uFF0C_u6240_u4EE5_u7B2C_u4E00_u4E2A_u63A8_u8350_u5927_u5BB6_u4F7F_u7528_u7684_u5C31_u662F_u5B83_u4E86_u3002_u6211_u662F_u505A_u85AA_u706B_u676F_u7684_u65F6_u5019_u88C5_u7684_u4E86_u90FD_u5FD8_u8BB0_u4E86_uFF0C_u6240_u4EE5_u53C2_u8003_u4E86_u7F51_u4E0A_u7684_u4E00_u4E9B_u6587_u7AE0_u3002_u521A_u597D_u628A_u5B83_u5378_u8F7D_uFF08_u5C31_u662F_u628A-babun__u6587_u4EF6_u5939_u5168_u5220_u4E86_3A_29__uFF09_u4E86_uFF0C_u91CD_u65B0_u914D_u4E00_u4E0B_u3002" class="headerlink" title="babun。今天在小伙伴的电脑上使用一个不知名的终端简直难用死了，连Backspace都不能使（我肯定在vim里面配了的，估计是开发者偷懒没有定义一部分宏），vim提示也没有，还一卡一卡的，简直不能忍，对比我的babun，各种兼容，所以第一个推荐大家使用的就是它了。我是做薪火杯的时候装的了都忘记了，所以参考了网上的一些文章。刚好把它卸载（就是把.babun 文件夹全删了:) ）了，重新配一下。"></a><strong><em>babun</em></strong>。今天在小伙伴的电脑上使用一个不知名的终端简直难用死了，连Backspace都不能使（我肯定在vim里面配了的，估计是开发者偷懒没有定义一部分宏），vim提示也没有，还一卡一卡的，简直不能忍，对比我的babun，各种兼容，所以第一个推荐大家使用的就是它了。我是做薪火杯的时候装的了都忘记了，所以参考了网上的一些文章。刚好把它卸载（就是把.babun 文件夹全删了:) ）了，重新配一下。</h4><ol>
+<li>关于babun。 介绍就自己去<a href="http://babun.github.io/" target="_blank" rel="external">babun的官网</a>看了,反正很好用，之前我装的时候谷歌搜不到几篇文章现在一搜就是一把。</li>
+<li>安装。官网下载安装包<code>babun-1.2.0-dist</code>，然后找个地方解压了，你会发现里面有个<code>install.txt</code>,里面写着<code>In order to install babun just run the install.bat script</code>意思是你直接点install.bat 就是了，他会默认安装到<code>C:/Users/xxx/.babun</code>下面就是我之前直接删除的那个目录，然后里面还有一句是这样的<code>To install in a different directory, just use the /t switch (or /target) e.g install.bat /t &quot;D:\target_folder&quot;</code>意思是你可以自己指定安装目录（安装目录不要有空格），这应该是新版本的特性，对于我这种对电脑每个文件的作用都想了如指掌的人来说当然是极好的。所以我在解压的文件夹下面打开命令行，<code>install.bat /t &quot;C:\ProgramFiles\babun&quot;</code>然后就开始安装了，会输出一系列的信息，最后会在.babun文件夹生成在我们刚刚指定的目录下面，里面就是我们的babun了，进去.babun,里面有个<code>babun.bat</code>双击它就可以运行了（安装完也会自动弹出并生成快捷方式）然后把它固定到开始菜单吧 :)，新版本里面还有<code>uninstall.bat</code>再也不用手动删目录了，另外新版本还增加了<code>Now you can open babun directly in any folder by right clicking your mouse and choosing the Open Babun here option.</code>就是你可以在任何文件夹上右击打开babun 。</li>
+<li>个性化。首先修改颜色，你在标题栏右击，然后options，里面可以设置，初始的背景色是<code>E:160 S:0 L:26 R:28 G:28 B:28</code>我把它改成<code>E:239 S:74 L:60 R:83 G:44 B:45</code>，同样的前景色初始是<code>E:160 S:0 L:196 R:208 G:208 B:208</code>把它改成<code>E:68 S:232 L:120 R:79 G:251 B:4</code>，把透明度改成<code>low</code>，把光标改成<code>underscope</code>，把窗口改成120x50（Alt+F11可以全屏），把字体改成Courier new。接下来就是中文乱码的问题，这个问题困扰了我很久，网上大多数的解决方法是把编码改成gbk，然后终端会出现一个禄字替换就是了，这样的话使用cmd的一些命令（ipconfig、nslookup）就不会出现中文乱码，但这样的话如果有中文名的文件ls的时候就会乱码了（不改前是不会的），可能是鱼和熊掌不可得兼吧。我还是最终选用了前一种，毕竟我要在命令行里处理中文名的文件的概率极小。然后是去除那个禄字见<a href="http://0x0d.im/archives/windows-build-linux-like-environment.html" target="_blank" rel="external">参考的方法</a>，另外附上一个<a href="https://prinzeugen.net/customize-zsh-prompt/#more-1884" target="_blank" rel="external">修改ZSH主题的方法</a>。</li>
+<li>安装软件。接下来就可以自行安装软件了，在这之前你可以先修改一下源<code>vim ~/.pact/pact.repo</code>，把<code>#PACT_REPO=http://mirrors.kernel.org/sourceware/cygwin/</code> 修改成<code>PACT_REPO=http://mirrors.163.com/cygwin/</code> 我修改后貌似会出现MD5校验错误，这个自己看着办，其实官方的源也挺快的。babun的包管理和ubuntu的很像，就是一个<code>pact</code>命令，你输入这个命令后他就会告诉你怎么用了。下面是网上给出的一些常用软件，另外像<code>autojump colored-man zsh_reload zsh-syntax-highlighting git git-flow ruby gem python pip node npm bower</code>这些插件参见后面的 <strong>Babun 配置</strong> 这篇文章里面写的很详细。<blockquote>
+<p>pact install tmux        #安装tmux<br> pact install screen      #安装screen 有了这两个不用conEmu也可以了<br> pact install zip         #安装zip<br> pact install lftp        #lftp命令<br> pact install p7zip       # p7zip命令<br> pact install connect-proxy # 基于openssh的socks https代理<br> pact install util-linux    #安装linux基础命令行工具 more/col/whereis等等命令<br> pact install bind-utils    #安装dig命令<br> pact install inetutils     #安装Telnet等常用网络命令<br> pact install python        #python环境<br> pact install python-crypto #python 环境</p>
+</blockquote>
+</li>
+<li>使用Conemu。自己在<a href="https://conemu.github.io/" target="_blank" rel="external">官网</a>下载然后安装，安装好后参考 <strong>windows下搭建类linux环境</strong> 进行配置并进行一下个性化设置即可。</li>
+<li>使用tmux/screen 这两货略微复杂，很有必要拿出一篇单独的文章来讲，这里可以先参考那两篇关于tmux的文章。</li>
+</ol>
+<p>参考文章：<br><a href="http://blog.yuanbin.me/posts/2015/07/Dev-Environment-in-Windows.html" target="_blank" rel="external">Windows 系统下的开发环境搭建</a><br><a href="http://www.rxna.cn/post/wiki/babun-pei-zhi" target="_blank" rel="external">Babun 配置</a><br><a href="https://www.52os.net/articles/windows-install-unix-like-command-tools.html" target="_blank" rel="external">windows下搭建类linux环境</a><br><a href="http://foocoder.com/blog/zhong-duan-huan-jing-zhi-tmux.html/" target="_blank" rel="external">终端环境之tmux</a><br><a href="http://blog.jobbole.com/87278/" target="_blank" rel="external">Tmux 入门介绍</a></p>
+</li>
+<li><h4 id="msys2_u3002"><a href="#msys2_u3002" class="headerlink" title="msys2。"></a><strong><em>msys2</em></strong>。</h4></li>
+</ol>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728windows_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE]]>
+    </summary>
+    
+      <category term="note" scheme="http://kangqingfei.cn/tags/note/"/>
+    
+      <category term="windows" scheme="http://kangqingfei.cn/tags/windows/"/>
+    
+      <category term="tips" scheme="http://kangqingfei.cn/categories/tips/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[ubuntu note]]></title>
     <link href="http://kangqingfei.cn/2016/01/03/ubuntu-note/"/>
     <id>http://kangqingfei.cn/2016/01/03/ubuntu-note/</id>
     <published>2016-01-03T08:13:54.000Z</published>
-    <updated>2016-01-03T08:21:54.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728ubuntu_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE_u9898_u53CA_u5176_u89E3_u51B3_u65B9_u6CD5_u7684"><a href="#u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728ubuntu_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE_u9898_u53CA_u5176_u89E3_u51B3_u65B9_u6CD5_u7684" class="headerlink" title="这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的"></a>这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的</h3><ol>
+    <updated>2016-01-04T11:13:24.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728ubuntu_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE_u9898_u53CA_u5176_u89E3_u51B3_u65B9_u6CD5_u7684_uFF0C_u6301_u7EED_u66F4_u65B0_u2026"><a href="#u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728ubuntu_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE_u9898_u53CA_u5176_u89E3_u51B3_u65B9_u6CD5_u7684_uFF0C_u6301_u7EED_u66F4_u65B0_u2026" class="headerlink" title="这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的，持续更新…"></a>这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的，持续更新…</h3><ol>
 <li>ubuntu 的源</li>
-<li>ubuntu 中一些软件的源</li>
+<li>ubuntu 中一些软件的源<ul>
+<li>nginx： <code>sudo add-apt-repository ppa:nginx/stable</code></li>
+<li>nodejs</li>
+<li>atom</li>
+<li>lll</li>
+</ul>
+</li>
 <li>禁用（启用）一些软件的更新</li>
 <li>定时任务备份自己的命令历史以待以后查阅</li>
 <li>一些常见的配置文件<ul>
 <li>DNS 配置文件：/etc/resolv.conf</li>
-<li>主机名： /etc/hostname<br>*</li>
+<li>主机名： /etc/hostname</li>
+<li>DigitalOcean 的主机，装有两个版本的Python，如果命令行Python版本错误，应该修改 <code>/usr/local/bin</code> 里面的Python，而如果因为Python版本不对导致dpkg报错的话应该修改<code>/usr/bin</code>里面的Python。</li>
+<li>kk</li>
 </ul>
 </li>
 </ol>
@@ -36,7 +82,9 @@
     <![CDATA[<h3 id="u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728ubuntu_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE_]]>
     </summary>
     
-      <category term="note ubuntu" scheme="http://kangqingfei.cn/tags/note-ubuntu/"/>
+      <category term="note" scheme="http://kangqingfei.cn/tags/note/"/>
+    
+      <category term="ubuntu" scheme="http://kangqingfei.cn/tags/ubuntu/"/>
     
       <category term="tips" scheme="http://kangqingfei.cn/categories/tips/"/>
     
