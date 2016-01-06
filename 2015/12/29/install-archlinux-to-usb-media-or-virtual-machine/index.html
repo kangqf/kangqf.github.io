@@ -22,7 +22,7 @@ fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
 打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
 fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
 格式化  mkfs.ext4 /dev/sda1   mkfs.ext4 /dev/s">
-<meta property="og:updated_time" content="2015-12-31T06:51:35.000Z">
+<meta property="og:updated_time" content="2016-01-05T13:14:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install ArchLinux to USB media or Virtual Machine">
 <meta name="twitter:description" content="是的，考完了，考完了，考完了！
@@ -130,7 +130,7 @@ fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/git-note/" style="font-size: 10px;">git note</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/install/" style="font-size: 10px;">install</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/virtualmachine/" style="font-size: 10px;">virtualmachine</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+						<a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/basis/" style="font-size: 10px;">basis</a> <a href="/tags/computer/" style="font-size: 10px;">computer</a> <a href="/tags/git-note/" style="font-size: 10px;">git note</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/install/" style="font-size: 10px;">install</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 20px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/virtualmachine/" style="font-size: 10px;">virtualmachine</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
 					</div>
 				</section>
 				
@@ -269,9 +269,13 @@ fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
 <h3 id="u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E"><a href="#u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E" class="headerlink" title="在虚拟机里面装没改syslinux.cfg发现还是错了 找不到/dev/sda3 又是在虚拟机上安装的 怎么办"></a>在虚拟机里面装没改<code>syslinux.cfg</code>发现还是错了 找不到<code>/dev/sda3</code> 又是在虚拟机上安装的 怎么办</h3><ol>
 <li>开机按<code>F2</code>然后将光盘的启动优先级放到最高 然后再次进到live里面</li>
 <li>按照之前的方法挂载 然后 <code>arch-chroot /mnt</code> 然后就把<code>/boot/syslinux/syslinux.cfg</code>里面的<code>/sda3</code> 改成 <code>/sda2</code> 就ok<h4 id="u628A_u542F_u52A8_u9879_u6539_u56DE_u6765_uFF0C_u542F_u52A8_dhcpd__u83B7_u53D6_ip__uFF0C_u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765_u3002_u3002_u3002_u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009_uFF0C_u786E_u5B9A_u5B89_u88C5_u7136_u540E_u8FD8_u6CA1_u8D77_u6765__u6012_u4E86__u76F4_u63A5_vim_-xinitrc__u5199_u5165_exec_i3__u518Dstartx_u5C31_u628A_i3__u8DD1_u8D77_u6765_u4E86_u3002_u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F"><a href="#u628A_u542F_u52A8_u9879_u6539_u56DE_u6765_uFF0C_u542F_u52A8_dhcpd__u83B7_u53D6_ip__uFF0C_u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765_u3002_u3002_u3002_u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009_uFF0C_u786E_u5B9A_u5B89_u88C5_u7136_u540E_u8FD8_u6CA1_u8D77_u6765__u6012_u4E86__u76F4_u63A5_vim_-xinitrc__u5199_u5165_exec_i3__u518Dstartx_u5C31_u628A_i3__u8DD1_u8D77_u6765_u4E86_u3002_u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F" class="headerlink" title="把启动项改回来，启动 dhcpd 获取 ip ，然后 startx 竟然没起来。。。无奈 pacman -S xorg 然后回车全选，确定安装然后还没起来 怒了 直接 vim .xinitrc 写入 exec i3 再startx就把 i3 跑起来了。补充几个可能用到的东西"></a>把启动项改回来，启动 <code>dhcpd</code> 获取 ip ，然后 <code>startx</code> 竟然没起来。。。无奈 <code>pacman -S xorg</code> 然后回车全选，确定安装然后<strong><em>还没起来</em></strong> <strong>怒了</strong> 直接 <code>vim .xinitrc</code> 写入 <code>exec i3</code> 再<code>startx</code>就把 i3 跑起来了。补充几个可能用到的东西</h4><blockquote>
-<p><code>wifi-menu</code>(包含在<code>dialog</code>中) -&gt; 用来配合<code>netctl</code>连WiFi<br>持续更新中……….</p>
+<p><code>wifi-menu</code>(包含在<code>dialog</code>中) -&gt; 用来配合<code>netctl</code>连WiFi<br><code>pacman -S openssh</code> 安装ssh服务,如何配置ssh（d）可以<code>man sshd_config</code>（<code>man ssh_config</code>）<br><code>systemctl enable/start sshd.service</code> (开机)启动ssh服务，<br><code>/etc/ssh/sshd_config</code> ssh配置文件默认不允许root用户登录 prohibit-password -&gt; yes<br><code>systemctl enable dhcpcd.service</code> 开机自动DHCP获取地址</p>
+<p>持续更新中……….</p>
 </blockquote>
 </li>
+</ol>
+<h3 id="u95EE_u9898_u89E3_u51B3"><a href="#u95EE_u9898_u89E3_u51B3" class="headerlink" title="问题解决"></a>问题解决</h3><ol>
+<li>遇到<code>a stop job is running for session c1 of user root 1 min 30 s</code>关机很慢的问题，这是systemd的bug，详细可以参考<a href="https://bbs.archlinux.org/viewtopic.php?id=203112" target="_blank" rel="external">这篇文章</a>按照里面22楼的说法把<code>/etc/systemd/system.conf</code>里面的<code>DefaultTimeoutStopSec=90s</code>改成了1s。因为不想降级了，所以只能这样了</li>
 </ol>
 
       

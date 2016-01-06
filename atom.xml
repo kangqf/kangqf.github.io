@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://kangqingfei.cn/"/>
-  <updated>2016-01-04T15:01:15.000Z</updated>
+  <updated>2016-01-06T15:42:37.000Z</updated>
   <id>http://kangqingfei.cn/</id>
   
   <author>
@@ -15,11 +15,97 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[computer network basis]]></title>
+    <link href="http://kangqingfei.cn/2016/01/06/computer-network-basis/"/>
+    <id>http://kangqingfei.cn/2016/01/06/computer-network-basis/</id>
+    <published>2016-01-06T04:54:09.000Z</published>
+    <updated>2016-01-06T15:42:37.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u5199VMware_u7684_u7F51_u7EDC_u6A21_u5F0F_u90A3_u7BC7_u6587_u7AE0_u5199_u4E0D_u4E0B_u53BB_u4E86_uFF0C_u6240_u4EE5_u5148_u5199_u5B8C_u8FD9_u7BC7_u52A0_u6DF1_u81EA_u5DF1_u5BF9_u8BA1_u7B97_u673A_u7F51_u7EDC_u7684_u8BA4_u8BC6_u518D_u7EE7_u7EED_u5199_u90A3_u4E2A_u3002"><a href="#u5199VMware_u7684_u7F51_u7EDC_u6A21_u5F0F_u90A3_u7BC7_u6587_u7AE0_u5199_u4E0D_u4E0B_u53BB_u4E86_uFF0C_u6240_u4EE5_u5148_u5199_u5B8C_u8FD9_u7BC7_u52A0_u6DF1_u81EA_u5DF1_u5BF9_u8BA1_u7B97_u673A_u7F51_u7EDC_u7684_u8BA4_u8BC6_u518D_u7EE7_u7EED_u5199_u90A3_u4E2A_u3002" class="headerlink" title="写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。"></a>写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。</h3><p>关于计算机网络，大都要讲到TCP/IP 这个协议簇，总共有四层：网络接入层，网络层（说法不一），传输层，应用层。相比于OSI七层模型，它把物理层和数据链路层归一为网络接入层，因为我们很少情况下会考虑物理层的关系，然后又相当于把会话层，表示层，应用层归一为应用层，因为我们极少接触到会话层和表示层（我所接触的也就是像SDP这种传输信令的协议会归在会话层），所以没有必要细分。说完协议簇，再说这几个层次的标识：</p>
+<ul>
+<li>网络接入层：MAC地址标识，是计算机的硬件地址，一般不会改变，固化在计算机的网卡上。当然你有多个网卡就会有多个MAC地址，一般像PPP协议是工作在这上面的。</li>
+<li>网络层：IP地址标识，计算机的虚拟地址，相当于一个临时的身份证，很有可能会经常改变（除了某些骨干网的节点路由器和核心交换机一般不变，还有就是服务器的），一台计算机可能有多个IP地址，IP地址又可分为ABCDE类，当然现在一般都用CIDR进行路由，所以这个分类一般没啥意思了，还有就是一些特殊的IP地址：<ul>
+<li>127.0.0.0/8 本地回环测试地址，不进行任何路由和转发直接，甚至不会进入到网卡，你可以试着用Wireshark监听网卡的ICMP报文，然后ping 127.0.0.1 会发现没有监听到任何数据包，这意味着数据报就没有下到链路层，直接在网络层就被返回本机处理了。</li>
+<li>0.0.0.0/8    本网络，仅作为源地址时合法，作为目的地址时无效数据报直接被丢弃，作为源地址时一般用在DHCP获取IP时，主机从来不知道自己的IP所以就将源IP设置为 0.0.0.0 （如果之前有过IP的话就会和DHCP服务器协商这个IP是否有效，即租期到了没，即使是这种情况也是 把最后使用的那个IP地址放在udp数据报里面而不是源地址。顺便提一下DHCP的四个阶段 DHCPDISCOVER DHCPOFFER DHCPREQUEST DHCPACK）</li>
+<li>255.255.255.255 受限广播地址，只用作目的地址，这种目的地址的数据报不会被路由器转发（除非特别设置路由器将数据报转发到另一网络，这种情况一般是主机数较多，且主机和DHCP服务器不在同一网络内），其广播功能限制在本网内部，可用作DHCP时的目的ip。</li>
+<li>专用地址，一般用作局域网，比如校园网，家庭路由器。最大的CIDR地址块分别有 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16，这里要注意是 <strong><em>最大的</em></strong> 以为很多都不会用到最大的块，比如有些家庭路由器只是用到了 192.168.1.0/8 这样的一个C类地址块。</li>
+<li>169.254.0.0/16 链路本地地址，这些地址与专用网络地址一样不可路由，也不可作为公共网络上报文的源或目的地址。链路本地地址主要被用于地址自动配置：当主机不能从DHCP服务器处获得IP地址时，它会用这种方法生成一个。微软创建了一种叫自动专用IP寻址（APIPA）的实现，所以当你的windows电脑不能DHCP获取ip是就会生成一个169.254.x.x的ip。</li>
+<li>224.0.0.0/4    多播（之前的D类网络）只能用作目的地址，而不能作为分组中的源地址。</li>
+<li>240.0.0.0/4    保留（之前的E类网络）</li>
+<li>网络号全0， 当某个主机向同一网段上的其他主机发送报文时就可以使用这样的地址，分组也不会被路由器转发。</li>
+<li>表示主机的二进制位（主机号）全0或全1不能使用，全0表示本网（网络地址），全1表示本网广播（直接广播地址），一个常见的误解是以0或255结尾的地址永远不能分配给主机：这仅在子网掩码至少24位长度时（旧的C类地址，或CIDR中的/24到/32）才成立。比如，在B类子网192.168.0.0/255.255.0.0（即192.168.0.0/16）中，广播地址是192.168.255.255。在这种情况下，尽管可能带来误解，但192.168.1.255、192.168.2.255等地址可以被分配给主机。广播地址是借由子网掩码的比特补数并和网络识别码运行 OR的比特运算就能获得，在A、B和C类网络中，广播地址总是以255结尾。随着CIDR的到来，广播地址不一定总是以255结尾。比如，子网203.0.113.16/28的广播地址是203.0.113.31。一般情况下，子网的第一个和最后一个地址分别被作为网络识别码和广播地址，任何其它地址都可以被分配给其上的主机。（以上内容参考<a href="https://zh.wikipedia.org/wiki/IPv4" target="_blank" rel="external">维基百科</a>）。</li>
+</ul>
+</li>
+<li>传输层，主要是TCP UDP这些协议来保证网络的有效性。在这上面一般用端口来标识一个身份。</li>
+<li>应用层，用进程ID来标识一个身份。</li>
+</ul>
+<p>说完四层模型，再说一些作用域的问题，先搞清楚几个东西：</p>
+<ul>
+<li>集线器，用来物理上连接几台主机，它的作用域在物理层</li>
+<li>网桥，为了减小碰撞域，实现几台主机的链路层互联，通信方式是以MAC地址进行通信。</li>
+<li>二层交换机（多接口网桥），一般的网桥只有两端，而多接口网桥可以有多个端。网桥的A端口连接A子网，B端口连接B子网，为什么网桥知道哪些数据包该转发，哪些包不该转发呢？那是因为它有两个表A和B，当有数据包进入端口A时，网桥从数据包中提取出源MAC地址和目的MAC地址。一开始的时候，表A和表B都是空的，没有一条记录，这时，网桥会把数据包转发给B网络，并且在表A中增加一条MAC地址(把源MAC地址记录表中)，说明这个MAC地址的机器是A子网的，同理，当B子网发送数据包到B端口时，网桥也会记录源MAC地址到B表。当网桥工作一段时候后，表A基本上记录了A子网所有的机器的MAC地址，表B同理，当再有一个数据包从A子网发送给网桥时，网桥会先看看数据包的目的MAC地址是属于A子网还是B子网的，如果从A表中找到对应则，抛弃该包，如果不是，则转发给B子网，然后检查源MAC地址，是否在表中已经存在，如果不存在，在表A中增加一条记录。交换机也有一张MAC-PORT对应表(这张表的学名为：CAM)，和网桥不一样的是，网桥的表是一对多的(一个端口号对多个MAC地址)，但交换机的CAM表却是一对一的，如果一个端口有新的MAC地址，它不会新增MAC－PORT记录，而是修改原有的记录（参考<a href="http://network.51cto.com/art/201107/277187.htm" target="_blank" rel="external">这里</a>）。</li>
+<li>三层交换机（路由器），这和网桥有着本质的不同，这是工作在网络层的，用IP地址里面的 <strong><em>网络号</em></strong> 进行通信。</li>
+<li>网关，网关是主机的默认下一跳地址，如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关。一般是路由器</li>
+<li>ARP协议 地址解析协议，即ARP（Address Resolution Protocol），当数据报从路由器下发到交换机的时候只有IP地址，而没有MAC地址，所以就需要将IP地址里面的 <strong><em>主机号</em></strong> 翻译成为MAC地址(向局域网内广播来得到)，然后将数据报下发到指定主机。还有就是主机要知道网关（DHCP只提供网关IP）、DHCP服务器的MAC地址时，或是和同一局域网内的主机通信时也会用到。例如我们可以看到这样的ARP请求<code>Broadcast    ARP    60    Who has 172.19.72.1?  Tell 172.19.73.53</code> 响应是<code>172.19.72.1 is at 00:18:82:c6:a3:b4</code></li>
+<li>TTL</li>
+<li>ICMP</li>
+<li>ping/traceroute ping攻击<br>说完这些感觉已经蒙了，下面就以一个例子把这些东西串起来。假设我的主机要向我的网站（kangqingfei.cn）请求首页的html文档，首先</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u5199VMware_u7684_u7F51_u7EDC_u6A21_u5F0F_u90A3_u7BC7_u6587_u7AE0_u5199_u4E0D_u4E0B_u53BB_u4E86_uFF0C_u6240_u4EE5_u5148_u5199_u5B8C_]]>
+    </summary>
+    
+      <category term="basis" scheme="http://kangqingfei.cn/tags/basis/"/>
+    
+      <category term="computer" scheme="http://kangqingfei.cn/tags/computer/"/>
+    
+      <category term="network" scheme="http://kangqingfei.cn/tags/network/"/>
+    
+      <category term="tips" scheme="http://kangqingfei.cn/categories/tips/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[VMware config network]]></title>
+    <link href="http://kangqingfei.cn/2016/01/05/VMware-config-network/"/>
+    <id>http://kangqingfei.cn/2016/01/05/VMware-config-network/</id>
+    <published>2016-01-05T13:19:25.000Z</published>
+    <updated>2016-01-06T15:49:25.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u4ECA_u5929_u6298_u817E_u865A_u62DF_u673A_u5404_u79CD_u7F51_u7EDC_u7684_u95EE_u9898_uFF0C_u607C_u706B_u6B7B_u4E86_uFF0C_u6691_u5047_u7684_u65F6_u5019_u53C2_u52A0_u5D4C_u5165_u5F0F_u57F9_u8BAD_u7684_u65F6_u5019_u7531_u4E8E_u8981_u53D1_u4E1C_u897F_u5230_u5BBF_u4E3B_u673A_uFF0C_u5927_u5BB6_u4E5F_u9047_u5230_u4E86_u865A_u62DF_u673Aping_u4E0D_u901A_u5BBF_u4E3B_u673A_u7684_u95EE_u9898_uFF0C_u5F53_u65F6_u5F88_u591A_u540C_u5B66_u662F_u78B0_u8FD0_u6C14_uFF0C_u6211_u4E5F_u4E0D_u8BB0_u5F97_u5F53_u65F6_u662F_u600E_u4E48_u89E3_u51B3_u7684_uFF0C_u73B0_u5728_u5C31_u628AVMware_u91CC_u9762_u7684_u4E00_u4E9B_u7F51_u7EDC_u914D_u7F6E_u4ED4_u7EC6_u5199_u4E00_u4E0B_u3002"><a href="#u4ECA_u5929_u6298_u817E_u865A_u62DF_u673A_u5404_u79CD_u7F51_u7EDC_u7684_u95EE_u9898_uFF0C_u607C_u706B_u6B7B_u4E86_uFF0C_u6691_u5047_u7684_u65F6_u5019_u53C2_u52A0_u5D4C_u5165_u5F0F_u57F9_u8BAD_u7684_u65F6_u5019_u7531_u4E8E_u8981_u53D1_u4E1C_u897F_u5230_u5BBF_u4E3B_u673A_uFF0C_u5927_u5BB6_u4E5F_u9047_u5230_u4E86_u865A_u62DF_u673Aping_u4E0D_u901A_u5BBF_u4E3B_u673A_u7684_u95EE_u9898_uFF0C_u5F53_u65F6_u5F88_u591A_u540C_u5B66_u662F_u78B0_u8FD0_u6C14_uFF0C_u6211_u4E5F_u4E0D_u8BB0_u5F97_u5F53_u65F6_u662F_u600E_u4E48_u89E3_u51B3_u7684_uFF0C_u73B0_u5728_u5C31_u628AVMware_u91CC_u9762_u7684_u4E00_u4E9B_u7F51_u7EDC_u914D_u7F6E_u4ED4_u7EC6_u5199_u4E00_u4E0B_u3002" class="headerlink" title="今天折腾虚拟机各种网络的问题，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。"></a>今天折腾虚拟机各种网络的问题，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。</h3><p>安装完虚拟机后，我们还可以在windows的<code>控制面板\网络和 Internet\网络连接</code>里面看到这样两个连接<br><img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-network-link.png"><br>其中VMnet1是虚拟机Host-only模式的网络接口，VMnet8是NAT模式的网络接口，这些后面会介绍，查看他们两个的ip，可以发现VMnet1的ip是192.168.178.1，VMnet2的ip是192.168.254.1,。<br>打开一台虚拟机后，点击 <code>虚拟机 &gt; 设置 &gt; 网络适配器</code> 我们可以看到像下面这样的情况。<br><img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-setting-network.png"><br>然而当我们在VMware里面 编辑 &gt; 虚拟网络编辑器 的时候却看到下面这个情况<br><img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-virtual-network-editor.png"><br>其实这才是真实的情况，有三种连接的方式分别是 桥接模式，仅主机模式，NAT模式。接下来我们就一一解析这三种模式（PS：以下实验请在成年人的监护下进行，而且极有可能造成宽带断网之类的不良影响，并且确保你的电脑内存够大磁盘读写够快，否则容易造成电脑死机，由此引发一切后果概不承担。还有，在桥接模式下，别用putty之类的试图通过ssh连接虚拟机，会很卡卡卡卡，原因后面你会懂的）</p>
+<ol>
+<li><p>桥接模式。这是默认设置的模式，为了了解它的拓扑结构我们先进行一系列实验。为了排除不同的操作系统底层实现对实验带来的影响，我们开了3个虚拟机，分别是archlinux最新版，xp，ubuntu14.04，宿主机是win8.1，关闭所有机器的防火墙，尤其是xp。由于我们处在校园网内，所以可以再增加一个我们学校的bt down铺的主机。所以我们现在能够确定的（简化了核心交换机）拓扑及机器信息如下：</p>
+<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-net-tuop.png">
+<p>然后用 ping 命令进行实验得到下面这样的结果：</p>
+<ol>
+<li>win8 ping 虚拟机，时而出现超时,一般时延小于1ms,有时时延极大。wireshark直接死掉，里面出现大量的重复request数据，request的ttl从1到128不等且多次重复出现，reply的ttl稳定128 而数量和request几乎相当，ping了4次出现了500万+条数据报。tracert要在本机的几点上重复跳不定次。</li>
+<li>虚拟机 ping win8 ，对于xp时而出现超时,一般时延小于1ms,有时时延极大。对于linux 出现大量DUP! 提示，虚拟机卡死。wireshark由于中间按了停止所以，发现reply的ttl从128到90不等各种重复出现，request出现3条ttl都为64，同样在半路停止的情况下出现了50万+条的数据报。tracert只需一条。tracepath 无法到达。</li>
+<li>linux ping btdown铺发现出现大量重定向和大量来自win8的数据报（这已经很明显了），wireshark里面显示数据报依然有300万+大部分是重定向和来自bt down铺的reply，当时同学说bt down铺并没有异常。网络指示灯狂闪。。。</li>
+<li>虚拟机互ping无异常，wireshark抓不到任何包，tracexx一跳就到。但是一旦关闭目标主机，出现大量重定向。。。</li>
+<li>win8 ping bt down铺正常而且能抓到报文。</li>
+</ol>
+</li>
+</ol>
+<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-net0-result.png">
+<p>  所以结论是。。。。待我想想</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u4ECA_u5929_u6298_u817E_u865A_u62DF_u673A_u5404_u79CD_u7F51_u7EDC_u7684_u95EE_u9898_uFF0C_u607C_u706B_u6B7B_u4E86_uFF0C_u6691_u5047_]]>
+    </summary>
+    
+      <category term="VMware" scheme="http://kangqingfei.cn/tags/VMware/"/>
+    
+      <category term="network" scheme="http://kangqingfei.cn/tags/network/"/>
+    
+      <category term="tips" scheme="http://kangqingfei.cn/categories/tips/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[windows note]]></title>
     <link href="http://kangqingfei.cn/2016/01/04/windows-note/"/>
     <id>http://kangqingfei.cn/2016/01/04/windows-note/</id>
     <published>2016-01-04T11:11:09.000Z</published>
-    <updated>2016-01-04T15:01:15.000Z</updated>
+    <updated>2016-01-06T16:01:05.000Z</updated>
     <content type="html"><![CDATA[<h4 id="u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728windows_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE_u9898_u53CA_u5176_u89E3_u51B3_u65B9_u6CD5_u7684_uFF0C_u6301_u7EED_u66F4_u65B0_u2026"><a href="#u8FD9_u7BC7_u6587_u7AE0_u4E3B_u8981_u662F_u7528_u6765_u8BB0_u5F55_u5728windows_u4F7F_u7528_u8FC7_u7A0B_u4E2D_u9047_u5230_u7684_u95EE_u9898_u53CA_u5176_u89E3_u51B3_u65B9_u6CD5_u7684_uFF0C_u6301_u7EED_u66F4_u65B0_u2026" class="headerlink" title="这篇文章主要是用来记录在windows使用过程中遇到的问题及其解决方法的，持续更新…"></a>这篇文章主要是用来记录在windows使用过程中遇到的问题及其解决方法的，持续更新…</h4><h5 id="u4ECA_u5929_u548C_u5C0F_u4F19_u4F34_u4E00_u8D77_u6253_u7B97_u505A_u4E2A_u4E1C_u897F_uFF0C_u7ED3_u679C_u53D1_u73B0_u4EE5_u524D_u642D_u8FC7_u7684_u73AF_u5883_uFF0C_u5373_u4F7F_u5728_u5F53_u65F6_u719F_u5230_u900F_u73B0_u5728_u5F88_u591A_u90FD_u5FD8_u4E86_uFF0C_u6240_u4EE5_u53D1_u73B0_u5199_u5199_u6587_u7AE0_u8FD8_u662F_u5FC5_u8981_u7684_u3002_u6240_u4EE5_u4ECE_u4ECA_u5929_u8D77_u4F1A_u5728_u8FD9_u7BC7_u6587_u7AE0_u4E2D_u8BB0_u5F55windows_u5E73_u53F0_u7684_u4E00_u4E9B_u4F7F_u7528_u3002_u7531_u4E8E_u4ECA_u5929_u5C0F_u4F19_u4F34_u8BF4_u4E3A_u4E86_u8FDEVPS_u4E0B_u4E86_u4E2Aputty_u7ED3_u679C_u4E2D_u4E86_u4E2A_u5168_u5BB6_u6876_uFF0C_uFF0C_uFF0C_uFF0C_uFF0C_u771F_u662F_u60B2_u50AC_uFF0C_u6240_u4EE5_u5C31_u4ECE_u547D_u4EE4_u884C_u5F00_u59CB_u5427_u3002"><a href="#u4ECA_u5929_u548C_u5C0F_u4F19_u4F34_u4E00_u8D77_u6253_u7B97_u505A_u4E2A_u4E1C_u897F_uFF0C_u7ED3_u679C_u53D1_u73B0_u4EE5_u524D_u642D_u8FC7_u7684_u73AF_u5883_uFF0C_u5373_u4F7F_u5728_u5F53_u65F6_u719F_u5230_u900F_u73B0_u5728_u5F88_u591A_u90FD_u5FD8_u4E86_uFF0C_u6240_u4EE5_u53D1_u73B0_u5199_u5199_u6587_u7AE0_u8FD8_u662F_u5FC5_u8981_u7684_u3002_u6240_u4EE5_u4ECE_u4ECA_u5929_u8D77_u4F1A_u5728_u8FD9_u7BC7_u6587_u7AE0_u4E2D_u8BB0_u5F55windows_u5E73_u53F0_u7684_u4E00_u4E9B_u4F7F_u7528_u3002_u7531_u4E8E_u4ECA_u5929_u5C0F_u4F19_u4F34_u8BF4_u4E3A_u4E86_u8FDEVPS_u4E0B_u4E86_u4E2Aputty_u7ED3_u679C_u4E2D_u4E86_u4E2A_u5168_u5BB6_u6876_uFF0C_uFF0C_uFF0C_uFF0C_uFF0C_u771F_u662F_u60B2_u50AC_uFF0C_u6240_u4EE5_u5C31_u4ECE_u547D_u4EE4_u884C_u5F00_u59CB_u5427_u3002" class="headerlink" title="今天和小伙伴一起打算做个东西，结果发现以前搭过的环境，即使在当时熟到透现在很多都忘了，所以发现写写文章还是必要的。所以从今天起会在这篇文章中记录windows平台的一些使用。由于今天小伙伴说为了连VPS下了个putty结果中了个全家桶，，，，，真是悲催，所以就从命令行开始吧。"></a>今天和小伙伴一起打算做个东西，结果发现以前搭过的环境，即使在当时熟到透现在很多都忘了，所以发现写写文章还是必要的。所以从今天起会在这篇文章中记录windows平台的一些使用。由于今天小伙伴说为了连VPS下了个putty结果中了个全家桶，，，，，真是悲催，所以就从命令行开始吧。</h5><ol>
 <li><h3 id="u5728windows_u4E0B_u4F7F_u7528_u547D_u4EE4_u884C_u3002"><a href="#u5728windows_u4E0B_u4F7F_u7528_u547D_u4EE4_u884C_u3002" class="headerlink" title="在windows下使用命令行。"></a>在windows下使用命令行。</h3><ol>
 <li><h4 id="babun_u3002_u4ECA_u5929_u5728_u5C0F_u4F19_u4F34_u7684_u7535_u8111_u4E0A_u4F7F_u7528_u4E00_u4E2A_u4E0D_u77E5_u540D_u7684_u7EC8_u7AEF_u7B80_u76F4_u96BE_u7528_u6B7B_u4E86_uFF0C_u8FDEBackspace_u90FD_u4E0D_u80FD_u4F7F_uFF08_u6211_u80AF_u5B9A_u5728vim_u91CC_u9762_u914D_u4E86_u7684_uFF0C_u4F30_u8BA1_u662F_u5F00_u53D1_u8005_u5077_u61D2_u6CA1_u6709_u5B9A_u4E49_u4E00_u90E8_u5206_u5B8F_uFF09_uFF0Cvim_u63D0_u793A_u4E5F_u6CA1_u6709_uFF0C_u8FD8_u4E00_u5361_u4E00_u5361_u7684_uFF0C_u7B80_u76F4_u4E0D_u80FD_u5FCD_uFF0C_u5BF9_u6BD4_u6211_u7684babun_uFF0C_u5404_u79CD_u517C_u5BB9_uFF0C_u6240_u4EE5_u7B2C_u4E00_u4E2A_u63A8_u8350_u5927_u5BB6_u4F7F_u7528_u7684_u5C31_u662F_u5B83_u4E86_u3002_u6211_u662F_u505A_u85AA_u706B_u676F_u7684_u65F6_u5019_u88C5_u7684_u4E86_u90FD_u5FD8_u8BB0_u4E86_uFF0C_u6240_u4EE5_u53C2_u8003_u4E86_u7F51_u4E0A_u7684_u4E00_u4E9B_u6587_u7AE0_u3002_u521A_u597D_u628A_u5B83_u5378_u8F7D_uFF08_u5C31_u662F_u628A-babun__u6587_u4EF6_u5939_u5168_u5220_u4E86_3A_29__uFF09_u4E86_uFF0C_u91CD_u65B0_u914D_u4E00_u4E0B_u3002"><a href="#babun_u3002_u4ECA_u5929_u5728_u5C0F_u4F19_u4F34_u7684_u7535_u8111_u4E0A_u4F7F_u7528_u4E00_u4E2A_u4E0D_u77E5_u540D_u7684_u7EC8_u7AEF_u7B80_u76F4_u96BE_u7528_u6B7B_u4E86_uFF0C_u8FDEBackspace_u90FD_u4E0D_u80FD_u4F7F_uFF08_u6211_u80AF_u5B9A_u5728vim_u91CC_u9762_u914D_u4E86_u7684_uFF0C_u4F30_u8BA1_u662F_u5F00_u53D1_u8005_u5077_u61D2_u6CA1_u6709_u5B9A_u4E49_u4E00_u90E8_u5206_u5B8F_uFF09_uFF0Cvim_u63D0_u793A_u4E5F_u6CA1_u6709_uFF0C_u8FD8_u4E00_u5361_u4E00_u5361_u7684_uFF0C_u7B80_u76F4_u4E0D_u80FD_u5FCD_uFF0C_u5BF9_u6BD4_u6211_u7684babun_uFF0C_u5404_u79CD_u517C_u5BB9_uFF0C_u6240_u4EE5_u7B2C_u4E00_u4E2A_u63A8_u8350_u5927_u5BB6_u4F7F_u7528_u7684_u5C31_u662F_u5B83_u4E86_u3002_u6211_u662F_u505A_u85AA_u706B_u676F_u7684_u65F6_u5019_u88C5_u7684_u4E86_u90FD_u5FD8_u8BB0_u4E86_uFF0C_u6240_u4EE5_u53C2_u8003_u4E86_u7F51_u4E0A_u7684_u4E00_u4E9B_u6587_u7AE0_u3002_u521A_u597D_u628A_u5B83_u5378_u8F7D_uFF08_u5C31_u662F_u628A-babun__u6587_u4EF6_u5939_u5168_u5220_u4E86_3A_29__uFF09_u4E86_uFF0C_u91CD_u65B0_u914D_u4E00_u4E0B_u3002" class="headerlink" title="babun。今天在小伙伴的电脑上使用一个不知名的终端简直难用死了，连Backspace都不能使（我肯定在vim里面配了的，估计是开发者偷懒没有定义一部分宏），vim提示也没有，还一卡一卡的，简直不能忍，对比我的babun，各种兼容，所以第一个推荐大家使用的就是它了。我是做薪火杯的时候装的了都忘记了，所以参考了网上的一些文章。刚好把它卸载（就是把.babun 文件夹全删了:) ）了，重新配一下。"></a><strong><em>babun</em></strong>。今天在小伙伴的电脑上使用一个不知名的终端简直难用死了，连Backspace都不能使（我肯定在vim里面配了的，估计是开发者偷懒没有定义一部分宏），vim提示也没有，还一卡一卡的，简直不能忍，对比我的babun，各种兼容，所以第一个推荐大家使用的就是它了。我是做薪火杯的时候装的了都忘记了，所以参考了网上的一些文章。刚好把它卸载（就是把.babun 文件夹全删了:) ）了，重新配一下。</h4><ol>
@@ -27,7 +113,7 @@
 <li>安装。官网下载安装包<code>babun-1.2.0-dist</code>，然后找个地方解压了，你会发现里面有个<code>install.txt</code>,里面写着<code>In order to install babun just run the install.bat script</code>意思是你直接点install.bat 就是了，他会默认安装到<code>C:/Users/xxx/.babun</code>下面就是我之前直接删除的那个目录，然后里面还有一句是这样的<code>To install in a different directory, just use the /t switch (or /target) e.g install.bat /t &quot;D:\target_folder&quot;</code>意思是你可以自己指定安装目录（安装目录不要有空格），这应该是新版本的特性，对于我这种对电脑每个文件的作用都想了如指掌的人来说当然是极好的。所以我在解压的文件夹下面打开命令行，<code>install.bat /t &quot;C:\ProgramFiles\babun&quot;</code>然后就开始安装了，会输出一系列的信息，最后会在.babun文件夹生成在我们刚刚指定的目录下面，里面就是我们的babun了，进去.babun,里面有个<code>babun.bat</code>双击它就可以运行了（安装完也会自动弹出并生成快捷方式）然后把它固定到开始菜单吧 :)，新版本里面还有<code>uninstall.bat</code>再也不用手动删目录了，另外新版本还增加了<code>Now you can open babun directly in any folder by right clicking your mouse and choosing the Open Babun here option.</code>就是你可以在任何文件夹上右击打开babun 。</li>
 <li>个性化。首先修改颜色，你在标题栏右击，然后options，里面可以设置，初始的背景色是<code>E:160 S:0 L:26 R:28 G:28 B:28</code>我把它改成<code>E:239 S:74 L:60 R:83 G:44 B:45</code>，同样的前景色初始是<code>E:160 S:0 L:196 R:208 G:208 B:208</code>把它改成<code>E:68 S:232 L:120 R:79 G:251 B:4</code>，把透明度改成<code>low</code>，把光标改成<code>underscope</code>，把窗口改成120x50（Alt+F11可以全屏），把字体改成Courier new。接下来就是中文乱码的问题，这个问题困扰了我很久，网上大多数的解决方法是把编码改成gbk，然后终端会出现一个禄字替换就是了，这样的话使用cmd的一些命令（ipconfig、nslookup）就不会出现中文乱码，但这样的话如果有中文名的文件ls的时候就会乱码了（不改前是不会的），可能是鱼和熊掌不可得兼吧。我还是最终选用了前一种，毕竟我要在命令行里处理中文名的文件的概率极小。然后是去除那个禄字见<a href="http://0x0d.im/archives/windows-build-linux-like-environment.html" target="_blank" rel="external">参考的方法</a>，另外附上一个<a href="https://prinzeugen.net/customize-zsh-prompt/#more-1884" target="_blank" rel="external">修改ZSH主题的方法</a>。</li>
 <li>安装软件。接下来就可以自行安装软件了，在这之前你可以先修改一下源<code>vim ~/.pact/pact.repo</code>，把<code>#PACT_REPO=http://mirrors.kernel.org/sourceware/cygwin/</code> 修改成<code>PACT_REPO=http://mirrors.163.com/cygwin/</code> 我修改后貌似会出现MD5校验错误，这个自己看着办，其实官方的源也挺快的。babun的包管理和ubuntu的很像，就是一个<code>pact</code>命令，你输入这个命令后他就会告诉你怎么用了。下面是网上给出的一些常用软件，另外像<code>autojump colored-man zsh_reload zsh-syntax-highlighting git git-flow ruby gem python pip node npm bower</code>这些插件参见后面的 <strong>Babun 配置</strong> 这篇文章里面写的很详细。<blockquote>
-<p>pact install tmux        #安装tmux<br> pact install screen      #安装screen 有了这两个不用conEmu也可以了<br> pact install zip         #安装zip<br> pact install lftp        #lftp命令<br> pact install p7zip       # p7zip命令<br> pact install connect-proxy # 基于openssh的socks https代理<br> pact install util-linux    #安装linux基础命令行工具 more/col/whereis等等命令<br> pact install bind-utils    #安装dig命令<br> pact install inetutils     #安装Telnet等常用网络命令<br> pact install python        #python环境<br> pact install python-crypto #python 环境</p>
+<p>pact install tmux        #安装tmux<br>pact install screen      #安装screen 有了这两个不用conEmu也可以了<br>pact install zip         #安装zip<br>pact install lftp        #lftp命令<br>pact install p7zip       # p7zip命令<br>pact install connect-proxy # 基于openssh的socks https代理<br>pact install util-linux    #安装linux基础命令行工具 more/col/whereis等等命令<br>pact install bind-utils    #安装dig命令<br>pact install inetutils     #安装Telnet等常用网络命令<br>pact install python        #python环境<br>pact install python-crypto #python 环境</p>
 </blockquote>
 </li>
 <li>使用Conemu。自己在<a href="https://conemu.github.io/" target="_blank" rel="external">官网</a>下载然后安装，安装好后参考 <strong>windows下搭建类linux环境</strong> 进行配置并进行一下个性化设置即可。</li>
@@ -289,7 +375,7 @@
   <iframe src="http://nagland.github.io/viewer/web/viewer.html?val=http://kangqingfei.qiniudn.com/blog%2Fpdf%2Ftest.pdf" style="width:100%; height:550px"> 
   </iframe>
 </div></p>
-<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/test.png?imageView2/0/w/1000/h/1000/watermark/2/text/wqlrYW5ncWluZ2ZlaQ==/font/5a6L5L2T/fontsize/1000/fill/IzBCMDEwMQ==/dissolve/85/gravity/SouthEast/dx/20/dy/20">
+<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/test.png">
 <img attr1="value1" attr2="value2" attr3="value31" [extend="?imageView2/2/w/600" src="http://kangqingfei.qiniudn.com/blog/images/test.png">
 ]]></content>
     <summary type="html">
@@ -309,7 +395,7 @@
     <link href="http://kangqingfei.cn/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/"/>
     <id>http://kangqingfei.cn/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/</id>
     <published>2015-12-29T00:00:00.000Z</published>
-    <updated>2015-12-31T06:51:35.000Z</updated>
+    <updated>2016-01-05T13:14:58.000Z</updated>
     <content type="html"><![CDATA[<hr>
 <h1 id="u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01"><a href="#u662F_u7684_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF0C_u8003_u5B8C_u4E86_uFF01" class="headerlink" title="是的，考完了，考完了，考完了！"></a>是的，考完了，考完了，考完了！</h1><hr>
 <hr>
@@ -334,9 +420,13 @@
 <h3 id="u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E"><a href="#u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E" class="headerlink" title="在虚拟机里面装没改syslinux.cfg发现还是错了 找不到/dev/sda3 又是在虚拟机上安装的 怎么办"></a>在虚拟机里面装没改<code>syslinux.cfg</code>发现还是错了 找不到<code>/dev/sda3</code> 又是在虚拟机上安装的 怎么办</h3><ol>
 <li>开机按<code>F2</code>然后将光盘的启动优先级放到最高 然后再次进到live里面</li>
 <li>按照之前的方法挂载 然后 <code>arch-chroot /mnt</code> 然后就把<code>/boot/syslinux/syslinux.cfg</code>里面的<code>/sda3</code> 改成 <code>/sda2</code> 就ok<h4 id="u628A_u542F_u52A8_u9879_u6539_u56DE_u6765_uFF0C_u542F_u52A8_dhcpd__u83B7_u53D6_ip__uFF0C_u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765_u3002_u3002_u3002_u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009_uFF0C_u786E_u5B9A_u5B89_u88C5_u7136_u540E_u8FD8_u6CA1_u8D77_u6765__u6012_u4E86__u76F4_u63A5_vim_-xinitrc__u5199_u5165_exec_i3__u518Dstartx_u5C31_u628A_i3__u8DD1_u8D77_u6765_u4E86_u3002_u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F"><a href="#u628A_u542F_u52A8_u9879_u6539_u56DE_u6765_uFF0C_u542F_u52A8_dhcpd__u83B7_u53D6_ip__uFF0C_u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765_u3002_u3002_u3002_u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009_uFF0C_u786E_u5B9A_u5B89_u88C5_u7136_u540E_u8FD8_u6CA1_u8D77_u6765__u6012_u4E86__u76F4_u63A5_vim_-xinitrc__u5199_u5165_exec_i3__u518Dstartx_u5C31_u628A_i3__u8DD1_u8D77_u6765_u4E86_u3002_u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F" class="headerlink" title="把启动项改回来，启动 dhcpd 获取 ip ，然后 startx 竟然没起来。。。无奈 pacman -S xorg 然后回车全选，确定安装然后还没起来 怒了 直接 vim .xinitrc 写入 exec i3 再startx就把 i3 跑起来了。补充几个可能用到的东西"></a>把启动项改回来，启动 <code>dhcpd</code> 获取 ip ，然后 <code>startx</code> 竟然没起来。。。无奈 <code>pacman -S xorg</code> 然后回车全选，确定安装然后<strong><em>还没起来</em></strong> <strong>怒了</strong> 直接 <code>vim .xinitrc</code> 写入 <code>exec i3</code> 再<code>startx</code>就把 i3 跑起来了。补充几个可能用到的东西</h4><blockquote>
-<p><code>wifi-menu</code>(包含在<code>dialog</code>中) -&gt; 用来配合<code>netctl</code>连WiFi<br>持续更新中……….</p>
+<p><code>wifi-menu</code>(包含在<code>dialog</code>中) -&gt; 用来配合<code>netctl</code>连WiFi<br><code>pacman -S openssh</code> 安装ssh服务,如何配置ssh（d）可以<code>man sshd_config</code>（<code>man ssh_config</code>）<br><code>systemctl enable/start sshd.service</code> (开机)启动ssh服务，<br><code>/etc/ssh/sshd_config</code> ssh配置文件默认不允许root用户登录 prohibit-password -&gt; yes<br><code>systemctl enable dhcpcd.service</code> 开机自动DHCP获取地址</p>
+<p>持续更新中……….</p>
 </blockquote>
 </li>
+</ol>
+<h3 id="u95EE_u9898_u89E3_u51B3"><a href="#u95EE_u9898_u89E3_u51B3" class="headerlink" title="问题解决"></a>问题解决</h3><ol>
+<li>遇到<code>a stop job is running for session c1 of user root 1 min 30 s</code>关机很慢的问题，这是systemd的bug，详细可以参考<a href="https://bbs.archlinux.org/viewtopic.php?id=203112" target="_blank" rel="external">这篇文章</a>按照里面22楼的说法把<code>/etc/systemd/system.conf</code>里面的<code>DefaultTimeoutStopSec=90s</code>改成了1s。因为不想降级了，所以只能这样了</li>
 </ol>
 ]]></content>
     <summary type="html">

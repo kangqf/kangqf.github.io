@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>computer network basis | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。关于计算机网络，大都要讲到TCP/IP 这个协议簇，总共有四层：网络接入层，网络层（说法不一），传输层，应用层。相比于OSI七层模型，它把物理层和数据链路层归一为网络接入层，因为我们很少情况下会考虑物理层的关系，然后又相当于把会话层，表示层，应用层归一为应用层，因为我们极少接触到会话层和表示层（我所接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="computer network basis">
+<meta property="og:url" content="http://kangqingfei.cn/2016/01/06/computer-network-basis/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。关于计算机网络，大都要讲到TCP/IP 这个协议簇，总共有四层：网络接入层，网络层（说法不一），传输层，应用层。相比于OSI七层模型，它把物理层和数据链路层归一为网络接入层，因为我们很少情况下会考虑物理层的关系，然后又相当于把会话层，表示层，应用层归一为应用层，因为我们极少接触到会话层和表示层（我所接">
+<meta property="og:updated_time" content="2016-01-06T15:42:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="computer network basis">
+<meta name="twitter:description" content="写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。关于计算机网络，大都要讲到TCP/IP 这个协议簇，总共有四层：网络接入层，网络层（说法不一），传输层，应用层。相比于OSI七层模型，它把物理层和数据链路层归一为网络接入层，因为我们很少情况下会考虑物理层的关系，然后又相当于把会话层，表示层，应用层归一为应用层，因为我们极少接触到会话层和表示层（我所接">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/assest/images/kqf.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">kangqingfei</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/tips">乱七八糟</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/kangqingfei" title="weibo">weibo</a>
+					        
+								<a class="google" target="_blank" href="https://plus.google.com/115553302156535564722" title="google">google</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/basis/" style="font-size: 10px;">basis</a> <a href="/tags/computer/" style="font-size: 10px;">computer</a> <a href="/tags/git-note/" style="font-size: 10px;">git note</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/install/" style="font-size: 10px;">install</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 20px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/virtualmachine/" style="font-size: 10px;">virtualmachine</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.baidu.com/">奥巴马的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">冷小飞侠去哪了,来个友链吧</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">kangqingfei</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/assest/images/kqf.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">kangqingfei</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/tips">乱七八糟</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/kangqingfei" title="weibo">weibo</a>
+			        
+						<a class="google" target="_blank" href="https://plus.google.com/115553302156535564722" title="google">google</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-computer-network-basis" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/06/computer-network-basis/" class="article-date">
+  	<time datetime="2016-01-06T04:54:09.000Z" itemprop="datePublished">2016-01-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      computer network basis
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/basis/">basis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer/">computer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tips/">tips</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u5199VMware_u7684_u7F51_u7EDC_u6A21_u5F0F_u90A3_u7BC7_u6587_u7AE0_u5199_u4E0D_u4E0B_u53BB_u4E86_uFF0C_u6240_u4EE5_u5148_u5199_u5B8C_u8FD9_u7BC7_u52A0_u6DF1_u81EA_u5DF1_u5BF9_u8BA1_u7B97_u673A_u7F51_u7EDC_u7684_u8BA4_u8BC6_u518D_u7EE7_u7EED_u5199_u90A3_u4E2A_u3002"><a href="#u5199VMware_u7684_u7F51_u7EDC_u6A21_u5F0F_u90A3_u7BC7_u6587_u7AE0_u5199_u4E0D_u4E0B_u53BB_u4E86_uFF0C_u6240_u4EE5_u5148_u5199_u5B8C_u8FD9_u7BC7_u52A0_u6DF1_u81EA_u5DF1_u5BF9_u8BA1_u7B97_u673A_u7F51_u7EDC_u7684_u8BA4_u8BC6_u518D_u7EE7_u7EED_u5199_u90A3_u4E2A_u3002" class="headerlink" title="写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。"></a>写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。</h3><p>关于计算机网络，大都要讲到TCP/IP 这个协议簇，总共有四层：网络接入层，网络层（说法不一），传输层，应用层。相比于OSI七层模型，它把物理层和数据链路层归一为网络接入层，因为我们很少情况下会考虑物理层的关系，然后又相当于把会话层，表示层，应用层归一为应用层，因为我们极少接触到会话层和表示层（我所接触的也就是像SDP这种传输信令的协议会归在会话层），所以没有必要细分。说完协议簇，再说这几个层次的标识：</p>
+<ul>
+<li>网络接入层：MAC地址标识，是计算机的硬件地址，一般不会改变，固化在计算机的网卡上。当然你有多个网卡就会有多个MAC地址，一般像PPP协议是工作在这上面的。</li>
+<li>网络层：IP地址标识，计算机的虚拟地址，相当于一个临时的身份证，很有可能会经常改变（除了某些骨干网的节点路由器和核心交换机一般不变，还有就是服务器的），一台计算机可能有多个IP地址，IP地址又可分为ABCDE类，当然现在一般都用CIDR进行路由，所以这个分类一般没啥意思了，还有就是一些特殊的IP地址：<ul>
+<li>127.0.0.0/8 本地回环测试地址，不进行任何路由和转发直接，甚至不会进入到网卡，你可以试着用Wireshark监听网卡的ICMP报文，然后ping 127.0.0.1 会发现没有监听到任何数据包，这意味着数据报就没有下到链路层，直接在网络层就被返回本机处理了。</li>
+<li>0.0.0.0/8    本网络，仅作为源地址时合法，作为目的地址时无效数据报直接被丢弃，作为源地址时一般用在DHCP获取IP时，主机从来不知道自己的IP所以就将源IP设置为 0.0.0.0 （如果之前有过IP的话就会和DHCP服务器协商这个IP是否有效，即租期到了没，即使是这种情况也是 把最后使用的那个IP地址放在udp数据报里面而不是源地址。顺便提一下DHCP的四个阶段 DHCPDISCOVER DHCPOFFER DHCPREQUEST DHCPACK）</li>
+<li>255.255.255.255 受限广播地址，只用作目的地址，这种目的地址的数据报不会被路由器转发（除非特别设置路由器将数据报转发到另一网络，这种情况一般是主机数较多，且主机和DHCP服务器不在同一网络内），其广播功能限制在本网内部，可用作DHCP时的目的ip。</li>
+<li>专用地址，一般用作局域网，比如校园网，家庭路由器。最大的CIDR地址块分别有 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16，这里要注意是 <strong><em>最大的</em></strong> 以为很多都不会用到最大的块，比如有些家庭路由器只是用到了 192.168.1.0/8 这样的一个C类地址块。</li>
+<li>169.254.0.0/16 链路本地地址，这些地址与专用网络地址一样不可路由，也不可作为公共网络上报文的源或目的地址。链路本地地址主要被用于地址自动配置：当主机不能从DHCP服务器处获得IP地址时，它会用这种方法生成一个。微软创建了一种叫自动专用IP寻址（APIPA）的实现，所以当你的windows电脑不能DHCP获取ip是就会生成一个169.254.x.x的ip。</li>
+<li>224.0.0.0/4    多播（之前的D类网络）只能用作目的地址，而不能作为分组中的源地址。</li>
+<li>240.0.0.0/4    保留（之前的E类网络）</li>
+<li>网络号全0， 当某个主机向同一网段上的其他主机发送报文时就可以使用这样的地址，分组也不会被路由器转发。</li>
+<li>表示主机的二进制位（主机号）全0或全1不能使用，全0表示本网（网络地址），全1表示本网广播（直接广播地址），一个常见的误解是以0或255结尾的地址永远不能分配给主机：这仅在子网掩码至少24位长度时（旧的C类地址，或CIDR中的/24到/32）才成立。比如，在B类子网192.168.0.0/255.255.0.0（即192.168.0.0/16）中，广播地址是192.168.255.255。在这种情况下，尽管可能带来误解，但192.168.1.255、192.168.2.255等地址可以被分配给主机。广播地址是借由子网掩码的比特补数并和网络识别码运行 OR的比特运算就能获得，在A、B和C类网络中，广播地址总是以255结尾。随着CIDR的到来，广播地址不一定总是以255结尾。比如，子网203.0.113.16/28的广播地址是203.0.113.31。一般情况下，子网的第一个和最后一个地址分别被作为网络识别码和广播地址，任何其它地址都可以被分配给其上的主机。（以上内容参考<a href="https://zh.wikipedia.org/wiki/IPv4" target="_blank" rel="external">维基百科</a>）。</li>
+</ul>
+</li>
+<li>传输层，主要是TCP UDP这些协议来保证网络的有效性。在这上面一般用端口来标识一个身份。</li>
+<li>应用层，用进程ID来标识一个身份。</li>
+</ul>
+<p>说完四层模型，再说一些作用域的问题，先搞清楚几个东西：</p>
+<ul>
+<li>集线器，用来物理上连接几台主机，它的作用域在物理层</li>
+<li>网桥，为了减小碰撞域，实现几台主机的链路层互联，通信方式是以MAC地址进行通信。</li>
+<li>二层交换机（多接口网桥），一般的网桥只有两端，而多接口网桥可以有多个端。网桥的A端口连接A子网，B端口连接B子网，为什么网桥知道哪些数据包该转发，哪些包不该转发呢？那是因为它有两个表A和B，当有数据包进入端口A时，网桥从数据包中提取出源MAC地址和目的MAC地址。一开始的时候，表A和表B都是空的，没有一条记录，这时，网桥会把数据包转发给B网络，并且在表A中增加一条MAC地址(把源MAC地址记录表中)，说明这个MAC地址的机器是A子网的，同理，当B子网发送数据包到B端口时，网桥也会记录源MAC地址到B表。当网桥工作一段时候后，表A基本上记录了A子网所有的机器的MAC地址，表B同理，当再有一个数据包从A子网发送给网桥时，网桥会先看看数据包的目的MAC地址是属于A子网还是B子网的，如果从A表中找到对应则，抛弃该包，如果不是，则转发给B子网，然后检查源MAC地址，是否在表中已经存在，如果不存在，在表A中增加一条记录。交换机也有一张MAC-PORT对应表(这张表的学名为：CAM)，和网桥不一样的是，网桥的表是一对多的(一个端口号对多个MAC地址)，但交换机的CAM表却是一对一的，如果一个端口有新的MAC地址，它不会新增MAC－PORT记录，而是修改原有的记录（参考<a href="http://network.51cto.com/art/201107/277187.htm" target="_blank" rel="external">这里</a>）。</li>
+<li>三层交换机（路由器），这和网桥有着本质的不同，这是工作在网络层的，用IP地址里面的 <strong><em>网络号</em></strong> 进行通信。</li>
+<li>网关，网关是主机的默认下一跳地址，如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关。一般是路由器</li>
+<li>ARP协议 地址解析协议，即ARP（Address Resolution Protocol），当数据报从路由器下发到交换机的时候只有IP地址，而没有MAC地址，所以就需要将IP地址里面的 <strong><em>主机号</em></strong> 翻译成为MAC地址(向局域网内广播来得到)，然后将数据报下发到指定主机。还有就是主机要知道网关（DHCP只提供网关IP）、DHCP服务器的MAC地址时，或是和同一局域网内的主机通信时也会用到。例如我们可以看到这样的ARP请求<code>Broadcast    ARP    60    Who has 172.19.72.1?  Tell 172.19.73.53</code> 响应是<code>172.19.72.1 is at 00:18:82:c6:a3:b4</code></li>
+<li>TTL</li>
+<li>ICMP</li>
+<li>ping/traceroute ping攻击<br>说完这些感觉已经蒙了，下面就以一个例子把这些东西串起来。假设我的主机要向我的网站（kangqingfei.cn）请求首页的html文档，首先</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/05/VMware-config-network/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">VMware config network</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="computer-network-basis" data-title="computer network basis" data-url="http://kangqingfei.cn/2016/01/06/computer-network-basis/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"kangqingfei"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 kangqingfei
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-59520224-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
