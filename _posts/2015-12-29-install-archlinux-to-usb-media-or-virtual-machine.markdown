@@ -36,4 +36,12 @@ tags: [archlinux,virtualmachine,media]
 2. 按照之前的方法挂载 然后 `arch-chroot /mnt` 然后就把`/boot/syslinux/syslinux.cfg`里面的`/sda3` 改成 `/sda2` 就ok
 #### 把启动项改回来，启动 `dhcpd` 获取 ip ，然后 `startx` 竟然没起来。。。无奈 `pacman -S xorg` 然后回车全选，确定安装然后***还没起来*** **怒了** 直接 `vim .xinitrc` 写入 `exec i3` 再`startx`就把 i3 跑起来了。补充几个可能用到的东西
 > `wifi-menu`(包含在`dialog`中) -> 用来配合`netctl`连WiFi
+> `pacman -S openssh` 安装ssh服务,如何配置ssh（d）可以`man sshd_config`（`man ssh_config`）
+> `systemctl enable/start sshd.service` (开机)启动ssh服务，
+> `/etc/ssh/sshd_config` ssh配置文件默认不允许root用户登录 prohibit-password -> yes
+> `systemctl enable dhcpcd.service` 开机自动DHCP获取地址
+>
 > 持续更新中..........
+
+### 问题解决
+1. 遇到`a stop job is running for session c1 of user root 1 min 30 s`关机很慢的问题，这是systemd的bug，详细可以参考[这篇文章](https://bbs.archlinux.org/viewtopic.php?id=203112)按照里面22楼的说法把`/etc/systemd/system.conf`里面的`DefaultTimeoutStopSec=90s`改成了1s。因为不想降级了，所以只能这样了
