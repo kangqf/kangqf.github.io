@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://kangqingfei.cn/"/>
-  <updated>2016-01-06T15:42:37.000Z</updated>
+  <updated>2016-01-09T06:20:16.000Z</updated>
   <id>http://kangqingfei.cn/</id>
   
   <author>
@@ -19,36 +19,39 @@
     <link href="http://kangqingfei.cn/2016/01/06/computer-network-basis/"/>
     <id>http://kangqingfei.cn/2016/01/06/computer-network-basis/</id>
     <published>2016-01-06T04:54:09.000Z</published>
-    <updated>2016-01-06T15:42:37.000Z</updated>
+    <updated>2016-01-09T06:20:16.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u5199VMware_u7684_u7F51_u7EDC_u6A21_u5F0F_u90A3_u7BC7_u6587_u7AE0_u5199_u4E0D_u4E0B_u53BB_u4E86_uFF0C_u6240_u4EE5_u5148_u5199_u5B8C_u8FD9_u7BC7_u52A0_u6DF1_u81EA_u5DF1_u5BF9_u8BA1_u7B97_u673A_u7F51_u7EDC_u7684_u8BA4_u8BC6_u518D_u7EE7_u7EED_u5199_u90A3_u4E2A_u3002"><a href="#u5199VMware_u7684_u7F51_u7EDC_u6A21_u5F0F_u90A3_u7BC7_u6587_u7AE0_u5199_u4E0D_u4E0B_u53BB_u4E86_uFF0C_u6240_u4EE5_u5148_u5199_u5B8C_u8FD9_u7BC7_u52A0_u6DF1_u81EA_u5DF1_u5BF9_u8BA1_u7B97_u673A_u7F51_u7EDC_u7684_u8BA4_u8BC6_u518D_u7EE7_u7EED_u5199_u90A3_u4E2A_u3002" class="headerlink" title="写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。"></a>写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。</h3><p>关于计算机网络，大都要讲到TCP/IP 这个协议簇，总共有四层：网络接入层，网络层（说法不一），传输层，应用层。相比于OSI七层模型，它把物理层和数据链路层归一为网络接入层，因为我们很少情况下会考虑物理层的关系，然后又相当于把会话层，表示层，应用层归一为应用层，因为我们极少接触到会话层和表示层（我所接触的也就是像SDP这种传输信令的协议会归在会话层），所以没有必要细分。说完协议簇，再说这几个层次的标识：</p>
 <ul>
 <li>网络接入层：MAC地址标识，是计算机的硬件地址，一般不会改变，固化在计算机的网卡上。当然你有多个网卡就会有多个MAC地址，一般像PPP协议是工作在这上面的。</li>
 <li>网络层：IP地址标识，计算机的虚拟地址，相当于一个临时的身份证，很有可能会经常改变（除了某些骨干网的节点路由器和核心交换机一般不变，还有就是服务器的），一台计算机可能有多个IP地址，IP地址又可分为ABCDE类，当然现在一般都用CIDR进行路由，所以这个分类一般没啥意思了，还有就是一些特殊的IP地址：<ul>
 <li>127.0.0.0/8 本地回环测试地址，不进行任何路由和转发直接，甚至不会进入到网卡，你可以试着用Wireshark监听网卡的ICMP报文，然后ping 127.0.0.1 会发现没有监听到任何数据包，这意味着数据报就没有下到链路层，直接在网络层就被返回本机处理了。</li>
-<li>0.0.0.0/8    本网络，仅作为源地址时合法，作为目的地址时无效数据报直接被丢弃，作为源地址时一般用在DHCP获取IP时，主机从来不知道自己的IP所以就将源IP设置为 0.0.0.0 （如果之前有过IP的话就会和DHCP服务器协商这个IP是否有效，即租期到了没，即使是这种情况也是 把最后使用的那个IP地址放在udp数据报里面而不是源地址。顺便提一下DHCP的四个阶段 DHCPDISCOVER DHCPOFFER DHCPREQUEST DHCPACK）</li>
+<li>0.0.0.0，关于这个地址说法一，主要还是参考维基百科里面的说法，主要有下面几个含义：<ul>
+<li>从IPv4 角度来讲，作为目的地址是指不可路由的地址用于指定一个无效的或未知的或不适用的目标。作为源地址是一种带内信令的应用（DHCP），是给本来非法的数据报提供一个特殊含义。0.0.0.0作为源地址时一般用在DHCP获取IP时，主机从来不知道自己的IP所以就将源IP设置为 0.0.0.0 （如果之前有过IP的话就会和DHCP服务器协商这个IP是否有效，即租期到了没，即使是这种情况也是 把最后使用的那个IP地址放在udp数据报里面而不是源地址。顺便提一下DHCP的四个阶段 DHCPDISCOVER DHCPOFFER DHCPREQUEST DHCPACK）。</li>
+<li>从服务器角度来讲，这代表着本机所有的IPv4地址，如果一个服务器在监听0.0.0.0则表示它在监听本机的所有ip，所以可以通过任意一个可达的IP访问服务器。(所以在编程中经常是监听这个地址而不是127.0.0.1以便其他人访问)</li>
+<li>从路由的角度来看，这就意味着默认的路由，就是在路由表中查不到的就通过这个路由，相当于告诉你，其他路都走不通了就走这条路。Windows系统会自动产生一个目的地址为0.0.0.0的默认路由（他对应的网关就是默认网关）。而对于 0.0.0.0的默认网关就是意味着直接进行二层通信，不经过三层（代表直连路由，就是不要通过网关），一般这样的条目不会设置G标志，因为说明目的地是直接相连的条目会以G标识，该路由是到一个网关（路由器，要路由的）。</li>
+<li>0.0.0.0/8 指本网络的主机（0.0.0.0就是指本网络，主机ID为0），0.0.0.0/32（就是0.0.0.0） 作为一个源地址指本网络的本主机（只能在被用做源地址来获取自己主机IP的时候用） 0.0.0.0/8 里面的其他地址指本网络上的某个特定主机（只能在被用做源地址来获取特定主机IP的时候用，帮助别人获取ip）<a href="http://superuser.com/questions/388056/where-are-addresses-from-the-network-0-0-0-0-8-used-in-practice" target="_blank" rel="external">参考这里</a></li>
+</ul>
+</li>
 <li>255.255.255.255 受限广播地址，只用作目的地址，这种目的地址的数据报不会被路由器转发（除非特别设置路由器将数据报转发到另一网络，这种情况一般是主机数较多，且主机和DHCP服务器不在同一网络内），其广播功能限制在本网内部，可用作DHCP时的目的ip。</li>
 <li>专用地址，一般用作局域网，比如校园网，家庭路由器。最大的CIDR地址块分别有 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16，这里要注意是 <strong><em>最大的</em></strong> 以为很多都不会用到最大的块，比如有些家庭路由器只是用到了 192.168.1.0/8 这样的一个C类地址块。</li>
 <li>169.254.0.0/16 链路本地地址，这些地址与专用网络地址一样不可路由，也不可作为公共网络上报文的源或目的地址。链路本地地址主要被用于地址自动配置：当主机不能从DHCP服务器处获得IP地址时，它会用这种方法生成一个。微软创建了一种叫自动专用IP寻址（APIPA）的实现，所以当你的windows电脑不能DHCP获取ip是就会生成一个169.254.x.x的ip。</li>
 <li>224.0.0.0/4    多播（之前的D类网络）只能用作目的地址，而不能作为分组中的源地址。</li>
 <li>240.0.0.0/4    保留（之前的E类网络）</li>
-<li>网络号全0， 当某个主机向同一网段上的其他主机发送报文时就可以使用这样的地址，分组也不会被路由器转发。</li>
+<li>网络号全0， 当某个主机向同一网段上的其他主机发送报文时就可以使用这样的地址，分组也不会被路由器转发。相当于本网络。</li>
 <li>表示主机的二进制位（主机号）全0或全1不能使用，全0表示本网（网络地址），全1表示本网广播（直接广播地址），一个常见的误解是以0或255结尾的地址永远不能分配给主机：这仅在子网掩码至少24位长度时（旧的C类地址，或CIDR中的/24到/32）才成立。比如，在B类子网192.168.0.0/255.255.0.0（即192.168.0.0/16）中，广播地址是192.168.255.255。在这种情况下，尽管可能带来误解，但192.168.1.255、192.168.2.255等地址可以被分配给主机。广播地址是借由子网掩码的比特补数并和网络识别码运行 OR的比特运算就能获得，在A、B和C类网络中，广播地址总是以255结尾。随着CIDR的到来，广播地址不一定总是以255结尾。比如，子网203.0.113.16/28的广播地址是203.0.113.31。一般情况下，子网的第一个和最后一个地址分别被作为网络识别码和广播地址，任何其它地址都可以被分配给其上的主机。（以上内容参考<a href="https://zh.wikipedia.org/wiki/IPv4" target="_blank" rel="external">维基百科</a>）。</li>
 </ul>
 </li>
 <li>传输层，主要是TCP UDP这些协议来保证网络的有效性。在这上面一般用端口来标识一个身份。</li>
 <li>应用层，用进程ID来标识一个身份。</li>
 </ul>
-<p>说完四层模型，再说一些作用域的问题，先搞清楚几个东西：</p>
-<ul>
-<li>集线器，用来物理上连接几台主机，它的作用域在物理层</li>
-<li>网桥，为了减小碰撞域，实现几台主机的链路层互联，通信方式是以MAC地址进行通信。</li>
-<li>二层交换机（多接口网桥），一般的网桥只有两端，而多接口网桥可以有多个端。网桥的A端口连接A子网，B端口连接B子网，为什么网桥知道哪些数据包该转发，哪些包不该转发呢？那是因为它有两个表A和B，当有数据包进入端口A时，网桥从数据包中提取出源MAC地址和目的MAC地址。一开始的时候，表A和表B都是空的，没有一条记录，这时，网桥会把数据包转发给B网络，并且在表A中增加一条MAC地址(把源MAC地址记录表中)，说明这个MAC地址的机器是A子网的，同理，当B子网发送数据包到B端口时，网桥也会记录源MAC地址到B表。当网桥工作一段时候后，表A基本上记录了A子网所有的机器的MAC地址，表B同理，当再有一个数据包从A子网发送给网桥时，网桥会先看看数据包的目的MAC地址是属于A子网还是B子网的，如果从A表中找到对应则，抛弃该包，如果不是，则转发给B子网，然后检查源MAC地址，是否在表中已经存在，如果不存在，在表A中增加一条记录。交换机也有一张MAC-PORT对应表(这张表的学名为：CAM)，和网桥不一样的是，网桥的表是一对多的(一个端口号对多个MAC地址)，但交换机的CAM表却是一对一的，如果一个端口有新的MAC地址，它不会新增MAC－PORT记录，而是修改原有的记录（参考<a href="http://network.51cto.com/art/201107/277187.htm" target="_blank" rel="external">这里</a>）。</li>
-<li>三层交换机（路由器），这和网桥有着本质的不同，这是工作在网络层的，用IP地址里面的 <strong><em>网络号</em></strong> 进行通信。</li>
-<li>网关，网关是主机的默认下一跳地址，如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关。一般是路由器</li>
-<li>ARP协议 地址解析协议，即ARP（Address Resolution Protocol），当数据报从路由器下发到交换机的时候只有IP地址，而没有MAC地址，所以就需要将IP地址里面的 <strong><em>主机号</em></strong> 翻译成为MAC地址(向局域网内广播来得到)，然后将数据报下发到指定主机。还有就是主机要知道网关（DHCP只提供网关IP）、DHCP服务器的MAC地址时，或是和同一局域网内的主机通信时也会用到。例如我们可以看到这样的ARP请求<code>Broadcast    ARP    60    Who has 172.19.72.1?  Tell 172.19.73.53</code> 响应是<code>172.19.72.1 is at 00:18:82:c6:a3:b4</code></li>
-<li>TTL</li>
-<li>ICMP</li>
-<li>ping/traceroute ping攻击<br>说完这些感觉已经蒙了，下面就以一个例子把这些东西串起来。假设我的主机要向我的网站（kangqingfei.cn）请求首页的html文档，首先</li>
+<h2 id="u8BF4_u5B8C_u56DB_u5C42_u6A21_u578B_uFF0C_u518D_u8BF4_u4E00_u4E9B_u4F5C_u7528_u57DF_u7684_u95EE_u9898_uFF0C_u5148_u641E_u6E05_u695A_u51E0_u4E2A_u4E1C_u897F_uFF1A"><a href="#u8BF4_u5B8C_u56DB_u5C42_u6A21_u578B_uFF0C_u518D_u8BF4_u4E00_u4E9B_u4F5C_u7528_u57DF_u7684_u95EE_u9898_uFF0C_u5148_u641E_u6E05_u695A_u51E0_u4E2A_u4E1C_u897F_uFF1A" class="headerlink" title="说完四层模型，再说一些作用域的问题，先搞清楚几个东西："></a>说完四层模型，再说一些作用域的问题，先搞清楚几个东西：</h2><ul>
+<li>集线器，用来物理上连接几台主机，它的作用域在物理层，各主机处在同一碰撞域之中，他们共享带宽。</li>
+<li>网桥，为了减小碰撞域，实现几台主机的链路层互联，通信方式是以MAC地址进行通信。一般的网桥只有两端，而多接口网桥可以有多个端。网桥的A端口连接A子网，B端口连接B子网，为什么网桥知道哪些数据包该转发，哪些包不该转发呢？那是因为它有两个表A和B，当有数据包进入端口A时，网桥从数据包中提取出源MAC地址和目的MAC地址。一开始的时候，表A和表B都是空的，没有一条记录，这时，网桥会把数据包转发给B网络，并且在表A中增加一条MAC地址(把源MAC地址记录表中)，说明这个MAC地址的机器是A子网的，同理，当B子网发送数据包到B端口时，网桥也会记录源MAC地址到B表。当网桥工作一段时候后，表A基本上记录了A子网所有的机器的MAC地址，表B同理，当再有一个数据包从A子网发送给网桥时，网桥会先看看数据包的目的MAC地址是属于A子网还是B子网的，如果从A表中找到对应则，抛弃该包，如果不是，则转发给B子网，然后检查源MAC地址，是否在表中已经存在，如果不存在，在表A中增加一条记录。</li>
+<li>二层交换机（多接口网桥），交换机也有一张MAC-PORT对应表(这张表的学名为：CAM)，和网桥不一样的是，网桥的表是一对多的(一个端口号对多个MAC地址)，但交换机的CAM表却是一对一的，如果一个端口有新的MAC地址，它不会新增MAC－PORT记录，而是修改原有的记录（参考<a href="http://network.51cto.com/art/201107/277187.htm" target="_blank" rel="external">这里</a>）。 <strong><em>这就意味着如果二层交换机下面再接集线器是不是会出现问题？</em></strong></li>
+<li>三层交换机与路由器，这和网桥有着本质的不同，这是工作在网络层的，用IP地址里面的 <strong><em>网络号</em></strong> 进行通信。但是三层交换机的主要功能仍是数据交换（<a href="http://www.to8to.com/yezhu/v3302.html" target="_blank" rel="external">参考这里</a>），它的路由功能通常比较简单，因为它所面对的主要是简单的局域网连接，路由路径远没有路由器那么复杂，它用在局域网中的主要用途还是提供快速数据交换功能，满足局域网数据交换频繁的应用特点。路由器的主要功能还是路由功能，它的路由功能更多的体现在不同类型网络之间的互联上，如局域网与广域网之间的连接、不同协议的网络之间的连接等，所以路由器主要是用于不同类型的网络之间。它最主要的功能就是路由转发，解决好各种复杂路由路径网络的连接就是它的最终目的，所以路由器的路由功能通常非常强大，不仅适用于同种协议的局域网间，更适用于不同协议的局域网与广域网间。它的优势在于选择最佳路由、负荷分担、链路备份及和其他网络进行路由信息的交换等等路由器所具有功能。为了与各种类型的网络连接，路由器的接口类型非常丰富，而三层交换机则一般仅同类型的局域网接口，非常简单。从技术上讲，路由器和三层交换机在数据包交换操作上存在着明显区别。路由器一般由基于微处理器的软件路由引擎执行数据包交换，而三层交换机通过硬件执行数据包交换。三层交换机在对第一个数据流进行路由后，它将会产生一个MAC地址与IP地址的映射表，当同样的数据流再次通过时，将根据此表直接从二层通过而不是再次路由，从而消除了路由器进行路由选择而造成网络的延迟，提高了数据包转发的效率。同时，三层交换机的路由查找是针对数据流的，它利用缓存技术，很容易利用ASIC技术来实现，因此，可以大大节约成本，并实现快速转发。而路由器的转发采用最长匹配的方式，实现复杂，通常使用软件来实现，转发效率较低。正因如此，从整体性能上比较的话，三层交换机的性能要远优于路由器，非常适用于数据交换频繁的局域网中;而路由器虽然路由功能非常强大，但它的数据包转发效率远低于三层交换机，更适合于数据交换不是很频繁的不同类型网络的互联，如局域网与互联网的互联。如果把路由器，特别是高档路由器用于局域网中，则在相当大程度上是一种浪费(就其强大的路由功能而言)，而且还不能很好地满足局域网通信性能需求，影响子网间的正常通信综上所述，在局域网中进行多子网连接，最好还选用三层交换机，特别是在不同子网数据交换频繁的环境中。一方面可以确保子网间的通信性能需求，另一方面省去了另外购买交换机的投资。当然，如果子网间的通信不是很频繁，采用路由器也无可厚非，也可达到子网安全隔离相互通信的目的。具体要根据实际需求来定。三层交换与路由最大的区别就在于：路由支持nat转换，而三层不支持。在实际工程中体现出来就在：路由上直接接光纤可以上网，而将光纤接到层三设备上是不能上网了。三层每个端口都有专用的mac地址，有专用的ASIC集成电路。 <strong>一般的对于家庭路由器只要不接wan口而全部接在LAN口就相当于一个小型的二层交换机了</strong></li>
+<li>网关，（route -n查询）如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关。这个网关是由目的ip跟路由表里面的条目进行匹配后得出的（）。默认网关是主机的默认下一跳地址，一般小型网络默认网关（家庭网络）是路由器，大型网络（校园网）是三层交换机。</li>
+<li>ARP协议 地址解析协议，即ARP（Address Resolution Protocol），当数据报从路由器下发到交换机的端口时候只有IP地址，而没有MAC地址，所以就需要将IP地址里面的 <strong><em>主机号</em></strong> 翻译成为MAC地址(向局域网内广播来得到)，然后将数据报下发到指定主机。还有就是主机要知道网关（DHCP只提供网关IP）、DHCP服务器的MAC地址时，或是和同一局域网内的主机通信时也会用到。例如我们可以看到这样的ARP请求<code>Broadcast    ARP    60    Who has 172.19.72.1?  Tell 172.19.73.53</code> 响应是<code>172.19.72.1 is at 00:18:82:c6:a3:b4</code>，另外要注意的是路由表配置正确的路由器只会对本网内的ip使用arp协议，对于非本网内的ip由于不在一个链路域里面，所以即使拿到他的mac也无法下发，所以对于这种ip的数据报只能把它发给其他路由器。</li>
+<li>TTL 是指链路的经过的跳数的最大值（有的是数据报的存活时间），这个主要是用来防止链路出现了环路而浪费带宽</li>
 </ul>
 ]]></content>
     <summary type="html">
@@ -70,26 +73,44 @@
     <link href="http://kangqingfei.cn/2016/01/05/VMware-config-network/"/>
     <id>http://kangqingfei.cn/2016/01/05/VMware-config-network/</id>
     <published>2016-01-05T13:19:25.000Z</published>
-    <updated>2016-01-06T15:49:25.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="u4ECA_u5929_u6298_u817E_u865A_u62DF_u673A_u5404_u79CD_u7F51_u7EDC_u7684_u95EE_u9898_uFF0C_u607C_u706B_u6B7B_u4E86_uFF0C_u6691_u5047_u7684_u65F6_u5019_u53C2_u52A0_u5D4C_u5165_u5F0F_u57F9_u8BAD_u7684_u65F6_u5019_u7531_u4E8E_u8981_u53D1_u4E1C_u897F_u5230_u5BBF_u4E3B_u673A_uFF0C_u5927_u5BB6_u4E5F_u9047_u5230_u4E86_u865A_u62DF_u673Aping_u4E0D_u901A_u5BBF_u4E3B_u673A_u7684_u95EE_u9898_uFF0C_u5F53_u65F6_u5F88_u591A_u540C_u5B66_u662F_u78B0_u8FD0_u6C14_uFF0C_u6211_u4E5F_u4E0D_u8BB0_u5F97_u5F53_u65F6_u662F_u600E_u4E48_u89E3_u51B3_u7684_uFF0C_u73B0_u5728_u5C31_u628AVMware_u91CC_u9762_u7684_u4E00_u4E9B_u7F51_u7EDC_u914D_u7F6E_u4ED4_u7EC6_u5199_u4E00_u4E0B_u3002"><a href="#u4ECA_u5929_u6298_u817E_u865A_u62DF_u673A_u5404_u79CD_u7F51_u7EDC_u7684_u95EE_u9898_uFF0C_u607C_u706B_u6B7B_u4E86_uFF0C_u6691_u5047_u7684_u65F6_u5019_u53C2_u52A0_u5D4C_u5165_u5F0F_u57F9_u8BAD_u7684_u65F6_u5019_u7531_u4E8E_u8981_u53D1_u4E1C_u897F_u5230_u5BBF_u4E3B_u673A_uFF0C_u5927_u5BB6_u4E5F_u9047_u5230_u4E86_u865A_u62DF_u673Aping_u4E0D_u901A_u5BBF_u4E3B_u673A_u7684_u95EE_u9898_uFF0C_u5F53_u65F6_u5F88_u591A_u540C_u5B66_u662F_u78B0_u8FD0_u6C14_uFF0C_u6211_u4E5F_u4E0D_u8BB0_u5F97_u5F53_u65F6_u662F_u600E_u4E48_u89E3_u51B3_u7684_uFF0C_u73B0_u5728_u5C31_u628AVMware_u91CC_u9762_u7684_u4E00_u4E9B_u7F51_u7EDC_u914D_u7F6E_u4ED4_u7EC6_u5199_u4E00_u4E0B_u3002" class="headerlink" title="今天折腾虚拟机各种网络的问题，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。"></a>今天折腾虚拟机各种网络的问题，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。</h3><p>安装完虚拟机后，我们还可以在windows的<code>控制面板\网络和 Internet\网络连接</code>里面看到这样两个连接<br><img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-network-link.png"><br>其中VMnet1是虚拟机Host-only模式的网络接口，VMnet8是NAT模式的网络接口，这些后面会介绍，查看他们两个的ip，可以发现VMnet1的ip是192.168.178.1，VMnet2的ip是192.168.254.1,。<br>打开一台虚拟机后，点击 <code>虚拟机 &gt; 设置 &gt; 网络适配器</code> 我们可以看到像下面这样的情况。<br><img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-setting-network.png"><br>然而当我们在VMware里面 编辑 &gt; 虚拟网络编辑器 的时候却看到下面这个情况<br><img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-virtual-network-editor.png"><br>其实这才是真实的情况，有三种连接的方式分别是 桥接模式，仅主机模式，NAT模式。接下来我们就一一解析这三种模式（PS：以下实验请在成年人的监护下进行，而且极有可能造成宽带断网之类的不良影响，并且确保你的电脑内存够大磁盘读写够快，否则容易造成电脑死机，由此引发一切后果概不承担。还有，在桥接模式下，别用putty之类的试图通过ssh连接虚拟机，会很卡卡卡卡，原因后面你会懂的）</p>
+    <updated>2016-01-09T13:18:24.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u4ECA_u5929_u6298_u817E_u865A_u62DF_u673A_u5404_u79CD_u7F51_u7EDC_u7684_u95EE_u9898_uFF0C_u7535_u8111_u4E5F_u662F_u8001_u5361_u6B7B_uFF0C_u607C_u706B_u6B7B_u4E86_uFF0C_u6691_u5047_u7684_u65F6_u5019_u53C2_u52A0_u5D4C_u5165_u5F0F_u57F9_u8BAD_u7684_u65F6_u5019_u7531_u4E8E_u8981_u53D1_u4E1C_u897F_u5230_u5BBF_u4E3B_u673A_uFF0C_u5927_u5BB6_u4E5F_u9047_u5230_u4E86_u865A_u62DF_u673Aping_u4E0D_u901A_u5BBF_u4E3B_u673A_u7684_u95EE_u9898_uFF0C_u5F53_u65F6_u5F88_u591A_u540C_u5B66_u662F_u78B0_u8FD0_u6C14_uFF0C_u6211_u4E5F_u4E0D_u8BB0_u5F97_u5F53_u65F6_u662F_u600E_u4E48_u89E3_u51B3_u7684_uFF0C_u73B0_u5728_u5C31_u628AVMware_u91CC_u9762_u7684_u4E00_u4E9B_u7F51_u7EDC_u914D_u7F6E_u4ED4_u7EC6_u5199_u4E00_u4E0B_u3002"><a href="#u4ECA_u5929_u6298_u817E_u865A_u62DF_u673A_u5404_u79CD_u7F51_u7EDC_u7684_u95EE_u9898_uFF0C_u7535_u8111_u4E5F_u662F_u8001_u5361_u6B7B_uFF0C_u607C_u706B_u6B7B_u4E86_uFF0C_u6691_u5047_u7684_u65F6_u5019_u53C2_u52A0_u5D4C_u5165_u5F0F_u57F9_u8BAD_u7684_u65F6_u5019_u7531_u4E8E_u8981_u53D1_u4E1C_u897F_u5230_u5BBF_u4E3B_u673A_uFF0C_u5927_u5BB6_u4E5F_u9047_u5230_u4E86_u865A_u62DF_u673Aping_u4E0D_u901A_u5BBF_u4E3B_u673A_u7684_u95EE_u9898_uFF0C_u5F53_u65F6_u5F88_u591A_u540C_u5B66_u662F_u78B0_u8FD0_u6C14_uFF0C_u6211_u4E5F_u4E0D_u8BB0_u5F97_u5F53_u65F6_u662F_u600E_u4E48_u89E3_u51B3_u7684_uFF0C_u73B0_u5728_u5C31_u628AVMware_u91CC_u9762_u7684_u4E00_u4E9B_u7F51_u7EDC_u914D_u7F6E_u4ED4_u7EC6_u5199_u4E00_u4E0B_u3002" class="headerlink" title="今天折腾虚拟机各种网络的问题，电脑也是老卡死，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。"></a>今天折腾虚拟机各种网络的问题，电脑也是老卡死，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。</h3><p>安装完虚拟机后，我们还可以在windows的<code>控制面板\网络和 Internet\网络连接</code>里面看到这样两个连接<br><img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-network-link.png"><br>其中VMnet1是虚拟机Host-only模式的网络接口，VMnet8是NAT模式的网络接口，这些后面会介绍，查看他们两个的ip，可以发现VMnet1的ip是192.168.178.1，VMnet2的ip是192.168.254.1,。<br>打开一台虚拟机后，点击 <code>虚拟机 &gt; 设置 &gt; 网络适配器</code> 我们可以看到像下面这样的情况。<br><img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-setting-network.png"><br>然而当我们在VMware里面 编辑 &gt; 虚拟网络编辑器 的时候却看到下面这个情况<br><img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-virtual-network-editor.png"><br>其实这才是真实的情况，有三种连接的方式分别是 桥接模式，仅主机模式，NAT模式。接下来我们就一一解析这三种模式（PS：以下实验极有可能造成宽带断网之类的不良影响，并且确保你的电脑内存够大磁盘读写够快，否则容易造成电脑死机，由此引发一切后果概不承担。还有，在桥接模式下，别用putty之类的试图通过ssh连接虚拟机，会很卡卡卡卡，原因后面你会懂的）</p>
 <ol>
-<li><p>桥接模式。这是默认设置的模式，为了了解它的拓扑结构我们先进行一系列实验。为了排除不同的操作系统底层实现对实验带来的影响，我们开了3个虚拟机，分别是archlinux最新版，xp，ubuntu14.04，宿主机是win8.1，关闭所有机器的防火墙，尤其是xp。由于我们处在校园网内，所以可以再增加一个我们学校的bt down铺的主机。所以我们现在能够确定的（简化了核心交换机）拓扑及机器信息如下：</p>
-<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-net-tuop.png">
-<p>然后用 ping 命令进行实验得到下面这样的结果：</p>
-<ol>
-<li>win8 ping 虚拟机，时而出现超时,一般时延小于1ms,有时时延极大。wireshark直接死掉，里面出现大量的重复request数据，request的ttl从1到128不等且多次重复出现，reply的ttl稳定128 而数量和request几乎相当，ping了4次出现了500万+条数据报。tracert要在本机的几点上重复跳不定次。</li>
-<li>虚拟机 ping win8 ，对于xp时而出现超时,一般时延小于1ms,有时时延极大。对于linux 出现大量DUP! 提示，虚拟机卡死。wireshark由于中间按了停止所以，发现reply的ttl从128到90不等各种重复出现，request出现3条ttl都为64，同样在半路停止的情况下出现了50万+条的数据报。tracert只需一条。tracepath 无法到达。</li>
-<li>linux ping btdown铺发现出现大量重定向和大量来自win8的数据报（这已经很明显了），wireshark里面显示数据报依然有300万+大部分是重定向和来自bt down铺的reply，当时同学说bt down铺并没有异常。网络指示灯狂闪。。。</li>
-<li>虚拟机互ping无异常，wireshark抓不到任何包，tracexx一跳就到。但是一旦关闭目标主机，出现大量重定向。。。</li>
-<li>win8 ping bt down铺正常而且能抓到报文。</li>
-</ol>
+<li><p>桥接模式。这是默认设置的模式（我的虚拟机版本是11.1.2 build-2780323），但是我使用这个模式的时候经常卡死，所以本着求知的精神打算看看它的拓扑结构，为了了解它的拓扑结构我们先进行一系列实验。为了排除不同的操作系统底层实现对实验带来的影响，我们开了3个虚拟机，分别是archlinux最新版，xp，ubuntu14.04，宿主机是win8.1，关闭所有机器的防火墙，尤其是xp。</p>
+<p>之前都是接在学校的局域网上实验的，痛苦万分，受到小伙伴的提示，我把电脑接到一个普通的家庭无线路由器上，这样网络环境相对简单，按照VMware的说法在windows下是允许桥接无线网的。所以有下面这样的一个拓扑关系（顺便给出路由表）：</p>
+<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-net-hometuop.png">
+<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-net-route-table.png">
+<p>首先看到他们的路由表：可以看到两台linux的虚拟机的路由表是一样的，有两条，第一条的意思是默认网关是192.168.1.1，第二条的意思是对于网络号是192.168.1.0/24 的目的ip的网关是0.0.0.0，不经过三层（代表直连路由，就是不要通过网关路由，直接下发到链路）。<br>实验结果表面上一切都和我们想的一样但是 <strong>出现一个重定向</strong> 这就值得我们怀疑了。实验过程如下：</p>
+<ul>
+<li><p>当我们用虚拟机ping win8的时候发现显示没有任何问题，但是经过抓包后遇到了下面的问题：</p>
+<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-net-arch-ping-win8.png">
+<p>可以看到这里的request报文的ip是没有问题的，但是mac是一样的，都是win8的mac，所以我们应该可以猜想，虚拟机其实不是真的暴露在局域网内，而是win8又建了一个小的”网络”，从上面的Archlinux的路由表可以看出，对于本网内的数据报直接广播没有不用经过路由，但是呢，arch的链路域是由win8 arch及其他的虚拟机组成的，所以呢Vmware应该有个进程(你看看你是不是装了Vmware bridge protocol)专门来收这种虚拟机的mac（原因详见我的另外一篇文章），Vmware的进程收到这些数据报之后会说这个发不得会出事，然后会不管三七二十一就把源mac改成宿主机（win8）的mac，然后通过真实的网卡下放到链路上（因为我们在真是的网卡上面确实捕捉到了这个数据包），这时的路由器就相当于一个二层交换机（因为数据报的通信双方的ip地址在同一网段），然后交换机一看这个数据报目的mac，你他喵的不就是你的么，所以又把这个数据报原封不动（因为没有路由所以源mac不变）返回给了我们的win8的真实网卡，然后Vmware又有一个进程(Vmware bridge protocol)相当于是给收到的数据报“路由”的（原因也很简单，以为发到这个mac地址的数据并不一定是给我的，我下面还有虚拟机，可能是他们的mac被改后发出去的数据报的响应）进过对比发现这个是给我的（就算不是也不能丢弃，还要看看目标mac是不是虚拟机的，是的话再看ip是不是对的上，都不是才丢弃），好的，处理后发现是个IP为111的发给我的，然后他不知道这个ip对应的mac，所以arp问，如下图：</p>
+<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-net-arch-ping-win8-arp.png">
+<p>问到了111的mac，所以发送一个reply报文（源mac是win8 的mac，目的mac是虚拟机的mac,就像上面的截图一样）给虚拟机，经过查询路由表之后发现，这个数据报应该直接下放到链路上，数据报就到了交换机这里，交换机收到这个数据报之后就看看这个目标mac是虚拟机的mac所以就把它发到了win8的接口上，win8一看，这个目的mac是个私有的mac不是我的扔掉吧，这时候虚拟机的守护进程跳出来，不能扔，这个可能是我们这边的，然后交给了虚拟机这边进程处理，然后一看mac地址不真是arch的mac地址么，好的下发给他。arch收到后上到三层一看这个ip不就对应着自己的ip么，好的收下了。</p>
+</li>
+<li><p>当我们用虚拟机ping 网关(.1)的时候发现出现了重定向的问题，如下图:</p>
+<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-net-arch-ping-gate-redirect.png">
+<p>按照百度的解释，这种问题出现的原因有两个：1)当路由器从某个接口收到数据还需要从相同接口转发该数据时；2)当路由器从某个接口到发往远程网络的数据时发现源ip地址与下一跳属于同一网段时。再仔细看看里面发给arch重定向要求的是win8的ip，所以可以肯定的是arch把数据报发到了win8的虚拟路由，然后win8的虚拟路由发现arch与目的ip是直达的，所以发出了重定向请求。这里我思考了很久，我一直在考虑的一个关键点是，到底这个和之前那个ping 宿主机会有什么区别，我们可以肯定这次肯定是经过路由了的（因为有redirect报文），而这就意味着之前的没有经过路由，可是为什么这次要路由之前不要，这里只有一点不同，那就是目的ip。这就意味着之前的目的ip是和虚拟机是同一链路域，而这次没有，可是这三个ip明明是同网段的啊，这里我们忽略了很重要的一点，对于家庭路由器来说，这三个ip肯定是同网段的，但是对于win8上那个虚拟路由来说就不是了，那个路由估计不会用子网掩码这种复杂的东西， <strong>它估计就是把宿主机和所有虚拟机的ip组成一个集合，在这个集合里面的就是同网段，反之就是不同网段需要路由</strong> 。所以这样就得出了我们的结果,由于目的ip（.1）不在虚拟路由的集合里面所以要进行路由（把源mac改成了win8真实的mac，目的mac由原来的win8的mac改成了家庭路由器的mac），然后发出去并发送一个重定向的数据报（源mac和目标mac都是win8的真实mac）到链路通知虚拟机重定向，接下来就和上面一样了。所以我们之前一直弄错的一点就是 <strong>我们的虚拟机的0.0.0.0网关其实是宿主机上的虚拟路由器</strong>。等到家庭路由收到</p>
+</li>
+<li>再来解释一些奇怪的现象，xp ping 网关不会出现重定向，这其实是因为windows系统没有显示重定向的报文（包括后面的DUP报文），如果你去抓包还是能够看到的。虚拟机互ping的话不会抓到任何数据，这是因为虚拟机通过虚拟的交换机连接在一起，所以除了第一次通信构造转发表时宿主机会受到报文，其他时候是收不到的。综上所述我们大概画出了下面的拓扑图：<img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-net-virtual-actually.png">
+</li>
+</ul>
 </li>
 </ol>
+<p>  上面这些都是我自己的猜想，能否拿来解决我们在校园网中遇到的问题呢？接下来我们就来看看校园网中的复杂情况吧。由于我们处在校园网内，所以可以再增加一个我们学校的bt down铺的主机。所以我们现在能够确定的（简化了核心交换机）拓扑信息如下：<br>  <img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-net-tuop.png"></p>
+<p>  然后用 ping 命令进行实验得到下面这样的结果：</p>
+<ol>
+<li>win8 ping 虚拟机，时而出现超时,一般时延小于1ms,有时时延极大。wireshark直接死掉，里面出现大量的重复request数据，request的ttl从1到128不等且多次重复出现，reply的ttl稳定128 而数量和request几乎相当，ping了4次出现了500万+条数据报。tracert要在本机的几点上重复跳不定次。</li>
+<li>虚拟机 ping win8 ，对于xp时而出现超时,一般时延小于1ms,有时时延极大。对于linux 出现大量DUP! 提示，虚拟机卡死。wireshark由于中间按了停止所以，发现reply的ttl从128到90不等各种重复出现，request出现3条ttl都为64，同样在半路停止的情况下出现了50万+条的reply数据报。tracert只需一条。tracepath 无法到达。</li>
+<li>linux ping btdown铺发现出现大量重定向和大量来自win8的数据报（这已经很明显地出现环路了），wireshark里面显示数据报依然有300万+大部分是重定向和来自bt down铺的reply，当时同学说bt down铺并没有异常。网络指示灯狂闪。。。</li>
+<li>虚拟机互ping无异常，wireshark抓不到任何包，tracexx一跳就到。但是一旦关闭目标主机，出现大量重定向。。。</li>
+<li><p>win8 ping bt down铺正常而且能抓到报文。</p>
 <img title="test" alt="来自七牛云的图片" class="class1" src="http://kangqingfei.qiniudn.com/blog/images/VM-net0-result.png">
-<p>  所以结论是。。。。待我想想</p>
+</li>
+</ol>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="u4ECA_u5929_u6298_u817E_u865A_u62DF_u673A_u5404_u79CD_u7F51_u7EDC_u7684_u95EE_u9898_uFF0C_u607C_u706B_u6B7B_u4E86_uFF0C_u6691_u5047_]]>
+    <![CDATA[<h3 id="u4ECA_u5929_u6298_u817E_u865A_u62DF_u673A_u5404_u79CD_u7F51_u7EDC_u7684_u95EE_u9898_uFF0C_u7535_u8111_u4E5F_u662F_u8001_u5361_u6B7B_]]>
     </summary>
     
       <category term="VMware" scheme="http://kangqingfei.cn/tags/VMware/"/>
@@ -181,7 +202,7 @@
     <link href="http://kangqingfei.cn/2015/12/31/my-git-note/"/>
     <id>http://kangqingfei.cn/2015/12/31/my-git-note/</id>
     <published>2015-12-31T15:47:42.000Z</published>
-    <updated>2016-01-02T06:34:44.000Z</updated>
+    <updated>2016-01-17T14:13:05.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u4ECE13_u5E74_u63A5_u89E6git_u5230_u73B0_u5728_u5DF2_u7ECF_u4E24_u5E74_u534A_u4E86_uFF0C_u4ECD_u7136_u4E0D_u80FD_u5F88_u719F_u7EC3_u7684_u4F7F_u7528_uFF0C_u9047_u5230_u9EBB_u70E6_u7684_u95EE_u9898_u8FD8_u8981_u5728_u7F51_u4E0A_u641C_u547D_u4EE4_uFF0C_u867D_u7136_u4EE5_u524D_u6709_u5728_u672C_u5B50_u4E0A_u5199_u7B14_u8BB0_uFF0C_u4F46_u662F_u8C01_u6CA1_u4E8B_u5E26_u672C_u672C_u5B50_u554A_uFF0C_u6240_u4EE5_u5728_u8FD9_u91CC_u603B_u7ED3_u4E00_u4E0Bgit_u7684_u4F7F_u7528_u3002"><a href="#u4ECE13_u5E74_u63A5_u89E6git_u5230_u73B0_u5728_u5DF2_u7ECF_u4E24_u5E74_u534A_u4E86_uFF0C_u4ECD_u7136_u4E0D_u80FD_u5F88_u719F_u7EC3_u7684_u4F7F_u7528_uFF0C_u9047_u5230_u9EBB_u70E6_u7684_u95EE_u9898_u8FD8_u8981_u5728_u7F51_u4E0A_u641C_u547D_u4EE4_uFF0C_u867D_u7136_u4EE5_u524D_u6709_u5728_u672C_u5B50_u4E0A_u5199_u7B14_u8BB0_uFF0C_u4F46_u662F_u8C01_u6CA1_u4E8B_u5E26_u672C_u672C_u5B50_u554A_uFF0C_u6240_u4EE5_u5728_u8FD9_u91CC_u603B_u7ED3_u4E00_u4E0Bgit_u7684_u4F7F_u7528_u3002" class="headerlink" title="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。"></a>从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。</h3><h4 id="u9996_u5148git_u662F_u4E00_u4E2A_u5F88_u6709_u540D_u7684_u7248_u672C_u63A7_u5236_u7CFB_u7EDF_uFF0C_u4E00_u5F00_u59CB_u63A5_u89E6_uFF08github_uFF09_u7684_u65F6_u5019_uFF0C_u6211_u4EE5_u4E3A_u5B83_u53EA_u662F_u4E00_u4E2A_u7528_u6765_u627E_u4EE3_u7801_u7684_u5730_u65B9_uFF0C_u5F53_u65F6_u8981_u548C_u5B66_u957F_u5728_u90A3_u91CC_u641E_u4E86_u534A_u5929_u624D_u628A_u4EE3_u7801_u4E0A_u4F20_u5230github_uFF0C_u60F3_u60F3_u771F_u662F_u8270_u8F9B_u3002github_u53C8_u79F0gayhub_u662F_u4F7F_u7528git_u8BA9_u4F60_u514D_u8D39_u6258_u7BA1_u4EE3_u7801_uFF08_u5C31_u50CF_u8FD9_u7BC7_u535A_u5BA2_u7684html_u4EE3_u7801_uFF09_u7684_u5730_u65B9_uFF08_u56FD_u5185_u4E5F_u6709_u7C7B_u4F3C_u7684Coding-net__uFF09_uFF0C_u76F8_u5F53_u4E8E_u662F_u4E00_u4E2A_u8FDC_u7A0B_u7684_u4ED3_u5E93_u3002gitlab_u662F_u4E00_u4E2A_u4F7F_u7528git_u7684_u5F00_u6E90_u7684_u5DE5_u5177_uFF0C_u53EF_u4EE5_u8BA9_u4F60_u642D_u5EFA_u8D77_u7C7B_u4F3Cgithub_u8FD9_u6837_u7684_u73AF_u5883_u3002"><a href="#u9996_u5148git_u662F_u4E00_u4E2A_u5F88_u6709_u540D_u7684_u7248_u672C_u63A7_u5236_u7CFB_u7EDF_uFF0C_u4E00_u5F00_u59CB_u63A5_u89E6_uFF08github_uFF09_u7684_u65F6_u5019_uFF0C_u6211_u4EE5_u4E3A_u5B83_u53EA_u662F_u4E00_u4E2A_u7528_u6765_u627E_u4EE3_u7801_u7684_u5730_u65B9_uFF0C_u5F53_u65F6_u8981_u548C_u5B66_u957F_u5728_u90A3_u91CC_u641E_u4E86_u534A_u5929_u624D_u628A_u4EE3_u7801_u4E0A_u4F20_u5230github_uFF0C_u60F3_u60F3_u771F_u662F_u8270_u8F9B_u3002github_u53C8_u79F0gayhub_u662F_u4F7F_u7528git_u8BA9_u4F60_u514D_u8D39_u6258_u7BA1_u4EE3_u7801_uFF08_u5C31_u50CF_u8FD9_u7BC7_u535A_u5BA2_u7684html_u4EE3_u7801_uFF09_u7684_u5730_u65B9_uFF08_u56FD_u5185_u4E5F_u6709_u7C7B_u4F3C_u7684Coding-net__uFF09_uFF0C_u76F8_u5F53_u4E8E_u662F_u4E00_u4E2A_u8FDC_u7A0B_u7684_u4ED3_u5E93_u3002gitlab_u662F_u4E00_u4E2A_u4F7F_u7528git_u7684_u5F00_u6E90_u7684_u5DE5_u5177_uFF0C_u53EF_u4EE5_u8BA9_u4F60_u642D_u5EFA_u8D77_u7C7B_u4F3Cgithub_u8FD9_u6837_u7684_u73AF_u5883_u3002" class="headerlink" title="首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代码（就像这篇博客的html代码）的地方（国内也有类似的Coding.net ），相当于是一个远程的仓库。gitlab是一个使用git的开源的工具，可以让你搭建起类似github这样的环境。"></a>首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代码（就像这篇博客的html代码）的地方（国内也有类似的<a href="https://coding.net/" target="_blank" rel="external">Coding.net</a> ），相当于是一个远程的仓库。gitlab是一个使用git的开源的工具，可以让你搭建起类似github这样的环境。</h4><h4 id="u600E_u4E48_u5B66_u4E60git_3F_u9996_u5148_u63A8_u8350_u4E00_u4E2A_u53EF_u89C6_u5316_u5B66_u4E60git_u7684_u7F51_u7AD9_uFF0C_u8FD9_u4E2A_u7F51_u7AD9_u57FA_u672C_u4E0A_u8986_u76D6_u4E86_u5E38_u7528_u7684_u547D_u4EE4_uFF0C_u800C_u4E14_u975E_u5E38_u5F62_u8C61_u751F_u52A8_uFF0C_u5199_u8FD9_u7BC7_u6587_u7AE0_u4E4B_u524D_u6211_u4E5F_u662F_u628A_u91CC_u9762_u7684_u6240_u6709level_u8FC7_u4E86_u4E00_u904D_u3002_u518D_u8005_u5C31_u662F_u770B_u4E00_u4E9B_u535A_u5BA2_uFF0C_u5C31_u50CF_u6211_u4E0B_u9762_u9644_u4E0A_u7684_u962E_u8001_u5E08_u7684_u535A_u5BA2_u3002_u5982_u679C_u60F3_u5F88_u7CFB_u7EDF_u5730_u4E86_u89E3_u7684_u8BDD_u53EF_u4EE5_u770B_u770B_u4E66_uFF0C_u6BD4_u8F83_u6709_u540D_u7684_u6709progit_uFF0C_u56E0_u4E3Agit_u63A8_u51FA_u4E862-0_u7248_u672C_uFF0C_u6240_u4EE5_u4E5F_u5C31_u6709_u4E86progit2-zh_uFF0C_u76F8_u5173_u7684_u4E66_u8FD8_u6709_uFF1A"><a href="#u600E_u4E48_u5B66_u4E60git_3F_u9996_u5148_u63A8_u8350_u4E00_u4E2A_u53EF_u89C6_u5316_u5B66_u4E60git_u7684_u7F51_u7AD9_uFF0C_u8FD9_u4E2A_u7F51_u7AD9_u57FA_u672C_u4E0A_u8986_u76D6_u4E86_u5E38_u7528_u7684_u547D_u4EE4_uFF0C_u800C_u4E14_u975E_u5E38_u5F62_u8C61_u751F_u52A8_uFF0C_u5199_u8FD9_u7BC7_u6587_u7AE0_u4E4B_u524D_u6211_u4E5F_u662F_u628A_u91CC_u9762_u7684_u6240_u6709level_u8FC7_u4E86_u4E00_u904D_u3002_u518D_u8005_u5C31_u662F_u770B_u4E00_u4E9B_u535A_u5BA2_uFF0C_u5C31_u50CF_u6211_u4E0B_u9762_u9644_u4E0A_u7684_u962E_u8001_u5E08_u7684_u535A_u5BA2_u3002_u5982_u679C_u60F3_u5F88_u7CFB_u7EDF_u5730_u4E86_u89E3_u7684_u8BDD_u53EF_u4EE5_u770B_u770B_u4E66_uFF0C_u6BD4_u8F83_u6709_u540D_u7684_u6709progit_uFF0C_u56E0_u4E3Agit_u63A8_u51FA_u4E862-0_u7248_u672C_uFF0C_u6240_u4EE5_u4E5F_u5C31_u6709_u4E86progit2-zh_uFF0C_u76F8_u5173_u7684_u4E66_u8FD8_u6709_uFF1A" class="headerlink" title="怎么学习git?首先推荐一个可视化学习git的网站，这个网站基本上覆盖了常用的命令，而且非常形象生动，写这篇文章之前我也是把里面的所有level过了一遍。再者就是看一些博客，就像我下面附上的阮老师的博客。如果想很系统地了解的话可以看看书，比较有名的有progit，因为git推出了2.0版本，所以也就有了progit2-zh，相关的书还有："></a>怎么学习git?首先推荐一个<a href="http://pcottle.github.io/learnGitBranching/" target="_blank" rel="external">可视化学习git</a>的网站，这个网站基本上覆盖了常用的命令，而且非常形象生动，写这篇文章之前我也是把里面的所有level过了一遍。再者就是看一些博客，就像我下面附上的阮老师的博客。如果想很系统地了解的话可以看看书，比较有名的有progit，因为git推出了2.0版本，所以也就有了<a href="https://github.com/progit/progit2-zh" target="_blank" rel="external">progit2-zh</a>，相关的书还有：</h4><ul>
 <li><code>Manning.Learn.Git.in.a.Month.of.Lunches.2015.9.pdf</code>  </li>
 <li><code>O&#39;Reilly.Git.for.Teams.2015.8.pdf</code></li>
@@ -205,14 +226,47 @@
 </ul>
 </li>
 <li><p>config &amp; help</p>
+<ul>
+<li>首先使用git时你可能要配置一些个人信息，特别是使用github，如果没有得到认证授权将会受到速率方面的一些限制，所以需要配置个人信息。还有就是编辑器方面的配置，</li>
+<li><code>git config --list</code> 来查看我们的一些配置信息</li>
+<li><code>git config --global --user.name=name</code> 配置用户名</li>
+<li><code>git config --global --user.email=name@xxx.xxx</code> 配置用户邮箱</li>
+<li><code>git config --global core.editor &quot;gedit -s&quot;</code> -s 的意思是将gedit作为一个的单独的窗口打开</li>
+<li>我们还可以直接修改.git文件夹下的config文件来配置git。</li>
+<li>通过<code>git help</code>来获得帮助，通过<code>git help command</code>来获得具体命令的帮助，在windows中可能会打开html文档，或与之关联的浏览器，在那里你可以获得所有的帮助信息。</li>
+</ul>
 </li>
-<li><p>init &amp; clone &amp; add &amp; rm &amp; mv</p>
+<li><p>init &amp; clone &amp; rm &amp; mv &amp; ls-files</p>
+<ul>
+<li><code>git init</code> 新建一个git仓库</li>
+<li><p><code>git clone URL DIR</code> 克隆一个仓库，URL可以是http(s)、ssh、ftp、等链接协议，-o <name>可以配置远程追踪的仓库(默认origin)，-b <name> 可以指定克隆的分支（默认是HEAD指向的分支）–depth <depth> 可以指定克隆的深度，这对于很多提交的仓库可以大大减小它的大小</depth></name></name></p>
 </li>
-<li><p>commit</p>
+<li><p><code>git rm &lt;file&gt;</code> 将文件移出暂存区，支持正则。</p>
+</li>
+<li><code>git mv &lt;file&gt; &lt;source&gt; &lt;destination&gt;</code> 移动或是重命名文件</li>
+<li><code>git ls-files</code> 命令的选项有(–[cached|deleted|others|ignored|stage|unmerged|killed|modified])，对应的简化命令有(-[c|d|o|i|s|u|k|m])</li>
+</ul>
+</li>
+<li><p>add &amp; commit</p>
+<ul>
+<li><code>git add &lt;file&gt;</code> 添加文件，可以只用简单的正则进行匹配</li>
+<li><code>git add -A(all)</code> 来添加所有的文件。</li>
+<li><code>git commit -a -m &quot;msg&quot;</code> -a 表示将所有修改或删除的文件添加到暂存区，-m表示本次修改的提示信息</li>
+</ul>
 </li>
 <li><p>branch &amp; checkout</p>
+<ul>
+<li>branch 用来创建、查看、删除分支。</li>
+<li><code>git branch branchName</code> 创建一个新的分支。</li>
+<li><code>git branch</code> 查看当前分支，-a可以列出所有分支信息，包括远程的分支。</li>
+<li><code>git branch -d|-D</code> 用来删除或是强制删除一个分支，-r表示对远程分支进行操作</li>
+<li><code>git branch -f</code></li>
+<li><code>git branch -u origin/master foo</code>  设置远程分支与本地分支的映射关系</li>
+<li><code>git branch -f master HEAD~3</code>（强制）移动 master 指向 HEAD 的第3级父提交（注意可能会丢失当前分支的所有更改）,也可以理解为将HEAD~3命名为master即使是master已经存在</li>
+<li><code>git checkout branchName &lt;remote&gt;/&lt;branch&gt;</code> -b 可以用于在目标分支不存在时新建一个分支然后切换 -t|–track <remote>/<branch> 用于设置该分支所追踪的远程分支，默认设置远程同名分支为追踪分支</branch></remote></li>
+</ul>
 </li>
-<li><p>log &amp; status &amp; show</p>
+<li><p>log &amp; reflog &amp; status &amp; show</p>
 </li>
 <li><p>rabase &amp; merge</p>
 </li>

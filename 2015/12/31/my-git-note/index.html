@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://kangqingfei.cn/2015/12/31/my-git-note/index.html">
 <meta property="og:site_name" content="kblog">
 <meta property="og:description" content="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代">
-<meta property="og:updated_time" content="2016-01-02T06:34:44.000Z">
+<meta property="og:updated_time" content="2016-01-17T14:13:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="my git note">
 <meta name="twitter:description" content="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代">
@@ -253,14 +253,47 @@
 </ul>
 </li>
 <li><p>config &amp; help</p>
+<ul>
+<li>首先使用git时你可能要配置一些个人信息，特别是使用github，如果没有得到认证授权将会受到速率方面的一些限制，所以需要配置个人信息。还有就是编辑器方面的配置，</li>
+<li><code>git config --list</code> 来查看我们的一些配置信息</li>
+<li><code>git config --global --user.name=name</code> 配置用户名</li>
+<li><code>git config --global --user.email=name@xxx.xxx</code> 配置用户邮箱</li>
+<li><code>git config --global core.editor &quot;gedit -s&quot;</code> -s 的意思是将gedit作为一个的单独的窗口打开</li>
+<li>我们还可以直接修改.git文件夹下的config文件来配置git。</li>
+<li>通过<code>git help</code>来获得帮助，通过<code>git help command</code>来获得具体命令的帮助，在windows中可能会打开html文档，或与之关联的浏览器，在那里你可以获得所有的帮助信息。</li>
+</ul>
 </li>
-<li><p>init &amp; clone &amp; add &amp; rm &amp; mv</p>
+<li><p>init &amp; clone &amp; rm &amp; mv &amp; ls-files</p>
+<ul>
+<li><code>git init</code> 新建一个git仓库</li>
+<li><p><code>git clone URL DIR</code> 克隆一个仓库，URL可以是http(s)、ssh、ftp、等链接协议，-o <name>可以配置远程追踪的仓库(默认origin)，-b <name> 可以指定克隆的分支（默认是HEAD指向的分支）–depth <depth> 可以指定克隆的深度，这对于很多提交的仓库可以大大减小它的大小</depth></name></name></p>
 </li>
-<li><p>commit</p>
+<li><p><code>git rm &lt;file&gt;</code> 将文件移出暂存区，支持正则。</p>
+</li>
+<li><code>git mv &lt;file&gt; &lt;source&gt; &lt;destination&gt;</code> 移动或是重命名文件</li>
+<li><code>git ls-files</code> 命令的选项有(–[cached|deleted|others|ignored|stage|unmerged|killed|modified])，对应的简化命令有(-[c|d|o|i|s|u|k|m])</li>
+</ul>
+</li>
+<li><p>add &amp; commit</p>
+<ul>
+<li><code>git add &lt;file&gt;</code> 添加文件，可以只用简单的正则进行匹配</li>
+<li><code>git add -A(all)</code> 来添加所有的文件。</li>
+<li><code>git commit -a -m &quot;msg&quot;</code> -a 表示将所有修改或删除的文件添加到暂存区，-m表示本次修改的提示信息</li>
+</ul>
 </li>
 <li><p>branch &amp; checkout</p>
+<ul>
+<li>branch 用来创建、查看、删除分支。</li>
+<li><code>git branch branchName</code> 创建一个新的分支。</li>
+<li><code>git branch</code> 查看当前分支，-a可以列出所有分支信息，包括远程的分支。</li>
+<li><code>git branch -d|-D</code> 用来删除或是强制删除一个分支，-r表示对远程分支进行操作</li>
+<li><code>git branch -f</code></li>
+<li><code>git branch -u origin/master foo</code>  设置远程分支与本地分支的映射关系</li>
+<li><code>git branch -f master HEAD~3</code>（强制）移动 master 指向 HEAD 的第3级父提交（注意可能会丢失当前分支的所有更改）,也可以理解为将HEAD~3命名为master即使是master已经存在</li>
+<li><code>git checkout branchName &lt;remote&gt;/&lt;branch&gt;</code> -b 可以用于在目标分支不存在时新建一个分支然后切换 -t|–track <remote>/<branch> 用于设置该分支所追踪的远程分支，默认设置远程同名分支为追踪分支</branch></remote></li>
+</ul>
 </li>
-<li><p>log &amp; status &amp; show</p>
+<li><p>log &amp; reflog &amp; status &amp; show</p>
 </li>
 <li><p>rabase &amp; merge</p>
 </li>
