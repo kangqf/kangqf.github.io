@@ -610,6 +610,7 @@
 <li><code>git add &lt;file&gt;</code> 添加文件，可以只用简单的正则进行匹配</li>
 <li><code>git add -A(all)</code> 来添加所有的文件。</li>
 <li><code>git commit -a -m &quot;msg&quot;</code> -a 表示将所有修改或删除的文件添加到暂存区，-m表示本次修改的提示信息</li>
+<li><code>git commit --amend</code> 可以用来修改最近一次提交的注释信息，但是一旦你更新到远程仓库这个命令就不管用了。</li>
 </ul>
 </li>
 <li><p>branch &amp; checkout</p>
@@ -617,28 +618,66 @@
 <li>branch 用来创建、查看、删除分支。</li>
 <li><code>git branch branchName</code> 创建一个新的分支。</li>
 <li><code>git branch</code> 查看当前分支，-a可以列出所有分支信息，包括远程的分支。</li>
-<li><code>git branch -d|-D</code> 用来删除或是强制删除一个分支，-r表示对远程分支进行操作</li>
-<li><code>git branch -f</code></li>
+<li><code>git branch -d|-D</code> 用来删除或是强制删除一个分支，可以使用-r表示对远程分支进行操作</li>
 <li><code>git branch -u origin/master foo</code>  设置远程分支与本地分支的映射关系</li>
 <li><code>git branch -f master HEAD~3</code>（强制）移动 master 指向 HEAD 的第3级父提交（注意可能会丢失当前分支的所有更改）,也可以理解为将HEAD~3命名为master即使是master已经存在</li>
 <li><code>git checkout branchName &lt;remote&gt;/&lt;branch&gt;</code> -b 可以用于在目标分支不存在时新建一个分支然后切换 -t|–track <remote>/<branch> 用于设置该分支所追踪的远程分支，默认设置远程同名分支为追踪分支</branch></remote></li>
 </ul>
 </li>
 <li><p>log &amp; reflog &amp; status &amp; show</p>
+<ul>
+<li>log 用来查看16进制标识的每次提交的版本号（hash 值），使用hash值得时候你只需要输入前面几个字符就好（一般至少用4个），这个命令比较复杂，具体可以去看帮助文档，主要是一些输出的格式和显示问题，下面列出常用的格式化输出方式</li>
+<li><code>git log --all --decorate --graph --oneline</code> –decorate 会显示出tag信息，–graph 可以图形化地表示出分支合并历史， –oneline 每条log只显示一行</li>
+<li>还有其他的显示设置，包括时间、作者、关键词的筛选，以及一些变量的使用。</li>
+<li>git reflog 可以查看所有分支的所有操作记录（包括（包括commit和reset的操作），包括已经被删除的commit记录，git log则不能察看已经删除了的commit记录，也就是说git reflog列出了head曾经指向过的一系列commit。要明白它们只存在于你本机中；而不是你的版本仓库的一部分，也不包含在push和merge操作中。</li>
+<li>对于大型的仓库，通常用<code>git fsck --lost-found</code>（文件系统检测）来找回丢失的提交，git fsck 相对reflog是有优势的。比方说你删除一个远程的分支然后关闭仓库。 用fsck 你可以搜索和恢复已删除的远程分支。</li>
+<li><code>git status</code> 用于显示工作区的当前状态，包括哪些文件没有被提交，以及哪些文件没有纳入版本库管理。</li>
+<li><code>git show</code> 用来查看某次提交的具体情况（包括文件的修改情况），默认查看最新一次的提交，也可以指定一个tag或hash值来查看其它的提交。当然它也可以像log一样格式化输出。</li>
+</ul>
 </li>
-<li><p>rabase &amp; merge</p>
+<li><p>merge &amp; rebase &amp; cherry-pick &amp; HEAD</p>
+<ul>
+<li>这两个命令一定要区分清楚，容易搞混。到底是使用哪个是一个习惯的问题，视自己情况而定。</li>
+<li>merge 合并产生一个特殊的提交记录，它包含两个唯一父提交。</li>
+<li><code>git merge buxfig</code> 就是把bugfix的内容包含到当前的分支，相当当前分支作为默认参数放在后面，即<code>git merge bugfix master</code>，–no-ff -m <message> 可以禁止fast forward，也就是会新建一个提交。</message></li>
+<li><code>git rebase C1 C2</code>是在分支之间合并工作的第二种方法。</li>
+<li>rebase 就是取出一条分支(前面的分支C1)的一系列新的的提交记录，”复制”它们，然后把它在另一条分支(后面的分支C2)后面新建一个提交放下来（C1-&gt;C2），这样新的分支就不会有两个父节点，默认将当前分支名作为C2参数传递。</li>
+<li><code>git cherry-pick &lt;Commit1&gt; &lt;Commit2&gt; &lt;...&gt;</code> 将一些提交复制到你当前的位置 HEAD 下面。按照顺序选择性的合并一条分支。就是说那个分支中的一些东西是有必要合并的而另一些是没有必要的（注意当你选取的那个提交与当前提交的内容没有区别时会报错，因为你将创建一个没有任何修改的提交）。</li>
+<li>举一个场景，我们要排掉某个bug 然后新建的一条bug分支，然后提交了5次，前面五次都没能解决bug，只有最后一次的提交是正确解决了bug的，这样我们就需要只是选取bug分支的最后一个提交就ok了，我们就可以切换到 master 然后 rebase -i bug,<code>git rebase -i branchname/hashvalue</code> 以交互式的方式让你自己选择要复制的提交(重排那些提交),同样的可以使用cherry-pick来选取需要的分支。</li>
+<li>HEAD 是当前提交记录的符号名称， HEAD 总是指向最近一次提交记录，大多数修改工作树的 git 命令都开始于改变，HEAD 指向一般HEAD都是指向分支名，所以HEAD总是跟在分支后面。 <strong> 分离 HEAD </strong> 就是让其指向一个提交记录而不是分支名。</li>
+<li>相对引用 使用 ^ (可以叠加(HEAD^^) = (HEAD~2(后退多步)))来将HEAD移动到指定提交的父提交。相对引用最多的就是移动分支。你可以使用 -f 选项直接让分支指向另一个提交（详细见git branch -f）。</li>
+<li>和 ~ 修改符一样，^ 修改符之后也可以跟一个（可选的）数字。这不是用来指定向上返回几代（~ 的作用），^ 后的数字指定跟随合并提交记录的哪一个父提交。当一个合并提交有多个父提交吧，所有选择哪条路径不是那么清晰。git 默认选择跟随合并提交的”第一个”父提交，使用 ^ 后跟一个数字来改变这一默认行为。</li>
+</ul>
 </li>
-<li><p>reset &amp; revert &amp; tag</p>
+<li><p>reset &amp; revert &amp; tag &amp; describe</p>
+<ul>
+<li>reset 和 revert 又是两个需要区别的概念。</li>
+<li>git reset 往回移动分支，只是撤销了提交而已,但是最近一次提交的修改仍然存在（干净的暂存区被污染了），对别人的远端分支是无效的。</li>
+<li>git revert 新建一个提交用来撤销最近一次提交的,最近一次提交的修改已经不存在（干净的工作区依旧干净）。</li>
+<li><code>git reset [--hard|soft|mixed] [&lt;commit&gt;|HEAD]</code>：将当前的分支重设（reset）到指定的<commit>或者HEAD（默认，如果不显示指定commit，默认是HEAD，即最新的一次提交），并且根据[mode]有可能更新暂存区和工作区。hard的意思是所有内容都丢弃，并且移动HEAD，soft的意思是仅仅移动HEAD指针（文件修改被移出快照，未被commit），mixed是默认的模式，它的意思是文件修改未被add，已经移出了暂存区。</commit></li>
+<li><code>git revert [&lt;commit&gt;|HEAD]</code>git revert是提交一个新的版本，将需要revert的版本的内容再反向修改回去，版本会递增，不影响之前提交的内容。也即是相当于cherry-pick 一个之前的版本。</li>
+<li><code>git tag version [commit]</code>可以永远地指向某个特定的可以永远地指向某个特定的 commit，就像是表示一个”里程碑”一样 有新的 commit 时，它们也不会移动，你不可以checkout到 tag 上面 commit，tag 的存在就像是一个在 commit tree 上的表示特定讯息的一个锚。<code>git tag -d [tagname]</code>用来删除一个tag。</li>
+<li><code>git describe [ref]</code>用来显示离你最近的锚点（也就是 tag）,[ref] 是任何一个可以被 git 解读成 commit 的位置，如果你没有指定的话，git 会以你目前所在的位置为准（HEAD）。指令的输出就像这样：<code>&lt;tag&gt;_&lt;numCommits&gt;_g&lt;hash&gt;</code> <tag>表示的是离 <ref> 最近的 tag， numCommits 是表示这个 tag 离 <ref> 有多少个 commit， <hash> 表示的是你所给定的 <ref> 所表示的 commit 的hash值。</ref></hash></ref></ref></tag></li>
+</ul>
 </li>
 <li><p>remote</p>
+<ul>
+<li>使用git肯定要用到远程分支，远程分支有一个全名规范， 它们以这样的格式显示:<remote_name>/<branch_name>。大多数的开发者会将它们的远端命名为 origin。</branch_name></remote_name></li>
+<li><code>git remote -v</code> 可以列出远程追踪的地址，包括push和fetch。当你克隆时, git 会创建跟踪分支(就像 origin/master), 对于每个远端分支, 创建一个跟踪远端分支的本地分支 (master), 所以你经常会看到这个的命令输出:<code>local branch &quot;master&quot; set to track remote branch &quot;origin/master&quot;</code></li>
+<li><code>git remote add &lt;remotename&gt; &lt;url&gt;</code> 添加远程仓库（适用于有多个远程仓库的情况）</li>
+<li><code>git remote rename &lt;old_name&gt; &lt;new_name&gt;</code>用于重命名远程仓库</li>
+<li><code>git remote rm &lt;remotename&gt;</code> 用于删除远程仓库。</li>
+</ul>
 </li>
 <li><p>fetch + merge = pull</p>
 </li>
 <li><p>push</p>
 </li>
-<li><p>diff &amp; blame &amp; reflog &amp; grep</p>
+<li><p>diff &amp; blame &amp; grep</p>
 </li>
 <li><p>git flow</p>
+</li>
+<li><p>git extra</p>
 </li>
 </ol>
 <h3 id="u53C2_u8003_u6587_u7AE0"><a href="#u53C2_u8003_u6587_u7AE0" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
