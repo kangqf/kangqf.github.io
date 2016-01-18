@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/basis/" style="font-size: 10px;">basis</a> <a href="/tags/computer/" style="font-size: 10px;">computer</a> <a href="/tags/git-note/" style="font-size: 10px;">git note</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/install/" style="font-size: 10px;">install</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 20px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/virtualmachine/" style="font-size: 10px;">virtualmachine</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+						<a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/basis/" style="font-size: 10px;">basis</a> <a href="/tags/computer/" style="font-size: 10px;">computer</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/install/" style="font-size: 10px;">install</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 15px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/virtualmachine/" style="font-size: 10px;">virtualmachine</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
 					</div>
 				</section>
 				
@@ -421,6 +421,12 @@
 <li><h4 id="msys2_u3002"><a href="#msys2_u3002" class="headerlink" title="msys2。"></a><strong><em>msys2</em></strong>。</h4></li>
 </ol>
 </li>
+<li>软件安装破解激活<ol>
+<li>Adobe Acrobat XI Pro 提示试用到期。解决方法禁止其license 管理软件联网<code>C:\Program Files (x86)\Common Files\Adobe\OOBE\PDApp\core\PDapp.exe</code>。在防火墙中新建出站规则，针对所有的网络都禁止。</li>
+<li>msi 文件权限问题，使用msiexec命令 <code>E:\preparProgram&gt;msiexec /package python-2.7.8.msi</code></li>
+<li>狂野飙车8的游戏记录文件：<code>C:\Users\kqf\AppData\Local\Packages\GAMELOFTSA.Asphalt8Airborne_0pp20fcewvvtj\LocalState\profile|localprofile</code></li>
+</ol>
+</li>
 </ol>
 
       
@@ -602,7 +608,7 @@
 <li><p><code>git rm &lt;file&gt;</code> 将文件移出暂存区，支持正则。</p>
 </li>
 <li><code>git mv &lt;file&gt; &lt;source&gt; &lt;destination&gt;</code> 移动或是重命名文件</li>
-<li><code>git ls-files</code> 命令的选项有(–[cached|deleted|others|ignored|stage|unmerged|killed|modified])，对应的简化命令有(-[c|d|o|i|s|u|k|m])</li>
+<li><code>git ls-files</code> 命令的选项有–[cached|deleted|others|ignored|stage|unmerged|killed|modified]，对应的简化命令有-[c|d|o|i|s|u|k|m]</li>
 </ul>
 </li>
 <li><p>add &amp; commit</p>
@@ -670,10 +676,20 @@
 </ul>
 </li>
 <li><p>fetch + merge = pull</p>
+<ul>
+<li>git fetch 从远端仓库获取数据。git fetch 完成了两步:下载本地仓库未包含的提交对象，更新我们的远端分支点(如, origin/master)，git fetch不能改变你的本地状态. 你不会更新你的 master 或者 任何与文件系统相关的东西。所以, 你可以将git fetch 的执行 视为下载</li>
+<li>一般的流程是我们用 git fetch 更新了远端在本地的副本, 然后git rebase/merge合并我们的工作以映射远端的新变化, 最后再 git push</li>
+<li>git pull, 就是 fetch 和 merge 的简写. 同样的 git pull –rebase 就是 fetch 和 rebase 的简写！</li>
+<li>其实有很多方法的，只要我在本地有新的提交, 你可以像合并其它分支那样合并远端分支. 具体说就是你可以执行以下命令:<code>git cherry-pick origin/master</code>,<code>git rebase origin/master</code>，<code>git merge origin/master</code>。</li>
+<li><code>git fetch &lt;remote-&gt;repo&gt; &lt;remote-&gt;branch&gt;</code> 用于获取远端的更新，<code>git fetch origin &lt;remote-&gt;source&gt;:&lt;local-&gt;destination&gt;</code>没有local-&gt;source的话会新建本地的destination分支。</li>
+<li><code>git push &lt;remote-&gt;repo&gt; &lt;remote-&gt;place&gt;</code> 推送更新到远端</li>
+<li><code>git push origin &lt;local-&gt;source&gt;:&lt;remote-&gt;destination&gt;</code>（没有local-&gt;source的话会删除远端的destination分支）</li>
+<li><code>git pull origin foo</code> 相当于：<code>git fetch origin foo; git merge origin/foo</code>; <code>git pull origin bar~1:bugFix</code> 相当于：<code>git fetch origin bar~1:bugFix; git merge bugFix</code>git pull 实际上就是 fetch + merge 的缩写, git pull 在乎的是提交在哪里结束(也就是 git fetch 所确定的 destination)</li>
+</ul>
 </li>
 <li><p>push</p>
 </li>
-<li><p>diff &amp; blame &amp; grep</p>
+<li><p>diff &amp; blame &amp; grep &amp; stash</p>
 </li>
 <li><p>git flow</p>
 </li>
@@ -695,7 +711,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-note/">git note</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">note</a></li></ul>
 	</div>
 
       
