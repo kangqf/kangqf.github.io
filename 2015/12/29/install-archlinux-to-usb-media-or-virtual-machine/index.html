@@ -10,8 +10,8 @@
 
 那就来装个系统吧。
 打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
-fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
-格式化  mkfs.ext4 /dev/sda1   mkfs.ext4 /dev/s">
+fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。（这里也不一定是要boot分区，当然你也可以新建/home分区）
+格式化  mkfs.e">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Install ArchLinux to USB media or Virtual Machine">
 <meta property="og:url" content="http://kangqingfei.cn/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/index.html">
@@ -20,17 +20,17 @@ fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
 
 那就来装个系统吧。
 打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
-fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
-格式化  mkfs.ext4 /dev/sda1   mkfs.ext4 /dev/s">
-<meta property="og:updated_time" content="2016-01-05T13:14:58.000Z">
+fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。（这里也不一定是要boot分区，当然你也可以新建/home分区）
+格式化  mkfs.e">
+<meta property="og:updated_time" content="2016-01-19T02:59:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install ArchLinux to USB media or Virtual Machine">
 <meta name="twitter:description" content="是的，考完了，考完了，考完了！
 
 那就来装个系统吧。
 打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
-fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
-格式化  mkfs.ext4 /dev/sda1   mkfs.ext4 /dev/s">
+fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。（这里也不一定是要boot分区，当然你也可以新建/home分区）
+格式化  mkfs.e">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -250,30 +250,51 @@ fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。
 <hr>
 <h3 id="u90A3_u5C31_u6765_u88C5_u4E2A_u7CFB_u7EDF_u5427_u3002"><a href="#u90A3_u5C31_u6765_u88C5_u4E2A_u7CFB_u7EDF_u5427_u3002" class="headerlink" title="那就来装个系统吧。"></a>那就来装个系统吧。</h3><ol>
 <li>打开VMware，新建一个虚拟机，使用<code>archlinux-2015.12.01-dual.iso</code>(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘</li>
-<li><code>fdisk -l</code>  <code>fdisk /dev/sda</code> 新建一个100M分区，剩下再建一个分区。</li>
-<li>格式化  <code>mkfs.ext4 /dev/sda1</code>   <code>mkfs.ext4 /dev/sda2</code></li>
+<li><code>fdisk -l</code>  <code>fdisk /dev/sda</code> 新建一个100M分区，剩下再建一个分区。（这里也不一定是要boot分区，当然你也可以新建/home分区）</li>
+<li>格式化  <code>mkfs.ext4 /dev/sda1</code>   <code>mkfs.ext4 /dev/sda2</code> 然后可以用<code>lsblk</code>查看一下分区结构</li>
 <li>挂载  <code>mount /dev/sda1 /boot</code>   <code>mount /dev/sda2 /mnt</code></li>
 <li>编辑源 <code>vi /etc/pacman.d/mirrorlist</code>   <code>467 dd</code> 删除前面的把最后一行改成北京交通大学的源 <code>Server = http://mirror.bjtu.edu.cn/archlinux/$repo/os/$arch</code></li>
-<li>安装基本的系统 <code>gacstrap -i /mnt base base-devel vim</code></li>
+<li>安装基本的系统 <code>pacstrap -i /mnt base base-devel vim</code></li>
 <li>生成挂载信息 <code>genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab</code></li>
 <li>chroot 到新系统 <code>arch-chroot /mnt</code></li>
 <li>写入主机名 <code>echo xxx &gt; /etc/hostname</code></li>
 <li>生成文字编码 <code>vim /etc/locale.gen</code> 将<code>zh_CN</code>打头的 以及 <code>en_US.UTF8 UTF8</code> 取消注释 运行<code>locale-gen</code></li>
-<li>如果要安装到<strong><em>usb</em></strong>移动介质 就将<code>/etc/mkinitcpio.conf</code>里面的<code>HOOKS</code>加上 <code>block</code> 然后 <code>mkinitcpio -p linux</code></li>
+<li>如果要安装到<strong><em>usb</em></strong>移动介质 就将<code>/etc/mkinitcpio.conf</code>里面的<code>HOOKS</code>加上 <code>block</code> 然后 <code>mkinitcpio -p linux</code>，这是用来生成内核的img文件的。</li>
 <li>然后设置密码 <code>passwd</code></li>
-<li><p>安装 <code>syslinux</code> 生成引导 <code>syslinux-install_update -iam</code><br><br>如果是usb介质 就还要将 <code>/boot/syslinux/syslinux.cfg</code> 里面的<code>arch archfallback</code> 的<code>APPEND</code> 中的<code>sdx</code><br><br>改成 <code>root=UUID=xxxx rw</code> 因为这样才能找到U盘 xxxx是U盘的<strong><em>/mnt所在分区的UUID</em></strong></p>
+<li><p>安装引导</p>
+<ul>
+<li>安装syslinux：<code>pacman -S syslinux</code> 生成引导：<code>syslinux-install_update -iam</code>,如果是usb介质 就还要将 <code>/boot/syslinux/syslinux.cfg</code> 里面的<code>arch archfallback</code> 的<code>APPEND</code> 中的<code>sdx</code>改成 <code>root=UUID=xxxx rw</code> 因为这样才能找到U盘 xxxx是U盘的<strong><em>/mnt所在分区的UUID</em></strong>。UUID 查看:<code>ls -l /dev/disk/by-uuid</code></li>
+<li>安装grub：<code>pacman -S grub</code>，安装引导:<code>grub-install /dev/sda</code>，生成引导<code>grub-mkconfig  -o  /boot/grub/grub.cfg</code>。如果想要引导windows的话安装os-probe(先安装ntfs-3g):<code>pacman -S os-prober</code>,生成配置文件:<code>os-prober</code>,生成引导文件：<code>grub-mkconfig -o /boot/grub/grub.cfg</code></li>
+</ul>
 </li>
-<li><p>安装一些必要的工具 <code>net-tools git zsh i3 xorg-server xorg-server-utils xorg-xinit xterm</code></p>
+<li><p>安装一些必要的工具 <code>net-tools git zsh i3 xorg-server xorg-server-utils xorg-xinit xterm</code>，后面几个是xwindow跑起来的必要条件，安装完之后你就可以startx来启动x界面。这时显示的是三个xterm的白色背景的终端，要想使用i3：直接 <code>vim .xinitrc</code> 写入 <code>exec i3</code>，这样startx出来的就是i3的配置向导了。</p>
+</li>
+<li><p>添加用户:<code>useradd -m -G wheel -s /bin/zsh kqf</code>，设置密码：<code>passwd kqf</code>，添加sudo权限<code>visudo</code>，在 root ALL=(ALL) ALL 下面加一行 kqf ALL=(ALL) ALL</p>
+</li>
+<li><p>联网，使用netctl通过wifi联网要借助wifi-menu方便一些，先安装wifi-menu的依赖 <code>pacman -S dialog wpa_supplicant</code>，生成配置文件<code>sudo wifi-menu wlp3s0</code>，查看配置文件<code>netctl list</code>，联网前要先把无线接口关闭<code>sudo ifconfig wlp3s0 down</code>，然后连接<code>sudo netctl start wifi-kkk</code>，设置开机自动连接wifi<code>sudo enable netctl.service</code>。</p>
+</li>
+<li><p>安装驱动，<code>pacman -S alsa-utils xf86-input-synaptics nvidia</code>分别是声卡，触摸板，显卡驱动（视自己情况而定）。</p>
+</li>
+<li><p>安装yaourt，添加Yaourt源到 /etc/pacman.conf，<code>vim /etc/pacman.conf</code> 然后添加<code>[archlinuxfr]
+Server = http://repo.archlinux.fr/(i686|x86_64)</code>，根据自己电脑是32位还是64位选择i386和x86_64，然后同步后安裝：<code>pacman -Syu yaourt</code></p>
+</li>
+<li><p>启动到xwindow。</p>
+<ul>
+<li>使用tty登录后，输入 <code>startx</code>启动xwindow。</li>
+<li>使用lightdm（desktop manage）来管理。安装lightdm<code>pacman -S lightdm-gtk-greeter</code>，使能<code>systemctl enable lightdm</code>，启动<code>systemctl start lightdm</code>，这样就能看到一个登录界面了，输入密码后就可以登录了。</li>
+<li>启动自动登录，编辑lightdm的配置文件<code>vim /etc/lightdm/lightdm.conf</code>填入<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[SeatDefaults]&#10;pam-service=lightdm-autologin&#10;autologin-user=username&#10;autologin-user-timeout=0&#10;session-wrapper=/etc/lightdm/Xsession</span><br></pre></td></tr></table></figure>
+LightDM 能通过 PAM 即使 autologin 已启用。你必须是 autologin 组的成员来使得自己登录时不用输入密码。所以添加用户组<code>groupadd autologin</code>,<code>gpasswd -a username autologin</code></li>
+</ul>
 </li>
 </ol>
 <h3 id="u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E"><a href="#u5728_u865A_u62DF_u673A_u91CC_u9762_u88C5_u6CA1_u6539syslinux-cfg_u53D1_u73B0_u8FD8_u662F_u9519_u4E86__u627E_u4E0D_u5230/dev/sda3__u53C8_u662F_u5728_u865A_u62DF_u673A_u4E0A_u5B89_u88C5_u7684__u600E_u4E48_u529E" class="headerlink" title="在虚拟机里面装没改syslinux.cfg发现还是错了 找不到/dev/sda3 又是在虚拟机上安装的 怎么办"></a>在虚拟机里面装没改<code>syslinux.cfg</code>发现还是错了 找不到<code>/dev/sda3</code> 又是在虚拟机上安装的 怎么办</h3><ol>
 <li>开机按<code>F2</code>然后将光盘的启动优先级放到最高 然后再次进到live里面</li>
-<li>按照之前的方法挂载 然后 <code>arch-chroot /mnt</code> 然后就把<code>/boot/syslinux/syslinux.cfg</code>里面的<code>/sda3</code> 改成 <code>/sda2</code> 就ok<h4 id="u628A_u542F_u52A8_u9879_u6539_u56DE_u6765_uFF0C_u542F_u52A8_dhcpd__u83B7_u53D6_ip__uFF0C_u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765_u3002_u3002_u3002_u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009_uFF0C_u786E_u5B9A_u5B89_u88C5_u7136_u540E_u8FD8_u6CA1_u8D77_u6765__u6012_u4E86__u76F4_u63A5_vim_-xinitrc__u5199_u5165_exec_i3__u518Dstartx_u5C31_u628A_i3__u8DD1_u8D77_u6765_u4E86_u3002_u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F"><a href="#u628A_u542F_u52A8_u9879_u6539_u56DE_u6765_uFF0C_u542F_u52A8_dhcpd__u83B7_u53D6_ip__uFF0C_u7136_u540E_startx__u7ADF_u7136_u6CA1_u8D77_u6765_u3002_u3002_u3002_u65E0_u5948_pacman_-S_xorg__u7136_u540E_u56DE_u8F66_u5168_u9009_uFF0C_u786E_u5B9A_u5B89_u88C5_u7136_u540E_u8FD8_u6CA1_u8D77_u6765__u6012_u4E86__u76F4_u63A5_vim_-xinitrc__u5199_u5165_exec_i3__u518Dstartx_u5C31_u628A_i3__u8DD1_u8D77_u6765_u4E86_u3002_u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F" class="headerlink" title="把启动项改回来，启动 dhcpd 获取 ip ，然后 startx 竟然没起来。。。无奈 pacman -S xorg 然后回车全选，确定安装然后还没起来 怒了 直接 vim .xinitrc 写入 exec i3 再startx就把 i3 跑起来了。补充几个可能用到的东西"></a>把启动项改回来，启动 <code>dhcpd</code> 获取 ip ，然后 <code>startx</code> 竟然没起来。。。无奈 <code>pacman -S xorg</code> 然后回车全选，确定安装然后<strong><em>还没起来</em></strong> <strong>怒了</strong> 直接 <code>vim .xinitrc</code> 写入 <code>exec i3</code> 再<code>startx</code>就把 i3 跑起来了。补充几个可能用到的东西</h4><blockquote>
-<p><code>wifi-menu</code>(包含在<code>dialog</code>中) -&gt; 用来配合<code>netctl</code>连WiFi<br><code>pacman -S openssh</code> 安装ssh服务,如何配置ssh（d）可以<code>man sshd_config</code>（<code>man ssh_config</code>）<br><code>systemctl enable/start sshd.service</code> (开机)启动ssh服务，<br><code>/etc/ssh/sshd_config</code> ssh配置文件默认不允许root用户登录 prohibit-password -&gt; yes<br><code>systemctl enable dhcpcd.service</code> 开机自动DHCP获取地址</p>
+<li>按照之前的方法挂载 然后 <code>arch-chroot /mnt</code> 然后就把<code>/boot/syslinux/syslinux.cfg</code>里面的<code>/sda3</code> 改成 <code>/sda2</code> 就ok</li>
+</ol>
+<h4 id="u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F"><a href="#u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F" class="headerlink" title="补充几个可能用到的东西"></a>补充几个可能用到的东西</h4><blockquote>
+<p><code>pacman -S openssh</code> 安装ssh服务,如何配置ssh（d）可以<code>man sshd_config</code>（<code>man ssh_config</code>）<br><code>systemctl enable/start sshd.service</code> (开机)启动ssh服务，<br><code>/etc/ssh/sshd_config</code> ssh配置文件默认不允许root用户登录 prohibit-password -&gt; yes<br><code>systemctl enable dhcpcd.service</code> 开机自动DHCP获取地址<br><code>sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</code> 使用oh-my-zsh配置zsh</p>
 <p>持续更新中……….</p>
 </blockquote>
-</li>
-</ol>
 <h3 id="u95EE_u9898_u89E3_u51B3"><a href="#u95EE_u9898_u89E3_u51B3" class="headerlink" title="问题解决"></a>问题解决</h3><ol>
 <li>遇到<code>a stop job is running for session c1 of user root 1 min 30 s</code>关机很慢的问题，这是systemd的bug，详细可以参考<a href="https://bbs.archlinux.org/viewtopic.php?id=203112" target="_blank" rel="external">这篇文章</a>按照里面22楼的说法把<code>/etc/systemd/system.conf</code>里面的<code>DefaultTimeoutStopSec=90s</code>改成了1s。因为不想降级了，所以只能这样了</li>
 </ol>
