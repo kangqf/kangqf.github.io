@@ -22,7 +22,7 @@ fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。（
 打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
 fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。（这里也不一定是要boot分区，当然你也可以新建/home分区）
 格式化  mkfs.e">
-<meta property="og:updated_time" content="2016-01-19T02:59:57.000Z">
+<meta property="og:updated_time" content="2016-01-19T15:00:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install ArchLinux to USB media or Virtual Machine">
 <meta name="twitter:description" content="是的，考完了，考完了，考完了！
@@ -276,14 +276,16 @@ fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。（
 <li><p>安装驱动，<code>pacman -S alsa-utils xf86-input-synaptics nvidia</code>分别是声卡，触摸板，显卡驱动（视自己情况而定）。</p>
 </li>
 <li><p>安装yaourt，添加Yaourt源到 /etc/pacman.conf，<code>vim /etc/pacman.conf</code> 然后添加<code>[archlinuxfr]
-Server = http://repo.archlinux.fr/(i686|x86_64)</code>，根据自己电脑是32位还是64位选择i386和x86_64，然后同步后安裝：<code>pacman -Syu yaourt</code></p>
+Server = http://repo.archlinux.fr/(i686|x86_64)</code>，根据自己电脑是32位还是64位选择i386和x86_64，然后同步后安裝：<code>pacman -Syu yaourt</code>。添加archlinucn的源<code>Server = http://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch</code>，记得设置<code>SigLevel = Optional TrustAll</code>否则可能会有签名错误。</p>
 </li>
 <li><p>启动到xwindow。</p>
 <ul>
 <li>使用tty登录后，输入 <code>startx</code>启动xwindow。</li>
-<li>使用lightdm（desktop manage）来管理。安装lightdm<code>pacman -S lightdm-gtk-greeter</code>，使能<code>systemctl enable lightdm</code>，启动<code>systemctl start lightdm</code>，这样就能看到一个登录界面了，输入密码后就可以登录了。</li>
+<li>startx启动是去检查~/.xinitrc或者/etc/X11/xinit/xinitrc文件里的启动脚本，你可以在.bashrc 里面添加相应的脚本，让用户在tty登录后就能启动xwindow。</li>
+<li>使用lightdm（desktop manage）显示管理器来管理。安装lightdm<code>pacman -S lightdm-gtk-greeter</code>，使能<code>systemctl enable lightdm</code>，启动<code>systemctl start lightdm</code>，这样就能看到一个登录界面了，输入密码后就可以登录了。</li>
 <li>启动自动登录，编辑lightdm的配置文件<code>vim /etc/lightdm/lightdm.conf</code>填入<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[SeatDefaults]&#10;pam-service=lightdm-autologin&#10;autologin-user=username&#10;autologin-user-timeout=0&#10;session-wrapper=/etc/lightdm/Xsession</span><br></pre></td></tr></table></figure>
-LightDM 能通过 PAM 即使 autologin 已启用。你必须是 autologin 组的成员来使得自己登录时不用输入密码。所以添加用户组<code>groupadd autologin</code>,<code>gpasswd -a username autologin</code></li>
+LightDM 能通过 PAM 即使 autologin 已启用。你必须是 autologin 组的成员来使得自己登录时不用输入密码。所以添加用户组<code>groupadd autologin</code>,<code>gpasswd -a username autologin</code>。</li>
+<li>显示管理器是用于在操作系统启动时，能自动启动对应的桌面环境</li>
 </ul>
 </li>
 </ol>
@@ -292,11 +294,28 @@ LightDM 能通过 PAM 即使 autologin 已启用。你必须是 autologin 组的
 <li>按照之前的方法挂载 然后 <code>arch-chroot /mnt</code> 然后就把<code>/boot/syslinux/syslinux.cfg</code>里面的<code>/sda3</code> 改成 <code>/sda2</code> 就ok</li>
 </ol>
 <h4 id="u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F"><a href="#u8865_u5145_u51E0_u4E2A_u53EF_u80FD_u7528_u5230_u7684_u4E1C_u897F" class="headerlink" title="补充几个可能用到的东西"></a>补充几个可能用到的东西</h4><blockquote>
-<p><code>pacman -S openssh</code> 安装ssh服务,如何配置ssh（d）可以<code>man sshd_config</code>（<code>man ssh_config</code>）<br><code>systemctl enable/start sshd.service</code> (开机)启动ssh服务，<br><code>/etc/ssh/sshd_config</code> ssh配置文件默认不允许root用户登录 prohibit-password -&gt; yes<br><code>systemctl enable dhcpcd.service</code> 开机自动DHCP获取地址<br><code>sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</code> 使用oh-my-zsh配置zsh</p>
-<p>持续更新中……….</p>
+<ol>
+<li><code>pacman -S openssh</code> 安装ssh服务,如何配置ssh（d）可以<code>man sshd_config</code>（<code>man ssh_config</code>）</li>
+<li><code>systemctl enable/start sshd.service</code> (开机)启动ssh服务，</li>
+<li><code>/etc/ssh/sshd_config</code> ssh配置文件默认不允许root用户登录 prohibit-password -&gt; yes</li>
+<li><code>systemctl enable dhcpcd.service</code> 开机自动DHCP获取地址</li>
+<li><code>sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</code> 使用oh-my-zsh配置zsh</li>
+<li><code>sudo pacman -S bash-completion</code> 增强bash的Tab自动补全功能</li>
+<li><code>sudo pacman -S google-chrome</code> 安装谷歌浏览器</li>
+<li><code>sudo pacman -S shadowsocks</code>安装shadowsocks，默认配置文件在<code>/etc/shadowsocks/xxx.json</code></li>
+<li><code>systemctl start shadowsocks@xxx</code>开启服务，<code>systemctl enable shadowsocks@xxx</code>开机自启动,<code>journalctl -u shadowsocks@xxx</code>来查询日志,具体参考<a href="https://wiki.archlinux.org/index.php/Shadowsocks_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="external">这里</a>)</li>
+<li>修改语言:在.zshrc或.bashrc里面添加环境变量<code>export LANG=zh_CN.UTF-8</code></li>
+<li>安装字体:<code>pacman -S wqy-zenhei ttf-fireflysung(flash乱码)</code>以防止中文乱码<br>1.<br>1.</li>
+<li>持续更新中……….</li>
+</ol>
 </blockquote>
 <h3 id="u95EE_u9898_u89E3_u51B3"><a href="#u95EE_u9898_u89E3_u51B3" class="headerlink" title="问题解决"></a>问题解决</h3><ol>
-<li>遇到<code>a stop job is running for session c1 of user root 1 min 30 s</code>关机很慢的问题，这是systemd的bug，详细可以参考<a href="https://bbs.archlinux.org/viewtopic.php?id=203112" target="_blank" rel="external">这篇文章</a>按照里面22楼的说法把<code>/etc/systemd/system.conf</code>里面的<code>DefaultTimeoutStopSec=90s</code>改成了1s。因为不想降级了，所以只能这样了</li>
+<li><p>遇到<code>a stop job is running for session c1 of user root 1 min 30 s</code>关机很慢的问题，这是systemd的bug，详细可以参考<a href="https://bbs.archlinux.org/viewtopic.php?id=203112" target="_blank" rel="external">这篇文章</a>按照里面22楼的说法把<code>/etc/systemd/system.conf</code>里面的<code>DefaultTimeoutStopSec=90s</code>改成了1s。因为不想降级了，所以只能这样了。</p>
+</li>
+<li><p>安装chrome的时候出现<code>key xxx could not be looked up remotely</code>的错误。经查是key server的问题，换server：修改<code>vim /etc/pacman.d/gnupg/gpg.conf</code>中的<code>keyserver hkp://pool.sks-keyservers.net</code>为<code>keyserver hkp://pgp.mit.edu</code>。</p>
+</li>
+<li>解析不了主机，修改DNS配置 <code>vim /etc/resolv.conf</code> 添加一行 <code>nameserver 114.114.114.114</code></li>
+<li>虚拟机和主机无法共享剪切板，安装vm-tools，然后运行<code>vmware-user start</code>解决（可以添加到.zshrc）。可以尝试<code>sudo vmware-config-tools.pl</code>，<code>sudo vmware-config-tools.pl</code>也许能解决问题</li>
 </ol>
 
       
