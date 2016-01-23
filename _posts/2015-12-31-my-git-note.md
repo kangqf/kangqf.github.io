@@ -103,22 +103,34 @@ date: 2015-12-31 23:47:42
   * `git remote rm <remotename>` 用于删除远程仓库。
 
 10. fetch + merge = pull
-  * git fetch 从远端仓库获取数据。git fetch 完成了两步:下载本地仓库未包含的提交对象，更新我们的远端分支点(如, origin/master)，git fetch不能改变你的本地状态. 你不会更新你的 master 或者 任何与文件系统相关的东西。所以, 你可以将git fetch 的执行 视为下载
+  * git fetch 从远端仓库获取数据。git fetch 完成了两步:下载本地仓库未包含的提交对象，更新我们的远端分支点(如, origin/master)，git fetch不能改变你的本地状态. 你不会更新你的 master 或者 任何与文件系统相关的东西。所以, 你可以将git fetch 的执行视为下载
   * 一般的流程是我们用 git fetch 更新了远端在本地的副本, 然后git rebase/merge合并我们的工作以映射远端的新变化, 最后再 git push
   * git pull, 就是 fetch 和 merge 的简写. 同样的 git pull --rebase 就是 fetch 和 rebase 的简写！
-  * 其实有很多方法的，只要我在本地有新的提交, 你可以像合并其它分支那样合并远端分支. 具体说就是你可以执行以下命令:`git cherry-pick origin/master`,`git rebase origin/master`，`git merge origin/master`。
-  * `git fetch <remote->repo> <remote->branch>` 用于获取远端的更新，`git fetch origin <remote->source>:<local->destination>`没有local->source的话会新建本地的destination分支。
-  * `git push <remote->repo> <remote->place>` 推送更新到远端
-  * `git push origin <local->source>:<remote->destination>`（没有local->source的话会删除远端的destination分支）
+  * 其实有很多方法来合并远端分支和本地分支的，只要我在本地有新的提交, 你可以像合并其它分支那样合并远端分支. 具体说就是你可以执行以下命令:`git cherry-pick origin/master`,`git rebase origin/master`，`git merge origin/master`。
+  * `git fetch <remote->repo> <remote->branch>` 用于获取远端的更新，`git fetch origin <remote->source>:<local->destination>`没有remote->source的话只会新建本地的destination分支（保留冒号）。
   * `git pull origin foo` 相当于：`git fetch origin foo; git merge origin/foo`; `git pull origin bar~1:bugFix` 相当于：`git fetch origin bar~1:bugFix; git merge bugFix`git pull 实际上就是 fetch + merge 的缩写, git pull 在乎的是提交在哪里结束(也就是 git fetch 所确定的 destination)
 
 11. push
+  * `git push <remote->repo> <remote->place>` 推送更新到远端
+  * `git push origin <local->source>:<remote->destination>` 没有local->source的话会删除远端的destination分支（保留冒号）
+  * 你也可以`git push origin --delete branch`来删除远程分支。
+  * 我们可以用git tag来给工程打上标签，但是这个命令只是在本地仓库打标签而已，为了能把标签同步到远程服务器，我们可以`git push origin [tagname]`来推送指定的tag，也可以`git push origin --tags` 来推送所有的tags。`git push origin :refs/tags/[tagname]`来删除远程的的tags
 
 12. diff & blame & grep & stash
+  * diff用来比较两个文件，了解它们的区别，可以参照[读懂diff](http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html)。
+  * `git diff`用来查看工作区和暂存区之间的差别。
+  * `git diff --cached`查看已经暂存起来的文件和上次提交时的快照之间的差异，所显示的内容都会在执行`git commit`之后提交（不用add）。
+  * `git diff HEAD`这条命令会显示你工作目录与上次提交时之间的所有差别,所显示的内容都会在执行`git commit -a`（先add再commit）命令时被提交。
+  * `git diff branch1 branch2 --stat`查看两个分支之间的差别，加上 --stat 是显示文件列表, 否则是文件内容diff。
+  * `git blame [filename]`, 你就会得到整个文件的每一行的详细修改信息:包括SHA串,日期和作者。
+  * git stash 的作用使用在这样的情景，我们进行一系列的修改后，得到一个状态，而这个状态还不能commit，但是这时要进行分支的操作，就需要先用`git stash`来将当前的改变压入栈中（备份当前的修改），然后恢复到最新一个commit，操作完之后要还原之前的修改，就用`git stash pop`来还原之前（最新一次）的备份修改。
+  * `git stash list`用来查看现在的备份栈情况。`git stash apply stash@{2}`来恢复指定的备份。`git stash drop stash@{0}`来删除指定的备份。
 
 13. git flow
+  * Git Flow是构建在Git之上的一个组织软件开发活动的模型，是在Git之上构建的一项软件开发最佳实践。具体不细讲，参考阮老师的博文。
 
 14. git extra
+  * Git-extras 提供了一系列 Git 子命令扩展，一步完成好几个 Git 原生命令或者外部命令才能搞定的操作。比如 Git changelog 可快速根据 commit log 生成 Changelog，Git release 可生成相应版本 tag, Git pr 可以直接在 GitHub 上创建一条 Pull Request，简直是一把 Git 瑞士军刀。 Git-extras 可以作为 oh-my-zsh 的插件直接在 ~/.zshrc 中启用。参考[这里](https://github.com/tj/git-extras/blob/master/Commands.md)
 
 
 
