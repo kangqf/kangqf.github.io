@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/basis/" style="font-size: 10px;">basis</a> <a href="/tags/computer/" style="font-size: 10px;">computer</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/install/" style="font-size: 10px;">install</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 15px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/virtualmachine/" style="font-size: 10px;">virtualmachine</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+						<a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/basis/" style="font-size: 10px;">basis</a> <a href="/tags/computer/" style="font-size: 10px;">computer</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/install/" style="font-size: 10px;">install</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 15px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/virtualmachine/" style="font-size: 10px;">virtualmachine</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
 					</div>
 				</section>
 				
@@ -189,6 +189,152 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-using-jekyll-gracefully" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/26/using-jekyll-gracefully/" class="article-date">
+  	<time datetime="2015-08-26T00:00:00.000Z" itemprop="datePublished">2015-08-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/26/using-jekyll-gracefully/">using jekyll gracefully</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="u4E3A_u5565_u53C8_u6298_u817E_u8FD9_u8D27_uFF1F"><a href="#u4E3A_u5565_u53C8_u6298_u817E_u8FD9_u8D27_uFF1F" class="headerlink" title="为啥又折腾这货？"></a>为啥又折腾这货？</h2><ol>
+<li>在家，看不进书，有时间没事干，所以。。。。。。</li>
+<li>鉴于各种社交平台的太那啥，想拥有自己的一个小港湾（好扯淡）</li>
+<li>要<code>认真</code>考研了，说不定哪天就发神经想写点啥煽情的东西了</li>
+<li>觉得很多东西还是得记录一下，就像寒假把这货搞得那么透而现在啥都忘了，毕竟好记性不如烂笔头！</li>
+<li>嗯，好像可以装那啥对吧。。。。。 未完待续</li>
+</ol>
+<h2 id="u4ECE_u5934_u5F00_u59CB_u8BF4_u8D77"><a href="#u4ECE_u5934_u5F00_u59CB_u8BF4_u8D77" class="headerlink" title="从头开始说起"></a>从头开始说起</h2><ol>
+<li>首先有个github的账号，然后最好有个域名，然后创建一个<code>username.github.io</code>的<code>repositories</code>添加<code>CNAME</code>文件（里面填上自己的域名即可）让github原生的域名重定向到自己的域名。接下来配置自己域名解析到自己博客托管在github上的服务器，在自己的域名支持<code>CNAME</code>的情况下你可以直接将<code>CNAME</code>配置为<code>username.github.io</code>。像我这种穷人的域名并不支持的情况下，就用<code>nslookup</code>查到自己项目的ip，然后解析到这个ip（事实上github会给每个要求的项目分配一个ip而且这货还不变，真是爽），这些就不多说了</li>
+<li>拥有一个框架，像我用的 JekyllBootstrap 类似的，要想在本地折腾一下要装上<code>ruby ruby-dev jekyll rdiscount</code>然后win下的话要设置好环境变量等。</li>
+<li>这样就可以在本地起一个服务器了，切换到项目的根目录：<blockquote>
+<ul>
+<li>开启服务器 <code>jekyll serve</code> 或 <code>rake preview</code> 这会默认在4000端口起服务器</li>
+<li>添加一篇文章  <code>rake post title=&quot;Hello World&quot;</code>或<code>rake page name=&quot;pages/about.md&quot;（不加.md默认生成.html）</code> post 和 page 区别在于layout的不同</li>
+<li>安装themes <code>rake theme:install git=&quot;https://github.com/jekyllbootstrap/theme-the-program.git&quot;</code>或<code>rake theme:install name=&quot;THEME-NAME&quot;</code>默认会将安装到<code>./assets/themes/THEME-NAME</code></li>
+<li>切换主题 <code>rake theme:switch name=&quot;the-program&quot;</code></li>
+<li>自定义主题 你应该修改<code>./_includes/themes/THEME-NAME</code>下的内容而不是<code>_layouts</code>目录下的文件，因为切换主题的时候会把<code>_layouts</code>目录下的文件覆盖掉。而对于样式文件应该放在<code>./assets/themes/THEME-NAME</code>目录下，并可以使用<code>ASSET_PATH</code>变量来引用这些静态的样式。</li>
+<li>发布主题 <code>rake theme:package name=&quot;THEME-NAME&quot;</code>将主题打包，然后可以发布</li>
+<li>懒人方法 我喜欢使用Atom来写东西，因为有一个叫jekyll的插件还是很好用的</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h2 id="u76EE_u5F55"><a href="#u76EE_u5F55" class="headerlink" title="目录"></a>目录</h2><pre><code>.
+|-- _data                             _data:保存数据的。jekyll会自动加载这里的所有.jml或者.yaml结尾的文件。
+                                      比如你有一个members.yml,那么你可以通过site.data.members访问该文件里的数据。
+|-- _drafts
+    `-- jekyll-introduction-draft.md  草稿，格式是:没有日期.md 通过 jekyll serve --drafts预览 jekyll build --drafts编译
+|-- _includes                         包含一些模板，可以重复利用。这种方式是liquid语法
+    |-- JB                            JekyllBootstrap库文件
+    `-- themes                        主题模板配置目录
+|-- _layouts                          模板文件链接到主题配置中，里面的文件通过 `content` 包含_posts里面的文章
+    |-- default.html
+    |-- page.html
+    `-- post.html
+|-- _posts                            存放你要发表的文章。格式YEAR-MONTH-DAY-title.MARKUP
+    |-- xxx.markdown
+    `-- xxxxxx.markdown
+|-- _site                             编译后生成的文件
+|-- _theme_packages                   安装或打包主题时的临时目录
+|-- assets
+    |-- themes
+        |-- THEME_NAME                主题的临时文件
+|-- index.html                        首页
+|-- about.html                        导航栏
+|-- archive.html                      导航栏
+|-- categories.html                   导航栏
+|-- 404.html                          404页面
+|-- tags.html                         导航栏
+|-- atom.xml                          订阅文件
+|-- rss.xml                           订阅文件
+|-- _config.yml                       存储配置数据。把配置写在这个文件里面，可以让你不用在命令行中写。
+|-- sitemap.txt
+|-- CNAME                             域名配置文件
+`-- Rakefile
+</code></pre><h2 id="u53D8_u91CF"><a href="#u53D8_u91CF" class="headerlink" title="变量"></a>变量</h2><ol>
+<li>site变量<blockquote>
+<ul>
+<li>site.time:当前运行jekyll的时间</li>
+<li>site.pages:所有的页面</li>
+<li>site.posts:以时间逆序排序的所有的文章</li>
+<li>site.data：包含从目录_data里面加载的数据列表</li>
+</ul>
+</blockquote>
+</li>
+<li>page变量<blockquote>
+<ul>
+<li>page.content:页面内容</li>
+<li>page.title:文章标题</li>
+<li>page.urL:页面地址</li>
+<li>page.date:页面的日期。可以在front matter重写：2008-12-14 10:30:00 +0900或者YYYY-MM-DD HH:MM:SS</li>
+<li>page.id:页面id。 在RSS feeds里面有用。</li>
+</ul>
+</blockquote>
+</li>
+<li>Paginator变量<blockquote>
+<ul>
+<li>paginator.per_page：每一页的文章数</li>
+<li>paginator.posts：那一页可用的文章</li>
+<li>paginator.page：当前页的值</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h2 id="u914D_u7F6E"><a href="#u914D_u7F6E" class="headerlink" title="配置"></a>配置</h2><h3 id="u4E3B_u8981_u662F__config-yml__u91CC_u9762_u7684_u4E1C_u897F_uFF0C_u4E00_u770B_u5C31_u61C2_uFF01_uFF01_uFF01"><a href="#u4E3B_u8981_u662F__config-yml__u91CC_u9762_u7684_u4E1C_u897F_uFF0C_u4E00_u770B_u5C31_u61C2_uFF01_uFF01_uFF01" class="headerlink" title="主要是 _config.yml 里面的东西，一看就懂！！！"></a>主要是 _config.yml 里面的东西，一看就懂！！！</h3><hr>
+<p><a href="http://blog.csdn.net/maoxunxing/article/details/40479753" target="_blank" rel="external">参考文章</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jekyll/">jekyll</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tools/">tools</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-bootstrap-fileinput" class="article article-type-post" itemscope itemprop="blogPost">
   

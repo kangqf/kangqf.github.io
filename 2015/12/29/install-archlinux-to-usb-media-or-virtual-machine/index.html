@@ -22,7 +22,7 @@ fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。（
 打开VMware，新建一个虚拟机，使用archlinux-2015.12.01-dual.iso(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
 fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。（这里也不一定是要boot分区，当然你也可以新建/home分区）
 格式化  mkfs.e">
-<meta property="og:updated_time" content="2016-01-19T15:00:29.000Z">
+<meta property="og:updated_time" content="2016-01-20T12:59:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Install ArchLinux to USB media or Virtual Machine">
 <meta name="twitter:description" content="是的，考完了，考完了，考完了！
@@ -130,7 +130,7 @@ fdisk -l  fdisk /dev/sda 新建一个100M分区，剩下再建一个分区。（
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/basis/" style="font-size: 10px;">basis</a> <a href="/tags/computer/" style="font-size: 10px;">computer</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/install/" style="font-size: 10px;">install</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 15px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/virtualmachine/" style="font-size: 10px;">virtualmachine</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+						<a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 10px;">archlinux</a> <a href="/tags/basis/" style="font-size: 10px;">basis</a> <a href="/tags/computer/" style="font-size: 10px;">computer</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/install/" style="font-size: 10px;">install</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 15px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/virtualmachine/" style="font-size: 10px;">virtualmachine</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
 					</div>
 				</section>
 				
@@ -315,7 +315,7 @@ LightDM 能通过 PAM 即使 autologin 已启用。你必须是 autologin 组的
 <li><p>安装chrome的时候出现<code>key xxx could not be looked up remotely</code>的错误。经查是key server的问题，换server：修改<code>vim /etc/pacman.d/gnupg/gpg.conf</code>中的<code>keyserver hkp://pool.sks-keyservers.net</code>为<code>keyserver hkp://pgp.mit.edu</code>。</p>
 </li>
 <li>解析不了主机，修改DNS配置 <code>vim /etc/resolv.conf</code> 添加一行 <code>nameserver 114.114.114.114</code></li>
-<li>虚拟机和主机无法共享剪切板，安装vm-tools，然后运行<code>vmware-user start</code>解决（可以添加到.zshrc）。可以尝试<code>sudo vmware-config-tools.pl</code>，<code>sudo vmware-config-tools.pl</code>也许能解决问题</li>
+<li>虚拟机和主机无法共享剪切板，安装vm-tools，运行<code>/etc/init.d/vmware-tools start``/etc/init.d/vmware-tools-thinprint start</code>然后运行<code>vmware-user start</code>然后运行<code>vmware-user start</code>解决（可以添加到.zshrc）。使用官方的CDROM会找不到rc0.d文件夹（arch不靠这个）就算你自己创建也不会被自动启动，所以要手动运行。更好的解决办法等待探索。</li>
 </ol>
 
       
