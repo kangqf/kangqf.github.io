@@ -39,3 +39,7 @@ date: 2016-01-04 19:11:09
     [Tmux 入门介绍](http://blog.jobbole.com/87278/)
 
   2. #### ***msys2***。
+2. 软件安装破解激活
+  1. Adobe Acrobat XI Pro 提示试用到期。解决方法禁止其license 管理软件联网`C:\Program Files (x86)\Common Files\Adobe\OOBE\PDApp\core\PDapp.exe`。在防火墙中新建出站规则，针对所有的网络都禁止。
+  2. msi 文件权限问题，使用msiexec命令 `E:\preparProgram>msiexec /package python-2.7.8.msi`
+  3. 狂野飙车8的游戏记录文件：`C:\Users\kqf\AppData\Local\Packages\GAMELOFTSA.Asphalt8Airborne_0pp20fcewvvtj\LocalState\profile|localprofile`

@@ -20,7 +20,7 @@ date: 2015-12-30 16:17:53
     > >   C:\Users\kqf\\.npmrc
 
     >然后我看了一下那个文件，是这样的
-    > >prefix=c:\ProgramFiles\nodejs\gnode_modules
+    > >`prefix=c:\ProgramFiles\nodejs\gnode_modules`
     > >registry=http://r.cnpmjs.org
 
     > 并且我还差异的发现有个`C:\Users\kqf\.cnpmrc`，才想起来好像装过cnpm（刚推广那会儿装的），反正是好久之前弄得了，我记得当时速度还是很慢，不知道为啥现在这么快了，毕竟过去这么久了，咋们的基础设施肯定要跟上来啊，不然哪有那么多人学node。反正现在速度是没有问题的了，大家可以去官网看看[http://cnpmjs.org/](http://cnpmjs.org/)或者淘宝的镜像[https://npm.taobao.org/](https://npm.taobao.org/)。
