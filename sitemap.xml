@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://kangqingfei.cn/2016/01/20/use-i3/</loc>
-    <lastmod>2016-01-23T17:08:48.000Z</lastmod>
+    <loc>http://kangqingfei.cn/2016/01/06/computer-network-basis/</loc>
+    <lastmod>2016-01-25T12:45:25.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://kangqingfei.cn/README.html</loc>
-    <lastmod>2016-01-23T16:27:16.000Z</lastmod>
+    <loc>http://kangqingfei.cn/2016/01/20/use-i3/</loc>
+    <lastmod>2016-01-23T17:08:48.000Z</lastmod>
   </url>
   
   <url>
@@ -42,6 +42,11 @@
   </url>
   
   <url>
+    <loc>http://kangqingfei.cn/README.html</loc>
+    <lastmod>2016-01-23T16:27:16.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://kangqingfei.cn/2015/08/27/digitalocean-vps/</loc>
     <lastmod>2016-01-23T16:27:16.000Z</lastmod>
   </url>
@@ -69,11 +74,6 @@
   <url>
     <loc>http://kangqingfei.cn/2016/01/05/VMware-config-network/</loc>
     <lastmod>2016-01-09T13:18:24.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://kangqingfei.cn/2016/01/06/computer-network-basis/</loc>
-    <lastmod>2016-01-09T06:20:16.000Z</lastmod>
   </url>
   
   <url>

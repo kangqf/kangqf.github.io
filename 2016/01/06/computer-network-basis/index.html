@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://kangqingfei.cn/2016/01/06/computer-network-basis/index.html">
 <meta property="og:site_name" content="kblog">
 <meta property="og:description" content="写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。关于计算机网络，大都要讲到TCP/IP 这个协议簇，总共有四层：网络接入层，网络层（说法不一），传输层，应用层。相比于OSI七层模型，它把物理层和数据链路层归一为网络接入层，因为我们很少情况下会考虑物理层的关系，然后又相当于把会话层，表示层，应用层归一为应用层，因为我们极少接触到会话层和表示层（我所接">
-<meta property="og:updated_time" content="2016-01-09T06:20:16.000Z">
+<meta property="og:updated_time" content="2016-01-25T12:45:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="computer network basis">
 <meta name="twitter:description" content="写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。关于计算机网络，大都要讲到TCP/IP 这个协议簇，总共有四层：网络接入层，网络层（说法不一），传输层，应用层。相比于OSI七层模型，它把物理层和数据链路层归一为网络接入层，因为我们很少情况下会考虑物理层的关系，然后又相当于把会话层，表示层，应用层归一为应用层，因为我们极少接触到会话层和表示层（我所接">
@@ -39,6 +39,8 @@
 		  <h1 class="header-author"><a href="/">kangqingfei</a></h1>
 		</hgroup>
 
+		
+		<p class="header-subtitle">啦啦啦</p>
 		
 
 		
@@ -102,9 +104,9 @@
 							
 								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
 					        
-								<a class="weibo" target="_blank" href="http://weibo.com/kangqingfei" title="weibo">weibo</a>
-					        
 								<a class="google" target="_blank" href="https://plus.google.com/115553302156535564722" title="google">google</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
 					        
 								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
 					        
@@ -124,7 +126,7 @@
 				<section class="switch-part switch-part3">
 					<div id="js-friends">
 					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.baidu.com/">奥巴马的博客</a>
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
 			        
 			        </div>
 				</section>
@@ -134,7 +136,7 @@
 				
 				<section class="switch-part switch-part4">
 				
-					<div id="js-aboutme">冷小飞侠去哪了,来个友链吧</div>
+					<div id="js-aboutme">冷小飞侠在干嘛</div>
 				</section>
 				
 			</div>
@@ -160,6 +162,8 @@
 			  <h1 class="header-author">kangqingfei</h1>
 			</hgroup>
 			
+			<p class="header-subtitle">啦啦啦</p>
+			
 			<nav class="header-menu">
 				<ul>
 				
@@ -177,9 +181,9 @@
 					
 						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
 			        
-						<a class="weibo" target="_blank" href="http://weibo.com/kangqingfei" title="weibo">weibo</a>
-			        
 						<a class="google" target="_blank" href="https://plus.google.com/115553302156535564722" title="google">google</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
 			        
 						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
 			        
@@ -230,7 +234,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="u5199VMware_u7684_u7F51_u7EDC_u6A21_u5F0F_u90A3_u7BC7_u6587_u7AE0_u5199_u4E0D_u4E0B_u53BB_u4E86_uFF0C_u6240_u4EE5_u5148_u5199_u5B8C_u8FD9_u7BC7_u52A0_u6DF1_u81EA_u5DF1_u5BF9_u8BA1_u7B97_u673A_u7F51_u7EDC_u7684_u8BA4_u8BC6_u518D_u7EE7_u7EED_u5199_u90A3_u4E2A_u3002"><a href="#u5199VMware_u7684_u7F51_u7EDC_u6A21_u5F0F_u90A3_u7BC7_u6587_u7AE0_u5199_u4E0D_u4E0B_u53BB_u4E86_uFF0C_u6240_u4EE5_u5148_u5199_u5B8C_u8FD9_u7BC7_u52A0_u6DF1_u81EA_u5DF1_u5BF9_u8BA1_u7B97_u673A_u7F51_u7EDC_u7684_u8BA4_u8BC6_u518D_u7EE7_u7EED_u5199_u90A3_u4E2A_u3002" class="headerlink" title="写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。"></a>写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。</h3><p>关于计算机网络，大都要讲到TCP/IP 这个协议簇，总共有四层：网络接入层，网络层（说法不一），传输层，应用层。相比于OSI七层模型，它把物理层和数据链路层归一为网络接入层，因为我们很少情况下会考虑物理层的关系，然后又相当于把会话层，表示层，应用层归一为应用层，因为我们极少接触到会话层和表示层（我所接触的也就是像SDP这种传输信令的协议会归在会话层），所以没有必要细分。说完协议簇，再说这几个层次的标识：</p>
+        <h3 id="u5199VMware_u7684_u7F51_u7EDC_u6A21_u5F0F_u90A3_u7BC7_u6587_u7AE0_u5199_u4E0D_u4E0B_u53BB_u4E86_uFF0C_u6240_u4EE5_u5148_u5199_u5B8C_u8FD9_u7BC7_u52A0_u6DF1_u81EA_u5DF1_u5BF9_u8BA1_u7B97_u673A_u7F51_u7EDC_u7684_u8BA4_u8BC6_u518D_u7EE7_u7EED_u5199_u90A3_u4E2A_u3002"><a href="#u5199VMware_u7684_u7F51_u7EDC_u6A21_u5F0F_u90A3_u7BC7_u6587_u7AE0_u5199_u4E0D_u4E0B_u53BB_u4E86_uFF0C_u6240_u4EE5_u5148_u5199_u5B8C_u8FD9_u7BC7_u52A0_u6DF1_u81EA_u5DF1_u5BF9_u8BA1_u7B97_u673A_u7F51_u7EDC_u7684_u8BA4_u8BC6_u518D_u7EE7_u7EED_u5199_u90A3_u4E2A_u3002" class="headerlink" title="写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。"></a>写VMware的网络模式那篇文章写不下去了，所以先写完这篇加深自己对计算机网络的认识再继续写那个。</h3><p>关于计算机网络，大都要讲到TCP/IP 这个协议簇，总共有四层：网络接入层，网络层（说法不一），传输层，应用层。相比于OSI七层模型，它把物理层和数据链路层归一为网络接入层，因为我们很少情况下会考虑物理层的关系，然后又相当于把会话层，表示层，应用层归一为应用层，因为我们极少接触到会话层和表示层（我所接触的也就是像SDP这种传输信令的协议会归在会话层），所以没有必要细分。说完协议簇，再说这几个层次的标识：<br><a id="more"></a></p>
 <ul>
 <li>网络接入层：MAC地址标识，是计算机的硬件地址，一般不会改变，固化在计算机的网卡上。当然你有多个网卡就会有多个MAC地址，一般像PPP协议是工作在这上面的。</li>
 <li>网络层：IP地址标识，计算机的虚拟地址，相当于一个临时的身份证，很有可能会经常改变（除了某些骨干网的节点路由器和核心交换机一般不变，还有就是服务器的），一台计算机可能有多个IP地址，IP地址又可分为ABCDE类，当然现在一般都用CIDR进行路由，所以这个分类一般没啥意思了，还有就是一些特殊的IP地址：<ul>
@@ -366,7 +370,7 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false
+		open_in_new: true
 	}
 </script>
 <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
