@@ -279,6 +279,9 @@ a {
     width: 100%;
     color: #ddd;
   }
+  #container .header-author.fixed a {
+    color: #fff;
+  }
   #container .overlay .slider-trigger {
     position: absolute;
     z-index: 101;
@@ -466,6 +469,15 @@ a {
   }
   #container #footer .footer-right {
     float: initial;
+  }
+  #container .visit {
+    margin-top: 1em;
+  }
+  #container .scroll {
+    right: 1.2em;
+  }
+  #container .scroll li {
+    font-size: 1.7em;
   }
 }
 .header-author {
@@ -712,11 +724,46 @@ a {
   text-align: left;
   line-height: 30px;
 }
+#header .switch-part5 {
+  left: 400%;
+  top: 20px;
+  overlay-x: hidden;
+  overflow-y: auto;
+  max-height: 200px;
+}
 .duoshuo {
   padding: 0 40px;
 }
 #disqus_thread {
   padding: 0 40px;
+}
+.scroll {
+  z-index: 999;
+  position: fixed;
+  top: 61.8%;
+  right: 0px;
+  text-align: center;
+}
+.scroll a {
+  display: block;
+  width: 29px;
+  font-size: 28px;
+  background: rgba(215,216,215,0.4);
+  border-bottom: 1px solid #fff;
+}
+.scroll a:last-child {
+  border-bottom: none;
+}
+.scroll .fa {
+  color: rgba(255,255,255,0.8);
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.scroll a:hover {
+  background: rgba(147,181,224,0.3);
+}
+.scroll a:hover .fa {
+  color: #fff;
 }
 .archives-wrap {
   position: relative;
@@ -1644,8 +1691,12 @@ pre .css ~ * .id {
   float: right;
 }
 .share {
-  padding: 0px 75px 30px 40px;
-  margin-bottom: 15px;
+  padding-left: 40px;
+  margin-bottom: 5px;
+  opacity: 0.8;
+}
+.share:hover {
+  opacity: 1;
 }
 .back_home {
   float: right;
