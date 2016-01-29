@@ -1,7 +1,7 @@
 ---
 title: ubuntu note
 categories:
-  - tips
+  - config
 tags:
   - note
   - ubuntu
@@ -9,7 +9,7 @@ date: 2016-01-03 16:13:54
 ---
 
 ### 这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的，持续更新...
-
+<!--more-->
 1. ubuntu 的源
 2. ubuntu 中一些软件的源
     * nginx： `sudo add-apt-repository ppa:nginx/stable`

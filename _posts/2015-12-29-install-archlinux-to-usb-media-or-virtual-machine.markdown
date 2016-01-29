@@ -2,8 +2,8 @@
 layout: post
 title: "Install ArchLinux to USB media or Virtual Machine"
 date: "2015-12-29"
-category: tips
-tags: [archlinux,virtualmachine,media]
+category: config
+tags: [archlinux,media]
 ---
 
 
@@ -14,6 +14,7 @@ tags: [archlinux,virtualmachine,media]
 *****
 ### 那就来装个系统吧。
 1. 打开VMware，新建一个虚拟机，使用`archlinux-2015.12.01-dual.iso`(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
+<!--more-->
 2. `fdisk -l`  `fdisk /dev/sda` 新建一个100M分区，剩下再建一个分区。（这里也不一定是要boot分区，当然你也可以新建/home分区）
 3. 格式化  `mkfs.ext4 /dev/sda1`   `mkfs.ext4 /dev/sda2` 然后可以用`lsblk`查看一下分区结构
 4. 挂载  `mount /dev/sda1 /boot`   `mount /dev/sda2 /mnt`

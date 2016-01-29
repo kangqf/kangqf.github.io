@@ -2,13 +2,13 @@
 title: from jekyll to hexo
 tags:
   - hexo
-  - install
 categories:
-  - tips
+  - config
 date: 2015-12-30 16:17:53
 ---
 
 #### 上面写了一篇文章，感觉真是丑爆了，内容臭，界面丑，还不是很适配手机，所以就很恼火，这时发现一个很不错的基于 [hexo](https://hexo.io/)的主题[yilia](https://github.com/litten/hexo-theme-yilia)，感觉可以有。其实之前就听过 `hexo`的大名，只是没想到比想象中的还好玩，对比之下，jekyll相当于把你的markdown放到了github然后让它给你编译，而hexo则是把你的markdown编译成html后发布到github（所以不存在jekyll的那种时延），更重要的是人家基于node，可扩展强，不用那么烦也不会老出问题，配置也是简单，重要的是人家颜值高啊，然后还有以下几点让我很心动：
+<!--more-->
 * 自动生成rss，我都不记得当时是怎么搞的jekyll才让它弄成了rss，反正是很烦。
 * 看到有七牛的图片外链插件，你懂得github的速度，有了外链妈妈再也不怕我放图片了。
 * 可以引用代码文件，这个之前不知道在jekyll里是不是有这个功能。

@@ -1,7 +1,7 @@
 ---
 title: my git note
 categories:
-  - tips
+  - basis
 tags:
   - git
   - note
@@ -9,7 +9,7 @@ date: 2015-12-31 23:47:42
 ---
 
 ### 从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。
-
+<!--more-->
 #### 首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代码（就像这篇博客的html代码）的地方（国内也有类似的[Coding.net](https://coding.net/) ），相当于是一个远程的仓库。gitlab是一个使用git的开源的工具，可以让你搭建起类似github这样的环境。
 
 #### 怎么学习git?首先推荐一个[可视化学习git](http://pcottle.github.io/learnGitBranching/)的网站，这个网站基本上覆盖了常用的命令，而且非常形象生动，写这篇文章之前我也是把里面的所有level过了一遍。还有[15分钟学习git](https://try.github.io/levels/1/challenges/1)，可以看到一些文件的变化。再者就是看一些博客，就像我下面附上的阮老师的博客。如果想很系统地了解的话可以看看书，比较有名的有progit，因为git推出了2.0版本，所以也就有了[progit2-zh](https://github.com/progit/progit2-zh)，相关的书还有：

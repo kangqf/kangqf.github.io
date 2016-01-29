@@ -4,12 +4,12 @@ tags:
   - markdown
   - hexo
 categories:
-  - tips
+  - basis
 date: 2015-12-30 18:41:53
 ---
 
 ### 将博客从`jekyll `迁移到`hexo`都还算顺利，唯一让人有点恼火的就是`markdown`的语法不一致了（hexo貌似没那么任性，主要是像标题的`##` 后面必须要空格，也不支持 `== `），所以熟悉一下`hexo`下的`markdown`语法，顺便复习一下。主要是参考[http://www.appinn.com/markdown/](http://www.appinn.com/markdown/ "参考网址")，把一些常用的记录了一下。
-
+<!--more-->
 
 1. 标题 使用 1-6 个 `#`，对应一级标题到六级标题。
  > # 一级标题

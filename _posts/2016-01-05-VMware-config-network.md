@@ -1,7 +1,7 @@
 ---
 title: VMware config network
 categories:
-  - tips
+  - config
 tags:
   - VMware
   - network
@@ -9,7 +9,7 @@ date: 2016-01-05 21:19:25
 ---
 
 ### 今天折腾虚拟机各种网络的问题，电脑也是老卡死，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。
-
+<!--more-->
 安装完虚拟机后，我们还可以在windows的`控制面板\网络和 Internet\网络连接`里面看到这样两个连接
 {% qnimg  VM-network-link.png title:test alt:来自七牛云的图片 'class:class1 class2' %}
 其中VMnet1是虚拟机Host-only模式的网络接口，VMnet8是NAT模式的网络接口，这些后面会介绍，查看他们两个的ip，可以发现VMnet1的ip是192.168.178.1，VMnet2的ip是192.168.254.1,。

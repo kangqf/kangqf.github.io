@@ -2,14 +2,14 @@
 layout: post
 title: "Bootstrap FileInput"
 description: ""
-category: web
+category: config
 tags: [BootStrap,HTML5,XHR2]
 ---
 
 [bootstrap-fileinput](http://plugins.krajee.com/file-input)
 *****
 这是一个基于`Bootstrap3.x`的加强版的文件选取插件，支持各种文件的预览功能，多选等。这个插件允许你设置一个高大上的文件选取/上传器通过使用`Bootstrap CSS3`样式。通过提供各种文件（包括images, text, html, video, audio,flash）的预览支持进一步地加强了文件选择器的功能。另外还支持AJAX上传，拖拽上传，上传进度可视，添加移除文件等
-
+<!--more-->
 
 
 这个插件最初是由[这个博客](http://www.abeautifulsite.net/blog/2013/08/whipping-file-inputs-into-shape-with-bootstrap-3/)和[ Jasny的文件选择插件](http://jasny.github.io/bootstrap/javascript/#fileinput)启发，但是现在通过各种新加的特性使得这个插件相比以前更加成熟，使得这个插件已经成为web开发者的全面的文件管理工具。

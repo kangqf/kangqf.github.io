@@ -3,7 +3,7 @@ layout: post
 title: "using jekyll gracefully"
 date: "2015-08-26"
 description: "using jekyll gracefully"
-category: tools
+category: config
 tags: [jekyll]
 ---
 ## 为啥又折腾这货？
@@ -12,7 +12,7 @@ tags: [jekyll]
 3. 要`认真`考研了，说不定哪天就发神经想写点啥煽情的东西了
 4. 觉得很多东西还是得记录一下，就像寒假把这货搞得那么透而现在啥都忘了，毕竟好记性不如烂笔头！
 5. 嗯，好像可以装那啥对吧。。。。。 未完待续
-
+<!--more-->
 ## 从头开始说起
 1. 首先有个github的账号，然后最好有个域名，然后创建一个`username.github.io`的`repositories`添加`CNAME`文件（里面填上自己的域名即可）让github原生的域名重定向到自己的域名。接下来配置自己域名解析到自己博客托管在github上的服务器，在自己的域名支持`CNAME`的情况下你可以直接将`CNAME`配置为`username.github.io`。像我这种穷人的域名并不支持的情况下，就用`nslookup`查到自己项目的ip，然后解析到这个ip（事实上github会给每个要求的项目分配一个ip而且这货还不变，真是爽），这些就不多说了
 2. 拥有一个框架，像我用的 JekyllBootstrap 类似的，要想在本地折腾一下要装上`ruby ruby-dev jekyll rdiscount`然后win下的话要设置好环境变量等。
