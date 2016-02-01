@@ -32,7 +32,7 @@ tags: [archlinux,media]
 
 14. 安装一些必要的工具 `net-tools git zsh i3 xorg-server xorg-server-utils xorg-xinit xterm`，后面几个是xwindow跑起来的必要条件，安装完之后你就可以startx来启动x界面。这时显示的是三个xterm的白色背景的终端，要想使用i3：直接 `vim .xinitrc` 写入 `exec i3`，这样startx出来的就是i3的配置向导了。
 
-15. 添加用户:`useradd -m -G wheel -s /bin/zsh kqf`，设置密码：`passwd kqf`，添加sudo权限`visudo`，在 root ALL=(ALL) ALL 下面加一行 kqf ALL=(ALL) ALL
+15. 添加用户:`useradd -m -G wheel -s /bin/zsh kqf`，设置密码：`passwd kqf`，添加sudo权限：`visudo`，在 root ALL=(ALL) ALL 下面加一行 kqf ALL=(ALL) ALL
 
 16. 联网，使用netctl通过wifi联网要借助wifi-menu方便一些，先安装wifi-menu的依赖 `pacman -S dialog wpa_supplicant`，生成配置文件`sudo wifi-menu wlp3s0`，查看配置文件`netctl list`，联网前要先把无线接口关闭`sudo ifconfig wlp3s0 down`，然后连接`sudo netctl start wifi-kkk`，设置开机自动连接wifi`sudo enable netctl.service`。
 
@@ -44,16 +44,22 @@ Server = http://repo.archlinux.fr/(i686|x86_64)`，根据自己电脑是32位还
 19. 启动到xwindow。
   * 使用tty登录后，输入 `startx`启动xwindow。
   * startx启动是去检查~/.xinitrc或者/etc/X11/xinit/xinitrc文件里的启动脚本，你可以在.bashrc 里面添加相应的脚本，让用户在tty登录后就能启动xwindow。
-  * 使用lightdm（desktop manage）显示管理器来管理。安装lightdm`pacman -S lightdm-gtk-greeter`，使能`systemctl enable lightdm`，启动`systemctl start lightdm`，这样就能看到一个登录界面了，输入密码后就可以登录了。
+  * 使用lightdm（desktop manage）显示管理器来管理。安装lightdm:`pacman -S lightdm-gtk-greeter`，开机启动`systemctl enable lightdm`，启动`systemctl start lightdm`，这样就能看到一个登录界面了，输入密码后就可以登录了。
+  * 用lightdm来启动i3，`vim .dmrc`新建一个dm的管理文件，填入：
+  ```
+  [Desktop]
+  Language=zh_CN.utf8
+  Session=i3
+  ```
   * 启动自动登录，编辑lightdm的配置文件`vim /etc/lightdm/lightdm.conf`填入
-  {% codeblock  lang:config %}
+  {% codeblock   %}
     [SeatDefaults]
     pam-service=lightdm-autologin
-    autologin-user=username
+    autologin-user=username（自己改）
     autologin-user-timeout=0
     session-wrapper=/etc/lightdm/Xsession
   {% endcodeblock %}
-  LightDM 能通过 PAM 即使 autologin 已启用。你必须是 autologin 组的成员来使得自己登录时不用输入密码。所以添加用户组`groupadd autologin`,`gpasswd -a username autologin`。
+  LightDM 能通过 PAM 即使 autologin 已启用。你必须是 autologin 组的成员来使得自己登录时不用输入密码。所以添加用户组`groupadd autologin`,`gpasswd -a username(自己改) autologin`。
   * 显示管理器是用于在操作系统启动时，能自动启动对应的桌面环境
 
 ### 在虚拟机里面装没改`syslinux.cfg`发现还是错了 找不到`/dev/sda3` 又是在虚拟机上安装的 怎么办
@@ -79,7 +85,7 @@ Server = http://repo.archlinux.fr/(i686|x86_64)`，根据自己电脑是32位还
 
 
 ### 问题解决
-1. 遇到`a stop job is running for session c1 of user root 1 min 30 s`关机很慢的问题，这是systemd的bug，详细可以参考[这篇文章](https://bbs.archlinux.org/viewtopic.php?id=203112)按照里面22楼的说法把`/etc/systemd/system.conf`里面的`DefaultTimeoutStopSec=90s`改成了1s。因为不想降级了，所以只能这样了。
+1. 遇到`a stop job is running for session c1 of user root 1 min 30 s`关机很慢的问题，这是systemd的bug，详细可以参考[这篇文章](https://bbs.archlinux.org/viewtopic.php?id=203112)按照里面22楼的说法把`/etc/systemd/system.conf`里面的`DefaultTimeoutStopSec=90s`改成了1s。因为不想降级了，所以只能这样了(PS:开机遇到这种情况也可以这样解决)。
 
 2. 安装chrome的时候出现`key xxx could not be looked up remotely`的错误。经查是key server的问题，换server：修改`vim /etc/pacman.d/gnupg/gpg.conf`中的`keyserver hkp://pool.sks-keyservers.net`为`keyserver hkp://pgp.mit.edu`。
 3. 解析不了主机，修改DNS配置 `vim /etc/resolv.conf` 添加一行 `nameserver 114.114.114.114`
