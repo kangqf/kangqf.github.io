@@ -5,6 +5,7 @@ categories:
 tags:
   - BananaPro
   - 嵌入式
+  - 毕设
 date: 2016-02-01 22:39:23
 ---
 
