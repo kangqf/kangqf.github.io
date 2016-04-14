@@ -26,6 +26,7 @@ date: 2016-04-02 21:43:01
 它包含有与x服务器进行通信的函数，编程者可以在不了解x底层协议的情况下直接使用它进行编程。
 * xcb:是xlib的代替者。
 * GLX: GLX 库解决了 X Window 中的 OpenGL 图形渲染问题。同样的，WGL 和 AGL 库分别解决了 MS Windows 和 Mac OS 窗口系统中的 OpenGL 图形渲染问题。GLX 像胶水一样，建立了 X Window、OpenGL 以及 3D 硬件加速驱动之间的联系。在 Linux 中，如果未有安装相应的支持 3D 加速的显卡驱动，那么 GLX 可以调用 Mesa (Unix-like 系统中应用最为广泛的 OpenGL 实现) 的 3D 软件加速来取得 X Window 与 OpenGL 的集成；当然，这种做法所实现的 3D 渲染效率就要大打折扣，并且也会累的 CPU 气喘。
+* EGL 是 OpenGL ES（嵌入式）和底层 Native 平台视窗系统之间的接口。EGL API 是独立于OpenGL ES各版本标准的独立API ，其主要作用是为OpenGL指令创建 Context 、绘制目标Surface 、配置Framebuffer属性、Swap提交绘制结果等。此外，EGL为GPU厂商和OS窗口系统之间提供了一个标准配置接口。参考[这里](http://imgtec.eetrend.com/blog/6839)
 
 * DRI (Direct Rendering Infrastructure) - OpenGL Context 的库集合或是一系列3D驱动程序的集合，DRI的一个主要目的就是提供高效能的OpenGL支持。
 * DRM (Direct Rendering Manager)：本質是kernel module (menuconfig 里面character device -> drm)管理对硬件的操控要求

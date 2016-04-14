@@ -77,6 +77,7 @@ date: 2016-01-03 16:13:54
   * nginx： `sudo add-apt-repository ppa:nginx/stable`
   * nodejs： `sudo add-apt-repository ppa:chris-lea/node.js`
   * atom： `sudo add-apt-repository ppa:webupd8team/atom`
+  * ap-hotspot: `sudo add-apt-repository ppa:nilarimogard/webupd8`
 
 3. 禁用（启用）一些软件的升级
   * 首先软件的状态主要是有
@@ -95,4 +96,8 @@ date: 2016-01-03 16:13:54
 6. 一些常见的问题的解决。
   * `watch -n 5 pkill -USR1 ^dd$` 每5秒输出dd的进度 - [参考](http://blog.csdn.net/xyz846/article/details/7367962)
   * 更新软件后导致网络管理器无法使用：`sudo apt-get install libnl-3-200=3.2.21-1 libnl-route-3-200=3.2.21-1 libnl-genl-3-200=3.2.21-1` 这是一个BUG - [参考这里](http://askubuntu.com/questions/727127/last-upgrade-crashes-network-manager-no-internet-connection-no-applet)
-  *
+  * ubuntu 回滚到旧内核：
+    * `dpkg --get-selections|grep linux ` 查看安装的内核版本
+    * `sudo apt-get remove linux-headers-3.13.0-85-generic linux-image-3.13.0-85-generic linux-image-extra-3.13.0-85-generic `卸载旧的内核
+    * `sudo find ../bits -mtime -7 -type f/d -print | xargs sudo  rm -f `查找7天之内修改的文件或文件夹然后删除之
+  
