@@ -1,0 +1,26 @@
+---
+title: 校园网环境在AU上使用OpenWrt
+categories:
+  - categories
+tags:
+  - tags
+date: 2016-06-28 19:02:06
+---
+
+
+{% link kblog http://kangqingfei.cn go to kblog %}
+
+{% include_code test.c lang:c test.c %}
+
+{% codeblock yilia_config.ym lang:config http://kangqingfei.qiniudn.com/blog%2Fcodes%2Fconfigs%2Fyilia_config.yml 源文件 %}
+code snippet
+{% endcodeblock %}
+
+{% img [class names] /path/to/image [width] [height] [title text [alt text]] %}
+
+![](/images/image.jpg)  引用放在/source/image/下的文件
+
+{% pdf http://kangqingfei.qiniudn.com/blog%2Fpdf%2Ftest.pdf %}
+
+
+{% qnimg test.png title:test alt:this a test picture from qiniu 'class:class1 class2' %}
