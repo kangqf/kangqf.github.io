@@ -1,0 +1,664 @@
+DEFAULT_INCDIRS="/usr/lib/gcc-cross/arm-linux-gnueabihf/4.8/include
+/usr/lib/gcc-cross/arm-linux-gnueabihf/4.8/include-fixed
+/usr/arm-linux-gnueabihf/include
+/mnt/bananapro/usr/include
+"
+DEFAULT_LIBDIRS="/usr/lib/gcc-cross/arm-linux-gnueabihf/4.8/sf
+/usr/arm-linux-gnueabihf/lib/sf
+/usr/lib/gcc-cross/arm-linux-gnueabihf/4.8
+/usr/arm-linux-gnueabihf/lib
+/mnt/bananapro/lib
+/mnt/bananapro/usr/lib
+"Done running configuration tests.
+Creating qmake...
+make: 没有什么可以做的为 `first'。
+Running configuration tests (phase 2)...
+Found pkg-config from $PATH: /usr/bin/pkg-config
+Note: PKG_CONFIG_LIBDIR automatically set to /mnt/bananapro/usr/lib/pkgconfig:/mnt/bananapro/usr/share/pkgconfig:/mnt/bananapro/usr/lib/arm-linux-gnueabihf/pkgconfig
+Note: PKG_CONFIG_SYSROOT_DIR automatically set to /mnt/bananapro
+Determining architecture... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro --sysroot=/mnt/bananapro -g -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../mkspecs/devices/bananapro -o arch.o arch.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -o arch arch.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+    Found architecture in binary
+CFG_ARCH="arm"
+CFG_CPUFEATURES=" neon"
+Determining architecture... ()
+g++ -c -pipe -g -std=gnu++0x -Wall -W -fPIC  -I. -I../../mkspecs/linux-g++ -o arch.o arch.cpp
+g++  -o arch arch.o    
+    Found architecture in binary
+CFG_HOST_ARCH="x86_64"
+CFG_HOST_CPUFEATURES=" mmx sse sse2"
+System architecture: 'arm'
+Host architecture: 'x86_64'
+C++11 auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o c++11.o c++11.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o c++11 c++11.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+C++11 enabled.
+C++14 auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++1y -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o c++14.o c++14.cpp
+c++14.cpp:37:4: error: #error "__cplusplus must be > 201103L (the value of C++11)"
+ #  error "__cplusplus must be > 201103L (the value of C++11)"
+    ^
+make: *** [c++14.o] 错误 1
+C++14 disabled.
+default C++ standard edition auto-detection... ()
+arm-linux-gnueabihf-g++ -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o c++default.ii -E c++default.cpp
+default C++ standard edition enabled.
+64-bit std::atomic auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o atomic64.o atomic64.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o atomic64 atomic64.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+64-bit std::atomic enabled.
+sse2 auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -msse2 -g -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o sse2.o sse2.cpp
+arm-linux-gnueabihf-g++: error: unrecognized command line option ‘-msse2’
+make: *** [sse2.o] 错误 1
+sse2 disabled.
+ipc_sysv auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o ipc.o ipc.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o ipc_sysv ipc.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+ipc_sysv enabled.
+zlib auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o zlib.o zlib.cpp
+zlib.cpp: In function ‘int main(int, char**)’:
+zlib.cpp:38:15: warning: variable ‘stream’ set but not used [-Wunused-but-set-variable]
+     z_streamp stream;
+               ^
+zlib.cpp:40:17: warning: variable ‘ver’ set but not used [-Wunused-but-set-variable]
+     const char *ver = zlibVersion();
+                 ^
+zlib.cpp:43:9: warning: variable ‘res’ set but not used [-Wunused-but-set-variable]
+     int res = compress2(0, 0, 0, 0, 1);
+         ^
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o zlib zlib.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro -lz 
+zlib enabled.
+mtdev auto-detection... ()
+Project ERROR: mtdev development package not found
+mtdev disabled.
+libjpeg auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o libjpeg.o libjpeg.cpp
+libjpeg.cpp:37:21: fatal error: jpeglib.h: 没有那个文件或目录
+ #include <jpeglib.h>
+                     ^
+compilation terminated.
+make: *** [libjpeg.o] 错误 1
+libjpeg disabled.
+libpng auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o libpng.o libpng.cpp
+libpng.cpp: In function ‘int main(int, char**)’:
+libpng.cpp:42:17: warning: variable ‘png_ptr’ set but not used [-Wunused-but-set-variable]
+     png_structp png_ptr;
+                 ^
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o libpng libpng.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro -lpng 
+libpng enabled.
+DB2 auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o db2.o db2.cpp
+db2.cpp:34:20: fatal error: sqlcli.h: 没有那个文件或目录
+ #include <sqlcli.h>
+                    ^
+compilation terminated.
+make: *** [db2.o] 错误 1
+DB2 disabled.
+InterBase auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o ibase.o ibase.cpp
+ibase.cpp:34:19: fatal error: ibase.h: 没有那个文件或目录
+ #include <ibase.h>
+                   ^
+compilation terminated.
+make: *** [ibase.o] 错误 1
+InterBase disabled.
+MySQL (thread-safe) auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o mysql.o ../mysql/mysql.cpp
+../mysql/mysql.cpp:34:19: fatal error: mysql.h: 没有那个文件或目录
+ #include "mysql.h"
+                   ^
+compilation terminated.
+make: *** [mysql.o] 错误 1
+MySQL (thread-safe) disabled.
+MySQL (thread-unsafe) auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o mysql.o mysql.cpp
+mysql.cpp:34:19: fatal error: mysql.h: 没有那个文件或目录
+ #include "mysql.h"
+                   ^
+compilation terminated.
+make: *** [mysql.o] 错误 1
+MySQL (thread-unsafe) disabled.
+OCI auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o oci.o oci.cpp
+oci.cpp:34:17: fatal error: oci.h: 没有那个文件或目录
+ #include <oci.h>
+                 ^
+compilation terminated.
+make: *** [oci.o] 错误 1
+OCI disabled.
+ODBC auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o odbc.o odbc.cpp
+odbc.cpp:37:17: fatal error: sql.h: 没有那个文件或目录
+ #include <sql.h>
+                 ^
+compilation terminated.
+make: *** [odbc.o] 错误 1
+ODBC disabled.
+iODBC auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o iodbc.o iodbc.cpp
+iodbc.cpp:34:17: fatal error: sql.h: 没有那个文件或目录
+ #include <sql.h>
+                 ^
+compilation terminated.
+make: *** [iodbc.o] 错误 1
+iODBC disabled.
+PostgreSQL auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o psql.o psql.cpp
+psql.cpp:34:22: fatal error: libpq-fe.h: 没有那个文件或目录
+ #include "libpq-fe.h"
+                      ^
+compilation terminated.
+make: *** [psql.o] 错误 1
+PostgreSQL disabled.
+SQLite2 auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o sqlite2.o sqlite2.cpp
+sqlite2.cpp:34:20: fatal error: sqlite.h: 没有那个文件或目录
+ #include <sqlite.h>
+                    ^
+compilation terminated.
+make: *** [sqlite2.o] 错误 1
+SQLite2 disabled.
+TDS auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o tds.o tds.cpp
+tds.cpp:34:22: fatal error: sybfront.h: 没有那个文件或目录
+ #include <sybfront.h>
+                      ^
+compilation terminated.
+make: *** [tds.o] 错误 1
+TDS disabled.
+NIS auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o nis.o nis.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o nis nis.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro -lnsl 
+NIS enabled.
+Cups auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o cups.o cups.cpp
+cups.cpp:34:23: fatal error: cups/cups.h: 没有那个文件或目录
+ #include <cups/cups.h>
+                       ^
+compilation terminated.
+make: *** [cups.o] 错误 1
+Cups disabled.
+POSIX iconv auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o iconv.o iconv.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o iconv iconv.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+POSIX iconv enabled.
+D-Bus auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o dbus.o dbus.cpp
+dbus.cpp:35:23: fatal error: dbus/dbus.h: 没有那个文件或目录
+ #include <dbus/dbus.h>
+                       ^
+compilation terminated.
+make: *** [dbus.o] 错误 1
+D-Bus disabled.
+libproxy auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o libproxy.o libproxy.cpp
+libproxy.cpp:36:19: fatal error: proxy.h: 没有那个文件或目录
+ #include <proxy.h>
+                   ^
+compilation terminated.
+make: *** [libproxy.o] 错误 1
+libproxy disabled.
+Glib auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o glib.o glib.cpp
+glib.cpp:36:18: fatal error: glib.h: 没有那个文件或目录
+ #include <glib.h>
+                  ^
+compilation terminated.
+make: *** [glib.o] 错误 1
+Glib disabled.
+ICU auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o icu.o icu.cpp
+icu.cpp:34:28: fatal error: unicode/utypes.h: 没有那个文件或目录
+ #include <unicode/utypes.h>
+                            ^
+compilation terminated.
+make: *** [icu.o] 错误 1
+ICU disabled.
+PulseAudio auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o pulseaudio.o pulseaudio.cpp
+pulseaudio.cpp:34:30: fatal error: pulse/pulseaudio.h: 没有那个文件或目录
+ #include <pulse/pulseaudio.h>
+                              ^
+compilation terminated.
+make: *** [pulseaudio.o] 错误 1
+PulseAudio disabled.
+OpenGL ES 2.0 auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include -isystem /mnt/bananapro/usr/include/drm -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o opengles2.o opengles2.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o opengles2 opengles2.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro -L/mnt/bananapro/usr/lib -L/mnt/bananapro/usr/local/lib -L/mnt/bananapro/lib/arm-linux-gnueabihf -lGLESv2 
+OpenGL ES 2.0 enabled.
+OpenGL ES 3.0 auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include -isystem /mnt/bananapro/usr/include/drm -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o opengles3.o opengles3.cpp
+opengles3.cpp:37:25: fatal error: GLES3/gl3.h: 没有那个文件或目录
+   #include <GLES3/gl3.h>
+                         ^
+compilation terminated.
+make: *** [opengles3.o] 错误 1
+OpenGL ES 3.0 disabled.
+OpenGL ES 3.1 auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include -isystem /mnt/bananapro/usr/include/drm -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o opengles31.o opengles31.cpp
+opengles31.cpp:34:24: fatal error: GLES3/gl31.h: 没有那个文件或目录
+ #include <GLES3/gl31.h>
+                        ^
+compilation terminated.
+make: *** [opengles31.o] 错误 1
+OpenGL ES 3.1 disabled.
+FontConfig auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/freetype2 -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o fontconfig.o fontconfig.cpp
+fontconfig.cpp: In function ‘int main(int, char**)’:
+fontconfig.cpp:48:13: warning: variable ‘face’ set but not used [-Wunused-but-set-variable]
+     FT_Face face;
+             ^
+fontconfig.cpp:50:16: warning: variable ‘pattern’ set but not used [-Wunused-but-set-variable]
+     FcPattern *pattern;
+                ^
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o fontconfig fontconfig.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro -lfreetype -lfontconfig 
+FontConfig enabled.
+libudev auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o libudev.o libudev.cpp
+libudev.cpp:34:21: fatal error: libudev.h: 没有那个文件或目录
+ #include <libudev.h>
+                     ^
+compilation terminated.
+make: *** [libudev.o] 错误 1
+libudev disabled.
+evdev auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o evdev.o evdev.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o evdev evdev.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+evdev enabled.
+tslib auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o tslib.o tslib.cpp
+tslib.cpp:34:19: fatal error: tslib.h: 没有那个文件或目录
+ #include <tslib.h>
+                   ^
+compilation terminated.
+make: *** [tslib.o] 错误 1
+tslib disabled.
+xkbcommon auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o xkbcommon.o xkbcommon.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o xkbcommon xkbcommon.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro -lxkbcommon 
+xkbcommon enabled.
+XLib auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o xlib.o xlib.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o xlib xlib.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro -lXext -lX11 -lm
+XLib enabled.
+Xrender auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o xrender.o xrender.cpp
+xrender.cpp: In function ‘int main(int, char**)’:
+xrender.cpp:42:24: warning: variable ‘format’ set but not used [-Wunused-but-set-variable]
+     XRenderPictFormat *format;
+                        ^
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o xrender xrender.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro -lXrender -lXext -lX11 -lm
+Xrender enabled.
+XInput2 auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o xinput2.o xinput2.cpp
+xinput2.cpp: In function ‘int main(int, char**)’:
+xinput2.cpp:51:14: warning: variable ‘xievent’ set but not used [-Wunused-but-set-variable]
+     XIEvent *xievent;
+              ^
+xinput2.cpp:54:20: warning: variable ‘xideviceevent’ set but not used [-Wunused-but-set-variable]
+     XIDeviceEvent *xideviceevent;
+                    ^
+xinput2.cpp:57:23: warning: variable ‘xihierarchyevent’ set but not used [-Wunused-but-set-variable]
+     XIHierarchyEvent *xihierarchyevent;
+                       ^
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o xinput2 xinput2.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro -lXi -lXext -lX11 -lm
+XInput2 enabled.
+GBM auto-detection... ()
+Project ERROR: gbm development package not found
+GBM disabled.
+LinuxFB auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o linuxfb.o linuxfb.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o linuxfb linuxfb.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+LinuxFB enabled.
+KMS auto-detection... ()
+Project ERROR: libudev development package not found
+KMS disabled.
+Mir client auto-detection... ()
+Project ERROR: egl development package not found
+Mir client disabled.
+EGL auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include -isystem /mnt/bananapro/usr/include/drm -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o egl.o egl.cpp
+egl.cpp: In function ‘int main(int, char**)’:
+egl.cpp:38:12: warning: unused variable ‘x’ [-Wunused-variable]
+     EGLint x = 0;
+            ^
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o egl egl.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro -lEGL -lGLESv2 
+EGL enabled.
+EGL-X11 auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include -isystem /mnt/bananapro/usr/include/drm -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o egl-x11.o egl-x11.cpp
+egl-x11.cpp:37:26: fatal error: X11/Xlib-xcb.h: 没有那个文件或目录
+ #include <X11/Xlib-xcb.h>
+                          ^
+compilation terminated.
+make: *** [egl-x11.o] 错误 1
+EGL-X11 disabled.
+eglfs-brcm auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include -isystem /mnt/bananapro/usr/include/drm -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o eglfs-brcm.o eglfs-brcm.cpp
+eglfs-brcm.cpp:36:22: fatal error: bcm_host.h: 没有那个文件或目录
+ #include <bcm_host.h>
+                      ^
+compilation terminated.
+make: *** [eglfs-brcm.o] 错误 1
+eglfs-brcm disabled.
+eglfs-egldevice auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include -isystem /mnt/bananapro/usr/include/drm -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o eglfs-egldevice.o eglfs-egldevice.cpp
+In file included from /mnt/bananapro/usr/include/xf86drm.h:40:0,
+                 from eglfs-egldevice.cpp:43:
+/mnt/bananapro/usr/include/drm/drm.h:375:8: error: expected unqualified-id before ‘virtual’
+  void *virtual;  /**< Mmap'd area in user-virtual */
+        ^
+/mnt/bananapro/usr/include/drm/drm.h:375:7: error: expected ‘;’ at end of member declaration
+  void *virtual;  /**< Mmap'd area in user-virtual */
+       ^
+/mnt/bananapro/usr/include/drm/drm.h:375:8: error: declaration does not declare anything [-fpermissive]
+  void *virtual;  /**< Mmap'd area in user-virtual */
+        ^
+eglfs-egldevice.cpp: In function ‘int main(int, char**)’:
+eglfs-egldevice.cpp:48:5: error: ‘EGLDeviceEXT’ was not declared in this scope
+     EGLDeviceEXT device = 0;
+     ^
+eglfs-egldevice.cpp:48:18: error: expected ‘;’ before ‘device’
+     EGLDeviceEXT device = 0;
+                  ^
+eglfs-egldevice.cpp:49:5: error: ‘EGLStreamKHR’ was not declared in this scope
+     EGLStreamKHR stream = 0;
+     ^
+eglfs-egldevice.cpp:49:18: error: expected ‘;’ before ‘stream’
+     EGLStreamKHR stream = 0;
+                  ^
+eglfs-egldevice.cpp:50:5: error: ‘EGLOutputLayerEXT’ was not declared in this scope
+     EGLOutputLayerEXT layer = 0;
+     ^
+eglfs-egldevice.cpp:50:23: error: expected ‘;’ before ‘layer’
+     EGLOutputLayerEXT layer = 0;
+                       ^
+eglfs-egldevice.cpp:52:12: error: ‘EGL_DRM_CRTC_EXT’ was not declared in this scope
+     return EGL_DRM_CRTC_EXT;
+            ^
+eglfs-egldevice.cpp:51:20: warning: unused variable ‘currentMode’ [-Wunused-variable]
+     drmModeCrtcPtr currentMode = drmModeGetCrtc(0, 0);
+                    ^
+make: *** [eglfs-egldevice.o] 错误 1
+eglfs-egldevice disabled.
+eglfs-mali auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o eglfs-mali.o eglfs-mali.cpp
+eglfs-mali.cpp:34:30: fatal error: EGL/fbdev_window.h: 没有那个文件或目录
+ #include <EGL/fbdev_window.h>
+                              ^
+compilation terminated.
+make: *** [eglfs-mali.o] 错误 1
+eglfs-mali disabled.
+eglfs-mali-2 auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o eglfs-mali-2.o eglfs-mali-2.cpp
+eglfs-mali-2.cpp: In function ‘int main(int, char**)’:
+eglfs-mali-2.cpp:41:25: warning: unused variable ‘w’ [-Wunused-variable]
+     mali_native_window *w = 0;
+                         ^
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o eglfs-mali-2 eglfs-mali-2.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro -lEGL -lGLESv2 
+eglfs-mali-2 enabled.
+eglfs-viv auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC -DLINUX=1 -DEGL_API_FB=1 -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o eglfs-viv.o eglfs-viv.cpp
+eglfs-viv.cpp:35:28: fatal error: EGL/eglvivante.h: 没有那个文件或目录
+ #include <EGL/eglvivante.h>
+                            ^
+compilation terminated.
+make: *** [eglfs-viv.o] 错误 1
+eglfs-viv disabled.
+WARNING: Unable to find file .device.vars
+STL auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o stltest.o stltest.cpp
+stltest.cpp: In function ‘int main()’:
+stltest.cpp:128:13: warning: variable ‘first’ set but not used [-Wunused-but-set-variable]
+         int first = (*m1it).first;
+             ^
+stltest.cpp:130:16: warning: variable ‘second’ set but not used [-Wunused-but-set-variable]
+         double second = (*m1it).second;
+                ^
+stltest.cpp:101:9: warning: variable ‘v1size’ set but not used [-Wunused-but-set-variable]
+     int v1size = v1.size();
+         ^
+stltest.cpp:103:9: warning: variable ‘v1capacity’ set but not used [-Wunused-but-set-variable]
+     int v1capacity = v1.capacity();
+         ^
+stltest.cpp:107:10: warning: variable ‘v1notfound’ set but not used [-Wunused-but-set-variable]
+     bool v1notfound = (v1it == v1.end());
+          ^
+stltest.cpp:111:10: warning: variable ‘v1found’ set but not used [-Wunused-but-set-variable]
+     bool v1found = (v1it != v1.end());
+          ^
+stltest.cpp:116:9: warning: variable ‘v2size’ set but not used [-Wunused-but-set-variable]
+     int v2size = v2.size();
+         ^
+stltest.cpp:124:9: warning: variable ‘m1size’ set but not used [-Wunused-but-set-variable]
+     int m1size = m1.size();
+         ^
+stltest.cpp:134:9: warning: variable ‘m2size’ set but not used [-Wunused-but-set-variable]
+     int m2size = m2.size();
+         ^
+stltest.cpp:138:9: warning: unused variable ‘n’ [-Wunused-variable]
+     int n = std::distance(it1, it2);
+         ^
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o stl stltest.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+STL enabled.
+POSIX clock_gettime() auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o clock-gettime.o clock-gettime.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o clock-gettime clock-gettime.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+POSIX clock_gettime() enabled.
+POSIX Monotonic Clock auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o clock-monotonic.o clock-monotonic.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o clock-monotonic clock-monotonic.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+POSIX Monotonic Clock enabled.
+posix_fallocate auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o posix_fallocate.o posix_fallocate.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o posix_fallocate posix_fallocate.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+posix_fallocate enabled.
+mremap auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o mremap.o mremap.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o mremap mremap.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+mremap enabled.
+getaddrinfo auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o getaddrinfotest.o getaddrinfotest.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o getaddrinfo getaddrinfotest.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+getaddrinfo enabled.
+inotify auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o inotifytest.o inotifytest.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o inotify inotifytest.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+inotify enabled.
+eventfd auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o main.o main.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o eventfd main.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+eventfd enabled.
+IPv6 interface name auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o ipv6ifname.o ipv6ifname.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o ipv6ifname ipv6ifname.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+IPv6 interface name enabled.
+getifaddrs auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o getifaddrs.o getifaddrs.cpp
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o getifaddrs getifaddrs.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+getifaddrs enabled.
+cloexec auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o cloexec.o cloexec.cpp
+cloexec.cpp: In function ‘int main()’:
+cloexec.cpp:44:48: warning: ignoring return value of ‘int pipe2(int*, int)’, declared with attribute warn_unused_result [-Wunused-result]
+     (void) pipe2(pipes, O_CLOEXEC | O_NONBLOCK);
+                                                ^
+arm-linux-gnueabihf-g++ -Wl,-rpath-link,/mnt/bananapro/usr/lib -Wl,-rpath-link,/mnt/bananapro/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/mnt/bananapro/lib/arm-linux-gnueabihf -mfloat-abi=hard --sysroot=/mnt/bananapro -Wl,-O1 -o cloexec cloexec.o   -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf --sysroot=/mnt/bananapro 
+cloexec enabled.
+OpenSSL auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o openssl.o openssl.cpp
+openssl.cpp:34:30: fatal error: openssl/opensslv.h: 没有那个文件或目录
+ #include <openssl/opensslv.h>
+                              ^
+compilation terminated.
+make: *** [openssl.o] 错误 1
+OpenSSL disabled.
+PCRE auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o pcre.o pcre.cpp
+pcre.cpp:34:18: fatal error: pcre.h: 没有那个文件或目录
+ #include <pcre.h>
+                  ^
+compilation terminated.
+make: *** [pcre.o] 错误 1
+PCRE disabled.
+OpenVG auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o openvg.o openvg.cpp
+openvg.cpp:40:23: fatal error: VG/openvg.h: 没有那个文件或目录
+ #include <VG/openvg.h>
+                       ^
+compilation terminated.
+make: *** [openvg.o] 错误 1
+OpenVG disabled.
+OpenVG auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o openvg.o openvg.cpp
+openvg.cpp:40:23: fatal error: VG/openvg.h: 没有那个文件或目录
+ #include <VG/openvg.h>
+                       ^
+compilation terminated.
+make: *** [openvg.o] 错误 1
+OpenVG disabled.
+OpenVG (lc includes) auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC -DQT_LOWER_CASE_VG_INCLUDES -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o openvg.o openvg.cpp
+openvg.cpp:38:23: fatal error: vg/openvg.h: 没有那个文件或目录
+ #include <vg/openvg.h>
+                       ^
+compilation terminated.
+make: *** [openvg.o] 错误 1
+OpenVG (lc includes) disabled.
+OpenVG (lc includes) auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC -DQT_LOWER_CASE_VG_INCLUDES -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o openvg.o openvg.cpp
+openvg.cpp:38:23: fatal error: vg/openvg.h: 没有那个文件或目录
+ #include <vg/openvg.h>
+                       ^
+compilation terminated.
+make: *** [openvg.o] 错误 1
+OpenVG (lc includes) disabled.
+alsa auto-detection... ()
+arm-linux-gnueabihf-g++ -c -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/mnt/bananapro -O2 -std=gnu++0x -Wall -W -fPIC  -I. -isystem /mnt/bananapro/usr/include/c++/4.8 -I../../../mkspecs/devices/bananapro -o alsatest.o alsatest.cpp
+alsatest.cpp:34:28: fatal error: alsa/asoundlib.h: 没有那个文件或目录
+ #include <alsa/asoundlib.h>
+                            ^
+compilation terminated.
+make: *** [alsatest.o] 错误 1
+alsa disabled.
+GStreamer 1.0 auto-detection... ()
+Project ERROR: gstreamer-1.0 development package not found
+GStreamer 1.0 disabled.
+GStreamer 0.10 auto-detection... ()
+Project ERROR: gstreamer-0.10 development package not found
+GStreamer 0.10 disabled.
+WARNING: Unable to find file .device.vars
+Done running configuration tests.
+
+   Configure summary
+
+Building on:   linux-g++ (x86_64, CPU features: mmx sse sse2)
+Building for:  devices/bananapro (arm, CPU features: neon)
+Platform notes:
+
+            - Also available for Linux: linux-clang linux-kcc linux-icc linux-cxx
+        
+qmake vars .......... styles += mac fusion windows DEFINES += QT_NO_MTDEV QMAKE_CFLAGS_FONTCONFIG = -I/mnt/bananapro/usr/include/freetype2   QMAKE_LIBS_FONTCONFIG = -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf -lfontconfig -lfreetype   DEFINES += QT_NO_LIBUDEV DEFINES += QT_NO_TSLIB QMAKE_INCDIR_XKBCOMMON_EVDEV =   QMAKE_LIBS_XKBCOMMON_EVDEV = -L/mnt/bananapro/usr/lib/arm-linux-gnueabihf -lxkbcommon   DEFINES += QT_NO_LIBINPUT QMAKE_LIBXI_VERSION_MAJOR = 1 QMAKE_LIBXI_VERSION_MINOR = 7 QMAKE_LIBXI_VERSION_PATCH = 6 sql-drivers =  sql-plugins =  sqlite qmake switches ......... 
+
+Build options:
+  Configuration .......... accessibility audio-backend c++11 clock-gettime clock-monotonic compile_examples concurrent cross_compile dbus egl eglfs eglfs_mali enable_new_dtags evdev eventfd fontconfig full-config getaddrinfo getifaddrs harfbuzz iconv inotify ipv6ifname large-config largefile linuxfb medium-config minimal-config mremap neon nis opengl opengles2 pcre png posix_fallocate precompile_header qpa qpa reduce_exports release rpath shared small-config system-freetype system-png system-zlib threadsafe-cloexec use_gold_linker xinput2 xkbcommon-evdev xlib xrender 
+  Build parts ............ libs examples
+  Mode ................... release
+  Using sanitizer(s)...... none
+  Using C++ standard ..... c++11
+  Using gold linker....... yes
+  Using new DTAGS ........ yes
+  Using PCH .............. yes
+  Using LTCG ............. no
+  Target compiler supports:
+    Neon ................. yes
+
+Qt modules and options:
+  Qt D-Bus ............... yes (loading dbus-1 at runtime)
+  Qt Concurrent .......... yes
+  Qt GUI ................. yes
+  Qt Widgets ............. yes
+  Large File ............. yes
+  QML debugging .......... yes
+  Use system proxies ..... no
+
+Support enabled for:
+  Accessibility .......... yes
+  ALSA ................... no
+  CUPS ................... no
+  Evdev .................. yes
+  FontConfig ............. yes
+  FreeType ............... yes (system library)
+  Glib ................... no
+  GStreamer .............. no
+  GTK theme .............. no
+  HarfBuzz ............... yes (bundled copy)
+  Iconv .................. yes
+  ICU .................... no
+  Image formats: 
+    GIF .................. yes (plugin, using bundled copy)
+    JPEG ................. yes (plugin, using bundled copy)
+    PNG .................. yes (in QtGui, using system library)
+  libinput................ no
+  Logging backends: 
+    journald ............... no
+    syslog   ............... no
+  mtdev .................. no
+  Networking: 
+    getaddrinfo .......... yes
+    getifaddrs ........... yes
+    IPv6 ifname .......... yes
+    libproxy.............. no
+    OpenSSL .............. no
+  NIS .................... yes
+  OpenGL / OpenVG: 
+    EGL .................. yes
+    OpenGL ............... yes (OpenGL ES 2.0+)
+    OpenVG ............... no
+  PCRE ................... yes (bundled copy)
+  pkg-config ............. yes 
+  PulseAudio ............. no
+  QPA backends: 
+    DirectFB ............. no
+    EGLFS ................ yes
+      EGLFS i.MX6 ........ no
+      EGLFS i.MX6 Wayland. no
+      EGLFS EGLDevice .... no
+      EGLFS GBM .......... no
+      EGLFS Mali ......... yes
+      EGLFS Raspberry Pi . no
+      EGLFS X11 .......... no
+    LinuxFB .............. yes
+    Mir client............ no
+    XCB .................. no
+  Session management ..... yes
+  SQL drivers: 
+    DB2 .................. no
+    InterBase ............ no
+    MySQL ................ no
+    OCI .................. no
+    ODBC ................. no
+    PostgreSQL ........... no
+    SQLite 2 ............. no
+    SQLite ............... yes (plugin, using bundled copy)
+    TDS .................. no
+  tslib .................. no
+  udev ................... no
+  xkbcommon-x11........... no
+  xkbcommon-evdev......... yes
+  zlib ................... yes (system library)
+
+
+NOTE: Qt is using double for qreal on this system. This is binary incompatible against Qt 5.1.
+Configure with '-qreal float' to create a build that is binary compatible with 5.1.
+
+Qt is now configured for building. Just run 'make'.
+Once everything is built, you must run 'make install'.
+Qt will be installed into /opt/Qt5.6.0/armv7-a
+
+Prior to reconfiguration, make sure you remove any leftovers from
+the previous build.
+

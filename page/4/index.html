@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="kangqingfei&apos;s personal blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="kblog">
+<meta property="og:url" content="http://kangqingfei.cn/page/4/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="kangqingfei&apos;s personal blog">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kblog">
+<meta name="twitter:description" content="kangqingfei&apos;s personal blog">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">kangqingfei</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">苦心人，天不负</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.67px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.67px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 18.33px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-入门/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.67px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.67px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.67px;">archlinux</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/linux/" style="font-size: 11.67px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.67px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 13.33px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 11.67px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/安全-渗透/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/封装/" style="font-size: 10px;">封装</a> <a href="/tags/嵌入式/" style="font-size: 16.67px;">嵌入式</a> <a href="/tags/毕设/" style="font-size: 20px;">毕设</a> <a href="/tags/绘图/" style="font-size: 10px;">绘图</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">kangqingfei</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">kangqingfei</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">苦心人，天不负</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap">
+  
+    <article id="post-my-git-note" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/31/my-git-note/" class="article-date">
+  	<time datetime="2015-12-31T15:47:42.000Z" itemprop="datePublished">2015-12-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/31/my-git-note/">my git note</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。"><a href="#从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。" class="headerlink" title="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。"></a>从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。</h3>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">note</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/basis/">basis</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/31/my-git-note/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-use-markdown" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/30/use-markdown/" class="article-date">
+  	<time datetime="2015-12-30T10:41:53.000Z" itemprop="datePublished">2015-12-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/30/use-markdown/">use markdown</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="将博客从jekyll迁移到hexo都还算顺利，唯一让人有点恼火的就是markdown的语法不一致了（hexo貌似没那么任性，主要是像标题的-后面必须要空格，也不支持-），所以熟悉一下hexo下的markdown语法，顺便复习一下。主要是参考http-www-appinn-com-markdown-，把一些常用的记录了一下。"><a href="#将博客从jekyll迁移到hexo都还算顺利，唯一让人有点恼火的就是markdown的语法不一致了（hexo貌似没那么任性，主要是像标题的-后面必须要空格，也不支持-），所以熟悉一下hexo下的markdown语法，顺便复习一下。主要是参考http-www-appinn-com-markdown-，把一些常用的记录了一下。" class="headerlink" title="将博客从jekyll迁移到hexo都还算顺利，唯一让人有点恼火的就是markdown的语法不一致了（hexo貌似没那么任性，主要是像标题的## 后面必须要空格，也不支持 ==），所以熟悉一下hexo下的markdown语法，顺便复习一下。主要是参考http://www.appinn.com/markdown/，把一些常用的记录了一下。"></a>将博客从<code>jekyll</code>迁移到<code>hexo</code>都还算顺利，唯一让人有点恼火的就是<code>markdown</code>的语法不一致了（hexo貌似没那么任性，主要是像标题的<code>##</code> 后面必须要空格，也不支持 <code>==</code>），所以熟悉一下<code>hexo</code>下的<code>markdown</code>语法，顺便复习一下。主要是参考<a href="http://www.appinn.com/markdown/" title="参考网址" target="_blank" rel="noopener">http://www.appinn.com/markdown/</a>，把一些常用的记录了一下。</h3>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/basis/">basis</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/30/use-markdown/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-from-jekyll-to-hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/30/from-jekyll-to-hexo/" class="article-date">
+  	<time datetime="2015-12-30T08:17:53.000Z" itemprop="datePublished">2015-12-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/30/from-jekyll-to-hexo/">from jekyll to hexo</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="上面写了一篇文章，感觉真是丑爆了，内容臭，界面丑，还不是很适配手机，所以就很恼火，这时发现一个很不错的基于-hexo的主题yilia，感觉可以有。其实之前就听过-hexo的大名，只是没想到比想象中的还好玩，对比之下，jekyll相当于把你的markdown放到了github然后让它给你编译，而hexo则是把你的markdown编译成html后发布到github（所以不存在jekyll的那种时延），更重要的是人家基于node，可扩展强，不用那么烦也不会老出问题，配置也是简单，重要的是人家颜值高啊，然后还有以下几点让我很心动："><a href="#上面写了一篇文章，感觉真是丑爆了，内容臭，界面丑，还不是很适配手机，所以就很恼火，这时发现一个很不错的基于-hexo的主题yilia，感觉可以有。其实之前就听过-hexo的大名，只是没想到比想象中的还好玩，对比之下，jekyll相当于把你的markdown放到了github然后让它给你编译，而hexo则是把你的markdown编译成html后发布到github（所以不存在jekyll的那种时延），更重要的是人家基于node，可扩展强，不用那么烦也不会老出问题，配置也是简单，重要的是人家颜值高啊，然后还有以下几点让我很心动：" class="headerlink" title="上面写了一篇文章，感觉真是丑爆了，内容臭，界面丑，还不是很适配手机，所以就很恼火，这时发现一个很不错的基于 hexo的主题yilia，感觉可以有。其实之前就听过 hexo的大名，只是没想到比想象中的还好玩，对比之下，jekyll相当于把你的markdown放到了github然后让它给你编译，而hexo则是把你的markdown编译成html后发布到github（所以不存在jekyll的那种时延），更重要的是人家基于node，可扩展强，不用那么烦也不会老出问题，配置也是简单，重要的是人家颜值高啊，然后还有以下几点让我很心动："></a>上面写了一篇文章，感觉真是丑爆了，内容臭，界面丑，还不是很适配手机，所以就很恼火，这时发现一个很不错的基于 <a href="https://hexo.io/" target="_blank" rel="noopener">hexo</a>的主题<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">yilia</a>，感觉可以有。其实之前就听过 <code>hexo</code>的大名，只是没想到比想象中的还好玩，对比之下，jekyll相当于把你的markdown放到了github然后让它给你编译，而hexo则是把你的markdown编译成html后发布到github（所以不存在jekyll的那种时延），更重要的是人家基于node，可扩展强，不用那么烦也不会老出问题，配置也是简单，重要的是人家颜值高啊，然后还有以下几点让我很心动：</h4>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/30/from-jekyll-to-hexo/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-install-archlinux-to-usb-media-or-virtual-machine" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/" class="article-date">
+  	<time datetime="2015-12-29T00:00:00.000Z" itemprop="datePublished">2015-12-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/">Install ArchLinux to USB media or Virtual Machine</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h1 id="是的，考完了，考完了，考完了！"><a href="#是的，考完了，考完了，考完了！" class="headerlink" title="是的，考完了，考完了，考完了！"></a>是的，考完了，考完了，考完了！</h1><hr>
+<hr>
+<h3 id="那就来装个系统吧。"><a href="#那就来装个系统吧。" class="headerlink" title="那就来装个系统吧。"></a>那就来装个系统吧。</h3><ol>
+<li>打开VMware，新建一个虚拟机，使用<code>archlinux-2015.12.01-dual.iso</code>(连上教育网去北交的镜像站下载)，作为启动安装盘，新建一个10G的硬盘
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/archlinux/">archlinux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/media/">media</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/29/install-archlinux-to-usb-media-or-virtual-machine/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-digitalocean-vps" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/27/digitalocean-vps/" class="article-date">
+  	<time datetime="2015-08-27T00:00:00.000Z" itemprop="datePublished">2015-08-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/27/digitalocean-vps/">DigitalOcean VPS转移机房</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>今天又是折腾自己的VPS，发现以前只是把它关机了还是会收费的，，，真是脑残，应该把droplets删了才会停止收费！所以很无语地发现自己的ss好慢啊，自从某博士的科学上网服务停止后，看视频都没劲了，果断给VPS换地方。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPS/">VPS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/08/27/digitalocean-vps/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-using-jekyll-gracefully" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/26/using-jekyll-gracefully/" class="article-date">
+  	<time datetime="2015-08-26T00:00:00.000Z" itemprop="datePublished">2015-08-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/26/using-jekyll-gracefully/">using jekyll gracefully</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="为啥又折腾这货？"><a href="#为啥又折腾这货？" class="headerlink" title="为啥又折腾这货？"></a>为啥又折腾这货？</h2><ol>
+<li>在家，看不进书，有时间没事干，所以。。。。。。</li>
+<li>鉴于各种社交平台的太那啥，想拥有自己的一个小港湾（好扯淡）</li>
+<li>要<code>认真</code>考研了，说不定哪天就发神经想写点啥煽情的东西了</li>
+<li>觉得很多东西还是得记录一下，就像寒假把这货搞得那么透而现在啥都忘了，毕竟好记性不如烂笔头！</li>
+<li>嗯，好像可以装那啥对吧。。。。。 未完待续
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jekyll/">jekyll</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/08/26/using-jekyll-gracefully/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-bootstrap-fileinput" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/25/bootstrap-fileinput/" class="article-date">
+  	<time datetime="2015-02-24T16:00:00.000Z" itemprop="datePublished">2015-02-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/25/bootstrap-fileinput/">Bootstrap FileInput</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://plugins.krajee.com/file-input" target="_blank" rel="noopener">bootstrap-fileinput</a></p>
+<hr>
+<p>这是一个基于<code>Bootstrap3.x</code>的加强版的文件选取插件，支持各种文件的预览功能，多选等。这个插件允许你设置一个高大上的文件选取/上传器通过使用<code>Bootstrap CSS3</code>样式。通过提供各种文件（包括images, text, html, video, audio,flash）的预览支持进一步地加强了文件选择器的功能。另外还支持AJAX上传，拖拽上传，上传进度可视，添加移除文件等<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BootStrap/">BootStrap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XHR2/">XHR2</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/02/25/bootstrap-fileinput/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-first-article" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/09/first-article/" class="article-date">
+  	<time datetime="2015-02-08T16:00:00.000Z" itemprop="datePublished">2015-02-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/09/first-article/">first article</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="博客搭建成功-in-20150310"><a href="#博客搭建成功-in-20150310" class="headerlink" title="博客搭建成功 in 20150310"></a>博客搭建成功 in 20150310</h1>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/test/">test</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    </nav>
+  
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

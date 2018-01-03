@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="kangqingfei&apos;s personal blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="kblog">
+<meta property="og:url" content="http://kangqingfei.cn/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="kangqingfei&apos;s personal blog">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kblog">
+<meta name="twitter:description" content="kangqingfei&apos;s personal blog">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">kangqingfei</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">苦心人，天不负</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.67px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.67px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 18.33px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-入门/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.67px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.67px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.67px;">archlinux</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/linux/" style="font-size: 11.67px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.67px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 13.33px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 11.67px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/安全-渗透/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/封装/" style="font-size: 10px;">封装</a> <a href="/tags/嵌入式/" style="font-size: 16.67px;">嵌入式</a> <a href="/tags/毕设/" style="font-size: 20px;">毕设</a> <a href="/tags/绘图/" style="font-size: 10px;">绘图</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">kangqingfei</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">kangqingfei</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">苦心人，天不负</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap">
+  
+    <article id="post-Makefile-与-make" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/23/Makefile-与-make/" class="article-date">
+  	<time datetime="2016-10-23T11:26:03.000Z" itemprop="datePublished">2016-10-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/23/Makefile-与-make/">Makefile 与 make</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Makefile-是一种类似于脚本的，能够自动化执行程序的编译链接工作-甚至命令的执行-py-latex-等命令-，从而省去了人工在命令行里输入指令的繁琐过程-并且在vim下对Makefile有着极好的支持-。而make指令-在win是cmake，linux下是gmake-可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不过这个工程是用make打开编译。虽然Makefile给我们的程序的编译链接工作省去了很多繁琐的工作，但是偷懒的程序员依然觉得编写Makefile也是一件很是繁琐的工作，因此就诞生了诸多款的make工具用来根据程序员的一些设定自动生成能够执行的Makefile文件，从未又一定程度上减少了编写Makefile文件的重复工作量。这些工具有："><a href="#Makefile-是一种类似于脚本的，能够自动化执行程序的编译链接工作-甚至命令的执行-py-latex-等命令-，从而省去了人工在命令行里输入指令的繁琐过程-并且在vim下对Makefile有着极好的支持-。而make指令-在win是cmake，linux下是gmake-可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不过这个工程是用make打开编译。虽然Makefile给我们的程序的编译链接工作省去了很多繁琐的工作，但是偷懒的程序员依然觉得编写Makefile也是一件很是繁琐的工作，因此就诞生了诸多款的make工具用来根据程序员的一些设定自动生成能够执行的Makefile文件，从未又一定程度上减少了编写Makefile文件的重复工作量。这些工具有：" class="headerlink" title="Makefile 是一种类似于脚本的，能够自动化执行程序的编译链接工作(甚至命令的执行 py latex 等命令)，从而省去了人工在命令行里输入指令的繁琐过程(并且在vim下对Makefile有着极好的支持)。而make指令(在win是cmake，linux下是gmake)可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不过这个工程是用make打开编译。虽然Makefile给我们的程序的编译链接工作省去了很多繁琐的工作，但是偷懒的程序员依然觉得编写Makefile也是一件很是繁琐的工作，因此就诞生了诸多款的make工具用来根据程序员的一些设定自动生成能够执行的Makefile文件，从未又一定程度上减少了编写Makefile文件的重复工作量。这些工具有："></a>Makefile 是一种类似于脚本的，能够自动化执行程序的编译链接工作(甚至命令的执行 py latex 等命令)，从而省去了人工在命令行里输入指令的繁琐过程(并且在vim下对Makefile有着极好的支持)。而make指令(在win是cmake，linux下是gmake)可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不过这个工程是用make打开编译。虽然Makefile给我们的程序的编译链接工作省去了很多繁琐的工作，但是偷懒的程序员依然觉得编写Makefile也是一件很是繁琐的工作，因此就诞生了诸多款的make工具用来根据程序员的一些设定自动生成能够执行的Makefile文件，从未又一定程度上减少了编写Makefile文件的重复工作量。这些工具有：</h2>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Makefile/">Makefile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/make/">make</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tools/">tools</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/10/23/Makefile-与-make/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-GCC-G-与-GDB" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/23/GCC-G-与-GDB/" class="article-date">
+  	<time datetime="2016-10-23T11:25:36.000Z" itemprop="datePublished">2016-10-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/23/GCC-G-与-GDB/">GCC/G++ 与 GDB</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="从hello-world说起"><a href="#从hello-world说起" class="headerlink" title="从hello world说起"></a>从hello world说起</h2><ol>
+<li><p>首先我们有一段 hello world 程序</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  retunr <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们通过以下步骤编译程序：</p>
+<ul>
+<li>g++ hello.cpp<br>这会生成一个<code>a.out</code>的文件，这个名字是由于历史原因导致的，所以不管源文件的名字是啥，生成的可执行文件的文件名都是一样的。</li>
+</ul>
+</li>
+<li>首先，认识一下文件的后缀<ul>
+<li><code>.c</code> c语言的源文件</li>
+<li><code>.cpp .C .cc .cxx</code> c++ 语言的源文件</li>
+<li><code>.i</code> 经过预处理的c 文件</li>
+<li><code>.ii</code> 经过处理后的c++ 文件</li>
+<li><code>.s</code> 汇编代码源文件</li>
+<li><code>.S</code> 经过预处理的汇编代码文件</li>
+<li><code>.h</code> 头文件</li>
+<li><code>.o</code> 编译后的目标文件</li>
+<li><code>.so</code> 动态链接库文件 在Win下是 <code>.dll</code></li>
+<li><code>.a</code> 静态链接库文件 在Win下是  <code>.lib</code></li>
+</ul>
+</li>
+<li>gcc 常用的命令<ul>
+<li>一般格式： <code>gcc [-option] srcfile [-option] desfile</code></li>
+<li>g++ -E hello.cpp -o hello.ii 只进行预处理，得到预处理后的文件</li>
+<li>g++ -S hello.cpp -o hello.s 生成到汇编代码后停止，得到汇编文件。</li>
+<li>g++ -c hello.cpp -o hello.o 编译到最后的二进制代码，但不进行链接，得到目标文件。</li>
+<li>g++ -g hello.cpp -o ghello 生成包含调试信息的可执行文件，可以通过<code>strip ghello</code> 删除文件中的debug信息。</li>
+<li>g++ -O hello.cpp 对代码进行自动优化编译，O后面可以接数字，比如可以使用 <code>-O3</code>进行三级优化编译</li>
+<li>g++ -W hello.cpp 编译中开启一些额外的警告信息，<code>-Wall</code>表示把所有的警告信息全部打开</li>
+<li>g++ hello.cpp -I/path/to/include -L/path/to/lib -lnameoflib 分别表示添加包含文件的搜索路径，链接文件的搜索路径以及指定要使用的链接库的名字</li>
+</ul>
+</li>
+<li>链接库的生成，首先要介绍一些基本的规则<ul>
+<li>动态库一律是以 lib 开头，制定链接库名字的时候可以省去lib三个字母。</li>
+<li>由于动态库节省空间，所以默认链接动态库，可就是说如果有两个同名的动态库和静态库，那么linux会优先选择动态库链接，如果要特别告诉编译器与重名的那个静态库链接，则主要加上<code>-static</code>或<code>-WI,-Bstatic</code>选项,如果既要链接动态库又要链接静态库，则需使用<code>-WI,-Bstatic -lnameofstaticlib -WI,-Bdynamic -lnameofdynamiclib</code></li>
+<li>为了让程序使用自己创建的动态库有三种方法<ul>
+<li>将自己的库拷到 /usr/lib或/lib 等已经存在于环境变量中的动态库搜索路径中</li>
+<li>修改环境变量 <code>export LD_LIBRARY_PATH</code>=$LD_LIBRARY_PATH:/new/lib/path</li>
+<li>修改 /etc/ld.so.conf ,把库的路径加到末尾，然后执行 ldconfig 刷新。</li>
+</ul>
+</li>
+<li>nm libname.so 查看库中有哪些函数，如果库中没有自己想要找的库，则可以使用 ldd libname.so 来看看它依赖的其他库，在其他库中说不定可以找到哦</li>
+<li>到达</li>
+</ul>
+</li>
+<li>生成库文件<ul>
+<li>ar cqs libname.a name.o</li>
+<li>ar cr libnamme.a name.o</li>
+<li>g++ -shared -W1,-soname,libname.so.1 -o libname.so.1.0 hello.o</li>
+<li>g++ -shared -fPCI -o libname.so name.o</li>
+<li>其中soname 是库区分的标志，这就像库的身份证，通常的做法就是将库的soname与库的顶级版本号的保持一致，然后将低级版本到软连接到一个与soname同名的链接文件。</li>
+</ul>
+</li>
+</ol>
+<h2 id="使用GDB调试程序"><a href="#使用GDB调试程序" class="headerlink" title="使用GDB调试程序"></a>使用GDB调试程序</h2><ol>
+<li>使用 gdb test 来启动调试。</li>
+<li>一些常用的命令<ul>
+<li>r(run) pram1 parm2 运行</li>
+<li>l(list) start,end 显示指定行数的代码</li>
+<li>p(print) var(fun) 打印变量的值，或是打印函数调用的值</li>
+<li>whatis 查看变量的类型</li>
+<li>b(break) [行号，函数名]  在指定位置设置断点</li>
+<li>tbreak 设置临时断点，触发后自动删除</li>
+<li>info b 查看所有的断点</li>
+<li>d(delete) 删除断点</li>
+<li>set pram=val 设置变量的值</li>
+<li>c(continue) 继续执行直到遇到新的断点</li>
+<li>n(next) 不进入的单步调试</li>
+<li>s(step) 进入的单步调试</li>
+<li>finish 执行完当前函数</li>
+<li>q(quit) 退出调试</li>
+<li>h(help) command 查看指定命令的用法</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/g/">g++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gcc/">gcc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gdb/">gdb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tools/">tools</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-排序算法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/07/排序算法/" class="article-date">
+  	<time datetime="2016-10-07T02:20:27.000Z" itemprop="datePublished">2016-10-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/07/排序算法/">排序算法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="重新复习一遍常用的排序算法"><a href="#重新复习一遍常用的排序算法" class="headerlink" title="重新复习一遍常用的排序算法"></a>重新复习一遍常用的排序算法</h2><ol>
+<li><p>冒泡排序</p>
+<ul>
+<li>顾名思义就是将相邻的两个数比较，不满足大小关系就交换顺序，将最大或最小的数像泡泡一样冒到最右或最左端</li>
+</ul>
+</li>
+<li><p>选择排序</p>
+<ul>
+<li>找到一个最大或最小值，然后将其和最右或最左端的数交换</li>
+</ul>
+</li>
+<li><p>直接插入排序</p>
+<ul>
+<li>首先取出序列的第一个数，假设它已经排好序，然后从第二个数开始将其插入到第一个数前面或后面</li>
+<li>然后将序列长度增加</li>
+<li>现在前面的序列已经排好序了，然后先取出没排好序的第一个值，将其与前面的序列相比较，如果比要插入的值大就把排好序的值依次往后挪一个，以空出一个空位让要插入的值占着。直到找到那个排好序的序列中比要插入的值小或相等的值，则要放置的位置就确定了，然后放入要插入的值，再将排好序的序列的长度增加，开始下一轮循环。</li>
+<li>简言之就是在已排序的序列中从后往前扫描，找到相应位置并插入
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sort/">sort</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/ACM/">ACM</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/10/07/排序算法/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-cplusplus-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/22/cplusplus-notes/" class="article-date">
+  	<time datetime="2016-09-22T08:30:54.000Z" itemprop="datePublished">2016-09-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/22/cplusplus-notes/">cplusplus notes</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一些关于C-的笔记"><a href="#一些关于C-的笔记" class="headerlink" title="一些关于C++的笔记"></a>一些关于C++的笔记</h2><ol>
+<li><p>Lambdas 表达式</p>
+<ol>
+<li><code>尾置返回类型</code>-一般用于返回类型比较复杂和难理解（例如 数组的指针或是数组的引用）的函数中来声明返回类型。<ul>
+<li>尾置返回类型的一般格式为：<code>auto fun(parameter list) -&gt; trailing type</code></li>
+<li>返回类型跟在形参列表的后面，并且以一个<code>-&gt;</code> 符号开头。</li>
+<li>为了表示真正的返回类型跟在形参列表之后，在本该出现返回类型的地方放置一个<code>auto</code>。</li>
+<li>实例：申明一个返回指向一个维度为10的int数组的指针</li>
+<li>原生的方式： <code>int (*function(int i))[10]</code></li>
+<li>使用尾置返回： <code>auto function(int i) -&gt; int (*)[10]</code></li>
+<li>使用类型别名： <code>typedef int arrT[10]</code> or <code>using arrT = int[10]</code> then <code>arrT* function(int i)</code></li>
+<li>使用<code>decltype</code>：首先<code>int arr[] = {1,2,3,4}</code> then <code>decltype(arr) *function(int i)</code>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cplusplus/">cplusplus</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/notes/">notes</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/22/cplusplus-notes/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-优雅地使用Kindle" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/31/优雅地使用Kindle/" class="article-date">
+  	<time datetime="2016-08-31T12:39:22.000Z" itemprop="datePublished">2016-08-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/31/优雅地使用Kindle/">优雅地使用Kindle</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>嗯，在纠结了很久之后还是剁手了，包括机械键盘和kindle，现在还差一个显示器和一个ssd，加油吧，尽早把它们买回来。在此之前我要插播一个小广告-当然是给Kindle做广告。嗯，在我选择kindle之前，我做了很多的工作，因为很早之前就种了一棵kindle的草，然后前些时间我拿了同学的kpw2 看了看英文原版的电子书，感觉效果很是不错，然后我就下狠心要买一个电纸书，然后我要选择kindle的版本所以问了很多的同学有的使用的是 oasis，有的是 kpw，一个偶然的机会看到了一个前辈说到了文石的一款机器，之后逛了贴吧和淘宝感觉这个评价不是很高，但是我看那个前辈极力推荐这款设备而且又看了他的资料感觉应该可能靠谱，又鉴于文石的机器支持自定义剪裁，而且价格很是可以，顿时就对文石的机器产生了好感，很不幸的下单了一个文石的机器，机器到手后一个小时候我就毅然决定退掉这款机器，可能是自己的问题老师感觉那个机器的屏幕雾蒙蒙的，然后拿了同学的kpw2对比发现差距太明显了，而且有的时候还会有残影。所以还是退了，但是售后感觉态度还是不错的说，虽然稍微有点恼火。然后我就立马下单了一个 kpw3，希望老天保佑，所以在收货之前先做一把<a href="http://www.zhihu.com/question/27741189" target="_blank" rel="noopener">功课</a>，希望能借此有好运气。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kindle/">kindle</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/31/优雅地使用Kindle/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Linux-安装Caffe" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/25/Linux-安装Caffe/" class="article-date">
+  	<time datetime="2016-08-25T13:34:47.000Z" itemprop="datePublished">2016-08-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/25/Linux-安装Caffe/">Linux 安装Caffe</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="本文按照网上教程在Ubuntu-14-04-环境下安装caffe的记录，其中安装的OpenCV-2-4-13-使用的CUDA是7-0。在这里首先将遇到的一些问题和环境不一样的地方例举如下-如果遇到其他的问题可以参考这里-："><a href="#本文按照网上教程在Ubuntu-14-04-环境下安装caffe的记录，其中安装的OpenCV-2-4-13-使用的CUDA是7-0。在这里首先将遇到的一些问题和环境不一样的地方例举如下-如果遇到其他的问题可以参考这里-：" class="headerlink" title="本文按照网上教程在Ubuntu 14.04 环境下安装caffe的记录，其中安装的OpenCV 2.4.13 使用的CUDA是7.0。在这里首先将遇到的一些问题和环境不一样的地方例举如下(如果遇到其他的问题可以参考这里)："></a>本文按照<a href="https://gist.github.com/bearpaw/c38ef18ec45ba6548ec0" target="_blank" rel="noopener">网上教程</a>在Ubuntu 14.04 环境下安装caffe的记录，其中安装的OpenCV 2.4.13 使用的CUDA是7.0。在这里首先将遇到的一些问题和环境不一样的地方例举如下(如果遇到其他的问题可以参考<a href="http://yongyuan.name/blog/problems-when-configing-caffe.html" target="_blank" rel="noopener">这里</a>)：</h2><ol>
+<li>安装<code>libboost-all-de</code>应该改成<code>libboost1.55-all-dev</code></li>
+<li>在禁用独立显卡来安装CUDA后应该再次打开独立显卡。</li>
+<li><p>安装CUDNN的指令</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp lib64<span class="regexp">/*  /u</span>sr<span class="regexp">/local/</span>cuda<span class="regexp">/lib64/</span></span><br><span class="line">sudo cp include<span class="regexp">/cudnn.h /u</span>sr<span class="regexp">/local/</span>cuda<span class="regexp">/include/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如下报错</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- Installing Dependencies</span><br><span class="line">./opencv_install<span class="selector-class">.sh</span>: 第 <span class="number">27</span> 行: source: dependencies<span class="selector-class">.sh</span>: 文件未找到</span><br></pre></td></tr></table></figure>
+<p>把安装脚本27行 <code>dependencies.sh</code> 改成　<code>./dependencies.sh</code></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/caffe/">caffe</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/25/Linux-安装Caffe/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-为HG255D编译OpenWRT" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/25/为HG255D编译OpenWRT/" class="article-date">
+  	<time datetime="2016-08-25T08:37:15.000Z" itemprop="datePublished">2016-08-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/25/为HG255D编译OpenWRT/">为HG255D编译OpenWRT</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="大概一个半月之前，入手了一个-HG255D用来刷OpenWRT，主要是有两个目的：一是本来宿舍的交换机没了想买个来替代交换机，二是买个通用机型来熟悉一下OpenWRt的编译流程。基本上两个目的都达到了，这里撰文记录一下为HG255D编译OpenWRT的流程，以及遇到的一些问题，还有一些OpenWRT的基本的概念。还有就是想给使用HG255D的同学一些刷机的指导。"><a href="#大概一个半月之前，入手了一个-HG255D用来刷OpenWRT，主要是有两个目的：一是本来宿舍的交换机没了想买个来替代交换机，二是买个通用机型来熟悉一下OpenWRt的编译流程。基本上两个目的都达到了，这里撰文记录一下为HG255D编译OpenWRT的流程，以及遇到的一些问题，还有一些OpenWRT的基本的概念。还有就是想给使用HG255D的同学一些刷机的指导。" class="headerlink" title="大概一个半月之前，入手了一个 HG255D用来刷OpenWRT，主要是有两个目的：一是本来宿舍的交换机没了想买个来替代交换机，二是买个通用机型来熟悉一下OpenWRt的编译流程。基本上两个目的都达到了，这里撰文记录一下为HG255D编译OpenWRT的流程，以及遇到的一些问题，还有一些OpenWRT的基本的概念。还有就是想给使用HG255D的同学一些刷机的指导。"></a>大概一个半月之前，入手了一个 HG255D用来刷OpenWRT，主要是有两个目的：一是本来宿舍的交换机没了想买个来替代交换机，二是买个通用机型来熟悉一下OpenWRt的编译流程。基本上两个目的都达到了，这里撰文记录一下为HG255D编译OpenWRT的流程，以及遇到的一些问题，还有一些OpenWRT的基本的概念。还有就是想给使用HG255D的同学一些刷机的指导。</h2><ol>
+<li>硬件。HG255D 是华为的一款路由器，支持 USB，而且有4个LAN口，最主要的是便宜-&gt; 20包邮，而且它的折腾教程是相当的丰富。从OpenWRT官网的数据可以知道它的硬件信息大概如下<ul>
+<li>CPU Ralink RT3052 MIPS 24K @384 MHz</li>
+<li>RAM     32 MiB</li>
+<li>Flash  S29GL128P  128(sectors)X128(Kbytes)=16Mbytes</li>
+<li>Wireless    Ralink APSoC RT2860 b/g/n 2T2R (integrated)</li>
+<li>Switch    Integrated 6 Port Fast Ethernet Switch</li>
+<li>USB     Yes (1 Port)</li>
+<li>Serial    Yes</li>
+<li>JTAG    Yes<br>当然还有拆解的帖子在<a href="http://www.right.com.cn/forum/thread-153163-1-1.html" target="_blank" rel="noopener">这里</a>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HG255D/">HG255D</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenWrt/">OpenWrt</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/25/为HG255D编译OpenWRT/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Dockerfile-编写" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/02/Dockerfile-编写/" class="article-date">
+  	<time datetime="2016-08-02T14:20:54.000Z" itemprop="datePublished">2016-08-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/02/Dockerfile-编写/">Dockerfile 编写</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Dockerfile-的编写。我们可以使用-docker-build-来创建一个新的镜像。为此，首先需要创建一个-Dockerfile，包含一些如何创建镜像的指令。Dockerfile里面的每一条指令创建镜像的一层，只是有的层有tag而有的层是没有的。"><a href="#Dockerfile-的编写。我们可以使用-docker-build-来创建一个新的镜像。为此，首先需要创建一个-Dockerfile，包含一些如何创建镜像的指令。Dockerfile里面的每一条指令创建镜像的一层，只是有的层有tag而有的层是没有的。" class="headerlink" title="Dockerfile 的编写。我们可以使用 docker build 来创建一个新的镜像。为此，首先需要创建一个 Dockerfile，包含一些如何创建镜像的指令。Dockerfile里面的每一条指令创建镜像的一层，只是有的层有tag而有的层是没有的。"></a>Dockerfile 的编写。我们可以使用 docker build 来创建一个新的镜像。为此，首先需要创建一个 Dockerfile，包含一些如何创建镜像的指令。Dockerfile里面的每一条指令创建镜像的一层，只是有的层有tag而有的层是没有的。</h2><ol>
+<li>Dockerfile 的基本语法<ul>
+<li>使用 # 来注释</li>
+<li>基础镜像信息，FROM 指令告诉 Docker 使用哪个镜像作为基础镜像。</li>
+<li>维护者的信息，基本格式是<code>MAINTAINER docker_user docker_user@email.com</code></li>
+<li>镜像操作指令，类似RUN之类的指令将对镜像执行跟随的命令。每运行一条RUN 指令，镜像添加新的一层，并提交。</li>
+<li>容器启动时的执行指令，类似CMD 指令，来指定运行容器时的操作命令。<br>编写完成 Dockerfile 后可以使用 docker build 来生成镜像可以看到 build 进程在执行操作。它要做的第一件事情就是上传这个 Dockerfile 内容， 因为所有的操作都要依据 Dockerfile 来进行。然后，Dockfile中的指令被一条一条的执行。每一步都创建了一个新的容器，在容器中执行指令并提交修改（就跟之前介绍过的docker commit一样）。当所有的指令都执行完毕之后，返回了最终的镜像id。所有的中间步骤所产生的容器都被删除和清理了。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/02/Dockerfile-编写/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Docker-入门" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/02/Docker-入门/" class="article-date">
+  	<time datetime="2016-08-02T14:20:25.000Z" itemprop="datePublished">2016-08-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/02/Docker-入门/">Docker 入门</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="很久之前就说要学Docker，但是一直断断续续的学了一点，这个暑假终于腾出点时间把Docker过一下。主要是阅读-《Docker-从入门到实践》这本书，然后看了一下希云的视频，留此文章用于备忘。"><a href="#很久之前就说要学Docker，但是一直断断续续的学了一点，这个暑假终于腾出点时间把Docker过一下。主要是阅读-《Docker-从入门到实践》这本书，然后看了一下希云的视频，留此文章用于备忘。" class="headerlink" title="很久之前就说要学Docker，但是一直断断续续的学了一点，这个暑假终于腾出点时间把Docker过一下。主要是阅读 《Docker-从入门到实践》这本书，然后看了一下希云的视频，留此文章用于备忘。"></a>很久之前就说要学Docker，但是一直断断续续的学了一点，这个暑假终于腾出点时间把Docker过一下。主要是阅读 《Docker-从入门到实践》<a href="https://www.gitbook.com/book/yeasy/docker_practice/details" target="_blank" rel="noopener">这本书</a>，然后看了一下<a href="http://v.youku.com/v_show/id_XMTI1NTExNzgxNg==.html?from=s1.8-1-1.2" target="_blank" rel="noopener">希云的视频</a>，留此文章用于备忘。</h2><ol>
+<li>Docker简述<ol>
+<li>Docker 项目的目标是实现轻量级的操作系统虚拟化解决方案。Docker 的基础是Linux 容器 (LXC) 等技术。</li>
+<li>Docker 和传统虚拟化方式的不同之处:容器是在操作系统层面上实现虚拟化，直接复用本地主机的操作系统，而传统方式则是在硬件层面实现。</li>
+<li>Docker 容器的启动可以在秒级实现,容器除了运行其中应用外， 基本不消耗额外的系统资源，使得应用的性能很高，同时系统的开销尽量小。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker-入门/">Docker 入门</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/02/Docker-入门/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-校园网环境在AU上使用OpenWrt" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/28/校园网环境在AU上使用OpenWrt/" class="article-date">
+  	<time datetime="2016-06-28T11:02:06.000Z" itemprop="datePublished">2016-06-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/28/校园网环境在AU上使用OpenWrt/">校园网环境在AU上使用OpenWrt</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="在大概一个月之前，重邮的LUG团购了一波日本的AU-HOME-SPOT-CUBE，大概一个人12块左右，自己买了一个，同时帮同学买了一个。自己在校园网环境下面使用了大概一个月，除了覆盖范围小了点外，感觉还是很不错的，但是在使用的过程中还是踩过不少的坑，遂撰文记录之，以给后来的学弟学妹一点人生的经验。"><a href="#在大概一个月之前，重邮的LUG团购了一波日本的AU-HOME-SPOT-CUBE，大概一个人12块左右，自己买了一个，同时帮同学买了一个。自己在校园网环境下面使用了大概一个月，除了覆盖范围小了点外，感觉还是很不错的，但是在使用的过程中还是踩过不少的坑，遂撰文记录之，以给后来的学弟学妹一点人生的经验。" class="headerlink" title="在大概一个月之前，重邮的LUG团购了一波日本的AU HOME SPOT CUBE，大概一个人12块左右，自己买了一个，同时帮同学买了一个。自己在校园网环境下面使用了大概一个月，除了覆盖范围小了点外，感觉还是很不错的，但是在使用的过程中还是踩过不少的坑，遂撰文记录之，以给后来的学弟学妹一点人生的经验。"></a>在大概一个月之前，重邮的LUG团购了一波日本的<code>AU HOME SPOT CUBE</code>，大概一个人12块左右，自己买了一个，同时帮同学买了一个。自己在校园网环境下面使用了大概一个月，除了覆盖范围小了点外，感觉还是很不错的，但是在使用的过程中还是踩过不少的坑，遂撰文记录之，以给后来的学弟学妹一点人生的经验。</h2>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenWrt/">OpenWrt</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/06/28/校园网环境在AU上使用OpenWrt/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
+  
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="kangqingfei&apos;s personal blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="kblog">
+<meta property="og:url" content="http://kangqingfei.cn/page/2/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="kangqingfei&apos;s personal blog">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kblog">
+<meta name="twitter:description" content="kangqingfei&apos;s personal blog">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">kangqingfei</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">苦心人，天不负</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.67px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.67px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 18.33px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-入门/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.67px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.67px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.67px;">archlinux</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/linux/" style="font-size: 11.67px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.67px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 13.33px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 11.67px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/安全-渗透/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/封装/" style="font-size: 10px;">封装</a> <a href="/tags/嵌入式/" style="font-size: 16.67px;">嵌入式</a> <a href="/tags/毕设/" style="font-size: 20px;">毕设</a> <a href="/tags/绘图/" style="font-size: 10px;">绘图</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">kangqingfei</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">kangqingfei</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">苦心人，天不负</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap">
+  
+    <article id="post-记一次QQ群木马事件以开启一段安全之旅" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/27/记一次QQ群木马事件以开启一段安全之旅/" class="article-date">
+  	<time datetime="2016-06-27T09:21:53.000Z" itemprop="datePublished">2016-06-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/27/记一次QQ群木马事件以开启一段安全之旅/">记一次QQ群木马事件以开启一段安全之旅</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="事情的起因是这样的，在我皇家邮电大学即将举办CCTF之际，有个哥跑到大重邮的Linux的协会群放了一个精彩图片合集-chm的文件。并能够看到点击该文件的群里同学的桌面而且还有访问摄像头的功能。群里一篇慌乱，使得释放木马的哥开心的合不拢嘴。很多同学表示无能为力，我也点了一下那个文件，然后电脑卡了几秒之后然后就看到了那个文件里面并没有什么内容。这个时候我也慌了，从来没有感觉到原来安全这么的重要，于是我决心破解那个木马，并努力学习安全防御。"><a href="#事情的起因是这样的，在我皇家邮电大学即将举办CCTF之际，有个哥跑到大重邮的Linux的协会群放了一个精彩图片合集-chm的文件。并能够看到点击该文件的群里同学的桌面而且还有访问摄像头的功能。群里一篇慌乱，使得释放木马的哥开心的合不拢嘴。很多同学表示无能为力，我也点了一下那个文件，然后电脑卡了几秒之后然后就看到了那个文件里面并没有什么内容。这个时候我也慌了，从来没有感觉到原来安全这么的重要，于是我决心破解那个木马，并努力学习安全防御。" class="headerlink" title="事情的起因是这样的，在我皇家邮电大学即将举办CCTF之际，有个哥跑到大重邮的Linux的协会群放了一个精彩图片合集.chm的文件。并能够看到点击该文件的群里同学的桌面而且还有访问摄像头的功能。群里一篇慌乱，使得释放木马的哥开心的合不拢嘴。很多同学表示无能为力，我也点了一下那个文件，然后电脑卡了几秒之后然后就看到了那个文件里面并没有什么内容。这个时候我也慌了，从来没有感觉到原来安全这么的重要，于是我决心破解那个木马，并努力学习安全防御。"></a>事情的起因是这样的，在我皇家邮电大学即将举办CCTF之际，有个哥跑到大重邮的Linux的协会群放了一个<code>精彩图片合集.chm</code>的文件。并能够看到点击该文件的群里同学的桌面而且还有访问摄像头的功能。群里一篇慌乱，使得释放木马的哥开心的合不拢嘴。很多同学表示无能为力，我也点了一下那个文件，然后电脑卡了几秒之后然后就看到了那个文件里面并没有什么内容。这个时候我也慌了，从来没有感觉到原来安全这么的重要，于是我决心破解那个木马，并努力学习安全防御。</h2>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全-渗透/">安全 渗透</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/安全/">安全</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/06/27/记一次QQ群木马事件以开启一段安全之旅/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Qt-Quick-Scene-Graph" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/26/Qt-Quick-Scene-Graph/" class="article-date">
+  	<time datetime="2016-04-26T03:03:15.000Z" itemprop="datePublished">2016-04-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/26/Qt-Quick-Scene-Graph/">Qt Quick Scene Graph</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="这是一篇翻译的文章，原文链接-当然这个链接的内容也是来自这里。在此之前你可能需要了解一些Scene-Graph的知识，你可以参照："><a href="#这是一篇翻译的文章，原文链接-当然这个链接的内容也是来自这里。在此之前你可能需要了解一些Scene-Graph的知识，你可以参照：" class="headerlink" title="这是一篇翻译的文章，原文链接,当然这个链接的内容也是来自这里。在此之前你可能需要了解一些Scene Graph的知识，你可以参照："></a>这是一篇翻译的文章，原文<a href="http://developer.ubuntu.com/api/qml/sdk-14.10/QtQuick.qtquick-visualcanvas-scenegraph/" target="_blank" rel="noopener">链接</a>,当然这个链接的内容也是来自<a href="http://doc.qt.io/qt-5/qtquick-visualcanvas-scenegraph.html" target="_blank" rel="noopener">这里</a>。在此之前你可能需要了解一些<code>Scene Graph</code>的知识，你可以参照：</h2><ul>
+<li><a href="https://en.wikipedia.org/wiki/Scene_graph" target="_blank" rel="noopener">Scene graph</a></li>
+<li><a href="http://www.cnblogs.com/soroman/archive/2009/12/31/1637176.html" target="_blank" rel="noopener">Scene Management - Scene Graph</a></li>
+<li><a href="http://blog.csdn.net/nightmare/article/details/1165113" target="_blank" rel="noopener"> 不朽的SceneGraph</a></li>
+<li><a href="http://www.tuicool.com/articles/7jaYzq" target="_blank" rel="noopener">既方便又强大的QML Scene Graph</a></li>
+<li><a href="http://blog.csdn.net/lainegates/article/details/50890551" target="_blank" rel="noopener">场景渲染(Scene Graph)</a></li>
+<li><a href="http://blog.csdn.net/gamesdev/article/details/43063219" target="_blank" rel="noopener">Qt新渲染底层Scene Graph研究</a></li>
+</ul>
+<h3 id="and-then-开始翻译"><a href="#and-then-开始翻译" class="headerlink" title="and then 开始翻译"></a>and then 开始翻译</h3><p>Qt 中的场景图</p>
+<p>在 Qt Quick 2 中使用了基于<code>OpenGL ES 2.0</code>或<code>OpenGL 2.0</code>的场景图来进行渲染。使用场景图进行绘图而不是传统的绘图机制（QPainter类似的）意味着渲染的场景可以在帧间保留，并且将要渲染的完整的一组基本元素在渲染开始之前就已经知道了。这就允许一系列的优化，比如分批渲染来尽可能的减小状态的改变和丢弃被覆盖的元素。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QML/">QML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/">Qt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/毕设/">毕设</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/绘图/">绘图</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/basis/">basis</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/26/Qt-Quick-Scene-Graph/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-BananaPro-使用模数转换" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/13/BananaPro-使用模数转换/" class="article-date">
+  	<time datetime="2016-04-13T13:52:39.000Z" itemprop="datePublished">2016-04-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/13/BananaPro-使用模数转换/">BananaPro 使用模数转换</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="由于BananaPro在使用MQ-2传感器的时候要采集模拟电压，所以必须使用AD转换模块。这个过程也是异常艰辛，大概花了3-4天才解决这个问题故记录之。首先，由于这边的AD芯片奇缺，TI又不让申请，不给申请也就算了还给我打广告，真是醉了。后面学弟给了一块ADS1286，然后在调试过程中拿不到数据，后面发现貌似是由于ADS用的是5v供电，然后BananaPro的GPIO的拉高的电压是3-3V，相比5V的80-还是不够高。再者就是由于PCB绘制过程中使用的RGB-LED的共阴和共阳弄反了，因此干脆就直接重新换了一块ADS1118。下面就主要讲在BananaPro中使用ADS1118的一些人生的经验。"><a href="#由于BananaPro在使用MQ-2传感器的时候要采集模拟电压，所以必须使用AD转换模块。这个过程也是异常艰辛，大概花了3-4天才解决这个问题故记录之。首先，由于这边的AD芯片奇缺，TI又不让申请，不给申请也就算了还给我打广告，真是醉了。后面学弟给了一块ADS1286，然后在调试过程中拿不到数据，后面发现貌似是由于ADS用的是5v供电，然后BananaPro的GPIO的拉高的电压是3-3V，相比5V的80-还是不够高。再者就是由于PCB绘制过程中使用的RGB-LED的共阴和共阳弄反了，因此干脆就直接重新换了一块ADS1118。下面就主要讲在BananaPro中使用ADS1118的一些人生的经验。" class="headerlink" title="由于BananaPro在使用MQ-2传感器的时候要采集模拟电压，所以必须使用AD转换模块。这个过程也是异常艰辛，大概花了3-4天才解决这个问题故记录之。首先，由于这边的AD芯片奇缺，TI又不让申请，不给申请也就算了还给我打广告，真是醉了。后面学弟给了一块ADS1286，然后在调试过程中拿不到数据，后面发现貌似是由于ADS用的是5v供电，然后BananaPro的GPIO的拉高的电压是3.3V，相比5V的80%还是不够高。再者就是由于PCB绘制过程中使用的RGB_LED的共阴和共阳弄反了，因此干脆就直接重新换了一块ADS1118。下面就主要讲在BananaPro中使用ADS1118的一些人生的经验。"></a>由于BananaPro在使用MQ-2传感器的时候要采集模拟电压，所以必须使用AD转换模块。这个过程也是异常艰辛，大概花了3-4天才解决这个问题故记录之。首先，由于这边的AD芯片奇缺，TI又不让申请，不给申请也就算了还给我打广告，真是醉了。后面学弟给了一块ADS1286，然后在调试过程中拿不到数据，后面发现貌似是由于ADS用的是5v供电，然后BananaPro的GPIO的拉高的电压是3.3V，相比5V的80%还是不够高。再者就是由于PCB绘制过程中使用的RGB_LED的共阴和共阳弄反了，因此干脆就直接重新换了一块ADS1118。下面就主要讲在BananaPro中使用ADS1118的一些人生的经验。</h2>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BananaPro/">BananaPro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/嵌入式/">嵌入式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/毕设/">毕设</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/basis/">basis</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/13/BananaPro-使用模数转换/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-BananaPro的GPIO库" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/13/BananaPro的GPIO库/" class="article-date">
+  	<time datetime="2016-04-13T02:52:06.000Z" itemprop="datePublished">2016-04-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/13/BananaPro的GPIO库/">BananaPro的GPIO库</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="我们知道像raspberry、BananaPro之类的开发板与普通linux电脑的很大的区别就是它可以将GPIO口引出方便大家连接各种模块，因此，对GPIO口的了解就显得尤为重要。对于Lemaker的BananaPro官方的wiki其实已经写得很详细，之所以拿出来单独写一是想在自己的博客上面留个笔记，二是遇到一些很奇葩的问题需要特别引起注意。"><a href="#我们知道像raspberry、BananaPro之类的开发板与普通linux电脑的很大的区别就是它可以将GPIO口引出方便大家连接各种模块，因此，对GPIO口的了解就显得尤为重要。对于Lemaker的BananaPro官方的wiki其实已经写得很详细，之所以拿出来单独写一是想在自己的博客上面留个笔记，二是遇到一些很奇葩的问题需要特别引起注意。" class="headerlink" title="我们知道像raspberry、BananaPro之类的开发板与普通linux电脑的很大的区别就是它可以将GPIO口引出方便大家连接各种模块，因此，对GPIO口的了解就显得尤为重要。对于Lemaker的BananaPro官方的wiki其实已经写得很详细，之所以拿出来单独写一是想在自己的博客上面留个笔记，二是遇到一些很奇葩的问题需要特别引起注意。"></a>我们知道像raspberry、BananaPro之类的开发板与普通linux电脑的很大的区别就是它可以将GPIO口引出方便大家连接各种模块，因此，对GPIO口的了解就显得尤为重要。对于Lemaker的BananaPro官方的<a href="http://wiki.lemaker.org/How_to_control_the_IO_on_the_SBC_boards/zh-hans" target="_blank" rel="noopener">wiki</a>其实已经写得很详细，之所以拿出来单独写一是想在自己的博客上面留个笔记，二是遇到一些很奇葩的问题需要特别引起注意。</h2><h3 id="GPIO口的操作根据使用的语言和方式的不同也可以使用不同的库，一个是使用C语言的WiringLMK-官方的说明在这里，还有就是使用Python的LMK-GPIO官方的说明在这里，再有就是使用web进行控制的webio-lemaker。本人了解的目前就只有这三种方式。由于在实际使用中只用过wiringPi的库所以接下来只会介绍这个库，后面如果用到其他的库会在本文一并加上。"><a href="#GPIO口的操作根据使用的语言和方式的不同也可以使用不同的库，一个是使用C语言的WiringLMK-官方的说明在这里，还有就是使用Python的LMK-GPIO官方的说明在这里，再有就是使用web进行控制的webio-lemaker。本人了解的目前就只有这三种方式。由于在实际使用中只用过wiringPi的库所以接下来只会介绍这个库，后面如果用到其他的库会在本文一并加上。" class="headerlink" title="GPIO口的操作根据使用的语言和方式的不同也可以使用不同的库，一个是使用C语言的WiringLMK,官方的说明在这里，还有就是使用Python的LMK.GPIO官方的说明在这里，再有就是使用web进行控制的webio-lemaker。本人了解的目前就只有这三种方式。由于在实际使用中只用过wiringPi的库所以接下来只会介绍这个库，后面如果用到其他的库会在本文一并加上。"></a>GPIO口的操作根据使用的语言和方式的不同也可以使用不同的库，一个是使用C语言的<a href="https://github.com/LeMaker/WiringLMK" target="_blank" rel="noopener">WiringLMK</a>,官方的说明在<a href="http://wiki.lemaker.org/WiringLMK/zh-hans" target="_blank" rel="noopener">这里</a>，还有就是使用Python的<a href="https://github.com/LeMaker/LMK.GPIO" target="_blank" rel="noopener">LMK.GPIO</a>官方的说明在<a href="http://wiki.lemaker.org/LMK.GPIO/zh-hans" target="_blank" rel="noopener">这里</a>，再有就是使用web进行控制的<a href="https://github.com/LeMaker/webio-lemaker" target="_blank" rel="noopener">webio-lemaker</a>。本人了解的目前就只有这三种方式。由于在实际使用中只用过wiringPi的库所以接下来只会介绍这个库，后面如果用到其他的库会在本文一并加上。</h3>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BananaPro/">BananaPro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/嵌入式/">嵌入式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/毕设/">毕设</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/13/BananaPro的GPIO库/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-移植Qt5-6-0到Armv7架构的BananaPro" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/05/移植Qt5-6-0到Armv7架构的BananaPro/" class="article-date">
+  	<time datetime="2016-04-05T08:08:09.000Z" itemprop="datePublished">2016-04-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/05/移植Qt5-6-0到Armv7架构的BananaPro/">移植Qt5.6.0到Armv7架构的BananaPro</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="继上面给BananaPro编译好GPU的驱动后，已经迫不及待地要把Qt移植到开发板上看看效果。但是过程并不省心，主要还是一些概念没有弄清楚，导致了各种奇葩的错误。所以在做一件事情之前一定要阅读大量的文档，尤其是官方的文档，这样不仅能够减少走的弯路，更是最快的捷径。在这里是通过交叉编译的方式移植最新版的Qt5-6-0到BananaPro，这也是继Qt4-8之后的Qt5的首个LTS版。"><a href="#继上面给BananaPro编译好GPU的驱动后，已经迫不及待地要把Qt移植到开发板上看看效果。但是过程并不省心，主要还是一些概念没有弄清楚，导致了各种奇葩的错误。所以在做一件事情之前一定要阅读大量的文档，尤其是官方的文档，这样不仅能够减少走的弯路，更是最快的捷径。在这里是通过交叉编译的方式移植最新版的Qt5-6-0到BananaPro，这也是继Qt4-8之后的Qt5的首个LTS版。" class="headerlink" title="继上面给BananaPro编译好GPU的驱动后，已经迫不及待地要把Qt移植到开发板上看看效果。但是过程并不省心，主要还是一些概念没有弄清楚，导致了各种奇葩的错误。所以在做一件事情之前一定要阅读大量的文档，尤其是官方的文档，这样不仅能够减少走的弯路，更是最快的捷径。在这里是通过交叉编译的方式移植最新版的Qt5.6.0到BananaPro，这也是继Qt4.8之后的Qt5的首个LTS版。"></a>继上面给BananaPro编译好GPU的驱动后，已经迫不及待地要把Qt移植到开发板上看看效果。但是过程并不省心，主要还是一些概念没有弄清楚，导致了各种奇葩的错误。所以在做一件事情之前一定要阅读大量的文档，尤其是官方的文档，这样不仅能够减少走的弯路，更是最快的捷径。在这里是通过交叉编译的方式移植最新版的Qt5.6.0到BananaPro，这也是继Qt4.8之后的Qt5的首个LTS版。</h2>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BananaPro/">BananaPro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/">Qt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/毕设/">毕设</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/05/移植Qt5-6-0到Armv7架构的BananaPro/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-为BananaPro编译GPU驱动" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/02/为BananaPro编译GPU驱动/" class="article-date">
+  	<time datetime="2016-04-02T13:43:01.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/02/为BananaPro编译GPU驱动/">为BananaPro编译GPU驱动</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上承我们刚刚构建最小文件系统，下承即将要编译Qt，在这里我们编译一下BananaPro的GPU驱动。在官方的linux中并没有将GPU驱动编译进内核，不过可以在官方wiki-&gt;<a href="http://wiki.lemaker.org/BananaPro/Pi:GPU" target="_blank" rel="noopener">BananaPro/Pi:GPU</a>中编译用户空间的驱动，然后在开机的时候加载就好了，编译过程也很简单，基本上就是按照wiki的步骤一步步来就ok。不过在此之前，我们很有必要搞清楚一些概念性的东西(大部分来自各个百科)。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BananaPro/">BananaPro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/毕设/">毕设</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/02/为BananaPro编译GPU驱动/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-构建最小文件系统" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/30/构建最小文件系统/" class="article-date">
+  	<time datetime="2016-03-30T08:07:16.000Z" itemprop="datePublished">2016-03-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/30/构建最小文件系统/">构建最小文件系统</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="在之前那篇BananaPro镜像生成脚本的文章中，忽略掉了root-fs的步骤。我们都知道，Linux是将内核和root-fs分离的，我们可以使用同一个Linux的内核来使用各种文件系统，包括各种linux的发行版。这篇文章就是用来讲解怎么构建一个最小的root-fs文件系统，这样的文件系统一般只包含很少的软件包，需要有一定的Linux基础才能够把持的住。在这里我们主要是使用ubuntu为例来讲解一个最小的文件系统是怎么构建的。"><a href="#在之前那篇BananaPro镜像生成脚本的文章中，忽略掉了root-fs的步骤。我们都知道，Linux是将内核和root-fs分离的，我们可以使用同一个Linux的内核来使用各种文件系统，包括各种linux的发行版。这篇文章就是用来讲解怎么构建一个最小的root-fs文件系统，这样的文件系统一般只包含很少的软件包，需要有一定的Linux基础才能够把持的住。在这里我们主要是使用ubuntu为例来讲解一个最小的文件系统是怎么构建的。" class="headerlink" title="在之前那篇BananaPro镜像生成脚本的文章中，忽略掉了root-fs的步骤。我们都知道，Linux是将内核和root-fs分离的，我们可以使用同一个Linux的内核来使用各种文件系统，包括各种linux的发行版。这篇文章就是用来讲解怎么构建一个最小的root-fs文件系统，这样的文件系统一般只包含很少的软件包，需要有一定的Linux基础才能够把持的住。在这里我们主要是使用ubuntu为例来讲解一个最小的文件系统是怎么构建的。"></a>在之前那篇<a href="http://kangqingfei.cn/2016/02/13/BananaPro%E9%95%9C%E5%83%8F%E7%94%9F%E6%88%90%E8%84%9A%E6%9C%AC/">BananaPro镜像生成脚本</a>的文章中，忽略掉了root-fs的步骤。我们都知道，Linux是将内核和root-fs分离的，我们可以使用同一个Linux的内核来使用各种文件系统，包括各种linux的发行版。这篇文章就是用来讲解怎么构建一个最小的root-fs文件系统，这样的文件系统一般只包含很少的软件包，需要有一定的Linux基础才能够把持的住。在这里我们主要是使用ubuntu为例来讲解一个最小的文件系统是怎么构建的。</h3>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BananaPro/">BananaPro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/root-fs/">root-fs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/毕设/">毕设</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/30/构建最小文件系统/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-从gitcafe迁移到coding" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/30/从gitcafe迁移到coding/" class="article-date">
+  	<time datetime="2016-03-30T02:10:29.000Z" itemprop="datePublished">2016-03-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/30/从gitcafe迁移到coding/">从gitcafe迁移到coding</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本来双线部署的时候把国内路线放到了gitcafe，可是好景不长，gitcafe被coding收购，上面的项目也必须在5.31号之前迁移到coding。而且原来在gitcafe的项目变成了只读状态，无奈，只好再折腾一番。</p>
+<ol>
+<li><p>coding提供了傻瓜式的迁移方案，就是登陆你的gitcafe的账号，再登陆你的coding的账号，然后两个账号绑定在一起，然后点击一个按钮就可以开始迁移了。迁移过程有点慢，我也不清楚他什么时候迁移好了，我是20多天前点了迁移，今天刚好有时间进去发现迁移好了，理论上不需要这么久的。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/30/从gitcafe迁移到coding/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-常见元器件的封装" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/15/常见元器件的封装/" class="article-date">
+  	<time datetime="2016-02-15T15:57:36.000Z" itemprop="datePublished">2016-02-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/15/常见元器件的封装/">常见元器件的封装</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="这篇文章主要是介绍一些常见的基本元器件的分类及其封装，以便我们在绘制元器件的PCB库的时候能够更加的清晰。在此之前你可以下载一个叫做封装生成器的东西去看看，上面有很标准的封装描述。这里面的大部分封装（尤其是IC部分）自己都没有接触过，只是参考别人的资料，难免会出错，所以在以后遇到类似的时候会回来继续修改一些不足的内容。"><a href="#这篇文章主要是介绍一些常见的基本元器件的分类及其封装，以便我们在绘制元器件的PCB库的时候能够更加的清晰。在此之前你可以下载一个叫做封装生成器的东西去看看，上面有很标准的封装描述。这里面的大部分封装（尤其是IC部分）自己都没有接触过，只是参考别人的资料，难免会出错，所以在以后遇到类似的时候会回来继续修改一些不足的内容。" class="headerlink" title="这篇文章主要是介绍一些常见的基本元器件的分类及其封装，以便我们在绘制元器件的PCB库的时候能够更加的清晰。在此之前你可以下载一个叫做封装生成器的东西去看看，上面有很标准的封装描述。这里面的大部分封装（尤其是IC部分）自己都没有接触过，只是参考别人的资料，难免会出错，所以在以后遇到类似的时候会回来继续修改一些不足的内容。"></a>这篇文章主要是介绍一些常见的基本元器件的分类及其封装，以便我们在绘制元器件的PCB库的时候能够更加的清晰。在此之前你可以下载一个叫做封装生成器的东西去看看，上面有很标准的封装描述。这里面的大部分封装（尤其是IC部分）自己都没有接触过，只是参考别人的资料，难免会出错，所以在以后遇到类似的时候会回来继续修改一些不足的内容。</h3><ol>
+<li>电阻。我们能够见到的电阻一般有多种，主要包括色环电阻、滑动变阻器、光敏电阻、热敏电阻。<ul>
+<li>对于常见的五环色环电阻，它的阻值由五环对应的数值确定，对应关系为<code>金银</code>用在第四位是-1、-2，<code>黑</code>0<code>白</code>9，然后1-8是<code>棕红橙黄绿蓝紫灰</code>。假设对应的值是abcde则电阻阻值为abc X 10^d 其中e表示误差。常见误差有:棕1%，红2%，橙3%，金5%，银10%。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/封装/">封装</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/毕设/">毕设</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/basis/">basis</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/02/15/常见元器件的封装/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Altium-Designer-绘制原理图库" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/15/Altium-Designer-绘制原理图库/" class="article-date">
+  	<time datetime="2016-02-15T06:52:29.000Z" itemprop="datePublished">2016-02-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/15/Altium-Designer-绘制原理图库/">Altium Designer 绘制原理图库</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="这篇文章主要讲解Altium-Designer中原理图库的一些概念以及如何使用Altium-Designer绘制原理图库并在原理图中使用该库。首先原理图只是提供一个逻辑上的连接并不涉及到一些具体的物理特性，你可以把同一款芯片画的很大也可以很小，这和PCB有着本质的不同，PCB是直接和实物相对应有着十分标准的规范。"><a href="#这篇文章主要讲解Altium-Designer中原理图库的一些概念以及如何使用Altium-Designer绘制原理图库并在原理图中使用该库。首先原理图只是提供一个逻辑上的连接并不涉及到一些具体的物理特性，你可以把同一款芯片画的很大也可以很小，这和PCB有着本质的不同，PCB是直接和实物相对应有着十分标准的规范。" class="headerlink" title="这篇文章主要讲解Altium Designer中原理图库的一些概念以及如何使用Altium Designer绘制原理图库并在原理图中使用该库。首先原理图只是提供一个逻辑上的连接并不涉及到一些具体的物理特性，你可以把同一款芯片画的很大也可以很小，这和PCB有着本质的不同，PCB是直接和实物相对应有着十分标准的规范。"></a>这篇文章主要讲解<code>Altium Designer</code>中原理图库的一些概念以及如何使用<code>Altium Designer</code>绘制原理图库并在原理图中使用该库。首先原理图只是提供一个逻辑上的连接并不涉及到一些具体的物理特性，你可以把同一款芯片画的很大也可以很小，这和PCB有着本质的不同，PCB是直接和实物相对应有着十分标准的规范。</h2><ol>
+<li>原理图库是一个或多个用于原理图绘制的元件符号的集合，一个库里面可能包含了多个器件（元件符号）<ul>
+<li>元件符号：一个元件在原理图中的表现形式，主要包含引脚、元件图形、元件属性的内容</li>
+<li>元件引脚：元件的电气连接点，是电源、电气信号的出入口，它与PCB库中元件封装中的焊盘相对应</li>
+<li>元件图形：用于示意性地表达元件实体和原理的无电气意义的绘图元素的集合</li>
+<li>元件属性：元件的标号、注释、型号、电气值、封装、仿真等信息的集合</li>
+<li>其中只有引脚在原理图中具有电气意义、只有引脚与封装有对应关系。换句话说，一个元件如果不注重可读性，仅考虑电气意义，它可以只含有引脚。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Altium-Designer/">Altium Designer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/毕设/">毕设</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/basis/">basis</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/02/15/Altium-Designer-绘制原理图库/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    </nav>
+  
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>
