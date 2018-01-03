@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="gbk"?>
+<paras author="badcat">
+	<programpara>
+		<autostart>1</autostart>
+		<minimize>0</minimize>
+		<clientexedir>C:\ProgramFiles\green\kcptun\client_windows_amd64.exe</clientexedir>
+		<autoconn enable="1">5</autoconn>
+	</programpara>
+	<clientnodes>
+		<node id="{23852FA2-0544-4F52-ADAA-DB63B88B3C91}" runstate="1" remark="">
+			<json enable="0"></json>
+			<localport>10300</localport>
+			<kcpserverip>162.243.243.78</kcpserverip>
+			<kcpserverport>10300</kcpserverport>
+			<key enable="1">kqf911</key>
+			<crypt enable="1">cast5</crypt>
+			<nocomp enable="0"/>
+			<datashard enable="0"></datashard>
+			<parityshard enable="0"></parityshard>
+			<conn enable="0"></conn>
+			<mtu enable="0"></mtu>
+			<sndwnd enable="0"></sndwnd>
+			<rcvwnd enable="0"></rcvwnd>
+			<dscp enable="0"></dscp>
+			<autoexpire enable="0"></autoexpire>
+			<mode enable="1">fast</mode>
+			<nodelay enable="0"/>
+			<interval enable="0"></interval>
+			<resend enable="0"></resend>
+			<nc enable="0"/>
+			<acknodelay enable="0"/>
+			<keepalive enable="0"></keepalive>
+			<sockbuf enable="0"></sockbuf>
+		</node>
+	</clientnodes>
+</paras>

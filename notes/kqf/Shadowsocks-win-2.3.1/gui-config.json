@@ -1,0 +1,68 @@
+{
+"configs" : [
+  {
+"server" : "127.0.0.1",
+"server_port" : 1994,
+"password" : "kqf911",
+"method" : "aes-256-cfb",
+"remarks" : ""}
+,
+  {
+"server" : "128.199.173.71",
+"server_port" : 1994,
+"password" : "kqf911",
+"method" : "aes-256-cfb",
+"remarks" : ""}
+,
+  {
+"server" : "172.19.72.53",
+"server_port" : 8080,
+"password" : "kangqingfei",
+"method" : "aes-256-cfb",
+"remarks" : ""}
+,
+  {
+"server" : "2604:180:1:8d3::5e38",
+"server_port" : 10024,
+"password" : "mali",
+"method" : "rc4-md5",
+"remarks" : ""}
+,
+  {
+"server" : "ss.kangqingfei.cn",
+"server_port" : 1030,
+"password" : "kqf911",
+"method" : "rc4-md5",
+"remarks" : ""}
+,
+  {
+"server" : "108.61.217.195",
+"server_port" : 1027,
+"password" : "911911",
+"method" : "rc4-md5",
+"remarks" : "join"}
+,
+  {
+"server" : "172.24.53.31",
+"server_port" : 1111,
+"password" : "111111",
+"method" : "rc4-md5",
+"remarks" : "gps"}
+,
+  {
+"server" : "127.0.0.1",
+"server_port" : 10300,
+"password" : "kqf911",
+"method" : "rc4-md5",
+"remarks" : "kcptun"}
+
+],
+"strategy" : null,
+"index" : 7,
+"global" : false,
+"enabled" : true,
+"shareOverLan" : true,
+"isDefault" : false,
+"localPort" : 1081,
+"pacUrl" : null,
+"useOnlinePac" : false}
