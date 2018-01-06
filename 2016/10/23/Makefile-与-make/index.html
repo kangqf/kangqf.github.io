@@ -6,18 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Makefile 与 make | kblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Makefile 是一种类似于脚本的，能够自动化执行程序的编译链接工作(甚至命令的执行 py latex 等命令)，从而省去了人工在命令行里输入指令的繁琐过程(并且在vim下对Makefile有着极好的支持)。而make指令(在win是cmake，linux下是gmake)可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不">
+  <meta name="description" content="Makefile介绍Makefile 是一种类似于脚本的，能够自动化执行程序的编译链接工作(甚至命令的执行 py latex 等命令)，从而省去了人工在命令行里输入指令的繁琐过程(并且在vim下对Makefile有着极好的支持)。而make指令(在win是cmake，linux下是gmake)可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个">
 <meta name="keywords" content="Makefile,make">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Makefile 与 make">
 <meta property="og:url" content="http://kangqingfei.cn/2016/10/23/Makefile-与-make/index.html">
 <meta property="og:site_name" content="kblog">
-<meta property="og:description" content="Makefile 是一种类似于脚本的，能够自动化执行程序的编译链接工作(甚至命令的执行 py latex 等命令)，从而省去了人工在命令行里输入指令的繁琐过程(并且在vim下对Makefile有着极好的支持)。而make指令(在win是cmake，linux下是gmake)可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不">
+<meta property="og:description" content="Makefile介绍Makefile 是一种类似于脚本的，能够自动化执行程序的编译链接工作(甚至命令的执行 py latex 等命令)，从而省去了人工在命令行里输入指令的繁琐过程(并且在vim下对Makefile有着极好的支持)。而make指令(在win是cmake，linux下是gmake)可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-02-12T13:04:22.893Z">
+<meta property="og:updated_time" content="2018-01-03T01:15:47.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Makefile 与 make">
-<meta name="twitter:description" content="Makefile 是一种类似于脚本的，能够自动化执行程序的编译链接工作(甚至命令的执行 py latex 等命令)，从而省去了人工在命令行里输入指令的繁琐过程(并且在vim下对Makefile有着极好的支持)。而make指令(在win是cmake，linux下是gmake)可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不">
+<meta name="twitter:description" content="Makefile介绍Makefile 是一种类似于脚本的，能够自动化执行程序的编译链接工作(甚至命令的执行 py latex 等命令)，从而省去了人工在命令行里输入指令的繁琐过程(并且在vim下对Makefile有着极好的支持)。而make指令(在win是cmake，linux下是gmake)可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -137,7 +137,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.67px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.67px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 18.33px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-入门/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.67px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.67px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.67px;">archlinux</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/linux/" style="font-size: 11.67px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.67px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 13.33px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 11.67px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/安全-渗透/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/封装/" style="font-size: 10px;">封装</a> <a href="/tags/嵌入式/" style="font-size: 16.67px;">嵌入式</a> <a href="/tags/毕设/" style="font-size: 20px;">毕设</a> <a href="/tags/绘图/" style="font-size: 10px;">绘图</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a>
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.67px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.67px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 18.33px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-入门/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.67px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.67px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.67px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/linux/" style="font-size: 11.67px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.67px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 13.33px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 11.67px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/安全-渗透/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/封装/" style="font-size: 10px;">封装</a> <a href="/tags/嵌入式/" style="font-size: 16.67px;">嵌入式</a> <a href="/tags/毕设/" style="font-size: 20px;">毕设</a> <a href="/tags/绘图/" style="font-size: 10px;">绘图</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a>
 					</div>
 				</section>
 				
@@ -145,7 +145,7 @@
 				
 				<section class="switch-part switch-part3">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a></li></ul>
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a></li></ul>
 					</div>
 				</section>
 				
@@ -258,16 +258,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Makefile-是一种类似于脚本的，能够自动化执行程序的编译链接工作-甚至命令的执行-py-latex-等命令-，从而省去了人工在命令行里输入指令的繁琐过程-并且在vim下对Makefile有着极好的支持-。而make指令-在win是cmake，linux下是gmake-可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不过这个工程是用make打开编译。虽然Makefile给我们的程序的编译链接工作省去了很多繁琐的工作，但是偷懒的程序员依然觉得编写Makefile也是一件很是繁琐的工作，因此就诞生了诸多款的make工具用来根据程序员的一些设定自动生成能够执行的Makefile文件，从未又一定程度上减少了编写Makefile文件的重复工作量。这些工具有："><a href="#Makefile-是一种类似于脚本的，能够自动化执行程序的编译链接工作-甚至命令的执行-py-latex-等命令-，从而省去了人工在命令行里输入指令的繁琐过程-并且在vim下对Makefile有着极好的支持-。而make指令-在win是cmake，linux下是gmake-可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不过这个工程是用make打开编译。虽然Makefile给我们的程序的编译链接工作省去了很多繁琐的工作，但是偷懒的程序员依然觉得编写Makefile也是一件很是繁琐的工作，因此就诞生了诸多款的make工具用来根据程序员的一些设定自动生成能够执行的Makefile文件，从未又一定程度上减少了编写Makefile文件的重复工作量。这些工具有：" class="headerlink" title="Makefile 是一种类似于脚本的，能够自动化执行程序的编译链接工作(甚至命令的执行 py latex 等命令)，从而省去了人工在命令行里输入指令的繁琐过程(并且在vim下对Makefile有着极好的支持)。而make指令(在win是cmake，linux下是gmake)可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不过这个工程是用make打开编译。虽然Makefile给我们的程序的编译链接工作省去了很多繁琐的工作，但是偷懒的程序员依然觉得编写Makefile也是一件很是繁琐的工作，因此就诞生了诸多款的make工具用来根据程序员的一些设定自动生成能够执行的Makefile文件，从未又一定程度上减少了编写Makefile文件的重复工作量。这些工具有："></a>Makefile 是一种类似于脚本的，能够自动化执行程序的编译链接工作(甚至命令的执行 py latex 等命令)，从而省去了人工在命令行里输入指令的繁琐过程(并且在vim下对Makefile有着极好的支持)。而make指令(在win是cmake，linux下是gmake)可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不过这个工程是用make打开编译。虽然Makefile给我们的程序的编译链接工作省去了很多繁琐的工作，但是偷懒的程序员依然觉得编写Makefile也是一件很是繁琐的工作，因此就诞生了诸多款的make工具用来根据程序员的一些设定自动生成能够执行的Makefile文件，从未又一定程度上减少了编写Makefile文件的重复工作量。这些工具有：</h2><a id="more"></a>
+        <h2 id="Makefile介绍"><a href="#Makefile介绍" class="headerlink" title="Makefile介绍"></a>Makefile介绍</h2><p>Makefile 是一种类似于脚本的，能够自动化执行程序的编译链接工作(甚至命令的执行 py latex 等命令)，从而省去了人工在命令行里输入指令的繁琐过程(并且在vim下对Makefile有着极好的支持)。而make指令(在win是cmake，linux下是gmake)可以自动搜索路径下的Makefile文件，并根据文件内容进行指令的执行，所以Makefile可以看做是一个工程的配置文件，只不过这个工程是用make打开编译。虽然Makefile给我们的程序的编译链接工作省去了很多繁琐的工作，但是偷懒的程序员依然觉得编写Makefile也是一件很是繁琐的工作，因此就诞生了诸多款的make工具用来根据程序员的一些设定自动生成能够执行的Makefile文件，从未又一定程度上减少了编写Makefile文件的重复工作量。这些工具有：<br><a id="more"></a></p>
 <ul>
 <li><p>cmake cmake是跨平台项目管理工具，它用更抽象的语法来组织项目。虽然，仍然是目标，依赖之类的东西，但更为抽象和友好，比如你可用math表示数学库，而不需要再具体指定到底是math.dll还是libmath.so，在windows下它会支持生成visual studio的工程，在linux下它会生成Makefile，甚至它还能生成eclipse工程文件。也就是说，从同一个抽象规则出发，它为各个IDE定制工程文件。cmake命令执行的CMakeLists.txt文件 参考 <a href="https://www.zhihu.com/question/27455963/answer/36722992" target="_blank" rel="noopener">来源：知乎</a></p>
 </li>
 <li><p>qmake qmake工具就是Qt公司制造出来，用来生成Qt 专用makefile文件，这种makefile文件就能自动智能调用moc和uic对源程序进行预处理和编译。qmake当然必须也是跨平台的，跟cmake一样能对应各种平台生成对应makefile文件。qmake是根据Qt 工程文件（.pro）来生成对应的makefile的。工程文件（.pro）相对来说比较简单，一般工程你都可以自己手写，但是一般都是由Qt的开发环境 Qt Creator自动生成的，你还是只需要按下那个邪恶三角形就完事了。还没有完，由于qmake很简单很好用又支持跨平台，而且是可以独立于它的IDE，所以你也可以用在非Qt工程上面，照样可以生成普通的makefile，只要在pro文件中加入CONFIG -= qt 就可以了。 参考<a href="https://www.zhihu.com/question/27455963/answer/89770919" target="_blank" rel="noopener">辉常哥</a></p>
 </li>
 </ul>
-<h2 id="Makefile-语法"><a href="#Makefile-语法" class="headerlink" title="Makefile 语法"></a>Makefile 语法</h2><h2 id="cmake-语法"><a href="#cmake-语法" class="headerlink" title="cmake 语法"></a>cmake 语法</h2><h2 id="qmake-语法"><a href="#qmake-语法" class="headerlink" title="qmake 语法"></a>qmake 语法</h2> <script type="text/javascript" src="https://asciinema.org/a/50301.js" id="asciicast-50301" async></script> 
-<h2 id="使用make进行程序的编译"><a href="#使用make进行程序的编译" class="headerlink" title="使用make进行程序的编译"></a>使用make进行程序的编译</h2><p>!python2 %</p>
-
+<h2 id="Makefile-语法"><a href="#Makefile-语法" class="headerlink" title="Makefile 语法"></a>Makefile 语法</h2><h2 id="cmake-语法"><a href="#cmake-语法" class="headerlink" title="cmake 语法"></a>cmake 语法</h2><h2 id="qmake-语法"><a href="#qmake-语法" class="headerlink" title="qmake 语法"></a>qmake 语法</h2> <script type="text/javascript" src="https://asciinema.org/a/50301.js" id="asciicast-50301" async></script>
+<h2 id="使用make进行程序的编译"><a href="#使用make进行程序的编译" class="headerlink" title="使用make进行程序的编译"></a>使用make进行程序的编译</h2>
       
     </div>
     
@@ -275,6 +274,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2018/01/03/很久没更新了/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          很久没更新了
+        
+      </div>
+    </a>
   
   
     <a href="/2016/10/23/GCC-G-与-GDB/" id="article-nav-older" class="article-nav-link-wrap">
