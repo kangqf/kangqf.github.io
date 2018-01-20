@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="kblog">
 <meta property="og:description" content="华为机试题汇总，对于一些比较复杂的题目会单独分析链接：https://www.nowcoder.com/ta/huawei 总共 108 道题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-06T11:35:30.049Z">
+<meta property="og:updated_time" content="2018-01-20T01:49:56.325Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="华为机试">
 <meta name="twitter:description" content="华为机试题汇总，对于一些比较复杂的题目会单独分析链接：https://www.nowcoder.com/ta/huawei 总共 108 道题">
@@ -303,7 +303,28 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> strTmp;</span><br><span class="line">strTmp.append(str,<span class="number">1</span>,str.length()<span class="number">-1</span>);</span><br><span class="line">step = stoi(strTmp);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>识别有效IP地址和掩码并进行分类统计</p>
-<h3 id="字符串处理-TODO"><a href="#字符串处理-TODO" class="headerlink" title="字符串处理 TODO"></a>字符串处理 TODO</h3></li>
+<h3 id="字符串处理-主要用到-atoi-str-c-str"><a href="#字符串处理-主要用到-atoi-str-c-str" class="headerlink" title="字符串处理 主要用到 atoi(str.c_str())"></a>字符串处理 主要用到 <code>atoi(str.c_str())</code></h3><p>有个坑就是 有的ip 啥都不是， 比如 127.0.0.1/8<br>还有一个坑就是 255.255.255.255 这个掩码是错误的<br>实现了一个string 的 split</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; split(<span class="built_in">string</span> &amp;str, <span class="keyword">char</span> sep)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">stringstream</span> <span class="title">sstr</span><span class="params">(str)</span></span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; re;</span><br><span class="line">    <span class="built_in">string</span> tmp;</span><br><span class="line">    <span class="keyword">while</span>(getline(sstr,tmp,sep))</span><br><span class="line">        re.push_back(tmp);</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单错误记录</p>
+<h3 id="字符串处理"><a href="#字符串处理" class="headerlink" title="字符串处理"></a>字符串处理</h3><p>用到 <code>string.rfind()</code> 反向查找，返回第一个下标的位置<br><code>string.find()</code> 正向查找，返回第一个找到字符的下标<br>还有一个有趣的结构体构造的代码：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">struct ErrRecord&#123;</span><br><span class="line">    string <span class="keyword">file</span>;</span><br><span class="line">    <span class="keyword">int</span> lineNo;</span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">count</span>;</span><br><span class="line"></span><br><span class="line">    ErrRecord(string <span class="keyword">file</span>, <span class="keyword">int</span> lineNo)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;<span class="keyword">file</span> = <span class="keyword">file</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;lineNo = lineNo;</span><br><span class="line">        <span class="keyword">count</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool operator==(const ErrRecord &amp; a)&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">file</span> == a.<span class="keyword">file</span>) &amp;&amp; (lineNo == a.lineNo);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后利用 <code>ErrRecord record(getFileName(file), lineNo);</code>进行初始化</p>
+</li>
+<li><p>密码验证合格程序</p>
+<h3 id="字符串处理-1"><a href="#字符串处理-1" class="headerlink" title="字符串处理"></a>字符串处理</h3><p>主要难点在 <code>不能有相同长度超2的子串重复</code> 这里涉及一个重复字串的处理 使用的是暴力穷举，但是能AC</p>
+</li>
+<li><p>简单密码</p>
+<h3 id="字符串处理-2"><a href="#字符串处理-2" class="headerlink" title="字符串处理"></a>字符串处理</h3><p>简单的字符串处理，注意多值case语句的使用方法。以及 <code>Z</code> 后移一位是 <code>a</code>。</p>
+</li>
+<li><p>汽水瓶</p>
+<h3 id="简单的数值处理题"><a href="#简单的数值处理题" class="headerlink" title="简单的数值处理题"></a>简单的数值处理题</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(cin&gt;&gt;<span class="built_in">num</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">int</span> remainder = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">num</span>/<span class="number">3</span> != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        count += <span class="built_in">num</span>/<span class="number">3</span>;</span><br><span class="line">        remainder = <span class="built_in">num</span>%<span class="number">3</span>;</span><br><span class="line">        <span class="built_in">num</span> = <span class="built_in">num</span>/<span class="number">3</span> + remainder;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">num</span> == <span class="number">2</span>)</span><br><span class="line">        count += <span class="number">1</span>;</span><br><span class="line">    cout&lt;&lt;count&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除字符串中出现最少的字符</p>
+<h3 id="简单的字符串处理，可以通过map统计出现次数后取最小次数的然后删除。"><a href="#简单的字符串处理，可以通过map统计出现次数后取最小次数的然后删除。" class="headerlink" title="简单的字符串处理，可以通过map统计出现次数后取最小次数的然后删除。"></a>简单的字符串处理，可以通过map统计出现次数后取最小次数的然后删除。</h3><p>注意 列表初始化： <code>int flag[3] = {0}</code> =&gt; [0 0 0] <code>int flag[3] = {1}</code> =&gt; [1 0 0]</p>
+</li>
+<li><p>合唱队<br>### </p>
+</li>
 </ol>
 
       
