@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>my git note | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="my git note">
+<meta property="og:url" content="http://kangqingfei.cn/2015/12/31/my-git-note/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2015-12-31T15:47:42.000Z">
+<meta property="article:modified_time" content="2022-09-14T18:03:38.043Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="note">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 14.29px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 12.86px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-my-git-note" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/31/my-git-note/" class="article-date">
+  	<time datetime="2015-12-31T15:47:42.000Z" itemprop="datePublished">2015-12-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      my git note
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/basis/">basis</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。"><a href="#从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。" class="headerlink" title="从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。"></a>从13年接触git到现在已经两年半了，仍然不能很熟练的使用，遇到麻烦的问题还要在网上搜命令，虽然以前有在本子上写笔记，但是谁没事带本本子啊，所以在这里总结一下git的使用。</h3><span id="more"></span>
+<h4 id="首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代码（就像这篇博客的html代码）的地方（国内也有类似的Coding-net-），相当于是一个远程的仓库。gitlab是一个使用git的开源的工具，可以让你搭建起类似github这样的环境。"><a href="#首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代码（就像这篇博客的html代码）的地方（国内也有类似的Coding-net-），相当于是一个远程的仓库。gitlab是一个使用git的开源的工具，可以让你搭建起类似github这样的环境。" class="headerlink" title="首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代码（就像这篇博客的html代码）的地方（国内也有类似的Coding.net ），相当于是一个远程的仓库。gitlab是一个使用git的开源的工具，可以让你搭建起类似github这样的环境。"></a>首先git是一个很有名的版本控制系统，一开始接触（github）的时候，我以为它只是一个用来找代码的地方，当时要和学长在那里搞了半天才把代码上传到github，想想真是艰辛。github又称gayhub是使用git让你免费托管代码（就像这篇博客的html代码）的地方（国内也有类似的<a target="_blank" rel="noopener" href="https://coding.net/">Coding.net</a> ），相当于是一个远程的仓库。gitlab是一个使用git的开源的工具，可以让你搭建起类似github这样的环境。</h4><h4 id="怎么学习git-首先推荐一个可视化学习git的网站，这个网站基本上覆盖了常用的命令，而且非常形象生动，写这篇文章之前我也是把里面的所有level过了一遍。还有15分钟学习git，可以看到一些文件的变化。再者就是看一些博客，就像我下面附上的阮老师的博客。如果想很系统地了解的话可以看看书，比较有名的有progit，因为git推出了2-0版本，所以也就有了progit2-zh，相关的书还有："><a href="#怎么学习git-首先推荐一个可视化学习git的网站，这个网站基本上覆盖了常用的命令，而且非常形象生动，写这篇文章之前我也是把里面的所有level过了一遍。还有15分钟学习git，可以看到一些文件的变化。再者就是看一些博客，就像我下面附上的阮老师的博客。如果想很系统地了解的话可以看看书，比较有名的有progit，因为git推出了2-0版本，所以也就有了progit2-zh，相关的书还有：" class="headerlink" title="怎么学习git?首先推荐一个可视化学习git的网站，这个网站基本上覆盖了常用的命令，而且非常形象生动，写这篇文章之前我也是把里面的所有level过了一遍。还有15分钟学习git，可以看到一些文件的变化。再者就是看一些博客，就像我下面附上的阮老师的博客。如果想很系统地了解的话可以看看书，比较有名的有progit，因为git推出了2.0版本，所以也就有了progit2-zh，相关的书还有："></a>怎么学习git?首先推荐一个<a target="_blank" rel="noopener" href="http://pcottle.github.io/learnGitBranching/">可视化学习git</a>的网站，这个网站基本上覆盖了常用的命令，而且非常形象生动，写这篇文章之前我也是把里面的所有level过了一遍。还有<a target="_blank" rel="noopener" href="https://try.github.io/levels/1/challenges/1">15分钟学习git</a>，可以看到一些文件的变化。再者就是看一些博客，就像我下面附上的阮老师的博客。如果想很系统地了解的话可以看看书，比较有名的有progit，因为git推出了2.0版本，所以也就有了<a target="_blank" rel="noopener" href="https://github.com/progit/progit2-zh">progit2-zh</a>，相关的书还有：</h4><ul>
+<li><code>Manning.Learn.Git.in.a.Month.of.Lunches.2015.9.pdf</code>  </li>
+<li><code>O&#39;Reilly.Git.for.Teams.2015.8.pdf</code></li>
+<li><code>OReilly.Introducing.GitHub.2014.11.pdf</code>  </li>
+<li><code>Manning.Git.in.Practice.2014.9.pdf</code>  </li>
+<li><code>[Git.Pocket.Guide(2013.6)].Richard.E.Silverman.文字版.pdf</code></li>
+<li><code>[Version.Control.with.Git(2nd,2012.8)].Jon.Loeliger.文字版.pdf</code>  </li>
+<li><code>[Pragmatic.Guide.to.Git(2010.11)].Travis.Swicegood.文字版.pdf</code></li>
+</ul>
+<h4 id="我列出的大都是英文的，而且有点多，我也没看过，也不知道哪本好，可以自己看看选择一下。"><a href="#我列出的大都是英文的，而且有点多，我也没看过，也不知道哪本好，可以自己看看选择一下。" class="headerlink" title="我列出的大都是英文的，而且有点多，我也没看过，也不知道哪本好，可以自己看看选择一下。"></a>我列出的大都是英文的，而且有点多，我也没看过，也不知道哪本好，可以自己看看选择一下。</h4><ol>
+<li>git 术语。首先先讲一下git的一些术语，参考了阮老师的博客，大概是</li>
+</ol>
+<ul>
+<li>Workspace：工作区，就是当前工作目录的内容</li>
+<li>Index &#x2F; Stage：暂存区，就是被git管理的当前的工作区的内容</li>
+<li>Repository：仓库区（或本地仓库），就是暂存区的内容保存的地方</li>
+<li>Remote：远程仓库 ，就是协同开发的时候多个开发者一起维护的仓库</li>
+<li>快照，就是一系列的提交构成的仓库的一个版本</li>
+<li>检出，就是复制某一快照然后新建一个分支</li>
+<li>hashValue，git用哈希值来表示一个快照，hashValue一般很长，我们使用的话一般取4位（前面）及以上就可以了。</li>
+<li>HEAD，指向当前工作快照的一个指针类似的，一般指向当前分支，也可分离指向hash值代表的快照</li>
+</ul>
+<ol start="2">
+<li>config &amp; help</li>
+</ol>
+<ul>
+<li>首先使用git时你可能要配置一些个人信息，特别是使用github，如果没有得到认证授权将会受到速率方面的一些限制，所以需要配置个人信息。还有就是编辑器方面的配置，</li>
+<li><code>git config --list</code> 来查看我们的一些配置信息</li>
+<li><code>git config --global --user.name=name</code> 配置用户名</li>
+<li><code>git config --global --user.email=name@xxx.xxx</code> 配置用户邮箱</li>
+<li><code>git config --global core.editor &quot;gedit -s&quot;</code> -s 的意思是将gedit作为一个的单独的窗口打开</li>
+<li>我们还可以直接修改.git文件夹下的config文件来配置git。</li>
+<li>通过<code>git help</code>来获得帮助，通过<code>git help command</code>来获得具体命令的帮助，在windows中可能会打开html文档，或与之关联的浏览器，在那里你可以获得所有的帮助信息。</li>
+</ul>
+<ol start="3">
+<li>init &amp; clone &amp; rm &amp; mv &amp; ls-files</li>
+</ol>
+<ul>
+<li><p><code>git init</code> 新建一个git仓库</p>
+</li>
+<li><p><code>git clone URL DIR</code> 克隆一个仓库，URL可以是http(s)、ssh、ftp、等链接协议，-o <name>可以配置远程追踪的仓库(默认origin)，-b <name> 可以指定克隆的分支（默认是HEAD指向的分支）–depth <depth> 可以指定克隆的深度，这对于很多提交的仓库可以大大减小它的大小</p>
+</li>
+<li><p><code>git rm &lt;file&gt; </code> 将文件移出暂存区，支持正则。</p>
+</li>
+<li><p><code>git mv &lt;file&gt; &lt;source&gt; &lt;destination&gt;</code> 移动或是重命名文件</p>
+</li>
+<li><p><code>git ls-files</code> 命令的选项有-c(cached)、d(deleted)、o(others)、i(ignored)、s(stage)、u(unmerged)、k(killed)、m(modified)。</p>
+</li>
+</ul>
+<ol start="4">
+<li>add &amp; commit</li>
+</ol>
+<ul>
+<li><code>git add &lt;file&gt;</code> 添加文件，可以只用简单的正则进行匹配</li>
+<li><code>git add -A(all)</code> 来添加所有的文件。</li>
+<li><code>git commit -a -m &quot;msg&quot;</code> -a 表示将所有修改或删除的文件添加到暂存区，-m表示本次修改的提示信息</li>
+<li><code>git commit --amend</code> 可以用来修改最近一次提交的注释信息，但是一旦你更新到远程仓库这个命令就不管用了。</li>
+</ul>
+<ol start="5">
+<li>branch &amp; checkout</li>
+</ol>
+<ul>
+<li>branch 用来创建、查看、删除分支。</li>
+<li><code>git branch branchName</code> 创建一个新的分支。</li>
+<li><code>git branch </code> 查看当前分支，-a可以列出所有分支信息，包括远程的分支。</li>
+<li><code>git branch -d|-D</code> 用来删除或是强制删除一个分支，可以使用-r表示对远程分支进行操作</li>
+<li><code>git branch -u origin/master foo</code>  设置远程分支与本地分支的映射关系</li>
+<li><code>git branch -f master HEAD~3</code>（强制）移动 master 指向 HEAD 的第3级父提交（注意可能会丢失当前分支的所有更改）,也可以理解为将HEAD~3命名为master即使是master已经存在</li>
+<li><code>git checkout branchName &lt;remote&gt;/&lt;branch&gt;</code> -b 可以用于在目标分支不存在时新建一个分支然后切换 -t|–track <remote>&#x2F;<branch> 用于设置该分支所追踪的远程分支，默认设置远程同名分支为追踪分支</li>
+</ul>
+<ol start="6">
+<li>log &amp; reflog &amp; status &amp; show</li>
+</ol>
+<ul>
+<li>log 用来查看16进制标识的每次提交的版本号（hash 值），使用hash值得时候你只需要输入前面几个字符就好（一般至少用4个），这个命令比较复杂，具体可以去看帮助文档，主要是一些输出的格式和显示问题，下面列出常用的格式化输出方式</li>
+<li><code>git log --all --decorate --graph --oneline</code> –decorate 会显示出tag信息，–graph 可以图形化地表示出分支合并历史， –oneline 每条log只显示一行</li>
+<li>还有其他的显示设置，包括时间、作者、关键词的筛选，以及一些变量的使用。</li>
+<li>git reflog 可以查看所有分支的所有操作记录（包括（包括commit和reset的操作），包括已经被删除的commit记录，git log则不能察看已经删除了的commit记录，也就是说git reflog列出了head曾经指向过的一系列commit。要明白它们只存在于你本机中；而不是你的版本仓库的一部分，也不包含在push和merge操作中。</li>
+<li>对于大型的仓库，通常用<code>git fsck --lost-found</code>（文件系统检测）来找回丢失的提交，git fsck 相对reflog是有优势的。比方说你删除一个远程的分支然后关闭仓库。 用fsck 你可以搜索和恢复已删除的远程分支。</li>
+<li><code>git status</code> 用于显示工作区的当前状态，包括哪些文件没有被提交，以及哪些文件没有纳入版本库管理。</li>
+<li><code>git show</code> 用来查看某次提交的具体情况（包括文件的修改情况），默认查看最新一次的提交，也可以指定一个tag或hash值来查看其它的提交。当然它也可以像log一样格式化输出。</li>
+</ul>
+<ol start="7">
+<li>merge &amp; rebase &amp; cherry-pick &amp; HEAD</li>
+</ol>
+<ul>
+<li>这两个命令一定要区分清楚，容易搞混。到底是使用哪个是一个习惯的问题，视自己情况而定。</li>
+<li>merge 合并产生一个特殊的提交记录，它包含两个唯一父提交。</li>
+<li><code>git merge buxfig</code> 就是把bugfix的内容包含到当前的分支，相当当前分支作为默认参数放在后面，即<code>git merge bugfix master</code>，–no-ff -m <message> 可以禁止fast forward，也就是会新建一个提交。</li>
+<li><code>git rebase C1 C2</code>是在分支之间合并工作的第二种方法。</li>
+<li>rebase 就是取出一条分支(前面的分支C1)的一系列新的的提交记录，”复制”它们，然后把它在另一条分支(后面的分支C2)后面新建一个提交放下来（C1-&gt;C2），这样新的分支就不会有两个父节点，默认将当前分支名作为C2参数传递。</li>
+<li><code>git cherry-pick &lt;Commit1&gt; &lt;Commit2&gt; &lt;...&gt;</code> 将一些提交复制到你当前的位置 HEAD 下面。按照顺序选择性的合并一条分支。就是说那个分支中的一些东西是有必要合并的而另一些是没有必要的（注意当你选取的那个提交与当前提交的内容没有区别时会报错，因为你将创建一个没有任何修改的提交）。</li>
+<li>举一个场景，我们要排掉某个bug 然后新建的一条bug分支，然后提交了5次，前面五次都没能解决bug，只有最后一次的提交是正确解决了bug的，这样我们就需要只是选取bug分支的最后一个提交就ok了，我们就可以切换到 master 然后 rebase -i bug,<code>git rebase -i branchname/hashvalue</code> 以交互式的方式让你自己选择要复制的提交(重排那些提交),同样的可以使用cherry-pick来选取需要的分支。</li>
+<li>HEAD 是当前提交记录的符号名称， HEAD 总是指向最近一次提交记录，大多数修改工作树的 git 命令都开始于改变，HEAD 指向一般HEAD都是指向分支名，所以HEAD总是跟在分支后面。 ** 分离 HEAD ** 就是让其指向一个提交记录而不是分支名。</li>
+<li>相对引用 使用 ^ (可以叠加(HEAD^^) &#x3D; (HEAD~2(后退多步)))来将HEAD移动到指定提交的父提交。相对引用最多的就是移动分支。你可以使用 -f 选项直接让分支指向另一个提交（详细见git branch -f）。</li>
+<li>和 ~ 修改符一样，^ 修改符之后也可以跟一个（可选的）数字。这不是用来指定向上返回几代（~ 的作用），^ 后的数字指定跟随合并提交记录的哪一个父提交。当一个合并提交有多个父提交吧，所有选择哪条路径不是那么清晰。git 默认选择跟随合并提交的”第一个”父提交，使用 ^ 后跟一个数字来改变这一默认行为。</li>
+</ul>
+<ol start="8">
+<li>reset &amp; revert &amp; tag &amp; describe</li>
+</ol>
+<ul>
+<li>reset 和 revert 又是两个需要区别的概念。</li>
+<li>git reset 往回移动分支，只是撤销了提交而已,但是最近一次提交的修改仍然存在（干净的暂存区被污染了），对别人的远端分支是无效的。</li>
+<li>git revert 新建一个提交用来撤销最近一次提交的,最近一次提交的修改已经不存在（干净的工作区依旧干净）。</li>
+<li><code>git reset [--hard|soft|mixed] [&lt;commit&gt;|HEAD]</code>：将当前的分支重设（reset）到指定的<commit>或者HEAD（默认，如果不显示指定commit，默认是HEAD，即最新的一次提交），并且根据[mode]有可能更新暂存区和工作区。hard的意思是所有内容都丢弃，并且移动HEAD，soft的意思是仅仅移动HEAD指针（文件修改被移出快照，未被commit），mixed是默认的模式，它的意思是文件修改未被add，已经移出了暂存区。</li>
+<li><code>git revert [&lt;commit&gt;|HEAD]</code>git revert是提交一个新的版本，将需要revert的版本的内容再反向修改回去，版本会递增，不影响之前提交的内容。也即是相当于cherry-pick 一个之前的版本。</li>
+<li><code>git tag version [commit]</code>可以永远地指向某个特定的可以永远地指向某个特定的 commit，就像是表示一个”里程碑”一样 有新的 commit 时，它们也不会移动，你不可以checkout到 tag 上面 commit，tag 的存在就像是一个在 commit tree 上的表示特定讯息的一个锚。<code>git tag -d [tagname]</code>用来删除一个tag。</li>
+<li><code>git describe [ref] </code>用来显示离你最近的锚点（也就是 tag）,[ref] 是任何一个可以被 git 解读成 commit 的位置，如果你没有指定的话，git 会以你目前所在的位置为准（HEAD）。指令的输出就像这样：<code>&lt;tag&gt;_&lt;numCommits&gt;_g&lt;hash&gt;</code> <tag>表示的是离 <ref> 最近的 tag， numCommits 是表示这个 tag 离 <ref> 有多少个 commit， <hash> 表示的是你所给定的 <ref> 所表示的 commit 的hash值。</li>
+</ul>
+<ol start="9">
+<li>remote</li>
+</ol>
+<ul>
+<li>使用git肯定要用到远程分支，远程分支有一个全名规范， 它们以这样的格式显示:<remote_name>&#x2F;<branch_name>。大多数的开发者会将它们的远端命名为 origin。</li>
+<li><code>git remote -v</code> 可以列出远程追踪的地址，包括push和fetch。当你克隆时, git 会创建跟踪分支(就像 origin&#x2F;master), 对于每个远端分支, 创建一个跟踪远端分支的本地分支 (master), 所以你经常会看到这个的命令输出:<code>local branch &quot;master&quot; set to track remote branch &quot;origin/master&quot; </code></li>
+<li><code>git remote add &lt;remotename&gt; &lt;url&gt;</code> 添加远程仓库（适用于有多个远程仓库的情况）</li>
+<li><code>git remote rename &lt;old_name&gt; &lt;new_name&gt;</code>用于重命名远程仓库</li>
+<li><code>git remote rm &lt;remotename&gt;</code> 用于删除远程仓库。</li>
+</ul>
+<ol start="10">
+<li>fetch + merge &#x3D; pull</li>
+</ol>
+<ul>
+<li>git fetch 从远端仓库获取数据。git fetch 完成了两步:下载本地仓库未包含的提交对象，更新我们的远端分支点(如, origin&#x2F;master)，git fetch不能改变你的本地状态. 你不会更新你的 master 或者 任何与文件系统相关的东西。所以, 你可以将git fetch 的执行视为下载</li>
+<li>一般的流程是我们用 git fetch 更新了远端在本地的副本, 然后git rebase&#x2F;merge合并我们的工作以映射远端的新变化, 最后再 git push</li>
+<li>git pull, 就是 fetch 和 merge 的简写. 同样的 git pull –rebase 就是 fetch 和 rebase 的简写！</li>
+<li>其实有很多方法来合并远端分支和本地分支的，只要我在本地有新的提交, 你可以像合并其它分支那样合并远端分支. 具体说就是你可以执行以下命令:<code>git cherry-pick origin/master</code>,<code>git rebase origin/master</code>，<code>git merge origin/master</code>。</li>
+<li><code>git fetch &lt;remote-&gt;repo&gt; &lt;remote-&gt;branch&gt;</code> 用于获取远端的更新，<code>git fetch origin &lt;remote-&gt;source&gt;:&lt;local-&gt;destination&gt;</code>没有remote-&gt;source的话只会新建本地的destination分支（保留冒号）。</li>
+<li><code>git pull origin foo</code> 相当于：<code>git fetch origin foo; git merge origin/foo</code>; <code>git pull origin bar~1:bugFix</code> 相当于：<code>git fetch origin bar~1:bugFix; git merge bugFix</code>git pull 实际上就是 fetch + merge 的缩写, git pull 在乎的是提交在哪里结束(也就是 git fetch 所确定的 destination)</li>
+</ul>
+<ol start="11">
+<li>push</li>
+</ol>
+<ul>
+<li><code>git push &lt;remote-&gt;repo&gt; &lt;remote-&gt;place&gt;</code> 推送更新到远端</li>
+<li><code>git push origin &lt;local-&gt;source&gt;:&lt;remote-&gt;destination&gt;</code> 没有local-&gt;source的话会删除远端的destination分支（保留冒号）</li>
+<li>你也可以<code>git push origin --delete branch</code>来删除远程分支。</li>
+<li>我们可以用git tag来给工程打上标签，但是这个命令只是在本地仓库打标签而已，为了能把标签同步到远程服务器，我们可以<code>git push origin [tagname]</code>来推送指定的tag，也可以<code>git push origin --tags</code> 来推送所有的tags。<code>git push origin :refs/tags/[tagname]</code>来删除远程的的tags</li>
+</ul>
+<ol start="12">
+<li>diff &amp; blame &amp; grep &amp; stash</li>
+</ol>
+<ul>
+<li>diff用来比较两个文件，了解它们的区别，可以参照<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html">读懂diff</a>。</li>
+<li><code>git diff</code>用来查看工作区和暂存区之间的差别。</li>
+<li><code>git diff --cached</code>查看已经暂存起来的文件和上次提交时的快照之间的差异，所显示的内容都会在执行<code>git commit</code>之后提交（不用add）。</li>
+<li><code>git diff HEAD</code>这条命令会显示你工作目录与上次提交时之间的所有差别,所显示的内容都会在执行<code>git commit -a</code>（先add再commit）命令时被提交。</li>
+<li><code>git diff branch1 branch2 --stat</code>查看两个分支之间的差别，加上 –stat 是显示文件列表, 否则是文件内容diff。</li>
+<li><code>git blame [filename]</code>, 你就会得到整个文件的每一行的详细修改信息:包括SHA串,日期和作者。</li>
+<li>git stash 的作用使用在这样的情景，我们进行一系列的修改后，得到一个状态，而这个状态还不能commit，但是这时要进行分支的操作，就需要先用<code>git stash</code>来将当前的改变压入栈中（备份当前的修改），然后恢复到最新一个commit，操作完之后要还原之前的修改，就用<code>git stash pop</code>来还原之前（最新一次）的备份修改。</li>
+<li><code>git stash list</code>用来查看现在的备份栈情况。<code>git stash apply stash@&#123;2&#125;</code>来恢复指定的备份。<code>git stash drop stash@&#123;0&#125;</code>来删除指定的备份。</li>
+</ul>
+<ol start="13">
+<li>git flow</li>
+</ol>
+<ul>
+<li>Git Flow是构建在Git之上的一个组织软件开发活动的模型，是在Git之上构建的一项软件开发最佳实践。具体不细讲，参考阮老师的博文。</li>
+</ul>
+<ol start="14">
+<li>git extra</li>
+</ol>
+<ul>
+<li>Git-extras 提供了一系列 Git 子命令扩展，一步完成好几个 Git 原生命令或者外部命令才能搞定的操作。比如 Git changelog 可快速根据 commit log 生成 Changelog，Git release 可生成相应版本 tag, Git pr 可以直接在 GitHub 上创建一条 Pull Request，简直是一把 Git 瑞士军刀。 Git-extras 可以作为 oh-my-zsh 的插件直接在 ~&#x2F;.zshrc 中启用。参考<a target="_blank" rel="noopener" href="https://github.com/tj/git-extras/blob/master/Commands.md">这里</a></li>
+</ul>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" title="进入" target="">常用 Git 命令清单</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/07/git.html" title="进入" target="">Git分支管理策略</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2015/12/git-workflow.html" title="进入" target="">Git 协作流程</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2015/09/git-bitmap.html" title="进入" target="">Github 的清点对象算法</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/03/ubuntu-note/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ubuntu note
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/30/use-markdown/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">use markdown</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

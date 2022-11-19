@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>为BananaPro编译GPU驱动 | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上承我们刚刚构建最小文件系统，下承即将要编译Qt，在这里我们编译一下BananaPro的GPU驱动。在官方的linux中并没有将GPU驱动编译进内核，不过可以在官方wiki-&gt;BananaPro&#x2F;Pi:GPU)中编译用户空间的驱动，然后在开机的时候加载就好了，编译过程也很简单，基本上就是按照wiki的步骤一步步来就ok。不过在此之前，我们很有必要搞清楚一些概念性的东西(大部分来自各">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为BananaPro编译GPU驱动">
+<meta property="og:url" content="http://kangqingfei.cn/2016/04/02/%E4%B8%BABananaPro%E7%BC%96%E8%AF%91GPU%E9%A9%B1%E5%8A%A8/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="上承我们刚刚构建最小文件系统，下承即将要编译Qt，在这里我们编译一下BananaPro的GPU驱动。在官方的linux中并没有将GPU驱动编译进内核，不过可以在官方wiki-&gt;BananaPro&#x2F;Pi:GPU)中编译用户空间的驱动，然后在开机的时候加载就好了，编译过程也很简单，基本上就是按照wiki的步骤一步步来就ok。不过在此之前，我们很有必要搞清楚一些概念性的东西(大部分来自各">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-04-02T13:43:01.000Z">
+<meta property="article:modified_time" content="2022-09-14T18:03:38.042Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="BananaPro">
+<meta property="article:tag" content="毕设">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 14.29px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 12.86px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-为BananaPro编译GPU驱动" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/02/%E4%B8%BABananaPro%E7%BC%96%E8%AF%91GPU%E9%A9%B1%E5%8A%A8/" class="article-date">
+  	<time datetime="2016-04-02T13:43:01.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      为BananaPro编译GPU驱动
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BananaPro/" rel="tag">BananaPro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%95%E8%AE%BE/" rel="tag">毕设</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上承我们刚刚构建最小文件系统，下承即将要编译Qt，在这里我们编译一下BananaPro的GPU驱动。在官方的linux中并没有将GPU驱动编译进内核，不过可以在官方wiki-&gt;<a target="_blank" rel="noopener" href="http://wiki.lemaker.org/BananaPro/Pi:GPU">BananaPro&#x2F;Pi:GPU</a>)中编译用户空间的驱动，然后在开机的时候加载就好了，编译过程也很简单，基本上就是按照wiki的步骤一步步来就ok。不过在此之前，我们很有必要搞清楚一些概念性的东西(大部分来自各个百科)。</p>
+<span id="more"></span>
+
+
+<ul>
+<li><p>FrameBuffer：是一种驱动视频显示设备的方式，即映射一块内存到用户空间，然后通过操作这块内存来操作显示设备。Framebuffer机制模仿显卡的功能，将显卡硬件结构抽象掉，可以通过 Framebuffer的读写直接对显存进行操作。用户可以将Framebuffer看成是显示内存的一个映像，将其映射到进程地址空间之后，就可以直接进行读写操作，而写操作可以立即反应在屏幕上。这种操作是抽象的，统一的。用户不必关心物理显存的位置、换页机制等等具体细节。这些都是由 Framebuffer设备驱动来完成的。对于低性能的嵌入式设备一般不可能跑起Xwindow，所以就通过直接操作fb的方式驱动显示设备，而在一些X协议的底层实现，也是使用的fb,比如对于Xorg，可以根据xorg.conf里的配置判断是否使用fbdev。</p>
+</li>
+<li><p>X-window(Xwindow、X11或X))：一套在UNIX机器上运行优良的视窗系统，这个系统包含三个部分：</p>
+<ul>
+<li>X服务器（X Server）是一个管理显示的进程，必须运行在一个有图形显示能力的电脑上。</li>
+<li>X客户程序（X Client）是一个使用X服务器显示其资料的程序，它可以运行在与X服务器不同的电脑上。</li>
+<li>X协议（X protocol）是X客户程序和服务器进行通信的一套协定，X协议支持网络。<br>X不是内置于操作系统，它只是比用户层次稍高一些。在系统中也是一个相对独立的元件。</li>
+</ul>
+</li>
+<li><p>XFree86：XWindow系统最被广泛使用的基建平台。XFree86是XWindow系统的一个实现，1992年至2004年，它一直循著自由发放的开放源代码模式发展着。由2004年开始，它再不是以GPL软件许可证的形式出现。</p>
+</li>
+<li><p>X.Org：XFree86的开发因软件许可证出现分岐，而衍生出另一个发展自XFree86-4.4-RC2 版本源代码，名叫X.Org 服务器的XWindow系统。它被包括ubuntu，fedora在内的发行版本采用以代替XFree86。</p>
+</li>
+<li><p>xlib 是 一个用c语言编写的 X Window System 协议的客户端库，<br>它包含有与x服务器进行通信的函数，编程者可以在不了解x底层协议的情况下直接使用它进行编程。</p>
+</li>
+<li><p>xcb:是xlib的代替者。</p>
+</li>
+<li><p>GLX: GLX 库解决了 X Window 中的 OpenGL 图形渲染问题。同样的，WGL 和 AGL 库分别解决了 MS Windows 和 Mac OS 窗口系统中的 OpenGL 图形渲染问题。GLX 像胶水一样，建立了 X Window、OpenGL 以及 3D 硬件加速驱动之间的联系。在 Linux 中，如果未有安装相应的支持 3D 加速的显卡驱动，那么 GLX 可以调用 Mesa (Unix-like 系统中应用最为广泛的 OpenGL 实现) 的 3D 软件加速来取得 X Window 与 OpenGL 的集成；当然，这种做法所实现的 3D 渲染效率就要大打折扣，并且也会累的 CPU 气喘。</p>
+</li>
+<li><p>EGL 是 OpenGL ES（嵌入式）和底层 Native 平台视窗系统之间的接口。EGL API 是独立于OpenGL ES各版本标准的独立API ，其主要作用是为OpenGL指令创建 Context 、绘制目标Surface 、配置Framebuffer属性、Swap提交绘制结果等。此外，EGL为GPU厂商和OS窗口系统之间提供了一个标准配置接口。参考<a target="_blank" rel="noopener" href="http://imgtec.eetrend.com/blog/6839">这里</a></p>
+</li>
+<li><p>DRI (Direct Rendering Infrastructure) - OpenGL Context 的库集合或是一系列3D驱动程序的集合，DRI的一个主要目的就是提供高效能的OpenGL支持。</p>
+</li>
+<li><p>DRM (Direct Rendering Manager)：本質是kernel module (menuconfig 里面character device -&gt; drm)管理对硬件的操控要求</p>
+</li>
+<li><p>OpenGL(Open Graphics Library)：一个跨编程语言、跨平台的编程接口规范。它用于三维图像（二维的亦可），是一个功能强大，调用方便的底层图形库。</p>
+</li>
+<li><p>OpenGL ES(OpenGL for Embedded Systems)：是 OpenGL 三维图形 API 的子集，针对手机、PDA和游戏主机等嵌入式设备而设计。</p>
+</li>
+<li><p>OpenVG(Open Vector Graphics):OpenVG 是针对诸如Flash和SVG的矢量图形算法库提供底层硬件支持界面的免授权费、跨平台应用程序接口API。用以在小屏幕设备上实现动人心弦的用户界面和文本显示效果，并支持硬件实现，这样可以在在极低的处理器功率级别下实现流畅的交互性能。</p>
+</li>
+<li><p>Qt-&gt;KDM-&gt;KDE</p>
+<ul>
+<li>Qt:是一个1991年由奇趣科技开发的跨平台C++图形用户界面应用程序开发框架。它既可以开发GUI程序，也可用于开发非GUI程序，比如控制台工具和服务器。Qt是面向对象的框架，使用特殊的代码生成扩展（称为元对象编译器(Meta Object Compiler, moc)）以及一些宏，易于扩展，允许组件编程。</li>
+<li>KDM(KDE DISPLAY MANAGER):是KDE(Kool Desktop Environment)的X显示管理器。kdm 管理一系列本地或者远程机器的 X 服务器，提供的服务类似于字符终端中 init、getty 和 login 提供的相应服务：提示输入登录名和密码，验证用户，运行会话。</li>
+<li>KDE(Kool Desktop Environment):一种著名的运行于 Linux、Unix 以及FreeBSD 等操作系统上的自由图形桌面环境，整个系统采用的都是 TrollTech 公司所开发的Qt程序库（现在属于Digia公司）。</li>
+</ul>
+</li>
+<li><p>GTK-&gt;GDM-&gt;GNOME</p>
+<ul>
+<li>GTK（GIMP Toolkit)：是一套源码以LGPL许可协议分发、跨平台的图形工具包。它支持创建基于 GUI 的应用程序。GTK+虽然是用C语言写的，但是你可以使用熟悉的语言来使用GTK+，因为GTK+已经被绑定到几乎所有流行的语言上。</li>
+<li>GDM(The GNOME Display Manager)：GNOME显示环境的管理器，并被用来替代原来的<code>X Display Manager</code>。</li>
+<li>GNOME:类Unix操作系统上最常用的图形桌面环境。GNOME属于GNU计划中的一部份。作为KDE的替代品(由于KDE依赖的Qt当时并未使用自由软件许可)，GNOME是完全公开的(免费的软件)，以GTK图形界面库为基础。</li>
+</ul>
+</li>
+<li><p>LightDM(Light Display Manager)：一个全新的、轻量的Linux桌面的桌面显示管理器。 LightDM是一个跨桌面（KDE，GNOME）显示管理器，其目的是成为 X.org的X服务器的标准显示管理器，支持本地图形界面以获得最好的兼容性。LightDM现在已经具备了GTK、Qt甚至WebKit的界面，也就是用HTML来做登陆界面。</p>
+</li>
+<li><p>Xfce：Xfce是一个自由软件，运行在类Unix操作系统 （如Linux、FreeBSD 和 Solaris）上，提供轻量级桌面环境。Xfce快速、轻量，界面美观和对用户友好。Xfce由独立的软件组件构成，可根据需要单独使用或者组合在一起提供计算机图形桌面环境的全面功能。Xfce由C语言写成，依赖GTK+。</p>
+</li>
+</ul>
+<h2 id="接着，介绍一下BananaPro的GPU-gt-ARM-Mali400-MP2"><a href="#接着，介绍一下BananaPro的GPU-gt-ARM-Mali400-MP2" class="headerlink" title="接着，介绍一下BananaPro的GPU -&gt; ARM Mali400 MP2"></a>接着，介绍一下BananaPro的GPU -&gt; ARM Mali400 MP2</h2><p>正如<a target="_blank" rel="noopener" href="http://blog.csdn.net/myarrow/article/details/17375483">这里</a>所说的Mali GPU DDK 的 Linux 版本包含在内核中运行的以下三个组件：</p>
+<ol>
+<li>设备驱动程序:它是最重要的组件，提供对 Mali-400 GPU 的低级访问。其主要功能如下：</li>
+</ol>
+<ul>
+<li>对 Mali GPU 硬件的访问</li>
+<li>中断处理</li>
+<li>低级内存管理</li>
+</ul>
+<ol start="2">
+<li>统一内存提供程序 (UMP)：它是重要的辅助组件为，可以各种不同方式使用以实现驱动程序堆栈中的零拷贝操作。</li>
+</ol>
+<ul>
+<li>通过安全 ID 访问分配的 UMP 内存。这可在不同的应用程序、驱动程序和硬件组件之间共享内存，以实现零拷贝操作</li>
+<li>设置 MMU 或 MPU 表所需的物理地址信息</li>
+<li>将 UMP 内存映射至 CPU 地址空间的方法，以实现读取和写入</li>
+</ul>
+<ol start="3">
+<li>Mali 直接渲染管理器 (DRM)：它将 Mali GPU DDK 集成到 X11 环境之中并启用直接渲染接口 (DRI2)。</li>
+</ol>
+<h2 id="编译安装驱动"><a href="#编译安装驱动" class="headerlink" title="编译安装驱动"></a>编译安装驱动</h2><ol>
+<li>安装工具链<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> install git build-essential make gcc autoconf libtool debhelper \</span><br><span class="line">dh-autoreconf pkg-config automake xutils-<span class="built_in">dev</span> libx11-<span class="built_in">dev</span> libxext-<span class="built_in">dev</span> libdrm-<span class="built_in">dev</span> \</span><br><span class="line">x11proto-dri2-<span class="built_in">dev</span> libxfixes-<span class="built_in">dev</span> xorg-<span class="built_in">dev</span> libltdl-<span class="built_in">dev</span> mesa-utils</span><br></pre></td></tr></table></figure></li>
+<li>下载源码<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/hw_accleration</span><br><span class="line">cd ~/hw_accleration</span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/robclark/</span>libdri2.git</span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/linux-sunxi/</span>libump.git</span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/linux-sunxi/</span>sunxi-mali.git</span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/ssvb/</span>xf86-video-fbturbo.git</span><br></pre></td></tr></table></figure></li>
+<li>自动加载驱动模块。<code>sudo vim /etc/modules</code>然后添加<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ump</span></span><br><span class="line"><span class="attribute">mali</span></span><br><span class="line"><span class="attribute">mali_drm</span></span><br></pre></td></tr></table></figure></li>
+<li>安装libdri2。如果要使用mali的话就需要安装，如果只是用FrameBuffer的话就不用安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/hw_accleration</span><br><span class="line"><span class="built_in">cd</span> libdri2</span><br><span class="line">./autogen.sh</span><br><span class="line">./configure --prefix=/usr</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure></li>
+<li>安装libump库，这个库是用来管理统一映射用户空间的内存的<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/hw_accleration</span><br><span class="line"><span class="built_in">cd</span> libump</span><br><span class="line">autoreconf -i</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure></li>
+<li>编译mali驱动<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/hw_accleration</span><br><span class="line"><span class="built_in">cd</span> sunxi-mali</span><br><span class="line">git submodule init</span><br><span class="line">git submodule update</span><br></pre></td></tr></table></figure></li>
+<li>安装mali驱动</li>
+</ol>
+<ul>
+<li>如果使用X11<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span> config</span><br><span class="line">sudo <span class="built_in">make</span> install</span><br></pre></td></tr></table></figure></li>
+<li>如果使用framebuffer<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make<span class="built_in"> config </span><span class="attribute">ABI</span>=armhf <span class="attribute">VERSION</span>=r3p0 <span class="attribute">EGL_TYPE</span>=framebuffer</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="8">
+<li><p>安装fbturbo，这个好像是用来为Xserver加速的插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/hw_accleration</span><br><span class="line"><span class="built_in">cd</span> xf86-video-fbturbo</span><br><span class="line">autoreconf -v -i</span><br><span class="line">./configure --prefix=/usr</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<p>  创建一个xorg配置文件来让Xserver使用fbturbo，<code>vim etc/X11/xorg.conf.d/99-fbturbo.conf</code>然后写入：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">Section</span> <span class="string">&quot;Screen&quot;</span></span><br><span class="line">        Identifier        <span class="string">&quot;My Screen&quot;</span></span><br><span class="line">        Device          <span class="string">&quot;Allwinner A10/A13 FBDEV&quot;</span></span><br><span class="line">        <span class="keyword">Monitor</span>         <span class="string">&quot;My Monitor&quot;</span></span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line"><span class="meta">Section</span> <span class="string">&quot;Device&quot;</span></span><br><span class="line">        Identifier        <span class="string">&quot;Allwinner A10/A13 FBDEV&quot;</span></span><br><span class="line">        Driver          <span class="string">&quot;fbturbo&quot;</span></span><br><span class="line">        <span class="meta">Option</span>          <span class="string">&quot;fbdev&quot;</span> <span class="string">&quot;/dev/fb0&quot;</span></span><br><span class="line">        <span class="meta">Option</span>          <span class="string">&quot;SwapbuffersWait&quot;</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">        <span class="meta">Option</span>          <span class="string">&quot;AccelMethod&quot;</span> <span class="string">&quot;G2D&quot;</span></span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line"><span class="meta">Section</span> <span class="string">&quot;Monitor&quot;</span></span><br><span class="line">        Identifier        <span class="string">&quot;My Monitor&quot;</span></span><br><span class="line">        <span class="meta">Option</span>          <span class="string">&quot;DPMS&quot;</span> <span class="string">&quot;false&quot;</span></span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure></li>
+<li><p>默认普通用户是对一些类似于&#x2F;dev&#x2F;mali和&#x2F;dev&#x2F;ump的特殊设备文件是没有权限的，所以要添加规则以让普通用户能够使用。<code>vim /etc/udev/rules.d/50-mali.rules</code>，然后添加</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">KERNEL</span>==&quot;mali&quot;, <span class="attribute">MODE</span>=<span class="string">&quot;0660&quot;</span>, <span class="attribute">GROUP</span>=<span class="string">&quot;video&quot;</span></span><br><span class="line"><span class="attribute">KERNEL</span>==&quot;ump&quot;, <span class="attribute">MODE</span>=<span class="string">&quot;0660&quot;</span>, <span class="attribute">GROUP</span>=<span class="string">&quot;video&quot;</span></span><br><span class="line"><span class="attribute">KERNEL</span>==&quot;disp&quot;, <span class="attribute">MODE</span>=<span class="string">&quot;0660&quot;</span>, <span class="attribute">GROUP</span>=<span class="string">&quot;video&quot;</span></span><br><span class="line"><span class="attribute">KERNEL</span>==&quot;g2d&quot;, <span class="attribute">MODE</span>=<span class="string">&quot;0660&quot;</span>, <span class="attribute">GROUP</span>=<span class="string">&quot;video&quot;</span></span><br><span class="line"><span class="attribute">KERNEL</span>==&quot;fb*&quot;, <span class="attribute">MODE</span>=<span class="string">&quot;0660&quot;</span>, <span class="attribute">GROUP</span>=<span class="string">&quot;video&quot;</span></span><br><span class="line"><span class="attribute">KERNEL</span>==&quot;cedar_dev&quot;, <span class="attribute">MODE</span>=<span class="string">&quot;0660&quot;</span>, <span class="attribute">GROUP</span>=<span class="string">&quot;video&quot;</span></span><br></pre></td></tr></table></figure>
+<p>  然后将用户添加到组中 <code>sudo usermod -aG video $USER</code></p>
+</li>
+<li><p>测试，重启开发板。<code>grep -i fbturbo /var/log/Xorg.0.log</code>看看Xserver是否已经使用了fbturbo。测试mali驱动：</p>
+</li>
+</ol>
+<ul>
+<li>对于使用X11的情况：<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> <span class="keyword">test</span></span><br><span class="line"><span class="keyword">cc</span> -Wall -o <span class="keyword">test</span> <span class="keyword">test</span>.c -lEGL -lGLESv2 -lX11</span><br><span class="line">./<span class="keyword">test</span></span><br></pre></td></tr></table></figure></li>
+<li>对于使用FrameBuffer的情况：<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make <span class="keyword">test</span></span><br><span class="line">./<span class="keyword">test</span>/<span class="keyword">test</span></span><br></pre></td></tr></table></figure>
+如果看到<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GL</span> Vendor: <span class="string">&quot;ARM&quot;</span></span><br><span class="line"><span class="keyword">GL</span> Renderer: <span class="string">&quot;Mali-400 MP&quot;</span></span><br><span class="line"><span class="keyword">GL</span> <span class="keyword">Version</span>: <span class="string">&quot;OpenGL ES 2.0&quot;</span></span><br></pre></td></tr></table></figure>
+说明已经安装成功了。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/05/%E7%A7%BB%E6%A4%8DQt5-6-0%E5%88%B0Armv7%E6%9E%B6%E6%9E%84%E7%9A%84BananaPro/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          移植Qt5.6.0到Armv7架构的BananaPro
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/30/%E6%9E%84%E5%BB%BA%E6%9C%80%E5%B0%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">构建最小文件系统</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

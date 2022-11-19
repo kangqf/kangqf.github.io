@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>VMware config network | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天折腾虚拟机各种网络的问题，电脑也是老卡死，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VMware config network">
+<meta property="og:url" content="http://kangqingfei.cn/2016/01/05/VMware-config-network/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="今天折腾虚拟机各种网络的问题，电脑也是老卡死，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。">
+<meta property="og:locale">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/VM-network-link.png">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/VM-setting-network.png">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/VM-virtual-network-editor.png">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/VM-net-hometuop.png">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/VM-net-route-table.png">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/VM-net-arch-ping-win8.png">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/VM-net-arch-ping-win8-arp.png">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/VM-net-tuop.png">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/VM-net0-result.png">
+<meta property="article:published_time" content="2016-01-05T13:19:25.000Z">
+<meta property="article:modified_time" content="2022-09-14T18:03:38.040Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="VMware">
+<meta property="article:tag" content="network">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qiniu.kangqingfei.cn/blog/images/VM-network-link.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 14.29px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 12.86px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-VMware-config-network" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/05/VMware-config-network/" class="article-date">
+  	<time datetime="2016-01-05T13:19:25.000Z" itemprop="datePublished">2016-01-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      VMware config network
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VMware/" rel="tag">VMware</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="今天折腾虚拟机各种网络的问题，电脑也是老卡死，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。"><a href="#今天折腾虚拟机各种网络的问题，电脑也是老卡死，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。" class="headerlink" title="今天折腾虚拟机各种网络的问题，电脑也是老卡死，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。"></a>今天折腾虚拟机各种网络的问题，电脑也是老卡死，恼火死了，暑假的时候参加嵌入式培训的时候由于要发东西到宿主机，大家也遇到了虚拟机ping不通宿主机的问题，当时很多同学是碰运气，我也不记得当时是怎么解决的，现在就把VMware里面的一些网络配置仔细写一下。</h3><span id="more"></span>
+<p>安装完虚拟机后，我们还可以在windows的<code>控制面板\网络和 Internet\网络连接</code>里面看到这样两个连接</p>
+<img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/VM-network-link.png">
+<p>其中VMnet1是虚拟机Host-only模式的网络接口，VMnet8是NAT模式的网络接口，这些后面会介绍，查看他们两个的ip，可以发现VMnet1的ip是192.168.178.1，VMnet2的ip是192.168.254.1,。<br>打开一台虚拟机后，点击 <code>虚拟机 &gt; 设置 &gt; 网络适配器</code> 我们可以看到像下面这样的情况。</p>
+<img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/VM-setting-network.png">
+<p>然而当我们在VMware里面 编辑 &gt; 虚拟网络编辑器 的时候却看到下面这个情况</p>
+<img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/VM-virtual-network-editor.png">
+<p>其实这才是真实的情况，有三种连接的方式分别是 桥接模式，仅主机模式，NAT模式。接下来我们就一一解析这三种模式（PS：以下实验极有可能造成宽带断网之类的不良影响，并且确保你的电脑内存够大磁盘读写够快，否则容易造成电脑死机，由此引发一切后果概不承担。还有，在桥接模式下，别用putty之类的试图通过ssh连接虚拟机，会很卡卡卡卡，原因后面你会懂的）</p>
+<ol>
+<li>桥接模式。这是默认设置的模式（我的虚拟机版本是11.1.2 build-2780323），但是我使用这个模式的时候经常卡死，所以本着求知的精神打算看看它的拓扑结构，为了了解它的拓扑结构我们先进行一系列实验。为了排除不同的操作系统底层实现对实验带来的影响，我们开了3个虚拟机，分别是archlinux最新版，xp，ubuntu14.04，宿主机是win8.1，关闭所有机器的防火墙，尤其是xp。</li>
+</ol>
+<p>  之前都是接在学校的局域网上实验的，痛苦万分，受到小伙伴的提示，我把电脑接到一个普通的家庭无线路由器上，这样网络环境相对简单，按照VMware的说法在windows下是允许桥接无线网的。所以有下面这样的一个拓扑关系（顺便给出路由表）：<br>  <img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/VM-net-hometuop.png"><br>  <img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/VM-net-route-table.png"><br>  首先看到他们的路由表：可以看到两台linux的虚拟机的路由表是一样的，有两条，第一条的意思是默认网关是192.168.1.1，第二条的意思是对于网络号是192.168.1.0&#x2F;24 的目的ip的网关是0.0.0.0，不经过三层（代表直连路由，就是不要通过网关路由，直接下发到链路）。<br>  实验结果表面上一切都和我们想的一样但是 <strong>出现一个重定向</strong> 这就值得我们怀疑了。实验过程如下：<br>    * 当我们用虚拟机ping win8的时候发现显示没有任何问题，但是经过抓包后遇到了下面的问题：<br>    <img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/VM-net-arch-ping-win8.png"><br>    可以看到这里的request报文的ip是没有问题的，但是mac是一样的，都是win8的mac，所以我们应该可以猜想，虚拟机其实不是真的暴露在局域网内，而是win8又建了一个小的”网络”，从上面的Archlinux的路由表可以看出，对于本网内的数据报直接广播没有不用经过路由，但是呢，arch的链路域是由win8 arch及其他的虚拟机组成的，所以呢Vmware应该有个进程(你看看你是不是装了Vmware bridge protocol)专门来收这种虚拟机的mac（原因详见我的另外一篇文章），Vmware的进程收到这些数据报之后会说这个发不得会出事，然后会不管三七二十一就把源mac改成宿主机（win8）的mac，然后通过真实的网卡下放到链路上（因为我们在真是的网卡上面确实捕捉到了这个数据包），这时的路由器就相当于一个二层交换机（因为数据报的通信双方的ip地址在同一网段），然后交换机一看这个数据报目的mac，你他喵的不就是你的么，所以又把这个数据报原封不动（因为没有路由所以源mac不变）返回给了我们的win8的真实网卡，然后Vmware又有一个进程(Vmware bridge protocol)相当于是给收到的数据报“路由”的（原因也很简单，以为发到这个mac地址的数据并不一定是给我的，我下面还有虚拟机，可能是他们的mac被改后发出去的数据报的响应）进过对比发现这个是给我的（就算不是也不能丢弃，还要看看目标mac是不是虚拟机的，是的话再看ip是不是对的上，都不是才丢弃），好的，处理后发现是个IP为111的发给我的，然后他不知道这个ip对应的mac，所以arp问，如下图：<br>    <img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/VM-net-arch-ping-win8-arp.png"><br>    问到了111的mac，所以发送一个reply报文（源mac是win8 的mac，目的mac是虚拟机的mac,就像上面的截图一样）给虚拟机，经过查询路由表之后发现，这个数据报应该直接下放到链路上，数据报就到了交换机这里，交换机收到这个数据报之后就看看这个目标mac是虚拟机的mac所以就把它发到了win8的接口上，win8一看，这个目的mac是个私有的mac不是我的扔掉吧，这时候虚拟机的守护进程跳出来，不能扔，这个可能是我们这边的，然后交给了虚拟机这边进程处理，然后一看mac地址不真是arch的mac地址么，好的下发给他。arch收到后上到三层一看这个ip不就对应着自己的ip么，好的收下了。</p>
+<pre><code>* 当我们用虚拟机ping 网关(.1)的时候发现出现了重定向的问题，如下图:
+&#123;% qnimg VM-net-arch-ping-gate-redirect.png title:test alt:来自七牛云的图片 'class:class1 class2' %&#125;
+按照百度的解释，这种问题出现的原因有两个：1)当路由器从某个接口收到数据还需要从相同接口转发该数据时；2)当路由器从某个接口到发往远程网络的数据时发现源ip地址与下一跳属于同一网段时。再仔细看看里面发给arch重定向要求的是win8的ip，所以可以肯定的是arch把数据报发到了win8的虚拟路由，然后win8的虚拟路由发现arch与目的ip是直达的，所以发出了重定向请求。这里我思考了很久，我一直在考虑的一个关键点是，到底这个和之前那个ping 宿主机会有什么区别，我们可以肯定这次肯定是经过路由了的（因为有redirect报文），而这就意味着之前的没有经过路由，可是为什么这次要路由之前不要，这里只有一点不同，那就是目的ip。这就意味着之前的目的ip是和虚拟机是同一链路域，而这次没有，可是这三个ip明明是同网段的啊，这里我们忽略了很重要的一点，对于家庭路由器来说，这三个ip肯定是同网段的，但是对于win8上那个虚拟路由来说就不是了，那个路由估计不会用子网掩码这种复杂的东西， **它估计就是把宿主机和所有虚拟机的ip组成一个集合，在这个集合里面的就是同网段，反之就是不同网段需要路由** 。所以这样就得出了我们的结果,由于目的ip（.1）不在虚拟路由的集合里面所以要进行路由（把源mac改成了win8真实的mac，目的mac由原来的win8的mac改成了家庭路由器的mac），然后发出去并发送一个重定向的数据报（源mac和目标mac都是win8的真实mac）到链路通知虚拟机重定向，接下来就和上面一样了。所以我们之前一直弄错的一点就是 **我们的虚拟机的0.0.0.0网关其实是宿主机上的虚拟路由器**。等到家庭路由收到
+* 再来解释一些奇怪的现象，xp ping 网关不会出现重定向，这其实是因为windows系统没有显示重定向的报文（包括后面的DUP报文），如果你去抓包还是能够看到的。虚拟机互ping的话不会抓到任何数据，这是因为虚拟机通过虚拟的交换机连接在一起，所以除了第一次通信构造转发表时宿主机会受到报文，其他时候是收不到的。综上所述我们大概画出了下面的拓扑图：
+&#123;% qnimg VM-net-virtual-actually.png title:test alt:来自七牛云的图片 'class:class1 class2' %&#125;
+</code></pre>
+<p>  上面这些都是我自己的猜想，能否拿来解决我们在校园网中遇到的问题呢？接下来我们就来看看校园网中的复杂情况吧。由于我们处在校园网内，所以可以再增加一个我们学校的bt down铺的主机。所以我们现在能够确定的（简化了核心交换机）拓扑信息如下：<br>  <img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/VM-net-tuop.png"></p>
+<p>  然后用 ping 命令进行实验得到下面这样的结果：</p>
+<ol>
+<li>win8 ping 虚拟机，时而出现超时,一般时延小于1ms,有时时延极大。wireshark直接死掉，里面出现大量的重复request数据，request的ttl从1到128不等且多次重复出现，reply的ttl稳定128 而数量和request几乎相当，ping了4次出现了500万+条数据报。tracert要在本机的几点上重复跳不定次。</li>
+<li>虚拟机 ping win8 ，对于xp时而出现超时,一般时延小于1ms,有时时延极大。对于linux 出现大量DUP! 提示，虚拟机卡死。wireshark由于中间按了停止所以，发现reply的ttl从128到90不等各种重复出现，request出现3条ttl都为64，同样在半路停止的情况下出现了50万+条的reply数据报。tracert只需一条。tracepath 无法到达。</li>
+<li>linux ping btdown铺发现出现大量重定向和大量来自win8的数据报（这已经很明显地出现环路了），wireshark里面显示数据报依然有300万+大部分是重定向和来自bt down铺的reply，当时同学说bt down铺并没有异常。网络指示灯狂闪。。。</li>
+<li>虚拟机互ping无异常，wireshark抓不到任何包，tracexx一跳就到。但是一旦关闭目标主机，出现大量重定向。。。</li>
+<li>win8 ping bt down铺正常而且能抓到报文。</li>
+</ol>
+  <img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/VM-net0-result.png">
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/06/computer-network-basis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          computer network basis
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/04/windows-note/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">windows note</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

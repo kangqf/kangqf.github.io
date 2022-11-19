@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Altium Designer 绘制原理图库 | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章主要讲解Altium Designer中原理图库的一些概念以及如何使用Altium Designer绘制原理图库并在原理图中使用该库。首先原理图只是提供一个逻辑上的连接并不涉及到一些具体的物理特性，你可以把同一款芯片画的很大也可以很小，这和PCB有着本质的不同，PCB是直接和实物相对应有着十分标准的规范。 原理图库是一个或多个用于原理图绘制的元件符号的集合，一个库里面可能包含了多个器件（元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Altium Designer 绘制原理图库">
+<meta property="og:url" content="http://kangqingfei.cn/2016/02/15/Altium-Designer-%E7%BB%98%E5%88%B6%E5%8E%9F%E7%90%86%E5%9B%BE%E5%BA%93/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="这篇文章主要讲解Altium Designer中原理图库的一些概念以及如何使用Altium Designer绘制原理图库并在原理图中使用该库。首先原理图只是提供一个逻辑上的连接并不涉及到一些具体的物理特性，你可以把同一款芯片画的很大也可以很小，这和PCB有着本质的不同，PCB是直接和实物相对应有着十分标准的规范。 原理图库是一个或多个用于原理图绘制的元件符号的集合，一个库里面可能包含了多个器件（元">
+<meta property="og:locale">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/ADSK01.png">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/ADSK02.png">
+<meta property="article:published_time" content="2016-02-15T06:52:29.000Z">
+<meta property="article:modified_time" content="2022-09-14T18:03:38.045Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="毕设">
+<meta property="article:tag" content="Altium Designer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qiniu.kangqingfei.cn/blog/images/ADSK01.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 14.29px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 12.86px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Altium-Designer-绘制原理图库" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/15/Altium-Designer-%E7%BB%98%E5%88%B6%E5%8E%9F%E7%90%86%E5%9B%BE%E5%BA%93/" class="article-date">
+  	<time datetime="2016-02-15T06:52:29.000Z" itemprop="datePublished">2016-02-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Altium Designer 绘制原理图库
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Altium-Designer/" rel="tag">Altium Designer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%95%E8%AE%BE/" rel="tag">毕设</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/basis/">basis</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="这篇文章主要讲解Altium-Designer中原理图库的一些概念以及如何使用Altium-Designer绘制原理图库并在原理图中使用该库。首先原理图只是提供一个逻辑上的连接并不涉及到一些具体的物理特性，你可以把同一款芯片画的很大也可以很小，这和PCB有着本质的不同，PCB是直接和实物相对应有着十分标准的规范。"><a href="#这篇文章主要讲解Altium-Designer中原理图库的一些概念以及如何使用Altium-Designer绘制原理图库并在原理图中使用该库。首先原理图只是提供一个逻辑上的连接并不涉及到一些具体的物理特性，你可以把同一款芯片画的很大也可以很小，这和PCB有着本质的不同，PCB是直接和实物相对应有着十分标准的规范。" class="headerlink" title="这篇文章主要讲解Altium Designer中原理图库的一些概念以及如何使用Altium Designer绘制原理图库并在原理图中使用该库。首先原理图只是提供一个逻辑上的连接并不涉及到一些具体的物理特性，你可以把同一款芯片画的很大也可以很小，这和PCB有着本质的不同，PCB是直接和实物相对应有着十分标准的规范。"></a>这篇文章主要讲解<code>Altium Designer</code>中原理图库的一些概念以及如何使用<code>Altium Designer</code>绘制原理图库并在原理图中使用该库。首先原理图只是提供一个逻辑上的连接并不涉及到一些具体的物理特性，你可以把同一款芯片画的很大也可以很小，这和PCB有着本质的不同，PCB是直接和实物相对应有着十分标准的规范。</h2><ol>
+<li>原理图库是一个或多个用于原理图绘制的元件符号的集合，一个库里面可能包含了多个器件（元件符号）</li>
+</ol>
+<ul>
+<li>元件符号：一个元件在原理图中的表现形式，主要包含引脚、元件图形、元件属性的内容</li>
+<li>元件引脚：元件的电气连接点，是电源、电气信号的出入口，它与PCB库中元件封装中的焊盘相对应</li>
+<li>元件图形：用于示意性地表达元件实体和原理的无电气意义的绘图元素的集合</li>
+<li>元件属性：元件的标号、注释、型号、电气值、封装、仿真等信息的集合</li>
+<li>其中只有引脚在原理图中具有电气意义、只有引脚与封装有对应关系。换句话说，一个元件如果不注重可读性，仅考虑电气意义，它可以只含有引脚。<span id="more"></span></li>
+</ul>
+<ol start="2">
+<li>原理图库文件的存在形式：</li>
+</ol>
+<ul>
+<li>作为某个PCB工程中的文件，为PCB工程提供元件，包含在工程中，可以在工程目录看到该库</li>
+<li>作为独立文件，可在工作区中被任何工程和原理图文件使用，通过右侧的Libraries进行安装使用</li>
+<li>作为集成库工程中的文件，与其他库文件（如PCB库文件、仿真模型文件等）一起被编译成集成库，通过右侧的Libraries进行安装使用</li>
+</ul>
+<ol start="3">
+<li><p>打开我们的<code>SCHLibrary</code>窗口。如图所示：</p>
+<img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/ADSK01.png">
+<p>我们可以在下面的系统工具条找到我们的所有被关闭的Dock窗口。原理图库面板是管理原理图库的最主要功能区<br>包括：元件选择（查找）过滤器、元件列表、别名列表、引脚列表、封装列表、供应商列表、订购列表。</p>
+</li>
+<li><p>新建一个元器件。如上图所示，我们点击元件列表里面的<code>Add</code>来新建一个元器件，这时会弹出对话框要求输入器件的名字，我们输入<code>STC89C52RC</code>表示我们将绘制一个单片机的原理图库，同时我们添加<code>AT89C51</code>和<code>89C51</code>两个别名方便以后我们查找该器件。</p>
+</li>
+<li><p>我们新建好之后就点击<code>Add</code>右边的<code>Edit</code>按钮编辑该元器件的有关信息：<img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/ADSK02.png"></p>
+</li>
+<li><p>绘制元器件的图形。</p>
+</li>
+</ol>
+<ul>
+<li>元件应绘制在元件库图纸中的原点处，该原点是在原理图中放置该元件时，光标拖动元件的定位点</li>
+<li>绘制元件图形时，可使用“P”工具栏中除引脚外的所有工具，在绘制过程中，可以按“Tab”键修改工具属性</li>
+<li>我们可以设置工具的颜色，我们经常见到的颜色主要有：<ul>
+<li>218 芯片的填充</li>
+<li>221 芯片边框</li>
+<li>229 LED、电阻之类的边框及填充</li>
+<li>223 元器件的名称信息</li>
+</ul>
+</li>
+<li>对于51单片机我们一般看到的是长方形的，所以先在<code>Place</code>的工具里面点击<code>Rectangle</code>并拖出一个适当大小的长方形。其中我们可以用到的工具有：<ul>
+<li>Pin：引脚</li>
+<li>IEEE Symbols：IEEE规定的一些原理图符号</li>
+<li>Arc：圆弧</li>
+<li>Elliptical Arc：椭圆弧</li>
+<li>Ellipse：椭圆（圆）</li>
+<li>Pie Chart：饼图</li>
+<li>Line：直线</li>
+<li>Rectangle：矩形</li>
+<li>Round Rectangle：圆角矩形</li>
+<li>Polygon：多边形</li>
+<li>Bezier：贝赛尔曲线</li>
+<li>Text String：字符串</li>
+<li>Text Frame：文本框</li>
+<li>Graphic：插入图像文件</li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>放置引脚。</li>
+</ol>
+<ul>
+<li>引脚可以设置引脚编号、名称、长度、电气类型、颜色 。</li>
+<li>引脚编号 <code>Designator</code>则特别重要，它是与Footprint实际引脚相关联的，它的序号不可重复，尽在一些比如说有需要的重定义的地、VCC、芯片内部链接的热焊盘等方可具有同样的序号</li>
+<li>放置引脚时，可使用“X”、“Y”、“Space”键镜像或旋转</li>
+<li>引脚的摆放应以原理图的可读性和绘制原理图时的方便为原则，可不按编号顺序放置</li>
+<li>可以一个个设置引脚的信息，也可以像上面的图片所示的用<code>Edit Pins</code>批量修改</li>
+<li>默认数字名字放置引脚的时候会自动递增</li>
+<li>引脚中有四个小白点的一端表示可以连接，也就是与焊盘对应</li>
+</ul>
+<ol start="8">
+<li>在下面的<code>Editor</code>面板中点击<code>Add Footprint</code>添加封装，具体的封装创建后面再讲。</li>
+<li>当一个元件封装中包含多个相对独立的功能部分时，可使用子件<code>Tools - New Part</code>。</li>
+</ol>
+<ul>
+<li>子件是属于元件的部分，一个元件如果被分为子件，则至少有两个子件</li>
+<li>元件的引脚会被分配到不同的子件中，但也可以有所有子件共有的引脚元件与封装对应，一个元件中的多个子件：<ul>
+<li>在PCB中是位于同一个封装中的</li>
+<li>在原理图中可以在不同位置，甚至不同的图纸中，这取决于绘制原理图的可读性和绘制原理图时的方便</li>
+<li>在那个子件中放置的引脚，默认就是属于这个子件的，如果需要放置属于所有子件的公共引脚，可在引脚属性中设置<code>PartNumber</code>为0</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/15/%E5%B8%B8%E8%A7%81%E5%85%83%E5%99%A8%E4%BB%B6%E7%9A%84%E5%B0%81%E8%A3%85/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          常见元器件的封装
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/14/Altium-Designer-%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8E%9F%E7%90%86%E5%9B%BE%E6%A8%A1%E6%9D%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Altium Designer 使用自定义原理图模板</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

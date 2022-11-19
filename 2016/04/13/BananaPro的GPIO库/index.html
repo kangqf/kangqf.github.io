@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>BananaPro的GPIO库 | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我们知道像raspberry、BananaPro之类的开发板与普通linux电脑的很大的区别就是它可以将GPIO口引出方便大家连接各种模块，因此，对GPIO口的了解就显得尤为重要。对于Lemaker的BananaPro官方的wiki其实已经写得很详细，之所以拿出来单独写一是想在自己的博客上面留个笔记，二是遇到一些很奇葩的问题需要特别引起注意。GPIO口的操作根据使用的语言和方式的不同也可以使用不同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BananaPro的GPIO库">
+<meta property="og:url" content="http://kangqingfei.cn/2016/04/13/BananaPro%E7%9A%84GPIO%E5%BA%93/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="我们知道像raspberry、BananaPro之类的开发板与普通linux电脑的很大的区别就是它可以将GPIO口引出方便大家连接各种模块，因此，对GPIO口的了解就显得尤为重要。对于Lemaker的BananaPro官方的wiki其实已经写得很详细，之所以拿出来单独写一是想在自己的博客上面留个笔记，二是遇到一些很奇葩的问题需要特别引起注意。GPIO口的操作根据使用的语言和方式的不同也可以使用不同">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-04-13T02:52:06.000Z">
+<meta property="article:modified_time" content="2022-09-14T18:03:38.045Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="BananaPro">
+<meta property="article:tag" content="嵌入式">
+<meta property="article:tag" content="毕设">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 14.29px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 12.86px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-BananaPro的GPIO库" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/13/BananaPro%E7%9A%84GPIO%E5%BA%93/" class="article-date">
+  	<time datetime="2016-04-13T02:52:06.000Z" itemprop="datePublished">2016-04-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      BananaPro的GPIO库
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BananaPro/" rel="tag">BananaPro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%95%E8%AE%BE/" rel="tag">毕设</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="我们知道像raspberry、BananaPro之类的开发板与普通linux电脑的很大的区别就是它可以将GPIO口引出方便大家连接各种模块，因此，对GPIO口的了解就显得尤为重要。对于Lemaker的BananaPro官方的wiki其实已经写得很详细，之所以拿出来单独写一是想在自己的博客上面留个笔记，二是遇到一些很奇葩的问题需要特别引起注意。"><a href="#我们知道像raspberry、BananaPro之类的开发板与普通linux电脑的很大的区别就是它可以将GPIO口引出方便大家连接各种模块，因此，对GPIO口的了解就显得尤为重要。对于Lemaker的BananaPro官方的wiki其实已经写得很详细，之所以拿出来单独写一是想在自己的博客上面留个笔记，二是遇到一些很奇葩的问题需要特别引起注意。" class="headerlink" title="我们知道像raspberry、BananaPro之类的开发板与普通linux电脑的很大的区别就是它可以将GPIO口引出方便大家连接各种模块，因此，对GPIO口的了解就显得尤为重要。对于Lemaker的BananaPro官方的wiki其实已经写得很详细，之所以拿出来单独写一是想在自己的博客上面留个笔记，二是遇到一些很奇葩的问题需要特别引起注意。"></a>我们知道像raspberry、BananaPro之类的开发板与普通linux电脑的很大的区别就是它可以将GPIO口引出方便大家连接各种模块，因此，对GPIO口的了解就显得尤为重要。对于Lemaker的BananaPro官方的<a target="_blank" rel="noopener" href="http://wiki.lemaker.org/How_to_control_the_IO_on_the_SBC_boards/zh-hans">wiki</a>其实已经写得很详细，之所以拿出来单独写一是想在自己的博客上面留个笔记，二是遇到一些很奇葩的问题需要特别引起注意。</h2><h3 id="GPIO口的操作根据使用的语言和方式的不同也可以使用不同的库，一个是使用C语言的WiringLMK-官方的说明在这里，还有就是使用Python的LMK-GPIO官方的说明在这里，再有就是使用web进行控制的webio-lemaker。本人了解的目前就只有这三种方式。由于在实际使用中只用过wiringPi的库所以接下来只会介绍这个库，后面如果用到其他的库会在本文一并加上。"><a href="#GPIO口的操作根据使用的语言和方式的不同也可以使用不同的库，一个是使用C语言的WiringLMK-官方的说明在这里，还有就是使用Python的LMK-GPIO官方的说明在这里，再有就是使用web进行控制的webio-lemaker。本人了解的目前就只有这三种方式。由于在实际使用中只用过wiringPi的库所以接下来只会介绍这个库，后面如果用到其他的库会在本文一并加上。" class="headerlink" title="GPIO口的操作根据使用的语言和方式的不同也可以使用不同的库，一个是使用C语言的WiringLMK,官方的说明在这里，还有就是使用Python的LMK.GPIO官方的说明在这里，再有就是使用web进行控制的webio-lemaker。本人了解的目前就只有这三种方式。由于在实际使用中只用过wiringPi的库所以接下来只会介绍这个库，后面如果用到其他的库会在本文一并加上。"></a>GPIO口的操作根据使用的语言和方式的不同也可以使用不同的库，一个是使用C语言的<a target="_blank" rel="noopener" href="https://github.com/LeMaker/WiringLMK">WiringLMK</a>,官方的说明在<a target="_blank" rel="noopener" href="http://wiki.lemaker.org/WiringLMK/zh-hans">这里</a>，还有就是使用Python的<a target="_blank" rel="noopener" href="https://github.com/LeMaker/LMK.GPIO">LMK.GPIO</a>官方的说明在<a target="_blank" rel="noopener" href="http://wiki.lemaker.org/LMK.GPIO/zh-hans">这里</a>，再有就是使用web进行控制的<a target="_blank" rel="noopener" href="https://github.com/LeMaker/webio-lemaker">webio-lemaker</a>。本人了解的目前就只有这三种方式。由于在实际使用中只用过wiringPi的库所以接下来只会介绍这个库，后面如果用到其他的库会在本文一并加上。</h3><span id="more"></span>
+<ol>
+<li>wiringPi库。这个库起初是用来作为BCM2835芯片的GPIO库，而现在已经支持诸如SPI、I2C、UART、PWM等协议的库了。而他所支持的芯片的产商也是更多，比如BananaPro的全志的芯片。wiring的命名的由来是因为其与arduino上的wiring类似所以以此命名。wiringPi提供库函数以便给C&#x2F;C++语言提供调用，并且wiringPi还提供一个命令行工具gpio用来设置GPIO管脚，所以你甚至可以在shell脚本里面控制GPIO（你可以使用gpio -h来查看帮助信息），比如你使用openkeeper联网成功之后就拉低一个管脚，然后就点亮一个LED。DevLib是wiringPi 的一部分，它可以使用一些比如12864和1302之类的芯片。</li>
+<li>安装wiringPi。</li>
+</ol>
+<ul>
+<li><code>git clone https://github.com/LeMaker/WiringLMK.git </code></li>
+<li><code>cd WiringLMK</code></li>
+<li><code>chmod +x ./build</code></li>
+<li><code>sudo ./build</code><br>  测试安装是否成功：<code>gpio -v</code>或者<code>gpio readall</code>看看输出是否正确。</li>
+</ul>
+<ol start="3">
+<li>初始化GPIO口。主要是有4个函数：</li>
+</ol>
+<ul>
+<li><code>int wiringPiSetupPhys (void) ;</code>这个是按照BananaPro的物理管脚顺序来初始化GPIO的映射关系</li>
+<li><code>int wiringPiSetup (void) ;</code> 该函数初始化 wiringPi，幵假定程序将使用 wiringPi的管脚定义图。具体管脚映射，可以通过 gpio readall 命令来查看。</li>
+<li><code>int wiringPiSetupGpio (void) ;</code> 在此种模式下的管脚号是 Broadcom 的 GPIO 管脚号</li>
+<li><code>int wiringPiSetupSys (void) ;</code>使用&#x2F;sys&#x2F;class&#x2F;gpio接口，而丌是直接通过操作硬件来实现。该函数可以使用非 root 权限用户，在此种模式下的管脚号是 Broadcom 的 GPIO 管脚号<br>  在<a target="_blank" rel="noopener" href="http://wiki.lemaker.org/WiringLMK/zh-hans#.E9.99.84.E5.BD.95.EF.BC.9AWiringLMK.E7.AE.A1.E8.84.9A.E8.AE.BE.E7.BD.AE.E8.A1.A8">这里</a>查看不同的地方。</li>
+</ul>
+<ol start="4">
+<li>管脚定义。</li>
+</ol>
+<ul>
+<li><code>void pinMode (int pin, int mode) ;</code>用于定义管脚的工作模式，主要有<code>INPUT</code>、<code>OUTPUT</code>、<code>PWM_OUTPUT</code>、<code>GPIO_CLOCK</code>四种模式，后面的两种模式只针对特定的管脚有效。</li>
+<li><code>void pullUpDnControl (int pin, int pud) ;</code>当管脚设置为输入，可以设置为上拉(PUD_UP 拉高到VCC 3.3V)或下拉(PUD_DOWN)或者是浮空(PUD_OFF)的模式。<ul>
+<li>上拉：就是通过一个电阻将信号接电源，一般用于时钟信号数据信号等。防止信号被负载或者干扰拉下到某个电压下</li>
+<li>下拉：就是通过一个电阻将信号接地，一般用于保护信号。</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>管脚操作。</li>
+</ol>
+<ul>
+<li><code>void digitalWrite (int pin, int value) ;</code>数字写，值可以使<code>HIGH</code>或是<code>LOW</code>。</li>
+<li><code>int digitalRead (int pin) </code>数字读，返回0或1</li>
+<li><code>analogRead (int pin) ;</code> 管脚能够配置附加的模拟模块（比如 Gertboard， quick2Wire 模拟板等），这个函数可读取并返回模拟信号输入值。</li>
+<li><code>analogWrite (int pin, int value) ;</code>管脚能够配置附加的模拟模块，这个函数可写入模拟信号输入值。</li>
+<li><code>int wiringPiISR (int pin, int edge, void (*function)(void)) ;</code>用于绑定中断处理函数，触发可以设置为上升沿(<code>INT_EDGE_RISING</code>)、下降沿(<code>INT_EDGE_FALLING</code>)、边沿触发(<code>INT_EDGE_BOTH</code>)。</li>
+<li><code>void pwmWrite (int pin, int value) ;</code>用于设置PWM寄存器的值，这里是硬件PWM而不是软件PWM，因此只适用于PWM输出的管脚</li>
+<li><code>int softPwmCreate (int pin, int initialValue, int pwmRange) ;</code>用于设置软件模拟的PWM的范围。pwmRange：0 表示关闭 100 表示全开，建议设置为100</li>
+<li><code>void softPwmWrite (int pin, int value) ;</code>已初始化的软PWM可以用这个函数更新管脚的值。</li>
+</ul>
+<ol start="6">
+<li>I2C模块。这个模块可以使用硬件的I2C协议进行读取数据，函数声明包含在头文件<code>#include &lt;wiringPiI2C.h&gt;</code>中。</li>
+</ol>
+<ul>
+<li>gpio load i2c (1000) 加载I2C驱动到内核中，其中1000的值是可选的，是用来指定速率的，单位是kbps。Banana Pro会默认加载I2C驱动程序。</li>
+<li>检查I2C设备：<code>i2cdetect -y 2 </code>这会根据标号打开&#x2F;dev 目录下对应的设备（例子使用的是2）返回值是标准的文件句柄。</li>
+<li>通过文件句柄可以进行简单的读写操作，不需要任何寄存器转换。而其它的一些操作需要使用<code>int wiringPiI2CSetup (int devID) ;</code>设置寄存器，其中devID就是上面返回的文件句柄。</li>
+<li><code>int wiringPiI2CRead (int fd) ; </code> 通过文件句柄读取数据不需要发送任何寄存器的地址。</li>
+<li><code>int wiringPiI2CReadReg8 (int fd, int reg) ;</code> 可以从指定的设备寄存器读一个 8 位数值数据</li>
+<li><code>int wiringPiI2CReadReg16 (int fd, int reg) ;</code>可以从指定的设备寄存器读一个 16 位数值数据</li>
+<li><code>int wiringPiI2CWrite (int fd, int data) ;</code> 简单的设备写操作</li>
+<li><code>int wiringPiI2CWriteReg8 (int fd, int reg, int data) ;</code> 可以写一个 8 位数值到指定的设备寄存器</li>
+<li><code>int wiringPiI2CWriteReg16 (int fd, int reg, int data) ;</code>可以写一个 16 位数值到指定的设备寄存器</li>
+</ul>
+<ol start="7">
+<li>SPI模块。gpio load spi 100 用于加载spi驱动到内核中，后面是指数据缓冲区的大小单位是kb。BananaPro是默认不加载SPI设备的，如果要使用则必须手动添加或者加载<code>spi-sun7i</code>和<code>spidev</code>驱动模块到&#x2F;etc&#x2F;modules中。</li>
+</ol>
+<ul>
+<li><code>int wiringPiSPISetup (int channel, int speed) ;</code>用于初始化SPI的GPIO口和选择通道（BananaPro有两个通道0和1，这可以在&#x2F;dev&#x2F;中看到）以及设置速率。</li>
+<li><code>int wiringPiSPIDataRW (int channel, unsigned char *data, int len) ;</code> 通过SPI总线进行全双工读写数据块。</li>
+<li><code>int wiringPiSPIGetFd  (int channel) ;</code> 返回指定通道SPI设备的文件句柄</li>
+</ul>
+<ol start="8">
+<li>串口库。wiringPi 包含了一个简单的串口处理库。使用它可以操作板上的串口或者 USB 串口设<br>备，返两者幵无特殊的差别。叧需要在初始化函数中指定设备名称即可。</li>
+</ol>
+<ul>
+<li><code>int   serialOpen      (const char *device, const int baud) ;</code>打开串口设备，同时设置通讯的波特率。默认将端口设置为“raw”模式（字符未经过转换），开启读超时为 10 秒。返回值是一个文件描述符，如果失败的话，返回值为-1，返种情况下，将会依据不同的失败原因来设置 errno 变量。</li>
+<li><code>void  serialClose     (const int fd) ;</code>使用指定的文件描述符关闭设备</li>
+<li><code>void  serialFlush     (const int fd) ;</code>清空指定文件描述符的数据缓冲区</li>
+<li><code>void  serialPutchar   (const int fd, const unsigned char c) ;</code>将单个字节写入指定设备的文件描述符。</li>
+<li><code>void  serialPuts      (const int fd, const char *s) ;</code> 该函数将一个以 <code>\0</code> 结尾的字符串写入指定设备的文件描述符。</li>
+<li><code>void  serialPrintf    (const int fd, const char *message, ...);</code>不系统的 printf 函数类似，区别在亍将内容写入到了串口设备。</li>
+<li><code>int   serialDataAvail (const int fd) ;</code> 返回等待读取的字符数，如果发生错误，则返回-1，此种情冴下， errno 将会被设置为错误发生原因。</li>
+<li><code>int   serialGetchar   (const int fd) ;</code> 返回串口设备的下一个待读取字符。如果没有数据，该函数将会等待 10 秒， 10 秒后若仍无数据则会返回-1.</li>
+</ul>
+<ol start="9">
+<li>一些其他的函数。</li>
+</ol>
+<ul>
+<li><code>void         delay             (unsigned int howLong) ;</code>延时毫秒</li>
+<li><code>void         delayMicroseconds (unsigned int howLong) ;</code>延时微妙</li>
+<li><code>unsigned int millis            (void) ;</code>返回从调用 wiringPiSetup后函数后的毫秒数。返回值是一个无符号 32 位整数。在 49 天后，将会溢出。</li>
+<li><code>unsigned int micros            (void) ;</code>该函数返回从调用 wiringPiSetup 函数后的微秒数。返回值是一个无符号 32 位整数，在接近 71 分钟后，将会溢出。</li>
+</ul>
+<ol start="9">
+<li>编译。</li>
+</ol>
+<ul>
+<li>使用WiringLMK编译一个程序例子, 你必须添加库文件链接路径-I&#x2F;usr&#x2F;local&#x2F;include -L&#x2F;usr&#x2F;local&#x2F;lib -lwiringPi</li>
+<li>根据不同的运行环境，你也许需要查看这些重要的参数： -lwiringPi、-lwiringPiDev或-lpthread。</li>
+<li>在使用WiringLMK GPIO库前面，必须在程序中添加头文件<code>#include &lt;wiringPi.h&gt;</code>。根据具体使用的模块（比如SPI，I2C，串口等），你可能也必须添加其它的#include头文件（比如<code>#include &lt;wiringPiI2C.h&gt;</code> <code>#include &lt;wiringSerial.h&gt;</code>）。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/13/BananaPro-%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%95%B0%E8%BD%AC%E6%8D%A2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          BananaPro 使用模数转换
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/05/%E7%A7%BB%E6%A4%8DQt5-6-0%E5%88%B0Armv7%E6%9E%B6%E6%9E%84%E7%9A%84BananaPro/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移植Qt5.6.0到Armv7架构的BananaPro</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

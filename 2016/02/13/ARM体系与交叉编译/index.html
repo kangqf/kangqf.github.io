@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>ARM体系与交叉编译 | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="想要了解嵌入式开发，那么了解ARM的架构体系肯定是必不可少的。这篇文章主要就是介绍一些ARM的基本知识以及一些交叉编译的知识。 ARM 公司是一家以卖知识产权为生的公司，主要是设计各种CPU内核，又称IP核（知识产权核）及其周边的开发工具，将其授权卖给芯片制造商。芯片制造产商为IP核设计外围电路然后形成自己的产品。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARM体系与交叉编译">
+<meta property="og:url" content="http://kangqingfei.cn/2016/02/13/ARM%E4%BD%93%E7%B3%BB%E4%B8%8E%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="想要了解嵌入式开发，那么了解ARM的架构体系肯定是必不可少的。这篇文章主要就是介绍一些ARM的基本知识以及一些交叉编译的知识。 ARM 公司是一家以卖知识产权为生的公司，主要是设计各种CPU内核，又称IP核（知识产权核）及其周边的开发工具，将其授权卖给芯片制造商。芯片制造产商为IP核设计外围电路然后形成自己的产品。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-02-13T02:50:39.000Z">
+<meta property="article:modified_time" content="2022-09-14T18:03:38.047Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="嵌入式">
+<meta property="article:tag" content="毕设">
+<meta property="article:tag" content="ARM">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 14.29px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 12.86px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-ARM体系与交叉编译" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/13/ARM%E4%BD%93%E7%B3%BB%E4%B8%8E%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/" class="article-date">
+  	<time datetime="2016-02-13T02:50:39.000Z" itemprop="datePublished">2016-02-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ARM体系与交叉编译
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARM/" rel="tag">ARM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%95%E8%AE%BE/" rel="tag">毕设</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/basis/">basis</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="想要了解嵌入式开发，那么了解ARM的架构体系肯定是必不可少的。这篇文章主要就是介绍一些ARM的基本知识以及一些交叉编译的知识。"><a href="#想要了解嵌入式开发，那么了解ARM的架构体系肯定是必不可少的。这篇文章主要就是介绍一些ARM的基本知识以及一些交叉编译的知识。" class="headerlink" title="想要了解嵌入式开发，那么了解ARM的架构体系肯定是必不可少的。这篇文章主要就是介绍一些ARM的基本知识以及一些交叉编译的知识。"></a>想要了解嵌入式开发，那么了解ARM的架构体系肯定是必不可少的。这篇文章主要就是介绍一些ARM的基本知识以及一些交叉编译的知识。</h3><ol>
+<li>ARM 公司是一家以卖知识产权为生的公司，主要是设计各种CPU内核，又称IP核（知识产权核）及其周边的开发工具，将其授权卖给芯片制造商。芯片制造产商为IP核设计外围电路然后形成自己的产品。<span id="more"></span></li>
+<li>ARM、X86&#x2F;Atom、MIPS、PowerPC。</li>
+</ol>
+<ul>
+<li>ARM使用RISC，主打低功耗。</li>
+<li>X86由Intel开发制造的。80x86（80386&#x2F;80686）采用CISC，可变指令长度。Intel Atom，中文名凌动，是一个超低电压系列。</li>
+<li>MIPS采用RISC，有MIPS32和MIPS64架构标准，中科院计算研究所的龙芯中央处理器获得了所有的授权。</li>
+<li>PowerPC采用RISC，貌似多用在IBM的服务器上。</li>
+</ul>
+<ol start="3">
+<li>32bit、64bit。在ARMv8架构中使用了64位CPU，这使得可寻址空间不再局限于4GB，最新的A72以及之前的A53、A57都使用了该架构。而A35、A17（A12）、A15通过<code>Physical Address Extensions</code>技术将最大内存寻址从4GB扩充至1TB，暂缓了内存上限问题，但仍然是32bit CPU。还有之前的A5、A7、A8、A9（区别参考<a target="_blank" rel="noopener" href="http://www.veryarm.com/1025.html">这里</a>）等都是32位内核并且都是使用的ARMv7架构。</li>
+<li>RISC与CISC。</li>
+</ol>
+<ul>
+<li>说到这个指令集得先说以前的程序员，以前的程序员都是神啊，那是编译器还不成熟，只能用机器码来给cpu下达指令。所以为了节省时间机智的程序员就会用一条二进制指令来做一系列事情，比如用一条011001来对一个数加1减2再加1。但是这样就会发现里面重复了加1这个操作，并且随着需求的增加就会有更多的指令出来（比如01110101对一个数加1减3加1加1），里面的重复度就更大。所以机智的程序员发现加1占据了绝大多数的操作，而减2和减3占据少数的操作，所以就把这三个小指令分离出来变成001加1,010减2,011减3。这个时候精简指令集就出现了，可以看到精简的指令长度固定便于CPU解码并且能减少CPU核在芯片上占用的面积从而留给外设，但是原来短的指令就变长了所以占用的flash会变多也会延长指令读取的时间。但是事实证明这样的指令集对于能耗敏感的嵌入式是很有利的，我们不能说谁就一定好，只能说对于某一场合的应用某个会适合一些。</li>
+<li>我们可以把指令集看成是积木。我们的目的就是建造一栋房子，对于CISC，就像是一包含有门、窗、墙的积木，而RISC就是一包含有正方块、长方块、圆块的积木。同样要堆出一栋房子，CISC的说明书可能只要一页，而RISC的说明书要10页，但是我们的CISC各种部件眼花缭乱，而RISC只有三四种部件。</li>
+</ul>
+<ol start="5">
+<li>架构、内核、处理器。架构师指从ARMv1到ARMv8的8代架构。内核是指在某一架构下设计出来的CPU，比如cortex-M3，cortex-A7、ARM7等等<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/ARM%E6%9E%B6%E6%A7%8B#.E5.85.A7.E6.A0.B8.E7.A8.AE.E9.A1.9E">区别参考这里</a>。而处理器是使用ARM设计的CPU加上自己的GPU（Nvidia的GPU），或使用ARM的GPU Mali，加上外设电路，得到的一个芯片，比如全志的A20。</li>
+<li>armel和armhf，<a target="_blank" rel="noopener" href="http://www.veryarm.com/872.html">参考这里</a>。</li>
+</ol>
+<ul>
+<li><p>出于低功耗、封装限制等种种原因，之前的一些ARM架构处理器因为内部资源宝贵，加入浮点运算单元是十分奢侈的，因为需要额外的软件实现。随着技术发展，目前高端的ARM处理器已经具备了硬件执行浮点操作的能力。这样新旧两种架构之间的差异，就产生了两个不同的嵌入式应用程序二进制接口（EABI）——软浮点与矢量浮点（VFP）。但是软浮点（soft float）和硬浮点（hard float）之间有向前兼容却没有向后兼容的能力，也就是软浮点的二进制接口（EABI）仍然可以用于当前的高端ARM处理器。</p>
+</li>
+<li><p>在ARM体系架构内核中，有些有浮点运算单元（fpu），有些没有。对于没有fpu内核，是不能使用armel和armhf的。在有fpu的情况下，就可以通过gcc的选项-mfloat-abi来指定使用哪种，有如下三种值：</p>
+<ul>
+<li>soft：不用​fpu计算，即使有fpu浮点运算单元也不用。</li>
+<li>armel：也即softfp，用fpu计算，但是传参数用普通寄存器传，这样中断的时候，只需要保存普通寄存器，中断负荷小，但是参数需要转换成浮点的再计算。</li>
+<li>armhf：也即hard，用fpu计算，传参数用fpu中的浮点寄存器传，省去了转换性能最好，但是中断负荷高。</li>
+</ul>
+<p>kernel、rootfs和app编译的时候，指定的必须保持一致才行。</p>
+</li>
+</ul>
+<ol start="7">
+<li>哈佛&#x2F;冯诺依曼（普林斯顿）。简单来说俩个的区别就是有没有把数据寻址和指令寻址分离开来。具体参考<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%93%88%E4%BD%9B%E7%BB%93%E6%9E%84">这里</a>。</li>
+<li>交叉编译（<a target="_blank" rel="noopener" href="http://blog.csdn.net/qfnu08zzr/article/details/48264331">参考</a>）。交叉编译通俗地讲就是在一种平台上编译出能运行在体系结构不同的另一种平台上的程序，比如在PC平台（X86 CPU）上编译出能运行在以ARM为内核的CPU平台上的程序，编译得到的程序在X86 CPU平台上是不能运行的，必须放到ARM CPU平台上才能运行，虽然两个平台用的都是Linux系统。</li>
+</ol>
+<ul>
+<li>交叉编译工具链的命名规则为：arch [-vendor] [-os] [-(gnu)eabi]<ul>
+<li>arch – 体系架构，如ARM，MIPS</li>
+<li>vendor – 工具链提供商</li>
+<li>os – 目标操作系统</li>
+<li>eabi – 嵌入式应用二进制接口（Embedded Application Binary Interface）</li>
+</ul>
+</li>
+<li>根据对操作系统的支持与否，ARM GCC可分为支持和不支持操作系统，如<ul>
+<li>arm-none-eabi：这个是没有操作系统的，自然不可能支持那些跟操作系统关系密切的函数，比如fork(2)。他使用的是newlib这个专用于嵌入式系统的C库。</li>
+<li>arm-none-linux-eabi：用于Linux的，使用Glibc</li>
+</ul>
+</li>
+<li>ABI 和 EABI<ul>
+<li>ABI：二进制应用程序接口(Application Binary Interface (ABI) for the ARM Architecture)。在计算机中，应用二进制接口描述了应用程序（或者其他类型）和操作系统之间或其他应用程序的低级接口。</li>
+<li>EABI：嵌入式ABI。嵌入式应用二进制接口指定了文件格式、数据类型、寄存器使用、堆积组织优化和在一个嵌入式软件中的参数的标准约定。开发者使用自己的汇编语言也可以使用 EABI 作为与兼容的编译器生成的汇编语言的接口。两者主要区别是，ABI是计算机上的，EABI是嵌入式平台上（如ARM，MIPS等）。</li>
+</ul>
+</li>
+<li>arm-linux-gnueabi-gcc 和 arm-linux-gnueabihf-gcc 两个交叉编译器分别适用于 armel 和 armhf 两个不同的架构</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/13/BananaPro%E9%95%9C%E5%83%8F%E7%94%9F%E6%88%90%E8%84%9A%E6%9C%AC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          BananaPro镜像生成脚本
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/01/%E5%85%A5%E6%89%8BBananaPro/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">入手BananaPro</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

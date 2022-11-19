@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Docker 入门 | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="很久之前就说要学Docker，但是一直断断续续的学了一点，这个暑假终于腾出点时间把Docker过一下。主要是阅读 《Docker-从入门到实践》这本书，然后看了一下希云的视频，留此文章用于备忘。 Docker简述  Docker 项目的目标是实现轻量级的操作系统虚拟化解决方案。Docker 的基础是Linux 容器 (LXC) 等技术。  Docker 和传统虚拟化方式的不同之处:容器是在操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 入门">
+<meta property="og:url" content="http://kangqingfei.cn/2016/08/02/Docker-%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="很久之前就说要学Docker，但是一直断断续续的学了一点，这个暑假终于腾出点时间把Docker过一下。主要是阅读 《Docker-从入门到实践》这本书，然后看了一下希云的视频，留此文章用于备忘。 Docker简述  Docker 项目的目标是实现轻量级的操作系统虚拟化解决方案。Docker 的基础是Linux 容器 (LXC) 等技术。  Docker 和传统虚拟化方式的不同之处:容器是在操作系统">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-08-02T14:20:25.000Z">
+<meta property="article:modified_time" content="2022-09-14T18:03:38.045Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="Docker 入门">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 14.29px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 12.86px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Docker-入门" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/02/Docker-%E5%85%A5%E9%97%A8/" class="article-date">
+  	<time datetime="2016-08-02T14:20:25.000Z" itemprop="datePublished">2016-08-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker 入门
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker-%E5%85%A5%E9%97%A8/" rel="tag">Docker 入门</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="很久之前就说要学Docker，但是一直断断续续的学了一点，这个暑假终于腾出点时间把Docker过一下。主要是阅读-《Docker-从入门到实践》这本书，然后看了一下希云的视频，留此文章用于备忘。"><a href="#很久之前就说要学Docker，但是一直断断续续的学了一点，这个暑假终于腾出点时间把Docker过一下。主要是阅读-《Docker-从入门到实践》这本书，然后看了一下希云的视频，留此文章用于备忘。" class="headerlink" title="很久之前就说要学Docker，但是一直断断续续的学了一点，这个暑假终于腾出点时间把Docker过一下。主要是阅读 《Docker-从入门到实践》这本书，然后看了一下希云的视频，留此文章用于备忘。"></a>很久之前就说要学Docker，但是一直断断续续的学了一点，这个暑假终于腾出点时间把Docker过一下。主要是阅读 《Docker-从入门到实践》<a target="_blank" rel="noopener" href="https://www.gitbook.com/book/yeasy/docker_practice/details">这本书</a>，然后看了一下<a target="_blank" rel="noopener" href="http://v.youku.com/v_show/id_XMTI1NTExNzgxNg==.html?from=s1.8-1-1.2">希云的视频</a>，留此文章用于备忘。</h2><ol>
+<li><p>Docker简述</p>
+</li>
+<li><p>Docker 项目的目标是实现轻量级的操作系统虚拟化解决方案。Docker 的基础是Linux 容器 (LXC) 等技术。</p>
+</li>
+<li><p>Docker 和传统虚拟化方式的不同之处:容器是在操作系统层面上实现虚拟化，直接复用本地主机的操作系统，而传统方式则是在硬件层面实现。</p>
+</li>
+<li><p>Docker 容器的启动可以在秒级实现,容器除了运行其中应用外， 基本不消耗额外的系统资源，使得应用的性能很高，同时系统的开销尽量小。</p>
+<span id="more"></span></li>
+<li><p>Docker 核心概念</p>
+</li>
+<li><p>image-镜像。Docker镜像就是一个只读的模板，模板中包含一些固定的配置文件。镜像是只读的，容器在启动的时候创建一层可写层 作为最上层。</p>
+</li>
+<li><p>container-容器。容器是从镜像创建的运行实例。它可以被启动、开始、停止、删除。每个容器都是相互隔离的、保证安全的平台。</p>
+</li>
+<li><p>repository-仓库。仓库是集中存放镜像文件的场所。每个仓库中又包含了多个镜像，每个镜像有不同的标签。</p>
+</li>
+<li><p>以上这些概念和git有着异曲同工之处，你可以将image看着是一个 os 的release，这样就很好理解Docker的相关概念了。</p>
+</li>
+<li><p>ubuntu安装Docker (参考<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/installation/linux/ubuntulinux/">官方文档</a>-我是在zeal中参考的)</p>
+</li>
+<li><p><code>sudo apt-get install apt-transport-https ca-certificates</code> 安装 apt-transport-https 包以支持 https 协议的源</p>
+</li>
+<li><p><code>sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D</code>  添加源的 gpg 密 钥</p>
+</li>
+<li><p><code>lsb_release -c</code>  获取当前操作系统的代号</p>
+</li>
+<li><p><code>sudo vim /etc/apt/sources.list.d/docker.list</code><br>  然后填入 <code>deb https://apt.dockerproject.org/repo ubuntu-trusty main</code></p>
+</li>
+<li><p><code>sudo apt-get update </code>  更新源</p>
+</li>
+<li><p><code>sudo apt-get install -y linux-image-extra-$(uname -r)</code>  为了让 Docker 使用 aufs 存储，推荐安装 linux-image-extra 软件包</p>
+</li>
+<li><p><code>sudo apt-get install apparmor</code>  apparmor 是Linux内核的一个安全模块，新版本的Ubuntu已经被整合到内核</p>
+</li>
+<li><p><code>sudo apt-get install -y docker-engine</code>   安装Docker</p>
+</li>
+<li><p>至此Docker就安装完毕。</p>
+</li>
+<li><p>Docker 镜像操作</p>
+</li>
+<li><p>获取镜像<br>* 使用默认注册服务器（registry） <code>sudo docker pull ubuntu:14.04</code> 从远程获取镜像，等价于 <code>sudo docker pull registry.hub.docker.com/ubuntu:14.04</code><br>* 使用其他的注册服务器 <code>sudo docker pull dl.dockerpool.com: 5000/ubuntu:14.04</code><br>* 使用Dockerfile构建镜像： <code>sudo docker build -t kangqf/centos:7.1 .</code> -t是指定 tag<br>* 通过文件导入镜像： <code>sudo cat ubuntu-14.04-x86_64-minimal.tar.gz | docker import - ubuntu:14.04</code></p>
+</li>
+<li><p>运行镜像<br>* 交互式运行镜像 <code>sudo docker run -t -i ubuntu:14.04 /bin/bash</code> -i是指以交互式运行，-t 是指分配一个伪TTY<br>* 守护态运行镜像 <code>sudo docker run -d -p 8080:80 --name website kangqf/php-fpm:5.4</code> -d 是指以守护态运行 -p 表示端口映射（还有 -P随意端口映射）<br>* 传入环境变量运行 <code>  sudo docker run -d -p 80:80  -e WORDPRESS_DB_HOST=172.17.0.2 -e WORDPRESS_DB_USER=admin -e WORDPRESS_DB_PASSWORD=111111 --name wordpress kangqf/wordpress:4.3</code></p>
+</li>
+<li><p>列出本地镜像 <code>sudo docker images</code></p>
+</li>
+<li><p>提交镜像修改 <code>sudo docker commit -m &quot;fix systemd conflict&quot; ed008584c431 kanngqf/php-fpm:5.4.1</code> -a 可以指定更新的用户信息 -m 用来指定提交的说明信息</p>
+</li>
+<li><p>上传镜像 <code>sudo docker push ouruser/sinatra</code></p>
+</li>
+<li><p>本地存出镜像 <code>sudo docker save -o ubuntu_14.04.tar ubuntu:14.04</code></p>
+</li>
+<li><p>本地载入镜像 <code>sudo docker load --input ubuntu_14.04.tar</code> 或是<br>  <code>sudo docker load &lt; ubuntu_14.04.tar</code> 这将导入镜像以及其相 关的元数据信息（包括标签等）</p>
+</li>
+<li><p>移除本地镜像 <code>sudo docker rmi training/sinatra</code> 移除镜像之前确定该镜像没有被容器使用，如果有先移除该容器</p>
+</li>
+<li><p>移除所有未打标签的镜像 <code>sudo docker rmi $(docker images -q -f &quot;dangling=true&quot;)</code> 是<code>sudo docker rmi $(docker images --quiet --filter &quot;dangling=true&quot;)</code>的缩写。</p>
+</li>
+<li><p>Docker 容器操作</p>
+</li>
+<li><p>启动容器 <code>sudo docker run ubuntu: 14.04 /bin/echo &#39;Hello world&#39;</code> -t 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上，-i 则让容器的标准输入保持打开，-d 后台运行。</p>
+</li>
+<li><p>启动已经终止的容器 <code>docker start</code> 可以使用<code>docker ps -a</code>来查看已经终止的容器或是正在运行的容器。</p>
+</li>
+<li><p>获取容器的输出信息 <code>docker logs</code>。</p>
+</li>
+<li><p>终止容器 <code>docker stop</code></p>
+</li>
+<li><p>重启容器 <code>docker restart</code></p>
+</li>
+<li><p>进入容器 <code>docker  attach website</code>但是使用 attach 命令有时候并不方便。当多个窗口同时attach到同一个容器的时候，所有窗口都会同步显示。当某个窗口因命令阻塞时,其他窗口也无法执行操作了。</p>
+</li>
+<li><p>导出本地某个容器快照 <code>docker export 7691a814370e &gt; ubuntu.tar</code></p>
+</li>
+<li><p>导入容器快照 <code>cat ubuntu.tar | sudo docker import - test/ubuntu: v1.0</code> load 和 import的区别是 import的快照会丢失所有的历史记录和源数据信息。</p>
+</li>
+<li><p>删除容器 <code>docker rm </code>来删除一个处于终止状态的容器。 <code>docker rm $( docker ps -a -q)</code>清除所有处于终止态的容器。</p>
+</li>
+<li></li>
+<li><p>Docker 仓库</p>
+</li>
+<li><p>仓库（ Repository）是存放镜像的地方。注册服务器（ Registry）是管理仓库的具体服务器。例如对于仓库地址dl. dockerpool.com&#x2F;ubuntu 来说，dl.dockerpool.com 是注册服务器地址，ubuntu 是仓库名。</p>
+</li>
+<li><p>Docker Hub 是Docker官方维护的一个公共仓库。<code>docker login </code>用来注册登录，<code>docker search</code>来查找官方的镜像，<code>docker pull</code>来下载镜像，<code>docker push</code> 将镜像推送到Docker Hub。</p>
+</li>
+<li><p>仓库自动创建（Automated Builds）。自动创建允许用户通过 Docker Hub 指定跟踪一个目标网站（目前支持 GitHub或BitBucket）上的项目，一旦项目发生新的提交，则自动执行创建。</p>
+</li>
+<li><p>私有仓库。docker-registry 是官方提供的工具，可以用于构建私有的镜像仓库。registry 支持 通过config_sample.yml来配置各种相关的选项，包括数据的存储方式等内容。</p>
+</li>
+</ol>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ol>
+<li><p>Cannot connect to the Docker daemon. Is the docker daemon running on this host?<br><code>在 docker images docker build 等命令时加上 sudo</code></p>
+</li>
+<li><p>Error: fakesystemd conflicts with systemd-219-19.el7_2.11.x86_64<br><code>加上  --skip-broken</code></p>
+</li>
+<li><p>run 之后马上退出<br><code>检查entrypoint中的文件是否有可执行权限或者以交互式运行container然后查看调试信息</code></p>
+</li>
+</ol>
+<h2 id="几个技巧"><a href="#几个技巧" class="headerlink" title="几个技巧"></a>几个技巧</h2><p>删除 none 的image</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo docker ps -a | <span class="type">grep</span> <span class="string">&quot;Exited&quot;</span> | <span class="type">awk</span> &#x27;&#123;print $<span class="number">1</span> &#125;&#x27;|<span class="type">xargs</span> sudo docker stop</span><br><span class="line">sudo docker ps -a | <span class="type">grep</span> <span class="string">&quot;Exited&quot;</span> | <span class="type">awk</span> &#x27;&#123;print $<span class="number">1</span> &#125;&#x27;|<span class="type">xargs</span> sudo docker rm</span><br><span class="line">sudo docker images|<span class="type">grep</span> none|<span class="type">awk</span> &#x27;&#123;print $<span class="number">3</span> &#125;&#x27;|<span class="type">xargs</span> sudo docker rmi</span><br></pre></td></tr></table></figure>
+<p>删除image的流程</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo docker stop cid</span><br><span class="line">sudo docker rm cid</span><br><span class="line">sudo docker rmi iid</span><br></pre></td></tr></table></figure>
+
+<h2 id="一些资源"><a href="#一些资源" class="headerlink" title="一些资源"></a>一些资源</h2><p><a target="_blank" rel="noopener" href="https://github.com/nicescale/docker-training.git">希云培训代码</a></p>
+<p><a target="_blank" rel="noopener" href="https://csphere.cn/training">希云培训教程</a></p>
+<p><a target="_blank" rel="noopener" href="http://yuedu.baidu.com/ebook/d817967416fc700abb68fca1">Docker 入门实战</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/02/Dockerfile-%E7%BC%96%E5%86%99/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Dockerfile 编写
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/28/%E6%A0%A1%E5%9B%AD%E7%BD%91%E7%8E%AF%E5%A2%83%E5%9C%A8AU%E4%B8%8A%E4%BD%BF%E7%94%A8OpenWrt/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">校园网环境在AU上使用OpenWrt</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

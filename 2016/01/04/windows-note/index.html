@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>windows note | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章主要是用来记录在windows使用过程中遇到的问题及其解决方法的，持续更新…今天和小伙伴一起打算做个东西，结果发现以前搭过的环境，即使在当时熟到透现在很多都忘了，所以发现写写文章还是必要的。所以从今天起会在这篇文章中记录windows平台的一些使用。由于今天小伙伴说为了连VPS下了个putty结果中了个全家桶，，，，，真是悲催，所以就从命令行开始吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows note">
+<meta property="og:url" content="http://kangqingfei.cn/2016/01/04/windows-note/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="这篇文章主要是用来记录在windows使用过程中遇到的问题及其解决方法的，持续更新…今天和小伙伴一起打算做个东西，结果发现以前搭过的环境，即使在当时熟到透现在很多都忘了，所以发现写写文章还是必要的。所以从今天起会在这篇文章中记录windows平台的一些使用。由于今天小伙伴说为了连VPS下了个putty结果中了个全家桶，，，，，真是悲催，所以就从命令行开始吧。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-01-04T11:11:09.000Z">
+<meta property="article:modified_time" content="2022-09-14T18:03:38.042Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="note">
+<meta property="article:tag" content="windows">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 14.29px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 12.86px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-windows-note" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/04/windows-note/" class="article-date">
+  	<time datetime="2016-01-04T11:11:09.000Z" itemprop="datePublished">2016-01-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      windows note
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="这篇文章主要是用来记录在windows使用过程中遇到的问题及其解决方法的，持续更新…"><a href="#这篇文章主要是用来记录在windows使用过程中遇到的问题及其解决方法的，持续更新…" class="headerlink" title="这篇文章主要是用来记录在windows使用过程中遇到的问题及其解决方法的，持续更新…"></a>这篇文章主要是用来记录在windows使用过程中遇到的问题及其解决方法的，持续更新…</h4><h5 id="今天和小伙伴一起打算做个东西，结果发现以前搭过的环境，即使在当时熟到透现在很多都忘了，所以发现写写文章还是必要的。所以从今天起会在这篇文章中记录windows平台的一些使用。由于今天小伙伴说为了连VPS下了个putty结果中了个全家桶，，，，，真是悲催，所以就从命令行开始吧。"><a href="#今天和小伙伴一起打算做个东西，结果发现以前搭过的环境，即使在当时熟到透现在很多都忘了，所以发现写写文章还是必要的。所以从今天起会在这篇文章中记录windows平台的一些使用。由于今天小伙伴说为了连VPS下了个putty结果中了个全家桶，，，，，真是悲催，所以就从命令行开始吧。" class="headerlink" title="今天和小伙伴一起打算做个东西，结果发现以前搭过的环境，即使在当时熟到透现在很多都忘了，所以发现写写文章还是必要的。所以从今天起会在这篇文章中记录windows平台的一些使用。由于今天小伙伴说为了连VPS下了个putty结果中了个全家桶，，，，，真是悲催，所以就从命令行开始吧。"></a>今天和小伙伴一起打算做个东西，结果发现以前搭过的环境，即使在当时熟到透现在很多都忘了，所以发现写写文章还是必要的。所以从今天起会在这篇文章中记录windows平台的一些使用。由于今天小伙伴说为了连VPS下了个putty结果中了个全家桶，，，，，真是悲催，所以就从命令行开始吧。</h5><span id="more"></span>
+<ol>
+<li><h3 id="在windows下使用命令行。"><a href="#在windows下使用命令行。" class="headerlink" title="在windows下使用命令行。"></a>在windows下使用命令行。</h3></li>
+<li><h4 id="babun。今天在小伙伴的电脑上使用一个不知名的终端简直难用死了，连Backspace都不能使（我肯定在vim里面配了的，估计是开发者偷懒没有定义一部分宏），vim提示也没有，还一卡一卡的，简直不能忍，对比我的babun，各种兼容，所以第一个推荐大家使用的就是它了。我是做薪火杯的时候装的了都忘记了，所以参考了网上的一些文章。刚好把它卸载（就是把-babun-文件夹全删了-）了，重新配一下。"><a href="#babun。今天在小伙伴的电脑上使用一个不知名的终端简直难用死了，连Backspace都不能使（我肯定在vim里面配了的，估计是开发者偷懒没有定义一部分宏），vim提示也没有，还一卡一卡的，简直不能忍，对比我的babun，各种兼容，所以第一个推荐大家使用的就是它了。我是做薪火杯的时候装的了都忘记了，所以参考了网上的一些文章。刚好把它卸载（就是把-babun-文件夹全删了-）了，重新配一下。" class="headerlink" title="babun。今天在小伙伴的电脑上使用一个不知名的终端简直难用死了，连Backspace都不能使（我肯定在vim里面配了的，估计是开发者偷懒没有定义一部分宏），vim提示也没有，还一卡一卡的，简直不能忍，对比我的babun，各种兼容，所以第一个推荐大家使用的就是它了。我是做薪火杯的时候装的了都忘记了，所以参考了网上的一些文章。刚好把它卸载（就是把.babun 文件夹全删了:) ）了，重新配一下。"></a><em><strong>babun</strong></em>。今天在小伙伴的电脑上使用一个不知名的终端简直难用死了，连Backspace都不能使（我肯定在vim里面配了的，估计是开发者偷懒没有定义一部分宏），vim提示也没有，还一卡一卡的，简直不能忍，对比我的babun，各种兼容，所以第一个推荐大家使用的就是它了。我是做薪火杯的时候装的了都忘记了，所以参考了网上的一些文章。刚好把它卸载（就是把.babun 文件夹全删了:) ）了，重新配一下。</h4><pre><code>1. 关于babun。 介绍就自己去[babun的官网](http://babun.github.io/)看了,反正很好用，之前我装的时候谷歌搜不到几篇文章现在一搜就是一把。
+2. 安装。官网下载安装包`babun-1.2.0-dist`，然后找个地方解压了，你会发现里面有个`install.txt`,里面写着`In order to install babun just run the install.bat script`意思是你直接点install.bat 就是了，他会默认安装到`C:/Users/xxx/.babun`下面就是我之前直接删除的那个目录，然后里面还有一句是这样的`To install in a different directory, just use the /t switch (or /target) e.g install.bat /t &quot;D:\target_folder&quot; `意思是你可以自己指定安装目录（安装目录不要有空格），这应该是新版本的特性，对于我这种对电脑每个文件的作用都想了如指掌的人来说当然是极好的。所以我在解压的文件夹下面打开命令行，`install.bat /t &quot;C:\ProgramFiles\babun&quot;`然后就开始安装了，会输出一系列的信息，最后会在.babun文件夹生成在我们刚刚指定的目录下面，里面就是我们的babun了，进去.babun,里面有个`babun.bat`双击它就可以运行了（安装完也会自动弹出并生成快捷方式）然后把它固定到开始菜单吧 :)，新版本里面还有`uninstall.bat`再也不用手动删目录了，另外新版本还增加了`Now you can open babun directly in any folder by right clicking your mouse and choosing the Open Babun here option.`就是你可以在任何文件夹上右击打开babun 。
+3. 个性化。首先修改颜色，你在标题栏右击，然后options，里面可以设置，初始的背景色是`E:160 S:0 L:26 R:28 G:28 B:28 `我把它改成`E:239 S:74 L:60 R:83 G:44 B:45 `，同样的前景色初始是`E:160 S:0 L:196 R:208 G:208 B:208 `把它改成`E:68 S:232 L:120 R:79 G:251 B:4 `，把透明度改成`low`，把光标改成`underscope`，把窗口改成120x50（Alt+F11可以全屏），把字体改成Courier new。接下来就是中文乱码的问题，这个问题困扰了我很久，网上大多数的解决方法是把编码改成gbk，然后终端会出现一个禄字替换就是了，这样的话使用cmd的一些命令（ipconfig、nslookup）就不会出现中文乱码，但这样的话如果有中文名的文件ls的时候就会乱码了（不改前是不会的），可能是鱼和熊掌不可得兼吧。我还是最终选用了前一种，毕竟我要在命令行里处理中文名的文件的概率极小。然后是去除那个禄字见[参考的方法](http://0x0d.im/archives/windows-build-linux-like-environment.html)，另外附上一个[修改ZSH主题的方法](https://prinzeugen.net/customize-zsh-prompt/#more-1884)。
+4. 安装软件。接下来就可以自行安装软件了，在这之前你可以先修改一下源`vim ~/.pact/pact.repo`，把`#PACT_REPO=http://mirrors.kernel.org/sourceware/cygwin/` 修改成`PACT_REPO=http://mirrors.163.com/cygwin/` 我修改后貌似会出现MD5校验错误，这个自己看着办，其实官方的源也挺快的。babun的包管理和ubuntu的很像，就是一个`pact`命令，你输入这个命令后他就会告诉你怎么用了。下面是网上给出的一些常用软件，另外像`autojump colored-man zsh_reload zsh-syntax-highlighting git git-flow ruby gem python pip node npm bower`这些插件参见后面的 **Babun 配置** 这篇文章里面写的很详细。
+</code></pre>
+<blockquote>
+<p>pact install tmux        #安装tmux<br>pact install screen      #安装screen 有了这两个不用conEmu也可以了<br>pact install zip         #安装zip<br>pact install lftp        #lftp命令<br>pact install p7zip       # p7zip命令<br>pact install connect-proxy # 基于openssh的socks https代理<br>pact install util-linux    #安装linux基础命令行工具 more&#x2F;col&#x2F;whereis等等命令<br>pact install bind-utils    #安装dig命令<br>pact install inetutils     #安装Telnet等常用网络命令<br>pact install python        #python环境<br>pact install python-crypto #python 环境<br>5. 使用Conemu。自己在<a target="_blank" rel="noopener" href="https://conemu.github.io/">官网</a>下载然后安装，安装好后参考 <strong>windows下搭建类linux环境</strong> 进行配置并进行一下个性化设置即可。<br>6. 使用tmux&#x2F;screen 这两货略微复杂，很有必要拿出一篇单独的文章来讲，这里可以先参考那两篇关于tmux的文章。</p>
+</blockquote>
+</li>
+</ol>
+<pre><code>参考文章：
+[Windows 系统下的开发环境搭建](http://blog.yuanbin.me/posts/2015/07/Dev-Environment-in-Windows.html)
+[Babun 配置](http://www.rxna.cn/post/wiki/babun-pei-zhi)
+[windows下搭建类linux环境](https://www.52os.net/articles/windows-install-unix-like-command-tools.html)
+[终端环境之tmux](http://foocoder.com/blog/zhong-duan-huan-jing-zhi-tmux.html/)
+[Tmux 入门介绍](http://blog.jobbole.com/87278/)
+</code></pre>
+<ol start="2">
+<li><h4 id="msys2。"><a href="#msys2。" class="headerlink" title="msys2。"></a><em><strong>msys2</strong></em>。</h4></li>
+<li>软件安装破解激活</li>
+<li>Adobe Acrobat XI Pro 提示试用到期。解决方法禁止其license 管理软件联网<code>C:\Program Files (x86)\Common Files\Adobe\OOBE\PDApp\core\PDapp.exe</code>。在防火墙中新建出站规则，针对所有的网络都禁止。</li>
+<li>msi 文件权限问题，使用msiexec命令 <code>E:\preparProgram&gt;msiexec /package python-2.7.8.msi</code></li>
+<li>狂野飙车8的游戏记录文件：<code>C:\Users\kqf\AppData\Local\Packages\GAMELOFTSA.Asphalt8Airborne_0pp20fcewvvtj\LocalState\profile|localprofile</code></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/05/VMware-config-network/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          VMware config network
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/03/ubuntu-note/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ubuntu note</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

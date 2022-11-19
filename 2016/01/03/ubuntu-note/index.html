@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>ubuntu note | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的，持续更新…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu note">
+<meta property="og:url" content="http://kangqingfei.cn/2016/01/03/ubuntu-note/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的，持续更新…">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-01-03T08:13:54.000Z">
+<meta property="article:modified_time" content="2022-09-14T18:03:38.042Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="note">
+<meta property="article:tag" content="ubuntu">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 14.29px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 12.86px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-ubuntu-note" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/03/ubuntu-note/" class="article-date">
+  	<time datetime="2016-01-03T08:13:54.000Z" itemprop="datePublished">2016-01-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ubuntu note
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/config/">config</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的，持续更新…"><a href="#这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的，持续更新…" class="headerlink" title="这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的，持续更新…"></a>这篇文章主要是用来记录在ubuntu使用过程中遇到的问题及其解决方法的，持续更新…</h3><span id="more"></span>
+<ol>
+<li>ubuntu 的源</li>
+</ol>
+<ul>
+<li><p>源的了解十分重要关系到软件更新时包的依赖关系等，如果源没有设置对很有可能会导致软件无法安装或者更新，更无法升级，并且源的依赖各种错乱。举个典型的例子是，你用的是trusty版本的系统，但是你配置了vivid版本的源，然后你更新了软件索引，并且更新了一部分软件，当你安装软件的时候就会出现各种复杂的依赖错误。原因是你的安装软件的依赖的基础库的版本高于要求版本，而这又不能被自动降级，因为一些你刚刚更新的软件需要这么高级版本的依赖库。</p>
+</li>
+<li><p>ubuntu 发行版本。对与不同的发行版本会有不同的源的维护，比如像LTS的发行版会提供5年的支持，而其他的可能就是很短时间就不提供支持了。所以建议用于开发的电脑可以选择LTS的发行版。Ubuntu每半年发布一个版本，分别在4月、10月,每两年发布一个LTS长期维护版本。ubuntu为每个发行版提供一个代号便于维护,，代号也很有意思，每次都是一个形容词加一个动物类名词，且两个单词的首字母相同，在设置源的时候就是用第一个单词来代表对应的版本。下面列出近几个发行版与它的代号的对应关系（<a target="_blank" rel="noopener" href="http://news.mydrivers.com/1/423/423871.htm">参考这里</a>）：</p>
+<ul>
+<li>Ubuntu 12.04 - Precise Pangolin(精准的穿山甲) LTS</li>
+<li>Ubuntu 12.10 - Quantal Quetzal(量子的绿咬鹃)</li>
+<li>Ubuntu 13.04 - Raring Ringtail(铆足了劲的猫熊)</li>
+<li>Ubuntu 13.10 - Saucy Salamander(活泼的蝾螈)</li>
+<li>Ubuntu 14.04 - Trusty Tahr (可靠的塔尔羊) LTS</li>
+<li>Ubuntu 14.10 - Utopic Unicorn（乌托邦独角兽)</li>
+<li>Ubuntu 15.04 - Vivid Vervet(活泼的小猴)</li>
+<li>Ubuntu 15.10 - Wily Werewolf(狡诈的狼人)</li>
+<li>Ubuntu 16.04 - Xenial Xerus（好客的非洲地松鼠） LTS</li>
+</ul>
+</li>
+<li><p>Ubuntu 软件。Ubuntu 为不同的软件分类以便用户选择是否使用这些类别的软件。</p>
+<ul>
+<li>main         - <code>Canonical</code>官方支持的免费和开源软件。</li>
+<li>universe     - 社区维护的免费和开源软件</li>
+<li>restricted   - 设备专有驱动</li>
+<li>multiverse   - 有版权和合法性问题的软件</li>
+<li>deb-src      - 源代码</li>
+</ul>
+</li>
+<li><p>Ubuntu 软件更新。Ubuntu 同样对其更新进行了分类，以便用户选择。</p>
+<ul>
+<li>security      - 重要安全更新</li>
+<li>updates       - 推荐更新</li>
+<li>proposed      - 提前释放出的更新</li>
+<li>backports     - 不支持的更新</li>
+</ul>
+</li>
+<li><p>架构，不同的架构对应的源也不同，就拿Arm的ubuntu源来说吧，找了很多的高校的镜像都没有，最后在清华大学的镜像站找到了，值得一提的是清华大学的镜像站确实挺全的，连msys2的源都有。我们常见的架构主要有 <code>i386</code>、<code>amd64</code>、<code>armel</code>、<code>armhf</code>。我们可以参考<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000000503041">这里</a>来使用一些公共的源。</p>
+</li>
+<li><p>举例来说源。我们就拿清华大学的ubuntu镜像来说，主站是<a target="_blank" rel="noopener" href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 进入我们看到有三个与ubuntu有关的目录：</p>
+<ul>
+<li>ubuntu - 是i386及amd64的主机的源，同步自<a target="_blank" rel="noopener" href="http://archive.ubuntu.com/ubuntu">http://archive.ubuntu.com/ubuntu</a></li>
+<li>ubuntu-ports - 是armel以及armhf架构的源，同步自 <a target="_blank" rel="noopener" href="http://ports.ubuntu.com/ubuntu-ports/">http://ports.ubuntu.com/ubuntu-ports/</a></li>
+<li>ubuntu-releases - ubuntu 各个发行版的ISO镜像以及一些md5校验信息。</li>
+</ul>
+<p>然后我们进入ubuntu-ports或是ubuntu就能看到这样的结构</p>
+<blockquote>
+<p> ..&#x2F;<br> dists&#x2F;     - 各个版本的五种软件分类的软件更新信息存放目录<br> indices&#x2F;   - 存放软件索引信息的目录<br> pool&#x2F;      - 用于实际存储所有新的软件包<br> project&#x2F;   - 存放软件签名信息的目录<br> ls-lR.gz   - 将命令ls -lR的输出重定向到得到的一个文本文件，相当于文件信息数</p>
+</blockquote>
+</li>
+</ul>
+<p>据库</p>
+<pre><code>我们进入`dists`目录，可以看到各个版本的软件信息，比如拿`trusty`来看，会有五个目录（参考上面的更新分类）：
+&gt; trusty/           - 14.04版本的主要软件信息目录
+&gt; trusty-backports/ - 14.04版本的不支持的更新
+&gt; trusty-proposed/  - 14.04版本的提前释放出的更新
+&gt; trusty-security/  - 14.04版本的重要安全更新
+&gt; trusty-updates/   - 14.04版本的推荐更新
+
+我们再进入其中一个目录可以看到类似下面的目录（参考上面的软件分类信息）：
+&gt; ../
+  main/
+  multiverse/
+  restricted/
+  universe/
+  Contents-arm64.gz   - 对应架构的所有软件信息
+  Contents-armhf.gz   -
+  Release             - md5 校验码
+  Release.gpg         - 签名信息
+
+这样我们就得到了一个软件源的基本结构，我们的source.list写到上面这一层就够了。比如我们的一个源配置是这样的：
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http:<span class="regexp">//</span>archive.ubuntu.com<span class="regexp">/ubuntu/</span> trusty-security main restricted universe multiverse</span><br><span class="line">deb-src http:<span class="regexp">//</span>archive.ubuntu.com<span class="regexp">/ubuntu/</span> trusty-security main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+按照上面的说法进行理解就是，我们配置了ubuntu 14.04 版本的源的二进制文件和源代码文件。其中只允许获取所有的更新分类中的重要安全更新分类。并且允许获取该更新分类下的所有的软件分类信息。
+</code></pre>
+<ol start="2">
+<li>ubuntu 中一些软件的源</li>
+</ol>
+<ul>
+<li>nginx： <code>sudo add-apt-repository ppa:nginx/stable</code></li>
+<li>nodejs： <code>sudo add-apt-repository ppa:chris-lea/node.js</code></li>
+<li>atom： <code>sudo add-apt-repository ppa:webupd8team/atom</code></li>
+<li>ap-hotspot: <code>sudo add-apt-repository ppa:nilarimogard/webupd8</code></li>
+</ul>
+<ol start="3">
+<li>禁用（启用）一些软件的升级</li>
+</ol>
+<ul>
+<li>首先软件的状态主要是有<ul>
+<li>unknown – 不知道</li>
+<li>install – 安装或升级</li>
+<li>remove – 删除软件，不删除配置文件</li>
+<li>purge – 完全删除软件，包括配置文件</li>
+<li>hold – 保持现状</li>
+</ul>
+</li>
+<li><code>sudo echo qemu hold | dpkg --set-selections</code>这个命令维持软件包的版本不变。</li>
+<li><code>sudo echo qemu install | sudo dpkg --set-selections</code>这个命令会在用户upgrade的时候更新软件包。</li>
+</ul>
+<ol start="4">
+<li>定时任务备份自己的命令历史以待以后查阅</li>
+<li>一些常见的配置文件</li>
+</ol>
+<ul>
+<li>DNS 配置文件：&#x2F;etc&#x2F;resolv.conf</li>
+<li>主机名： &#x2F;etc&#x2F;hostname</li>
+<li>DigitalOcean 的主机，装有两个版本的Python，如果命令行Python版本错误，应该修改 <code>/usr/local/bin</code> 里面的Python，而如果因为Python版本不对导致dpkg报错的话应该修改<code>/usr/bin</code>里面的Python。而shadowsocks用的好像是用的<code>/usr/bin</code> 里面的python。</li>
+</ul>
+<ol start="6">
+<li>一些常见的问题的解决。</li>
+</ol>
+<ul>
+<li><code>watch -n 5 pkill -USR1 ^dd$</code> 每5秒输出dd的进度 - <a target="_blank" rel="noopener" href="http://blog.csdn.net/xyz846/article/details/7367962">参考</a></li>
+<li>更新软件后导致网络管理器无法使用：<code>sudo apt-get install libnl-3-200=3.2.21-1 libnl-route-3-200=3.2.21-1 libnl-genl-3-200=3.2.21-1</code> 这是一个BUG - <a target="_blank" rel="noopener" href="http://askubuntu.com/questions/727127/last-upgrade-crashes-network-manager-no-internet-connection-no-applet">参考这里</a></li>
+<li>ubuntu 回滚到旧内核：<ul>
+<li><code>dpkg --get-selections|grep linux </code> 查看安装的内核版本</li>
+<li><code>sudo apt-get remove linux-headers-3.13.0-85-generic linux-image-3.13.0-85-generic linux-image-extra-3.13.0-85-generic </code>卸载旧的内核</li>
+<li><code>sudo find ../bits -mtime -7 -type f/d -print | xargs sudo  rm -f </code>查找7天之内修改的文件或文件夹然后删除之</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/04/windows-note/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          windows note
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/31/my-git-note/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">my git note</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

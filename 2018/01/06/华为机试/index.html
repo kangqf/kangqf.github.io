@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>华为机试 | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="华为机试题汇总，对于一些比较复杂的题目会单独分析链接：https:&#x2F;&#x2F;www.nowcoder.com&#x2F;ta&#x2F;huawei 总共 108 道题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="华为机试">
+<meta property="og:url" content="http://kangqingfei.cn/2018/01/06/%E5%8D%8E%E4%B8%BA%E6%9C%BA%E8%AF%95/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="华为机试题汇总，对于一些比较复杂的题目会单独分析链接：https:&#x2F;&#x2F;www.nowcoder.com&#x2F;ta&#x2F;huawei 总共 108 道题">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-01-06T08:03:07.000Z">
+<meta property="article:modified_time" content="2022-09-14T18:03:38.039Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="job">
+<meta property="article:tag" content="汇总">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 14.29px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 12.86px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part4">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sentut.cn/">sentut</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/b99b0edd4e77/latest_articles">miao1007</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/kangqingfei" title="twitter">twitter</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-华为机试" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/01/06/%E5%8D%8E%E4%B8%BA%E6%9C%BA%E8%AF%95/" class="article-date">
+  	<time datetime="2018-01-06T08:03:07.000Z" itemprop="datePublished">2018-01-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      华为机试
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/job/" rel="tag">job</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B1%87%E6%80%BB/" rel="tag">汇总</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/jobs/">jobs</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="华为机试题汇总，对于一些比较复杂的题目会单独分析"><a href="#华为机试题汇总，对于一些比较复杂的题目会单独分析" class="headerlink" title="华为机试题汇总，对于一些比较复杂的题目会单独分析"></a>华为机试题汇总，对于一些比较复杂的题目会单独分析</h2><h3 id="链接：https-www-nowcoder-com-ta-huawei-总共-108-道题"><a href="#链接：https-www-nowcoder-com-ta-huawei-总共-108-道题" class="headerlink" title="链接：https://www.nowcoder.com/ta/huawei 总共 108 道题"></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/ta/huawei">链接：https://www.nowcoder.com/ta/huawei</a> 总共 108 道题</h3><span id="more"></span>
+
+<ol>
+<li><p>字符串最后一个单词的长度  </p>
+<h3 id="处理输入就好"><a href="#处理输入就好" class="headerlink" title="处理输入就好"></a>处理输入就好</h3></li>
+<li><p>计算字符个数</p>
+<h3 id="处理输入以及字符串处理"><a href="#处理输入以及字符串处理" class="headerlink" title="处理输入以及字符串处理"></a>处理输入以及字符串处理</h3><p> 用到 <em>range for</em> <code>for(auto c : str)</code> 以及大小写的转换 <code>toupper(c)</code> <code>tolower(c)</code></p>
+</li>
+<li><p>明明的随机数  </p>
+<h3 id="去重与排序"><a href="#去重与排序" class="headerlink" title="去重与排序"></a>去重与排序</h3><p> 用到 排序 <code>sort(data.begin(),data.end())</code><br> 去重 <code>auto ite = unique(data.begin(),data.end())</code><br> ite为第一个重复元素的迭代器 <code>unique</code> 实际上并没有删除任何元素，而是将无重复的元素复制到序列的前端<br> 删除指定范围的元素 <code>data.erase(ite,data.end())</code></p>
+</li>
+<li><p>字符串分隔</p>
+<h3 id="基本的字符串处理-注意边界条件"><a href="#基本的字符串处理-注意边界条件" class="headerlink" title="基本的字符串处理 注意边界条件"></a>基本的字符串处理 注意边界条件</h3></li>
+<li><p>进制转换</p>
+<h3 id="十六进制转十进制-基本的字符串处理-注意处理循环多组数据的输入"><a href="#十六进制转十进制-基本的字符串处理-注意处理循环多组数据的输入" class="headerlink" title="十六进制转十进制 基本的字符串处理 注意处理循环多组数据的输入"></a>十六进制转十进制 基本的字符串处理 注意处理循环多组数据的输入</h3></li>
+<li><p>质数因子</p>
+<h3 id="这里用到一些数学技巧，数学因子-是-将输入数值除以i-i从2开始-，除到无法整除-可以整除就输出然后做除法-后i-，直到除数平方大于等于输入数值"><a href="#这里用到一些数学技巧，数学因子-是-将输入数值除以i-i从2开始-，除到无法整除-可以整除就输出然后做除法-后i-，直到除数平方大于等于输入数值" class="headerlink" title="这里用到一些数学技巧，数学因子 是 将输入数值除以i(i从2开始)，除到无法整除(可以整除就输出然后做除法)后i++，直到除数平方大于等于输入数值"></a>这里用到一些数学技巧，数学因子 是 将输入数值除以i(i从2开始)，除到无法整除(可以整除就输出然后做除法)后i++，直到除数平方大于等于输入数值</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(i*i &lt; tmp)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(tmp1 % i == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        tmp1 /= i;</span><br><span class="line">        cout&lt;&lt;i&lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取近似值</p>
+<h3 id="将原数先乘以10-来分析其小数部分"><a href="#将原数先乘以10-来分析其小数部分" class="headerlink" title="将原数先乘以10 来分析其小数部分"></a>将原数先乘以10 来分析其小数部分</h3></li>
+<li><p>合并表记录</p>
+<h3 id="使用-map-处理索引和值，并将相同索引的值相加"><a href="#使用-map-处理索引和值，并将相同索引的值相加" class="headerlink" title="使用 map 处理索引和值，并将相同索引的值相加"></a>使用 map 处理索引和值，并将相同索引的值相加</h3></li>
+<li><p>提取不重复整数</p>
+<h3 id="提取一个整数的每一位数，判断个位是否为0，然后逆序输出，输出时使用flag来去重。"><a href="#提取一个整数的每一位数，判断个位是否为0，然后逆序输出，输出时使用flag来去重。" class="headerlink" title="提取一个整数的每一位数，判断个位是否为0，然后逆序输出，输出时使用flag来去重。"></a>提取一个整数的每一位数，判断个位是否为0，然后逆序输出，输出时使用flag来去重。</h3></li>
+<li><p>字符个数判断</p>
+<h3 id="简单的字符串处理-也可以用set-insert-来去重"><a href="#简单的字符串处理-也可以用set-insert-来去重" class="headerlink" title="简单的字符串处理 也可以用set.insert() 来去重"></a>简单的字符串处理 也可以用set.insert() 来去重</h3></li>
+<li><p>数字颠倒</p>
+<h3 id="该题要求字符串的形式逆序输出，-因此要用到-to-string-num-来将数字变为字符串"><a href="#该题要求字符串的形式逆序输出，-因此要用到-to-string-num-来将数字变为字符串" class="headerlink" title="该题要求字符串的形式逆序输出， 因此要用到 to_string(num) 来将数字变为字符串"></a>该题要求字符串的形式逆序输出， 因此要用到 <code>to_string(num)</code> 来将数字变为字符串</h3></li>
+<li><p>字符串反转</p>
+<h3 id="简单的字符串反转"><a href="#简单的字符串反转" class="headerlink" title="简单的字符串反转"></a>简单的字符串反转</h3></li>
+<li><p>句子逆序</p>
+<h3 id="简单的-vector-与-string-的联合使用"><a href="#简单的-vector-与-string-的联合使用" class="headerlink" title="简单的 vector 与 string 的联合使用"></a>简单的 vector 与 string 的联合使用</h3></li>
+<li><p>字串的连接最长路径查找</p>
+<h3 id="对n个字符串按照字典序排列-直接使用-vector-加上-sort"><a href="#对n个字符串按照字典序排列-直接使用-vector-加上-sort" class="headerlink" title="对n个字符串按照字典序排列 直接使用 vector 加上 sort"></a>对n个字符串按照字典序排列 直接使用 vector<string> 加上 sort</h3></li>
+<li><p>求int 型正整数在内存中存储时1的个数</p>
+<h3 id="即求这个数转换成2进制后，输出1的个数-通过移位来解决"><a href="#即求这个数转换成2进制后，输出1的个数-通过移位来解决" class="headerlink" title="即求这个数转换成2进制后，输出1的个数 通过移位来解决"></a>即求这个数转换成2进制后，输出1的个数 通过移位来解决</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="built_in">num</span> &gt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    count += <span class="built_in">num</span> &amp; <span class="number">0x01</span>;</span><br><span class="line">    <span class="built_in">num</span> = <span class="built_in">num</span> &gt;&gt; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>购物单</p>
+<h3 id="典型的分组背包问题。具体参考-背包问题"><a href="#典型的分组背包问题。具体参考-背包问题" class="headerlink" title="典型的分组背包问题。具体参考 背包问题"></a>典型的分组背包问题。具体参考 <a href="http://kangqingfei.cn/2018/01/06/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">背包问题</a></h3></li>
+<li><p>坐标移动</p>
+<h3 id="主要是处理输入与输出"><a href="#主要是处理输入与输出" class="headerlink" title="主要是处理输入与输出"></a>主要是处理输入与输出</h3><p>判断是否是数字:<code>isdigit(str[i])</code><br>指定输入的分割符的方法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"></span><br><span class="line">string strt,str;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(cin &gt;&gt; strt)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="function">istringstream <span class="title">iss</span><span class="params">(strt)</span></span>;</span><br><span class="line">   <span class="keyword">while</span>(<span class="built_in">getline</span>(iss, str, <span class="string">&#x27;;&#x27;</span>)) <span class="comment">// 以`;`分割来输入</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将指定个数的数字字符转为数字</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string strTmp;</span><br><span class="line">strTmp.<span class="built_in">append</span>(str,<span class="number">1</span>,str.<span class="built_in">length</span>()<span class="number">-1</span>);</span><br><span class="line">step = <span class="built_in">stoi</span>(strTmp);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>识别有效IP地址和掩码并进行分类统计</p>
+<h3 id="字符串处理-主要用到-atoi-str-c-str"><a href="#字符串处理-主要用到-atoi-str-c-str" class="headerlink" title="字符串处理 主要用到 atoi(str.c_str())"></a>字符串处理 主要用到 <code>atoi(str.c_str())</code></h3><p>有个坑就是 有的ip 啥都不是， 比如 127.0.0.1&#x2F;8<br>还有一个坑就是 255.255.255.255 这个掩码是错误的<br>实现了一个string 的 split</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;string&gt; <span class="title">split</span><span class="params">(string &amp;str, <span class="type">char</span> sep)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">stringstream <span class="title">sstr</span><span class="params">(str)</span></span>;</span><br><span class="line">    vector&lt;string&gt; re;</span><br><span class="line">    string tmp;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">getline</span>(sstr,tmp,sep))</span><br><span class="line">        re.<span class="built_in">push_back</span>(tmp);</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单错误记录</p>
+<h3 id="字符串处理"><a href="#字符串处理" class="headerlink" title="字符串处理"></a>字符串处理</h3><p>用到 <code>string.rfind()</code> 反向查找，返回第一个下标的位置<br><code>string.find()</code> 正向查找，返回第一个找到字符的下标<br>还有一个有趣的结构体构造的代码：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">struct ErrRecord&#123;</span><br><span class="line">    string <span class="keyword">file</span>;</span><br><span class="line">    <span class="keyword">int</span> lineNo;</span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">count</span>;</span><br><span class="line"></span><br><span class="line">    ErrRecord(string <span class="keyword">file</span>, <span class="keyword">int</span> lineNo)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;<span class="keyword">file</span> = <span class="keyword">file</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;lineNo = lineNo;</span><br><span class="line">        <span class="keyword">count</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool operator==(const ErrRecord &amp; a)&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">file</span> == a.<span class="keyword">file</span>) &amp;&amp; (lineNo == a.lineNo);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后利用 <code>ErrRecord record(getFileName(file), lineNo);</code>进行初始化</p>
+</li>
+<li><p>密码验证合格程序</p>
+<h3 id="字符串处理-1"><a href="#字符串处理-1" class="headerlink" title="字符串处理"></a>字符串处理</h3><p>主要难点在 <code>不能有相同长度超2的子串重复</code> 这里涉及一个重复字串的处理 使用的是暴力穷举，但是能AC</p>
+</li>
+<li><p>简单密码</p>
+<h3 id="字符串处理-2"><a href="#字符串处理-2" class="headerlink" title="字符串处理"></a>字符串处理</h3><p>简单的字符串处理，注意多值case语句的使用方法。以及 <code>Z</code> 后移一位是 <code>a</code>。</p>
+</li>
+<li><p>汽水瓶</p>
+<h3 id="简单的数值处理题"><a href="#简单的数值处理题" class="headerlink" title="简单的数值处理题"></a>简单的数值处理题</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(cin&gt;&gt;<span class="built_in">num</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">int</span> remainder = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">num</span>/<span class="number">3</span> != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        count += <span class="built_in">num</span>/<span class="number">3</span>;</span><br><span class="line">        remainder = <span class="built_in">num</span>%<span class="number">3</span>;</span><br><span class="line">        <span class="built_in">num</span> = <span class="built_in">num</span>/<span class="number">3</span> + remainder;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">num</span> == <span class="number">2</span>)</span><br><span class="line">        count += <span class="number">1</span>;</span><br><span class="line">    cout&lt;&lt;count&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除字符串中出现最少的字符</p>
+<h3 id="简单的字符串处理，可以通过map统计出现次数后取最小次数的然后删除。"><a href="#简单的字符串处理，可以通过map统计出现次数后取最小次数的然后删除。" class="headerlink" title="简单的字符串处理，可以通过map统计出现次数后取最小次数的然后删除。"></a>简单的字符串处理，可以通过map统计出现次数后取最小次数的然后删除。</h3><p>注意 列表初始化： <code>int flag[3] = &#123;0&#125;</code> &#x3D;&gt; [0 0 0] <code>int flag[3] = &#123;1&#125;</code> &#x3D;&gt; [1 0 0]</p>
+</li>
+<li><p>合唱队</p>
+<h3 id="LIS-的变种-具体参考-最长递增子序列-LIS"><a href="#LIS-的变种-具体参考-最长递增子序列-LIS" class="headerlink" title="LIS 的变种 具体参考 最长递增子序列-LIS"></a>LIS 的变种 具体参考 <a href="http://kangqingfei.cn/2018/01/22/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97-LIS/">最长递增子序列-LIS</a></h3></li>
+<li><p>数据分类处理</p>
+<h3 id="简单的字符串处理-貌似没有时间的要求-或者时间要求很宽裕，但是有多个case-输入的要求"><a href="#简单的字符串处理-貌似没有时间的要求-或者时间要求很宽裕，但是有多个case-输入的要求" class="headerlink" title="简单的字符串处理 貌似没有时间的要求 或者时间要求很宽裕，但是有多个case 输入的要求"></a>简单的字符串处理 貌似没有时间的要求 或者时间要求很宽裕，但是有多个case 输入的要求</h3><p>用到string的几个函数 <code>to_string( int ).find( string ) != string::npos</code></p>
+</li>
+<li><p>字符串排序</p>
+<h3 id="简单的字符串处理"><a href="#简单的字符串处理" class="headerlink" title="简单的字符串处理"></a>简单的字符串处理</h3></li>
+<li><p>查找兄弟单词</p>
+<h3 id="简单字符串处理"><a href="#简单字符串处理" class="headerlink" title="简单字符串处理"></a>简单字符串处理</h3><p>注意判断是否是兄弟单词的做法是使用排序后的字符串进行比较看是否相等，其次输出很坑的是换行，而且当k大于兄弟单词的总数时只输出兄弟单词的总数</p>
+</li>
+<li><p>素数伴侣</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/06/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          背包问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/03/%E5%BE%88%E4%B9%85%E6%B2%A1%E6%9B%B4%E6%96%B0%E4%BA%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">很久没更新了</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>
