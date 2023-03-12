@@ -6,7 +6,7 @@
   <link href="http://kangqingfei.cn/atom.xml" rel="self"/>
   
   <link href="http://kangqingfei.cn/"/>
-  <updated>2022-12-10T16:30:34.331Z</updated>
+  <updated>2023-03-12T05:25:41.627Z</updated>
   <id>http://kangqingfei.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Opencore 升级引导三系统</title>
+    <link href="http://kangqingfei.cn/2023/03/12/update-opencore/"/>
+    <id>http://kangqingfei.cn/2023/03/12/update-opencore/</id>
+    <published>2023-03-11T16:00:00.000Z</published>
+    <updated>2023-03-12T05:25:41.627Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="opencore-升级"><a href="#opencore-升级" class="headerlink" title="opencore 升级"></a>opencore 升级</h1><h2 id="当前版本备份"><a href="#当前版本备份" class="headerlink" title="当前版本备份"></a>当前版本备份</h2><p><code> sudo diskutil mount /dev/disk0s1</code> 挂载EFI分区</p><p><code>cp -rf EFI ~/Desktop/EFI_OLD</code> 备份</p><p><code>sudo diskutil umount /dev/disk0s1</code> 取消挂载</p><p><code>tree -I &quot;config_list_bak|Resources&quot; -L 3</code> 查看当前文件目录结构</p><p>其中 <code>-I</code> 表示忽略对应的文件夹 <code>-L</code> 表示最多查看的层级</p><span id="more"></span><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── BOOT</span><br><span class="line">│   └── BOOTx64.efi</span><br><span class="line">└── OC</span><br><span class="line">    ├── ACPI</span><br><span class="line">    │   ├── SSDT-AWAC.aml</span><br><span class="line">    │   ├── SSDT-EC-USBX.aml</span><br><span class="line">    │   ├── SSDT-PLUG.aml</span><br><span class="line">    │   ├── SSDT-PMC.aml</span><br><span class="line">    │   └── SSDT-SBUS-MCHC.aml</span><br><span class="line">    ├── Bootstrap</span><br><span class="line">    │   └── Bootstrap.efi</span><br><span class="line">    ├── Drivers</span><br><span class="line">    │   ├── HfsPlus.efi</span><br><span class="line">    │   ├── OpenCanopy.efi</span><br><span class="line">    │   └── OpenRuntime.efi</span><br><span class="line">    ├── Kexts</span><br><span class="line">    │   ├── AirportBrcmFixup.kext</span><br><span class="line">    │   ├── AppleALC.kext</span><br><span class="line">    │   ├── IntelMausi.kext</span><br><span class="line">    │   ├── Lilu.kext</span><br><span class="line">    │   ├── SMCProcessor.kext</span><br><span class="line">    │   ├── SMCSuperIO.kext</span><br><span class="line">    │   ├── USBMap.kext</span><br><span class="line">    │   ├── VirtualSMC.kext</span><br><span class="line">    │   └── WhateverGreen.kext</span><br><span class="line">    ├── OpenCore.efi</span><br><span class="line">    ├── Tools</span><br><span class="line">    │   └── OpenShell.efi</span><br><span class="line">    └── config.plist</span><br><span class="line"></span><br><span class="line">16 directories, 13 files</span><br></pre></td></tr></table></figure><p>上面主要有两个比较重要的文件，一个是 <code>config.plist</code> 记录了黑苹果的配置，一个是 <code>USBMap.kext</code> 这里面有定制USB的信息，错误的usb定制信息会导致睡眠唤醒的异常</p><p>参考文章：<a href="https://www.bugprogrammer.me/2020/05/27/Hackintosh_for_Z490_10900K.html">技嘉Z490 ELITE+i9 10900K+RX 5700 XT Hackintosh构建说明</a></p><h2 id="新版本升级"><a href="#新版本升级" class="headerlink" title="新版本升级"></a>新版本升级</h2><p>旧版本：0.6.0</p><p>新版本：0.8.8</p><p>对于小版本的升级可以使用 <a href="https://github.com/ic005k/OCAuxiliaryTools/releases">OCA工具</a> 进行直接升级，但是这里跨越的版本有点大，使用OCA后出现问题较多便使用了手工升级。</p><p>手工升级的方式就是对照新的配置模板，将旧的配置迁移到新的配置中，如果是新出现的配置就保持默认的配置就好。</p><p>升级前记得备份，如果出现u盘启动盘也无法引导的情况可以使用win的<code>diskgenius</code>把配置进行还原，再进行试错。</p><p>遇到问题，请仔细阅读<strong>官方的configuraion.pdf</strong>，所有的配置项在里面都有详细的描述。</p><p>参考文章：<a href="https://www.a7mac.com/241.html">OpenCore引导版本升级教程</a></p><h2 id="引导多个系统"><a href="#引导多个系统" class="headerlink" title="引导多个系统"></a>引导多个系统</h2><p>需要注意，最好独立按照多个系统到不同的硬盘上面进行操作，不然不同系统的引导可能会相互影响相互识别。在安装新系统时，需要将其他已经安装好的系统的硬盘物理移除了。</p><p>安装好之后就可以通过OpenShell 来获取 引导多个系统所需要的信息</p><p>主要是要找的不同系统所在硬盘的硬件描述信息。不过其实windows 会被目前版本的OC主动识别，不需要手动添加。</p><p>如果对引导的顺序有比较高的要求可以通过<a href="https://heipg.cn/tutorial/delete-opencore-unnecessary-entries.html">https://heipg.cn/tutorial/delete-opencore-unnecessary-entries.html</a> 描述的方法将win的引导屏蔽了，然后手动添加引导来排序。</p><blockquote><p>可以使用隐藏文件（对于 macOS 来说是隐藏的）.contentVisibility 来隐藏引导项。如果启动分区或引导文件目录中包含 .contentVisibility，则 OpenCore 会自动排除这个条目作为可选启动项。需要注意的是，如果该条目的 .contentVisibility 文件包含辅助条目内容（Auxiliary），则该项目会被 OpenCore 视为辅助条目</p></blockquote><p>参考文章<a href="https://kextcache.com/opencore-dualboot-guide/?amp=1">https://kextcache.com/opencore-dualboot-guide/?amp=1</a></p><h2 id="将OC替换为release版本"><a href="#将OC替换为release版本" class="headerlink" title="将OC替换为release版本"></a>将OC替换为release版本</h2><p>按照官方文档说明，只需要替换一下几个文件即可</p><ul><li>EFI&#x2F;BOOT&#x2F;<ul><li><code>BOOTx64.efi</code></li></ul></li><li>EFI&#x2F;OC&#x2F;Drivers&#x2F;<ul><li><code>OpenRuntime.efi</code></li><li><code>OpenCanopy.efi</code>(if you’re using it)</li></ul></li><li>EFI&#x2F;OC&#x2F;<ul><li><code>OpenCore.efi</code></li></ul></li></ul><h2 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h2><ol><li><p>启动没有catalina<br>新版本有新字段会屏蔽Catalina 的引导，需要将<code>UEFI-&gt;APFS-&gt;MinDate</code> <code>UEFI-&gt;APFS-&gt;MinVersion</code>两个字段置为 <code>-1</code></p></li><li><p>启动报错，一秒后自动重启到恢复模式<br>升级对应的kext 驱动文件为最新，可以使用 OCA升级</p></li><li><p>随航功能异常，表现为能够正常连接上ipad，但是ipad一直黑屏<br>这是因为BIOS重置后核显未启用导致的，需要在BIOS中启用核显。启用核显后应该如下图所示：<img src="http://qiniu.kangqingfei.cn/typora/img/202303051418712.png" alt="0"></p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;opencore-升级&quot;&gt;&lt;a href=&quot;#opencore-升级&quot; class=&quot;headerlink&quot; title=&quot;opencore 升级&quot;&gt;&lt;/a&gt;opencore 升级&lt;/h1&gt;&lt;h2 id=&quot;当前版本备份&quot;&gt;&lt;a href=&quot;#当前版本备份&quot; class=&quot;headerlink&quot; title=&quot;当前版本备份&quot;&gt;&lt;/a&gt;当前版本备份&lt;/h2&gt;&lt;p&gt;&lt;code&gt; sudo diskutil mount /dev/disk0s1&lt;/code&gt; 挂载EFI分区&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cp -rf EFI ~/Desktop/EFI_OLD&lt;/code&gt; 备份&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo diskutil umount /dev/disk0s1&lt;/code&gt; 取消挂载&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;tree -I &amp;quot;config_list_bak|Resources&amp;quot; -L 3&lt;/code&gt; 查看当前文件目录结构&lt;/p&gt;
+&lt;p&gt;其中 &lt;code&gt;-I&lt;/code&gt; 表示忽略对应的文件夹 &lt;code&gt;-L&lt;/code&gt; 表示最多查看的层级&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="tools" scheme="http://kangqingfei.cn/categories/tools/"/>
+    
+    
+    <category term="hackintosh" scheme="http://kangqingfei.cn/tags/hackintosh/"/>
+    
+  </entry>
   
   <entry>
     <title>typora config pic save action</title>
@@ -42,7 +67,7 @@
     <link href="http://kangqingfei.cn/2022/11/23/fix-problems-for-hexo-theme-yilia/"/>
     <id>http://kangqingfei.cn/2022/11/23/fix-problems-for-hexo-theme-yilia/</id>
     <published>2022-11-23T15:58:46.000Z</published>
-    <updated>2022-12-10T09:10:12.321Z</updated>
+    <updated>2022-12-19T14:29:24.696Z</updated>
     
     <content type="html"><![CDATA[<p>从上一篇博文（2018-03-02）到现在已经过去了将近5年的时间了。这5年里经历了秋招找工作，研究生毕业，工作，跳槽等等很多很多的事情。但是时间就像流水一样流过，没有留下任何痕迹。所以最近又重新拾起之前的blog，开始记录，不是说 好记性不如烂笔头。</p><p>作为开局，由于时间有点晚了，先记录一下怎么把blog找回来的吧。</p><span id="more"></span><p>主要解决了下面几个问题：</p><ol><li><p>放在qiniu的图传丢失，域名被废弃，这里需要去七牛重新配一下自定义域名，之前的插件也还能用，更新一下bucket和密钥就好。</p></li><li><p>主题中的js丢失，主要是有些cdn跑路了</p><ul><li><p><a href="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min">http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min</a> 这个cdn没用了，需要把对应的js下载下来，对应的链接分别是 </p><ul><li><a href="https://requirejs.org/docs/release/2.1.6/minified/require.js">https://requirejs.org/docs/release/2.1.6/minified/require.js</a></li><li><a href="https://code.jquery.com/jquery-1.9.1.min.js">https://code.jquery.com/jquery-1.9.1.min.js</a></li></ul><p>可以放到qiniu的cdn，也可以放在站内，本着主题和资源分开的考虑没有放到cdn，放在了主题的<code>/source/js/</code>目录下面。</p><p>然后还需要更改一下<code>layout/_partial/after-footer.ejs</code>文件中引入的方式：</p><ul><li><code>&lt;%- js(&#39;http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min&#39;) %&gt;</code></li></ul><p>改为</p><ul><li><code>&lt;%- js(&#39;js/jquery-1.9.1.min&#39;) %&gt;</code></li><li><code>&lt;%- js(&#39;js/require-2.1.6&#39;) %&gt;</code></li></ul></li></ul></li><li><p>卜算子的文章pv统计功能丢失了，主要原因也是cdn失效了，找一个代替的就好，修改文件<code>layout/_partial/after-footer.ejs</code></p><ul><li><p><code>&lt;script async src=&quot;https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;</code></p><p>改为</p></li><li><p><code>&lt;script async src=&quot;https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;</code></p></li></ul></li><li><p>前进后退按钮出现了问题</p><ul><li>这个是由于解析<code>&amp;laquo</code>出现问题导致，直接把对应的字符改成<code>«</code> 以及 <code>»</code> 参考：<a href="https://wuyi2.github.io/2020/02/14/hexo-yilia%E4%B8%BB%E9%A2%98%E7%BF%BB%E9%A1%B5%E6%98%BE%E7%A4%BA%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3/">博客翻页键bug</a></li></ul></li><li><p>修复了部分错别字和加载问题</p></li></ol>]]></content>
     
@@ -494,35 +519,6 @@
     <category term="sort" scheme="http://kangqingfei.cn/tags/sort/"/>
     
     <category term="ACM" scheme="http://kangqingfei.cn/tags/ACM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>cplusplus notes</title>
-    <link href="http://kangqingfei.cn/2016/09/22/cplusplus-notes/"/>
-    <id>http://kangqingfei.cn/2016/09/22/cplusplus-notes/</id>
-    <published>2016-09-22T08:30:54.000Z</published>
-    <updated>2022-09-14T18:03:38.040Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一些关于C-的笔记"><a href="#一些关于C-的笔记" class="headerlink" title="一些关于C++的笔记"></a>一些关于C++的笔记</h2><ol><li><p>Lambdas 表达式</p></li><li><p><code>尾置返回类型</code>-一般用于返回类型比较复杂和难理解（例如 数组的指针或是数组的引用）的函数中来声明返回类型。<br>* 尾置返回类型的一般格式为：<code>auto fun(parameter list) -&gt; trailing type</code><br>* 返回类型跟在形参列表的后面，并且以一个<code>-&gt;</code> 符号开头。<br>* 为了表示真正的返回类型跟在形参列表之后，在本该出现返回类型的地方放置一个<code>auto</code>。<br>* 实例：申明一个返回指向一个维度为10的int数组的指针</p><ul><li>原生的方式： <code>int (*function(int i))[10]</code></li><li>使用尾置返回： <code>auto function(int i) -&gt; int (*)[10]</code></li><li>使用类型别名： <code>typedef int arrT[10]</code> or <code>using arrT = int[10]</code> then <code>arrT* function(int i)</code></li><li>使用<code>decltype</code>：首先<code>int arr[] = &#123;1,2,3,4&#125;</code> then <code>decltype(arr) *function(int i)</code><span id="more"></span></li></ul></li><li><p><code>调用运算符</code>-调用运算符是一对圆括号，里面放置实参列表。</p></li><li><p><code>可调用的(对象/表达式)</code>-我们可以对一个(对象&#x2F;表达式)使用调用运算符，则称这样的对象或表达式是可调用的。</p></li><li><p>四种可调用的对象- <code>函数</code> <code>函数指针</code> <code>重载了函数调用运算符的类</code> <code>Lambda表达式</code></p></li><li><p>lambda expression represent a callable unit of code. It can be thought of as unnamed,inline function, but may be defined inside a function.</p></li><li><p>A lambda expression has the form : <code>[capture list](parameter list) -&gt; return type &#123; function body &#125; </code><br>* capture list 称为捕获列表，是在enclosing function 中的局部变量.<br>* lambda 必须使用的是尾置返回(trailing return)来指定它的返回类型.<br>* 可以忽略参数列表和返回类型，但是必须包含函数体和捕获列表:<code>auto f = [] &#123; return 0;&#125;</code></p></li><li><p>向lambda传递参数及使用捕获列表。<br>1. lambda不能含有默认参数，因此lambda的形参的个数和实参的个数一定是一样的。<br>2. 空的捕获列表表明lambda表达式不使用它所在函数中的任何局部变量。<br>3. lambda 表达式可以使用定义在当前函数之外的名字 比如 cout.<br>4. 捕获列表只适用于局部的非静态变量，它可以直接使用局部的静态变量和在函数外部的名字.</p></li><li><p>lambda 捕获和返回<br>1. 定义一个lambda 表达式的时候，编译器会生成一个与lambda对应的未命名的类类型。<br>2. 变量的捕获方式可以是值或是引用。如果使用的是值捕获前提是采用值捕获的变量可以被复制。<br>3. 与参数的传递不同，被捕获的变量的值是在lambda创建的时候发生拷贝，而不是在调用的时候发生拷贝的。因此对捕获的变量的后续的修改将不会影响到lambda里面对应的值。<br>4. 使用引用捕获必须确定被引用的对象在lambda执行的时候是存在的。<br>5. 引用值捕获在有的时候显得十分必要，比如我们需要使用输出流，因为ostream是不能复制的，所以唯一的方式就是使用引用捕获（或指针）。<br>6. 我们可以返回lambda表达式，但是不能返回局部变量的引用，也就是说lambda不能包含引用捕获。<br>7. 隐式捕获，就是不显式地指明我们需要捕获的变量而是在捕获列表里使用<code>&amp;</code>或<code>=</code>。其中<code>&amp;</code>表示要使用引用捕获，而<code>=</code>表示要使用值捕获。如果我们混合使用显式捕获和隐式捕获，那么捕获列表的第一项必须是<code>&amp;</code>或<code>=</code>。<br>8. 如果混合使用显式捕获和隐式捕获，那么如果隐式捕获使用的是引用模式那么显式捕获只能使用值捕获模式（如果使用引用直接用就行不用再次声明），反之亦然。</p></li><li><p>可变的lambda.<br>1. 一般情况下lambda不会改变使用值捕获的变量的值，如果我们想改变这个值，那么我们必须在参数列表后面跟上关键词<code>mutable</code><br>2. 一个引用变量能否修改，取决于引用指向的是一个const类型变量还是一个非const类型的变量。</p></li><li><p>指定lambda的返回类型.<br>1. 如果一个lambda表达式的函数体包含return之外的任何语句，则编译器假定此lambda返回void，被推断返回void的lambda不能返回值。<br>2. 如果想在函数体中使用除了return之外的其他语句，并且还要返回非void的值，则要使用尾置返回来指定返回的类型。</p></li><li><p>参数绑定<br>1. 若果一个lambda的捕获列表为空则我们可以使用一个函数来代替它。<br>2. 对于一个捕获局部变量的lambda，我们可以使用<code>bind</code>-定义在<code>functional</code>中，这个标准库函数。它接收一个可调用对象，生成一个新的可调用对象来适应原对象的参数列表。<br>3. bind 调用的一般形式是 <code>suto newCallable = bind(callable, arg_list)</code>arg_list中包含_n（<code>_1 _2 _3</code>）之类的占位符。来表示这是第几个参数。<br>4. 绑定引用参数。如果我们希望传递给bind一个对象而又不拷贝它，就必须使用ref函数。ref返回一个对象，包含给定的引用，此对象是可以拷贝的。另外还有一个cref函数，生成一个保存const引用的类。</p></li><li><p>作用域和命名空间</p></li><li><p>第三方</p></li></ol><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://imzlp.me/2016/05/12/cpp11-new-features/">C++11的语法糖</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;一些关于C-的笔记&quot;&gt;&lt;a href=&quot;#一些关于C-的笔记&quot; class=&quot;headerlink&quot; title=&quot;一些关于C++的笔记&quot;&gt;&lt;/a&gt;一些关于C++的笔记&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Lambdas 表达式&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;尾置返回类型&lt;/code&gt;-一般用于返回类型比较复杂和难理解（例如 数组的指针或是数组的引用）的函数中来声明返回类型。&lt;br&gt;* 尾置返回类型的一般格式为：&lt;code&gt;auto fun(parameter list) -&amp;gt; trailing type&lt;/code&gt;&lt;br&gt;* 返回类型跟在形参列表的后面，并且以一个&lt;code&gt;-&amp;gt;&lt;/code&gt; 符号开头。&lt;br&gt;* 为了表示真正的返回类型跟在形参列表之后，在本该出现返回类型的地方放置一个&lt;code&gt;auto&lt;/code&gt;。&lt;br&gt;* 实例：申明一个返回指向一个维度为10的int数组的指针&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;原生的方式： &lt;code&gt;int (*function(int i))[10]&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;使用尾置返回： &lt;code&gt;auto function(int i) -&amp;gt; int (*)[10]&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;使用类型别名： &lt;code&gt;typedef int arrT[10]&lt;/code&gt; or &lt;code&gt;using arrT = int[10]&lt;/code&gt; then &lt;code&gt;arrT* function(int i)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;使用&lt;code&gt;decltype&lt;/code&gt;：首先&lt;code&gt;int arr[] = &amp;#123;1,2,3,4&amp;#125;&lt;/code&gt; then &lt;code&gt;decltype(arr) *function(int i)&lt;/code&gt;</summary>
-    
-    
-    
-    <category term="notes" scheme="http://kangqingfei.cn/categories/notes/"/>
-    
-    
-    <category term="cplusplus" scheme="http://kangqingfei.cn/tags/cplusplus/"/>
     
   </entry>
   
