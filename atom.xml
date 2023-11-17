@@ -6,7 +6,7 @@
   <link href="http://kangqingfei.cn/atom.xml" rel="self"/>
   
   <link href="http://kangqingfei.cn/"/>
-  <updated>2023-03-12T05:25:41.627Z</updated>
+  <updated>2023-11-17T18:26:55.223Z</updated>
   <id>http://kangqingfei.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>github dependabot</title>
+    <link href="http://kangqingfei.cn/2023/11/18/github-depenabot/"/>
+    <id>http://kangqingfei.cn/2023/11/18/github-depenabot/</id>
+    <published>2023-11-17T16:00:00.000Z</published>
+    <updated>2023-11-17T18:26:55.223Z</updated>
+    
+    <content type="html"><![CDATA[<p>发现在本地执行<code>git branch -a</code> 时多了很多远程的分支，如下图：</p><p><img src="http://qiniu.kangqingfei.cn/typora/img/202311180130588.png"></p><p>研究一番之后发现这是 <code>github</code> 自动创建的分支，并且这个 <code>dependabot</code> 是 GitHub 官方的一款依赖更新工具，拥有强大的功能，包括：</p><ol><li>当使用的依赖包中的有安全漏洞问题时给你发送通知</li><li>当使用的依赖包中的有安全漏洞问题时自动提交PR</li><li>自动拉取依赖包的最先版本，并自动提交PR</li></ol><span id="more"></span><p>可以在<code>Settings</code> -&gt; <code>Code security and analysis</code> 中看到对应的功能配置</p><p><img src="http://qiniu.kangqingfei.cn/typora/img/image-20231118020642585.png" alt="image-20231118020642585"></p><p>我们可以看到前面几项功能并没有开启，而这里项目里面新建的分支就是对应的第三项功能。可以发现确实PR里面多了对应的条目</p><p><img src="http://qiniu.kangqingfei.cn/typora/img/image-20231118021229351.png" alt="image-20231118021229351"></p><p>点击上面的<code>Configure</code>，可以看到对应的配置如下：</p><p><img src="http://qiniu.kangqingfei.cn/typora/img/image-20231118020522702.png" alt="image-20231118020522702"></p><p>大概的意思就是每天会检测一遍，并限制了最多开20个PR，更多的配置选项可以参考资料3。这里我们对其没有兴趣，只想不看见那么多分支，因此只需要将 <code>open-pull-requests-limit</code> 这个字段改成 <code>0</code> 即可。</p><hr><p>参考资料：</p><ol><li><a href="https://docs.github.com/zh/enterprise-server@3.10/code-security/getting-started/dependabot-quickstart-guide">官方中文文档</a></li><li><a href="https://mmdjiji.com/2023/01/3/">GitHub 自动更新依赖</a></li><li><a href="https://m.w3cschool.cn/githubcn/githubcn-5hgb3asc.html">相关字段及配置的详解</a></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;发现在本地执行&lt;code&gt;git branch -a&lt;/code&gt; 时多了很多远程的分支，如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://qiniu.kangqingfei.cn/typora/img/202311180130588.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;研究一番之后发现这是 &lt;code&gt;github&lt;/code&gt; 自动创建的分支，并且这个 &lt;code&gt;dependabot&lt;/code&gt; 是 GitHub 官方的一款依赖更新工具，拥有强大的功能，包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;当使用的依赖包中的有安全漏洞问题时给你发送通知&lt;/li&gt;
+&lt;li&gt;当使用的依赖包中的有安全漏洞问题时自动提交PR&lt;/li&gt;
+&lt;li&gt;自动拉取依赖包的最先版本，并自动提交PR&lt;/li&gt;
+&lt;/ol&gt;</summary>
+    
+    
+    
+    <category term="tools" scheme="http://kangqingfei.cn/categories/tools/"/>
+    
+    
+    <category term="git" scheme="http://kangqingfei.cn/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>Opencore 升级引导三系统</title>
@@ -477,48 +505,6 @@
     <category term="g++" scheme="http://kangqingfei.cn/tags/g/"/>
     
     <category term="gdb" scheme="http://kangqingfei.cn/tags/gdb/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>排序算法</title>
-    <link href="http://kangqingfei.cn/2016/10/07/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
-    <id>http://kangqingfei.cn/2016/10/07/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</id>
-    <published>2016-10-07T02:20:27.000Z</published>
-    <updated>2022-09-14T18:03:38.045Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="重新复习一遍常用的排序算法"><a href="#重新复习一遍常用的排序算法" class="headerlink" title="重新复习一遍常用的排序算法"></a>重新复习一遍常用的排序算法</h2><ol><li>冒泡排序</li></ol><ul><li>顾名思义就是将相邻的两个数比较，不满足大小关系就交换顺序，将最大或最小的数像泡泡一样冒到最右或最左端</li></ul><ol start="2"><li>选择排序</li></ol><ul><li>找到一个最大或最小值，然后将其和最右或最左端的数交换</li></ul><ol start="3"><li>直接插入排序</li></ol><ul><li>首先取出序列的第一个数，假设它已经排好序，然后从第二个数开始将其插入到第一个数前面或后面</li><li>然后将序列长度增加</li><li>现在前面的序列已经排好序了，然后先取出没排好序的第一个值，将其与前面的序列相比较，如果比要插入的值大就把排好序的值依次往后挪一个，以空出一个空位让要插入的值占着。直到找到那个排好序的序列中比要插入的值小或相等的值，则要放置的位置就确定了，然后放入要插入的值，再将排好序的序列的长度增加，开始下一轮循环。</li><li>简言之就是在已排序的序列中从后往前扫描，找到相应位置并插入<span id="more"></span></li></ul><ol start="4"><li>二分插入排序</li></ol><ul><li>如果在寻找插入值的过程中使用二分查找就是<code>二分查找排序/二分（折半）插入排序</code>这样仅仅只是减小了比较操作的数量，并没有减小挪位操作的数量</li></ul><ol start="5"><li>快速排序</li></ol><ul><li><p>核心思想：</p><ol><li>确定一个 缘分值 的位置 ，使得该值的左边全部比它小，右边全部比它大，但是左右依然可能是无序的。</li><li>对左右两边递归调用快排算法，递归结束条件是需要排序的序列的长度是一，即left &gt;&#x3D; right</li></ol></li><li><p>主干部分，缘分值的确定</p><ol><li>首先将最左边的值确定为缘分值，然后通过循环从两边向中间靠拢求得缘分值的合适的位置。</li><li>循环的结束条件，左侧值和右侧值为同一值，则找到该 缘分值 的恰当位置，跳出循环。</li><li>循环体<ol><li>找到右侧比当前 缘分值 小的值</li><li>将该值换到左侧（当前缘分值移到了右侧），然后将左边界右移一位</li><li>找到左侧比当前缘分值大的值</li><li>将该值换到右侧，则缘分值回到左侧起点的位置，开始下一轮循环</li></ol></li></ol></li><li><p>细节：</p><ol start="3"><li>循环主要就是要找到 缘分值（在最左侧的那个值）的正确位置（下标），保证左侧的比它小，右侧的比它大。</li><li>循环结束之前，该缘分值一直保存在临时变量之中，而在排序的序列中一定是会有一个重复值（要么是i指向的那个值，要么是j指向的那个值）</li><li>在左右两边的变量互换之后应该判断 左右下标是否相等，如果相等则不用移动左右下标（否则会出错）。</li><li>在循环结束之前记得将原来放在临时变量中的值放回到序列之中，从而剔除序列中的重复值</li></ol></li></ul><ol start="6"><li>排序</li></ol>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;重新复习一遍常用的排序算法&quot;&gt;&lt;a href=&quot;#重新复习一遍常用的排序算法&quot; class=&quot;headerlink&quot; title=&quot;重新复习一遍常用的排序算法&quot;&gt;&lt;/a&gt;重新复习一遍常用的排序算法&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;冒泡排序&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;顾名思义就是将相邻的两个数比较，不满足大小关系就交换顺序，将最大或最小的数像泡泡一样冒到最右或最左端&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol start=&quot;2&quot;&gt;
-&lt;li&gt;选择排序&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;找到一个最大或最小值，然后将其和最右或最左端的数交换&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol start=&quot;3&quot;&gt;
-&lt;li&gt;直接插入排序&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;首先取出序列的第一个数，假设它已经排好序，然后从第二个数开始将其插入到第一个数前面或后面&lt;/li&gt;
-&lt;li&gt;然后将序列长度增加&lt;/li&gt;
-&lt;li&gt;现在前面的序列已经排好序了，然后先取出没排好序的第一个值，将其与前面的序列相比较，如果比要插入的值大就把排好序的值依次往后挪一个，以空出一个空位让要插入的值占着。直到找到那个排好序的序列中比要插入的值小或相等的值，则要放置的位置就确定了，然后放入要插入的值，再将排好序的序列的长度增加，开始下一轮循环。&lt;/li&gt;
-&lt;li&gt;简言之就是在已排序的序列中从后往前扫描，找到相应位置并插入</summary>
-    
-    
-    
-    <category term="ACM" scheme="http://kangqingfei.cn/categories/ACM/"/>
-    
-    
-    <category term="sort" scheme="http://kangqingfei.cn/tags/sort/"/>
-    
-    <category term="ACM" scheme="http://kangqingfei.cn/tags/ACM/"/>
     
   </entry>
   
