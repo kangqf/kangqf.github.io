@@ -6,7 +6,7 @@
   <link href="http://kangqingfei.cn/atom.xml" rel="self"/>
   
   <link href="http://kangqingfei.cn/"/>
-  <updated>2023-11-17T18:26:55.223Z</updated>
+  <updated>2023-11-22T16:25:57.749Z</updated>
   <id>http://kangqingfei.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何有效且高效积累知识</title>
+    <link href="http://kangqingfei.cn/2023/11/22/how-to-manage-knowledge/"/>
+    <id>http://kangqingfei.cn/2023/11/22/how-to-manage-knowledge/</id>
+    <published>2023-11-21T16:00:00.000Z</published>
+    <updated>2023-11-22T16:25:57.749Z</updated>
+    
+    <content type="html"><![CDATA[<p>将知识归类整理是很重要的积累成长方式，如何记录知识并归档也需要系统且科学的模式。这里梳理这个流程。</p><p>由于各类平台的发展，导致了时间和知识的碎片化，尤其是短视频推荐类的渗透极大浪费了时间。整理一下，目前获取知识主要通过搜索网页，爬优秀博主，b站，微博，rss feed，知乎，贴吧，书籍。梳理了一下，目前花费时间最多的是，微信，微博，b站，淘宝（捡硬件垃圾），股票相关。而目前获取知识的效率极其低下，大部分时间浪费在了垃圾信息中。可能的改进方法可以主要有几点：</p><ul><li>增加 neat-reader，marginNote3 等软件的使用时长，增加纸质书的阅读时长，把书籍作为主要的知识输入源，提高外文书籍阅读能力，积累英语单词量。</li><li>规范知识管理体系，形成有效的知识积累，能够及时沉淀学到的新知识，有效防止反复学习。</li><li>合理分配各类时间，防止时间被浪费。</li></ul><span id="more"></span><h2 id="知识来源"><a href="#知识来源" class="headerlink" title="知识来源"></a>知识来源</h2><p><img src="http://qiniu.kangqingfei.cn/typora/img/image-20231122235451968.png" alt="image-20231122235451968"></p><p>目前的知识来源包括：</p><ul><li>历史存档数据，长期需要消化的知识</li><li>logseq 中记录的知识，及时归纳整理。平时看到的需要学习的知识及时能够通过TG发送到logseq 以记录</li><li>网页书签，平时看到的好的文章，或者是工程项目</li><li>读书笔记，看纸质书或者电纸书过程形成的读书笔记</li><li>todo，平时突然的脑洞，或者受他人启发的想法记录在TODO中，及时评估是否完成</li></ul><h2 id="知识输出"><a href="#知识输出" class="headerlink" title="知识输出"></a>知识输出</h2><p>知识输出的方式比较简单，主要是网页，因为最方便触达以及传播。另外后期可以输出视频或专题的文档。</p><p>对于网页的笔记主要是markdown格式的，通过gitbook或hexo的blog进行管理。目前有以下几个模板：</p><ul><li>读书笔记。主要包括对书籍中的重要知识点的记录，可以是分篇章输出，最后需要总结书籍的涉及的技术领域，阅读的周期，推荐的指数，</li><li>日常笔记。零散知识点或者提高效能的小工具的记录模板。</li><li>电路分析或拆解笔记。主要涉及硬件产品的电路分析或拆解刷机等内容的记录</li><li>项目笔记。一般涉及一整个完整项目的记录，可以分模块，分软件硬件输出。最后可以形成专题文档。</li></ul><h2 id="知识输出流程"><a href="#知识输出流程" class="headerlink" title="知识输出流程"></a>知识输出流程</h2><h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><p>很简单，直接创建markdown文档，为了适配hexo的发布，需要使用模板，主要需要添加一些meta信息：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">typora-copy-images-to:</span> <span class="string">./image</span></span><br><span class="line"><span class="attr">layout:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&quot;typora config pic save action&quot;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="attr">category:</span> <span class="string">tools</span></span><br><span class="line"><span class="attr">tags:</span> [<span class="string">typora</span>]</span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="comment">## 段落标题</span></span><br><span class="line"><span class="string">内容</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;!--more--&gt;</span></span><br><span class="line"><span class="comment">### 摘要后的标题</span></span><br><span class="line"><span class="string">内容</span></span><br></pre></td></tr></table></figure><p>然后是编写文档内容，发布前需要处理一下图片，如果文章中的图片是本来就保存在本地的就需要上传到 cdn。如果本来就在cdn了，那就需要把图片保存到本地存一份备份，防止cdn厂商跑路。如果cdn厂商跑路只需要将对应的域名换成本地文件，然后重新传到新的cdn即可。</p><h3 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h3><h4 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h4><p>将之前创建文件拷贝过来即可记得目标文件需要按照 <code>yyyy-mm-dd-title</code> 的格式进行命名，比较建议一开始就在<code>hexo</code>的<code>_post</code>目录进行撰写。完成拷贝后 <code>hexo s</code> 查看效果即可，没有问题的话即可发布，先备份源文件<code>gaa &amp;&amp; gc -m &quot;add content&quot; &amp;&amp; ggp</code>,然后<code>hexo g &amp;&amp; hexo d</code> 即可发布。</p><h4 id="gitbook"><a href="#gitbook" class="headerlink" title="gitbook"></a>gitbook</h4><p>gitbook 是主要的大纲型知识存档方案，发布前需要先在目录中创建新文章的索引，例如：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">*</span> [<span class="string">MacOS</span>](<span class="link">dev/mac.md</span>)</span><br><span class="line"><span class="bullet">    *</span> [<span class="string">hackintosh</span>](<span class="link">dev/mac/hackintosh.md</span>)</span><br><span class="line"><span class="bullet">      *</span> [<span class="string">opencore</span>](<span class="link">dev/mac/hackintosh/opencore.md</span>)</span><br><span class="line"><span class="bullet">        *</span> [<span class="string">opencore升级</span>](<span class="link">dev/mac/hackintosh/opencore_update.md</span>)</span><br></pre></td></tr></table></figure><p>然后运行 <code>gitbook init</code> 创建对应的文件和目录，如果新建文档的名称和目录中的文件名一致的话直接拖到对应目录覆盖新建文件即可。如果不一致的话还需要把新建的空文件删掉，并重命名为目录中文件名。需要注意如果有图片需要将图片也一并复制到对应目录。最后 <code>gitbook serve --lrport 35729 --port 4000</code> 预览效果即可。</p><p>预览没有问题即可发布： <code>gaa</code> -&gt; <code>gc -m &quot;add content&quot;</code> -&gt; <code>ggp</code> 推到github ，然后触发钩子，会有 Action 发布到vps。</p><h4 id="硬盘存档"><a href="#硬盘存档" class="headerlink" title="硬盘存档"></a>硬盘存档</h4><p>将完成的md以及对应的image文件夹整体打包放在一个父级目录并拷贝到存档文件夹</p><h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>在文件存档目录更新，更新完将最新的文件拷贝到 gitbook 对应的目录覆盖，再拷贝到hexo目录覆盖，在重复发布步骤即可。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;将知识归类整理是很重要的积累成长方式，如何记录知识并归档也需要系统且科学的模式。这里梳理这个流程。&lt;/p&gt;
+&lt;p&gt;由于各类平台的发展，导致了时间和知识的碎片化，尤其是短视频推荐类的渗透极大浪费了时间。整理一下，目前获取知识主要通过搜索网页，爬优秀博主，b站，微博，rss feed，知乎，贴吧，书籍。梳理了一下，目前花费时间最多的是，微信，微博，b站，淘宝（捡硬件垃圾），股票相关。而目前获取知识的效率极其低下，大部分时间浪费在了垃圾信息中。可能的改进方法可以主要有几点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;增加 neat-reader，marginNote3 等软件的使用时长，增加纸质书的阅读时长，把书籍作为主要的知识输入源，提高外文书籍阅读能力，积累英语单词量。&lt;/li&gt;
+&lt;li&gt;规范知识管理体系，形成有效的知识积累，能够及时沉淀学到的新知识，有效防止反复学习。&lt;/li&gt;
+&lt;li&gt;合理分配各类时间，防止时间被浪费。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="tools" scheme="http://kangqingfei.cn/categories/tools/"/>
+    
+    
+    <category term="note" scheme="http://kangqingfei.cn/tags/note/"/>
+    
+  </entry>
   
   <entry>
     <title>github dependabot</title>
@@ -477,34 +504,6 @@
     <category term="Makefile" scheme="http://kangqingfei.cn/tags/Makefile/"/>
     
     <category term="make" scheme="http://kangqingfei.cn/tags/make/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GCC/G++ 与 GDB</title>
-    <link href="http://kangqingfei.cn/2016/10/23/GCC-G-%E4%B8%8E-GDB/"/>
-    <id>http://kangqingfei.cn/2016/10/23/GCC-G-%E4%B8%8E-GDB/</id>
-    <published>2016-10-23T11:25:36.000Z</published>
-    <updated>2022-09-14T18:03:38.047Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="从hello-world说起"><a href="#从hello-world说起" class="headerlink" title="从hello world说起"></a>从hello world说起</h2><ol><li>首先我们有一段 hello world 程序<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  retunr <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><span id="more"></span></li><li>我们通过以下步骤编译程序：</li></ol><ul><li>g++ hello.cpp<br>这会生成一个<code>a.out</code>的文件，这个名字是由于历史原因导致的，所以不管源文件的名字是啥，生成的可执行文件的文件名都是一样的。</li></ul><ol start="3"><li>首先，认识一下文件的后缀</li></ol><ul><li><code>.c</code> c语言的源文件</li><li><code>.cpp .C .cc .cxx</code> c++ 语言的源文件</li><li><code>.i</code> 经过预处理的c 文件</li><li><code>.ii</code> 经过处理后的c++ 文件</li><li><code>.s</code> 汇编代码源文件</li><li><code>.S</code> 经过预处理的汇编代码文件</li><li><code>.h</code> 头文件</li><li><code>.o</code> 编译后的目标文件</li><li><code>.so</code> 动态链接库文件 在Win下是 <code>.dll</code></li><li><code>.a</code> 静态链接库文件 在Win下是  <code>.lib</code></li></ul><ol start="4"><li>gcc 常用的命令</li></ol><ul><li>一般格式： <code>gcc [-option] srcfile [-option] desfile</code></li><li>g++ -E hello.cpp -o hello.ii 只进行预处理，得到预处理后的文件</li><li>g++ -S hello.cpp -o hello.s 生成到汇编代码后停止，得到汇编文件。</li><li>g++ -c hello.cpp -o hello.o 编译到最后的二进制代码，但不进行链接，得到目标文件。</li><li>g++ -g hello.cpp -o ghello 生成包含调试信息的可执行文件，可以通过<code>strip ghello</code> 删除文件中的debug信息。</li><li>g++ -O hello.cpp 对代码进行自动优化编译，O后面可以接数字，比如可以使用 <code>-O3</code>进行三级优化编译</li><li>g++ -W hello.cpp 编译中开启一些额外的警告信息，<code>-Wall</code>表示把所有的警告信息全部打开</li><li>g++ hello.cpp -I&#x2F;path&#x2F;to&#x2F;include -L&#x2F;path&#x2F;to&#x2F;lib -lnameoflib 分别表示添加包含文件的搜索路径，链接文件的搜索路径以及指定要使用的链接库的名字</li></ul><ol start="5"><li>链接库的生成，首先要介绍一些基本的规则</li></ol><ul><li>动态库一律是以 lib 开头，制定链接库名字的时候可以省去lib三个字母。</li><li>由于动态库节省空间，所以默认链接动态库，可就是说如果有两个同名的动态库和静态库，那么linux会优先选择动态库链接，如果要特别告诉编译器与重名的那个静态库链接，则主要加上<code>-static</code>或<code>-WI,-Bstatic</code>选项,如果既要链接动态库又要链接静态库，则需使用<code>-WI,-Bstatic -lnameofstaticlib -WI,-Bdynamic -lnameofdynamiclib</code></li><li>为了让程序使用自己创建的动态库有三种方法<ul><li>将自己的库拷到 &#x2F;usr&#x2F;lib或&#x2F;lib 等已经存在于环境变量中的动态库搜索路径中</li><li>修改环境变量 <code>export LD_LIBRARY_PATH</code>&#x3D;$LD_LIBRARY_PATH:&#x2F;new&#x2F;lib&#x2F;path</li><li>修改 &#x2F;etc&#x2F;ld.so.conf ,把库的路径加到末尾，然后执行 ldconfig 刷新。</li></ul></li><li>nm libname.so 查看库中有哪些函数，如果库中没有自己想要找的库，则可以使用 ldd libname.so 来看看它依赖的其他库，在其他库中说不定可以找到哦</li><li>到达</li></ul><ol start="6"><li>生成库文件</li></ol><ul><li>ar cqs libname.a name.o</li><li>ar cr libnamme.a name.o</li><li>g++ -shared -W1,-soname,libname.so.1 -o libname.so.1.0 hello.o</li><li>g++ -shared -fPCI -o libname.so name.o</li><li>其中soname 是库区分的标志，这就像库的身份证，通常的做法就是将库的soname与库的顶级版本号的保持一致，然后将低级版本到软连接到一个与soname同名的链接文件。</li></ul><h2 id="使用GDB调试程序"><a href="#使用GDB调试程序" class="headerlink" title="使用GDB调试程序"></a>使用GDB调试程序</h2><ol><li>使用 gdb test 来启动调试。</li><li>一些常用的命令</li></ol><ul><li>r(run) pram1 parm2 运行</li><li>l(list) start,end 显示指定行数的代码</li><li>p(print) var(fun) 打印变量的值，或是打印函数调用的值</li><li>whatis 查看变量的类型</li><li>b(break) [行号，函数名]  在指定位置设置断点</li><li>tbreak 设置临时断点，触发后自动删除</li><li>info b 查看所有的断点</li><li>d(delete) 删除断点</li><li>set pram&#x3D;val 设置变量的值</li><li>c(continue) 继续执行直到遇到新的断点</li><li>n(next) 不进入的单步调试</li><li>s(step) 进入的单步调试</li><li>finish 执行完当前函数</li><li>q(quit) 退出调试</li><li>h(help) command 查看指定命令的用法</li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;从hello-world说起&quot;&gt;&lt;a href=&quot;#从hello-world说起&quot; class=&quot;headerlink&quot; title=&quot;从hello world说起&quot;&gt;&lt;/a&gt;从hello world说起&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;首先我们有一段 hello world 程序&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;namespace&lt;/span&gt; std;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  retunr &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    <category term="tools" scheme="http://kangqingfei.cn/categories/tools/"/>
-    
-    
-    <category term="linux" scheme="http://kangqingfei.cn/tags/linux/"/>
-    
-    <category term="gcc" scheme="http://kangqingfei.cn/tags/gcc/"/>
-    
-    <category term="g++" scheme="http://kangqingfei.cn/tags/g/"/>
-    
-    <category term="gdb" scheme="http://kangqingfei.cn/tags/gdb/"/>
     
   </entry>
   
