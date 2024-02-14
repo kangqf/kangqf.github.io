@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>tmux basic usage | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="tmux 基础普通模式进入 tmux 后的正常的模式，大部分的操作都在普通模式下完成。 快捷键tmux 的一些快捷键（省略Prefix），如果存在相同功能的原生按键，则会说明原生按键是什么。如果存在对原生按键的修改，则会在备注说明原生按键的作用。当前使用配置的前缀键为 C-a。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tmux basic usage">
+<meta property="og:url" content="http://kangqingfei.cn/2024/02/15/tmux-basic/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="tmux 基础普通模式进入 tmux 后的正常的模式，大部分的操作都在普通模式下完成。 快捷键tmux 的一些快捷键（省略Prefix），如果存在相同功能的原生按键，则会说明原生按键是什么。如果存在对原生按键的修改，则会在备注说明原生按键的作用。当前使用配置的前缀键为 C-a。">
+<meta property="og:locale">
+<meta property="og:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240115232812451.png@wt">
+<meta property="og:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240204014054803.png@wt">
+<meta property="article:published_time" content="2024-02-14T18:48:06.000Z">
+<meta property="article:modified_time" content="2024-02-14T18:54:29.453Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="tmux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240115232812451.png@wt">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/hackintosh/" style="font-size: 10px;">hackintosh</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 15.71px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 14.29px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/tmux/" style="font-size: 12.86px;">tmux</a> <a href="/tags/typora/" style="font-size: 11.43px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-tmux-basic" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/02/15/tmux-basic/" class="article-date">
+  	<time datetime="2024-02-14T18:48:06.000Z" itemprop="datePublished">2024-02-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      tmux basic usage
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tools/">tools</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="tmux-基础"><a href="#tmux-基础" class="headerlink" title="tmux 基础"></a>tmux 基础</h1><h2 id="普通模式"><a href="#普通模式" class="headerlink" title="普通模式"></a>普通模式</h2><p>进入 tmux 后的正常的模式，大部分的操作都在普通模式下完成。</p>
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><p>tmux 的一些快捷键（省略Prefix），如果存在相同功能的原生按键，则会说明原生按键是什么。如果存在对原生按键的修改，则会在备注说明原生按键的作用。当前使用配置的前缀键为 <code>C-a</code>。</p>
+<span id="more"></span>
+
+<h4 id="窗格相关"><a href="#窗格相关" class="headerlink" title="窗格相关"></a>窗格相关</h4><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>原生按键</th>
+<th>命令</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>h&#x2F;j&#x2F;k&#x2F;l</td>
+<td>方向键</td>
+<td>select-pane -(L&#x2F;D&#x2F;U&#x2F;R)</td>
+<td>切换到上下左右的窗格</td>
+<td>窗格是循环的，到顶后再往上就会落到最下面</td>
+</tr>
+<tr>
+<td>H&#x2F;J&#x2F;K&#x2F;L</td>
+<td>C-方向键</td>
+<td>resize-pane -(L&#x2F;D&#x2F;U&#x2F;R) 1</td>
+<td>调整窗格大小</td>
+<td>原生按键可能会和系统按键冲突</td>
+</tr>
+<tr>
+<td>|&#x2F;-</td>
+<td>“&#x2F;%</td>
+<td>split-window -(h&#x2F;v)</td>
+<td>水平或垂直分割当前窗格</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>x</td>
+<td>kill-pane</td>
+<td>销毁当前窗格</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>z</td>
+<td>resize-pane -Z</td>
+<td>最大化当前窗格</td>
+<td>再按一次取消最大化</td>
+</tr>
+<tr>
+<td></td>
+<td>!</td>
+<td>break-pane</td>
+<td>将当前窗格分离到一个新的窗口中</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>;</td>
+<td>last-pane</td>
+<td>回到上次使用窗格</td>
+<td>只能跳回当前窗口内的上衣次使用的窗格。<br />如果是从其他窗口的窗格跳过来的是没法跳回去的</td>
+</tr>
+<tr>
+<td></td>
+<td>m</td>
+<td>select-pane -m</td>
+<td>标记窗格</td>
+<td>一次只能标记一个<br />对于（当前&#x2F;标记）的窗格会有（高亮&#x2F;阴影）提示。<br />只有一条横线左边代表上面窗格。<br />只有一条竖线上面代表左边窗格</td>
+</tr>
+<tr>
+<td></td>
+<td>M</td>
+<td>select-pane -M</td>
+<td>取消窗格标记</td>
+<td>重复一次<code>Prefix-m</code>也可以取消标记</td>
+</tr>
+<tr>
+<td>g</td>
+<td></td>
+<td>swap-pane</td>
+<td>标记窗格与当前窗格互换位置</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>q</td>
+<td>display-panes</td>
+<td>显示窗格的序号和大小</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>o</td>
+<td>select-pane -t :.+</td>
+<td>按照窗格序号跳到下一个窗格</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>c-o</td>
+<td>rotate-window</td>
+<td>旋转移动窗格</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>{&#x2F;}</td>
+<td>swap-pane  -(s|D)</td>
+<td>当前窗格与（前&#x2F;后）一序号窗格互换</td>
+<td>序号也会随之互换</td>
+</tr>
+<tr>
+<td></td>
+<td>空格</td>
+<td>next-layout</td>
+<td>调节当前窗格的布局</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>E</td>
+<td>select-layout -E</td>
+<td>将当前窗格水平均匀分布</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>c-s</td>
+<td>set-window-option synchronize-panes</td>
+<td>配置各个窗格间同步输入</td>
+<td></td>
+</tr>
+<tr>
+<td>Q</td>
+<td></td>
+<td>clear &amp;&amp; tmux clear-history</td>
+<td>清空窗格缓冲区内容，包括滚动条</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>f</td>
+<td>find-window</td>
+<td>根据内容查找窗格</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="窗口相关"><a href="#窗口相关" class="headerlink" title="窗口相关"></a>窗口相关</h4><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>原生按键</th>
+<th>命令</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>c</td>
+<td>new-window</td>
+<td>创建新的窗口</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>&amp;</td>
+<td>kill-window</td>
+<td>关闭当前窗口</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>数字</td>
+<td>select-window -t :&#x3D;2</td>
+<td>跳到对应数字的窗口</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>n</td>
+<td>next-window</td>
+<td>跳到下一个窗口</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>w</td>
+<td>choose-tree -Zw</td>
+<td>进入树模式</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>‘</td>
+<td>select-window -t :2</td>
+<td>跳到对应下标窗口</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>.</td>
+<td>move-window</td>
+<td>移动窗口到指定下标</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>,</td>
+<td>rename-window</td>
+<td>重命名窗口</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>i</td>
+<td>display-message</td>
+<td>显示窗口信息</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>~</td>
+<td>show-messages</td>
+<td>显示刚才的按键提示</td>
+<td></td>
+</tr>
+<tr>
+<td>b</td>
+<td></td>
+<td>last-window</td>
+<td>跳到最近活跃的窗口</td>
+<td></td>
+</tr>
+<tr>
+<td>G</td>
+<td></td>
+<td>swap-window</td>
+<td>标记窗口与当前窗口互换位置</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="会话相关"><a href="#会话相关" class="headerlink" title="会话相关"></a>会话相关</h4><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>原生按键</th>
+<th>命令</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>s</td>
+<td>choose-tree -sZ -O name</td>
+<td>显示会话列表</td>
+<td>自定义为按照名称排序</td>
+</tr>
+<tr>
+<td></td>
+<td>(</td>
+<td>switch-client -p</td>
+<td>上一个会话</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td>switch-client -n</td>
+<td>下一个会话</td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td></td>
+<td>switch-client -l</td>
+<td>跳到上一个活跃会话</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>d</td>
+<td></td>
+<td>断开当前会话的关联</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>D</td>
+<td>choose-client -Z</td>
+<td>进入客户端模式</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>$</td>
+<td>rename-session test-kqf</td>
+<td>修改会话名称</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>会话没有索引，但是有名称，名称是必须且唯一的，默认按照创建先后排序，可以自定义按照 会话名称排序</p>
+<h4 id="其他快捷键"><a href="#其他快捷键" class="headerlink" title="其他快捷键"></a>其他快捷键</h4><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>原生按键</th>
+<th>命令</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>r</td>
+<td></td>
+<td>重新载入配置文件</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>&#x2F;</td>
+<td></td>
+<td>显示指定按键的绑定命令</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>:</td>
+<td></td>
+<td>进入命令行模式</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>?</td>
+<td></td>
+<td>显示快捷键列表</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>C</td>
+<td></td>
+<td>显示配置列表</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>t</td>
+<td></td>
+<td>显示时钟</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>&lt;</td>
+<td></td>
+<td>显示窗口相关的右键提示</td>
+<td>类似于鼠标右键的功能</td>
+</tr>
+<tr>
+<td></td>
+<td>&gt;</td>
+<td></td>
+<td>显示窗格相关的右键提示</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>F</td>
+<td></td>
+<td>保存会话信息</td>
+<td>使用插件实现</td>
+</tr>
+<tr>
+<td></td>
+<td>R</td>
+<td></td>
+<td>恢复会话信息</td>
+<td>使用插件实现</td>
+</tr>
+</tbody></table>
+<h3 id="使用标记"><a href="#使用标记" class="headerlink" title="使用标记"></a>使用标记</h3><p>mark 标记附加在窗格及其父窗口上面，用于对窗格或者窗口进行快速操作。例如，标记窗格与当前窗格快速互换，标记窗口和当前窗口快速互换。</p>
+<h3 id="理解窗口符号"><a href="#理解窗口符号" class="headerlink" title="理解窗口符号"></a>理解窗口符号</h3><p>窗口名字的右边有些情况下会带上符号用于显示终端状态的状态栏，支持以下符号：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Symbol    Meaning</span><br><span class="line">*         当前窗口</span><br><span class="line">-         上一个使用的窗口</span><br><span class="line"><span class="comment">#         窗口有活跃事件</span></span><br><span class="line">!         Window bells are monitored<span class="built_in"> and </span>a bell has occurred in the window.</span><br><span class="line">~         The window has been silent for the<span class="built_in"> monitor-silence </span>interval.</span><br><span class="line">M         窗口时标记窗口</span><br><span class="line">Z         窗口中的窗格被最大化了</span><br></pre></td></tr></table></figure>
+
+<p>可以配置是不是显示这部分内容 <code>set -wg window-status-format &quot;#I:#W#F&quot;</code> 配置为 Index:WindowName Flag; 如果flag太多影响专注的话可以删除 #F</p>
+<h2 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h2><p>命令行模式可以实现快捷键的所有操作，类似于把快捷键的按键重新输入一遍：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:neww -t 8 -d -n winname  <span class="comment"># 指定下标为 8  并且 不设置为当前活动窗口（后台新建） 命名为 winname</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="缓冲区模式"><a href="#缓冲区模式" class="headerlink" title="缓冲区模式"></a>缓冲区模式</h2><p>进入缓冲区模式后进行复制粘贴相关的操作，例如这里复制指定内容 <code>git status</code></p>
+<p><img src="https://qiniu.kangqingfei.cn/typora/img/image-20240115232812451.png@wt" alt="image-20240115232812451"></p>
+<h4 id="快捷键-1"><a href="#快捷键-1" class="headerlink" title="快捷键"></a>快捷键</h4><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>原生按键</th>
+<th>命令</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>[</td>
+<td></td>
+<td>进入复制模式</td>
+<td></td>
+</tr>
+<tr>
+<td>v</td>
+<td>空格</td>
+<td></td>
+<td>开始选择</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Enter</td>
+<td></td>
+<td>复制选择内容并退出复制模式</td>
+<td></td>
+</tr>
+<tr>
+<td>y</td>
+<td></td>
+<td></td>
+<td>复制选择内容</td>
+<td></td>
+</tr>
+<tr>
+<td>p</td>
+<td>]</td>
+<td></td>
+<td>粘贴剪贴板内容</td>
+<td>原生按键为上一个窗口</td>
+</tr>
+<tr>
+<td></td>
+<td>o</td>
+<td></td>
+<td>切换选择方向</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>q</td>
+<td></td>
+<td>退出缓冲区模式</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>#</td>
+<td>list-buffer</td>
+<td>显示buffer列表</td>
+<td>show-buffer 只显示一条</td>
+</tr>
+<tr>
+<td></td>
+<td>&#x3D;</td>
+<td>choose-buffer</td>
+<td>从buffer列表中选择内容</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>复制过程按住 Shift 然后便能使用鼠标进行复制粘贴，如果使用vi 的模式  可以在选择的过程中使用vi的各种快捷键  包括 <code>j w e b / :</code> 等</p>
+<h2 id="树模式"><a href="#树模式" class="headerlink" title="树模式"></a>树模式</h2><p>树模式可以用于快速预览并跳转到指定窗格，也可以用于批量操作窗口或窗格</p>
+<p><img src="https://qiniu.kangqingfei.cn/typora/img/image-20240204014054803.png@wt" alt="image-20240204014054803"></p>
+<p>快捷键如下:</p>
+<table>
+<thead>
+<tr>
+<th>按键</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>上下左右(hjkl)</td>
+<td>上下移动目标会话，左右收起展开会话</td>
+<td></td>
+</tr>
+<tr>
+<td>t</td>
+<td>给目标打上标签</td>
+<td>打上标签的会在索引后面带上*，<br />注意与前面名称后面的符号区分开</td>
+</tr>
+<tr>
+<td>T</td>
+<td>取消所有标签</td>
+<td></td>
+</tr>
+<tr>
+<td>c-t</td>
+<td>标记所有目标</td>
+<td></td>
+</tr>
+<tr>
+<td>x</td>
+<td>快速关闭目标</td>
+<td></td>
+</tr>
+<tr>
+<td>X</td>
+<td>关闭有标签的目标</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;|&gt;</td>
+<td>在预览内容太多一屏放不下的时候左右移动</td>
+<td></td>
+</tr>
+<tr>
+<td>O</td>
+<td>改变排序方式</td>
+<td></td>
+</tr>
+<tr>
+<td>r</td>
+<td>反向排序</td>
+<td></td>
+</tr>
+<tr>
+<td>v</td>
+<td>预览目标</td>
+<td></td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>选中目标</td>
+<td></td>
+</tr>
+<tr>
+<td>m</td>
+<td>标记目标</td>
+<td></td>
+</tr>
+<tr>
+<td>M</td>
+<td>取消标记</td>
+<td></td>
+</tr>
+<tr>
+<td>:</td>
+<td>对打标记的目标执行操作</td>
+<td></td>
+</tr>
+<tr>
+<td>c-s</td>
+<td>查找目标</td>
+<td></td>
+</tr>
+<tr>
+<td>n</td>
+<td>再次触发查找</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>控制树模式的键不需要前缀。</p>
+<h2 id="客户端模式"><a href="#客户端模式" class="headerlink" title="客户端模式"></a>客户端模式</h2><p>和树模式类似的，目前使用场景有限暂不研究</p>
+<h2 id="配置文件参考"><a href="#配置文件参考" class="headerlink" title="配置文件参考"></a>配置文件参考</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">################################ 全局设置</span></span><br><span class="line"><span class="comment"># 设置默认的shell</span></span><br><span class="line"><span class="built_in">set</span> -g default-shell /bin/zsh</span><br><span class="line"><span class="comment"># 设置前缀键</span></span><br><span class="line"><span class="built_in">set</span> -g prefix C-a</span><br><span class="line"><span class="comment"># 设置前缀键与命令键的最长的间隔</span></span><br><span class="line"><span class="built_in">set</span> -s escape-time 1000</span><br><span class="line"><span class="comment"># 设置可重复按键时 两个重复按键之间的最长重复时长 例如在调整窗口大小时</span></span><br><span class="line"><span class="built_in">set</span> -g repeat-time 1000</span><br><span class="line"><span class="comment"># 释放初始的前缀键</span></span><br><span class="line">unbind C-b</span><br><span class="line"><span class="comment"># 设置向其他应用发送 C-a 的方式为按两次 C-a</span></span><br><span class="line"><span class="built_in">bind</span> C-a send-prefix</span><br><span class="line"><span class="comment"># 设置重载配置的快捷键 其中 \; 是多个命令之间的分隔符</span></span><br><span class="line"><span class="built_in">bind</span> r source-file ~/.tmux.conf \; display <span class="string">&quot;./.tmux.conf Reloaded!&quot;</span></span><br><span class="line"><span class="comment"># 开启鼠标</span></span><br><span class="line"><span class="built_in">set</span> -g mouse on</span><br><span class="line"><span class="comment"># 设置终端为 256 色模式</span></span><br><span class="line"><span class="built_in">set</span> -g default-terminal <span class="string">&quot;screen-256color&quot;</span></span><br><span class="line"><span class="comment"># 设置快捷键模式</span></span><br><span class="line"><span class="built_in">set</span> -g mode-keys vi</span><br><span class="line"><span class="comment"># 设置窗格同步操作的快捷键</span></span><br><span class="line"><span class="built_in">bind</span> C-s set-window-option synchronize-panes</span><br><span class="line"></span><br><span class="line"><span class="comment">################################ 复制粘贴 设置</span></span><br><span class="line"><span class="comment">## 复制粘贴设置</span></span><br><span class="line"><span class="comment"># Tab -&gt; [</span></span><br><span class="line"><span class="built_in">bind</span> Tab copy-mode</span><br><span class="line"><span class="comment"># v -&gt; space</span></span><br><span class="line">bind-key -T copy-mode-vi v send-keys -X begin-selection</span><br><span class="line"><span class="comment"># y + q -&gt; Enter</span></span><br><span class="line">bind-key -T copy-mode-vi y send-keys -X copy-selection</span><br><span class="line"><span class="comment"># p -&gt; ]</span></span><br><span class="line">unbind p <span class="comment"># 将窗口的前后切换换成了粘贴</span></span><br><span class="line"><span class="built_in">bind</span> p paste-buffer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">################################ 配色设置</span></span><br><span class="line"><span class="comment"># 设置状态栏颜色</span></span><br><span class="line"><span class="built_in">set</span> -g status-style <span class="built_in">fg</span>=white,bold,<span class="built_in">bg</span>=black</span><br><span class="line"><span class="comment"># 设置窗口列表配色</span></span><br><span class="line"><span class="built_in">set</span> -wg window-status-style <span class="built_in">fg</span>=cyan,<span class="built_in">bg</span>=black</span><br><span class="line"><span class="comment"># 设置激活的窗口的颜色</span></span><br><span class="line"><span class="built_in">set</span> -wg window-status-current-style <span class="built_in">fg</span>=white,bold,<span class="built_in">bg</span>=red</span><br><span class="line"><span class="comment"># 设置 窗格的边框</span></span><br><span class="line"><span class="built_in">set</span> -wg pane-border-style <span class="built_in">fg</span>=white,<span class="built_in">bg</span>=black</span><br><span class="line"><span class="comment"># 设置激活窗格的边框</span></span><br><span class="line"><span class="built_in">set</span> -wg pane-active-border-style <span class="built_in">fg</span>=red,<span class="built_in">bg</span>=black</span><br><span class="line"><span class="comment"># 高显激活窗格模糊其它窗格</span></span><br><span class="line"><span class="built_in">set</span> -wg window-style <span class="built_in">fg</span>=colour241,<span class="built_in">bg</span>=colour235</span><br><span class="line"><span class="built_in">set</span> -wg window-active-style <span class="built_in">fg</span>=white,<span class="built_in">bg</span>=black</span><br><span class="line"><span class="comment"># 设置命令行的外观</span></span><br><span class="line"><span class="built_in">set</span> -g message-style <span class="built_in">fg</span>=white,bold,<span class="built_in">bg</span>=black</span><br><span class="line"><span class="comment"># 设置左侧状态栏的文字外观</span></span><br><span class="line"><span class="built_in">set</span> -g status-left-length 40</span><br><span class="line"><span class="built_in">set</span> -g status-left <span class="string">&quot;#[fg=colour119]#S #[fg=yellow] #W-#I #[fg=green] Pane-#P&quot;</span></span><br><span class="line"><span class="comment"># 设置右侧状态栏文字</span></span><br><span class="line"><span class="built_in">set</span> -g status-right <span class="string">&quot;#[fg=colour220]%y-%m-%d %A %R &quot;</span></span><br><span class="line"><span class="comment"># 设置状态栏刷新频率</span></span><br><span class="line"><span class="built_in">set</span> -g status-interval 60</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">################################ 窗口设置</span></span><br><span class="line"><span class="comment"># 设置窗口的起始下标是 1 而不是 0</span></span><br><span class="line"><span class="built_in">set</span> -g base-index 1</span><br><span class="line"><span class="comment"># 设置在窗口中移动的快捷键</span></span><br><span class="line"><span class="built_in">bind</span> -r C-h select-window -t :-</span><br><span class="line"><span class="built_in">bind</span> -r C-l select-window -t :+</span><br><span class="line"><span class="comment"># 设置窗口列表居中</span></span><br><span class="line"><span class="built_in">set</span> -g status-justify centre</span><br><span class="line"><span class="comment"># 允许来自其他窗口的警告</span></span><br><span class="line"><span class="built_in">set</span> -wg monitor-activity on</span><br><span class="line"><span class="built_in">set</span> -g visual-activity on</span><br><span class="line"><span class="built_in">set</span> -wg window-status-activity-style <span class="built_in">fg</span>=colour226</span><br><span class="line"><span class="comment"># 禁止窗口自动重命名</span></span><br><span class="line"><span class="built_in">set</span> -wg allow-rename off</span><br><span class="line"><span class="built_in">set</span> -wg automatic-rename off</span><br><span class="line"><span class="comment"># 设置窗口列表显示的内容</span></span><br><span class="line"><span class="built_in">set</span> -wg window-status-format <span class="string">&quot;#I:#W#F&quot;</span> <span class="comment">## 中间状态栏配置 Index :WindowName Flag; 如果flag太多影响专注的话可以删除 #F</span></span><br><span class="line"><span class="comment"># 设置窗格的起始下标是1而不是0</span></span><br><span class="line"><span class="built_in">set</span> -wg pane-base-index 1</span><br><span class="line"><span class="comment"># 设置分隔窗格的快捷键</span></span><br><span class="line"><span class="built_in">bind</span> | split-window -h</span><br><span class="line"><span class="built_in">bind</span> - split-window -v</span><br><span class="line"><span class="comment"># 设置窗格中移动的快捷键</span></span><br><span class="line"><span class="built_in">bind</span> h select-pane -L</span><br><span class="line"><span class="built_in">bind</span> j select-pane -D</span><br><span class="line"><span class="built_in">bind</span> k select-pane -U</span><br><span class="line"><span class="built_in">bind</span> l select-pane -R</span><br><span class="line"><span class="comment"># 设置重新设置窗格大小的快捷键</span></span><br><span class="line"><span class="built_in">bind</span> -r H resize-pane -L 1</span><br><span class="line"><span class="built_in">bind</span> -r J resize-pane -D 1</span><br><span class="line"><span class="built_in">bind</span> -r K resize-pane -U 1</span><br><span class="line"><span class="built_in">bind</span> -r L resize-pane -R 1</span><br><span class="line"><span class="comment"># 设置标记窗格或窗口与当前窗格或窗口互换位置快捷键</span></span><br><span class="line"><span class="built_in">bind</span> g swap-pane</span><br><span class="line"><span class="built_in">bind</span> G swap-window</span><br><span class="line"><span class="comment"># 跳到之前的窗口 l -&gt; b</span></span><br><span class="line"><span class="built_in">bind</span> b last-window</span><br><span class="line"><span class="comment"># 跳到之前的会话</span></span><br><span class="line">bind-key -n B switch-client -l</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">################################ 插件配置</span></span><br><span class="line"><span class="comment">## resurrect 相关配置</span></span><br><span class="line"><span class="comment">#设置保存和恢复的快捷键</span></span><br><span class="line"><span class="built_in">set</span> -g @resurrect-save <span class="string">&#x27;F&#x27;</span></span><br><span class="line"><span class="built_in">set</span> -g @resurrect-restore <span class="string">&#x27;R&#x27;</span></span><br><span class="line"><span class="built_in">set</span> -g @resurrect-dir <span class="string">&#x27;~/tools/tmux-resurrect/resurrect/session&#x27;</span></span><br><span class="line"><span class="comment"># 保留 vim 会话</span></span><br><span class="line"><span class="built_in">set</span> -g @resurrect-strategy-vim <span class="string">&#x27;session&#x27;</span></span><br><span class="line"><span class="comment"># 保存窗格内容</span></span><br><span class="line"><span class="built_in">set</span> -g @resurrect-capture-pane-contents <span class="string">&#x27;on&#x27;</span></span><br><span class="line"><span class="comment"># 使用resurrect插件</span></span><br><span class="line">run-shell ~/tools/tmux-resurrect/resurrect.tmux</span><br><span class="line"></span><br><span class="line"><span class="comment">################################ 其他配置</span></span><br><span class="line"><span class="comment"># 自定义会话排序方式</span></span><br><span class="line"><span class="built_in">bind</span> s choose-tree -sZ -O name</span><br><span class="line"><span class="comment"># 使用会话组且当前窗口不同时，各自最大化当前窗口</span></span><br><span class="line"><span class="built_in">set</span> -g aggressive-resize off</span><br><span class="line"><span class="comment"># 清除缓冲区，包括滚动条</span></span><br><span class="line">bind-key Q send-keys <span class="string">&#x27;clear &amp;&amp; tmux clear-history&#x27;</span>\; <span class="string">&#x27;Enter&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li>用户手册：<a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1">https://man.openbsd.org/OpenBSD-current/man1/tmux.1</a></li>
+<li>会话组相关介绍： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/bamanzi/p/tmux-share-windows-between-sessions.html">https://www.cnblogs.com/bamanzi/p/tmux-share-windows-between-sessions.html</a></li>
+<li>树模式相关： <a target="_blank" rel="noopener" href="https://waylonwalker.com/tmux-choose-tree/">https://waylonwalker.com/tmux-choose-tree/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39510813/article/details/118660802">https://blog.csdn.net/weixin_39510813/article/details/118660802</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/02/15/tmux-advance/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          tmux advance usage
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/12/31/repair-4g-router-R102/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">4g路由器维修</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2024 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/require-2.1.6.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>tmux user manual | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="用户手册阅读tmux 的用户手册对tmux的所有特性都有详细的介绍，每个命令和配置都可以在里面找到。主要分为下面几块，可以按需快速找到要查阅的内容 DESCRIPTION 介绍tmux基本功能 DEFAULT KEY BINDINGS 介绍默认的按键配置 COMMAND PARSING AND EXECUTION 解释命令是怎么和运行的。主要包括在终端，以及配置文件，或者绑定按键的方式来运行命令：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tmux user manual">
+<meta property="og:url" content="http://kangqingfei.cn/2024/02/15/tmux-manual/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="用户手册阅读tmux 的用户手册对tmux的所有特性都有详细的介绍，每个命令和配置都可以在里面找到。主要分为下面几块，可以按需快速找到要查阅的内容 DESCRIPTION 介绍tmux基本功能 DEFAULT KEY BINDINGS 介绍默认的按键配置 COMMAND PARSING AND EXECUTION 解释命令是怎么和运行的。主要包括在终端，以及配置文件，或者绑定按键的方式来运行命令：">
+<meta property="og:locale">
+<meta property="og:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240128222912887.png@wt">
+<meta property="article:published_time" content="2024-02-14T18:48:24.000Z">
+<meta property="article:modified_time" content="2024-02-14T18:54:07.238Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="tmux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240128222912887.png@wt">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/hackintosh/" style="font-size: 10px;">hackintosh</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 15.71px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 14.29px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/tmux/" style="font-size: 12.86px;">tmux</a> <a href="/tags/typora/" style="font-size: 11.43px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-tmux-manual" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/02/15/tmux-manual/" class="article-date">
+  	<time datetime="2024-02-14T18:48:24.000Z" itemprop="datePublished">2024-02-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      tmux user manual
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tools/">tools</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="用户手册阅读"><a href="#用户手册阅读" class="headerlink" title="用户手册阅读"></a>用户手册阅读</h1><p>tmux 的用户手册对tmux的所有特性都有详细的介绍，每个命令和配置都可以在里面找到。主要分为下面几块，可以按需快速找到要查阅的内容</p>
+<h3 id="DESCRIPTION"><a href="#DESCRIPTION" class="headerlink" title="DESCRIPTION"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#DESCRIPTION">DESCRIPTION</a></h3><p> 介绍tmux基本功能</p>
+<h3 id="DEFAULT-KEY-BINDINGS"><a href="#DEFAULT-KEY-BINDINGS" class="headerlink" title="DEFAULT KEY BINDINGS"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#DEFAULT_KEY_BINDINGS">DEFAULT KEY BINDINGS</a></h3><p> 介绍默认的按键配置</p>
+<h3 id="COMMAND-PARSING-AND-EXECUTION"><a href="#COMMAND-PARSING-AND-EXECUTION" class="headerlink" title="COMMAND PARSING AND EXECUTION"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#COMMAND_PARSING_AND_EXECUTION">COMMAND PARSING AND EXECUTION</a></h3><p> 解释命令是怎么和运行的。主要包括在终端，以及配置文件，或者绑定按键的方式来运行命令：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ tmux set-option -g status-style <span class="built_in">bg</span>=cyan <span class="comment"># 终端直接运行命令</span></span><br><span class="line">set-option -g status-style <span class="built_in">bg</span>=cyan  <span class="comment"># 在配置文件中运行</span></span><br><span class="line">bind-key C set-option -g status-style <span class="built_in">bg</span>=cyan <span class="comment"># 绑定快捷键的方式运行</span></span><br><span class="line"><span class="comment"># set-option 是命令 -g 是选项  status-style bg=cyan 是参数</span></span><br></pre></td></tr></table></figure>
+
+  <span id="more"></span>
+
+<h3 id="PARSING-SYNTAX"><a href="#PARSING-SYNTAX" class="headerlink" title="PARSING SYNTAX"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#PARSING_SYNTAX">PARSING SYNTAX</a></h3><p> 介绍命令解析的语法，每条命令以分号结束，例如 <code>$tmux neww \; splitw</code> 如果是在tmux中执行则不需要转义 <code>neww ; splitw</code></p>
+<p> 另外还有 <code>#</code> 用于注释，而命令所需参数必须通过 <code>&#39;</code> <code>&quot;</code> 或者<code>&#123;&#125;</code> 来传递。单双引号不能跨行使用，大括号却可以。</p>
+<h3 id="COMMANDS"><a href="#COMMANDS" class="headerlink" title="COMMANDS"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#COMMANDS">COMMANDS</a></h3><p>  介绍命令支持的选项，大部分都可以支持 -t&#x2F;s 的选项，分别用来指定目标对象(target)和源对象（source）。对于目标类型的不同，参数解析的方式也不一样：</p>
+<ul>
+<li><p>会话 target-session ，参数解析的顺序如下：</p>
+<ol>
+<li><p><code>$</code> 为前缀的 sessionID</p>
+</li>
+<li><p>会话名称的精确匹配</p>
+</li>
+<li><p>会话名称的前缀匹配，注意如果加上了<code>=</code>来指定的话，只接受精确匹配</p>
+</li>
+<li><p>fnmatch</p>
+</li>
+</ol>
+<p>如果找到单个会话，那就是目标会话。如果有多个就报错。如果没有找到，就用当前会话。如果没有当前会话就用最近用的会话。</p>
+</li>
+<li><p>窗口 target-window，指定源窗口或目的窗口，格式为：<code>session:window</code>，同样有解析的顺序：</p>
+<ol>
+<li>指定的token   例如 <code>tmux send-keys -t:&#123;last&#125; ls</code></li>
+<li>窗口的序号</li>
+<li>窗口的id，以<code>@</code> 引用</li>
+<li>窗口名称的精确匹配</li>
+<li>窗口名称的前缀匹配，如果名称前指定了<code>=</code>那么就只接受精确匹配</li>
+<li>fnmatch</li>
+</ol>
+<p>窗口的匹配支持的token如下：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="keyword">start</span>&#125;       ^    The lowest-numbered <span class="keyword">window</span></span><br><span class="line">&#123;<span class="keyword">end</span>&#125;         $    The highest-numbered <span class="keyword">window</span></span><br><span class="line"><span class="built_in">&#123;last</span>&#125;        !    The<span class="built_in"> last</span> (previously current) <span class="keyword">window</span></span><br><span class="line">&#123;<span class="keyword">next</span>&#125;        +    The <span class="keyword">next</span> <span class="keyword">window</span> <span class="keyword">by</span><span class="built_in"> number</span></span><br><span class="line">&#123;<span class="keyword">previous</span>&#125;    -    The <span class="keyword">previous</span> <span class="keyword">window</span> <span class="keyword">by</span><span class="built_in"> number</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>窗格，查找顺序和窗口类似的，指定语法为<code>session:window.paneindx</code> 窗格支持的token为：</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Token                  Meaning</span><br><span class="line">&#123;last&#125;            !    The last (previously active) pane</span><br><span class="line">&#123;next&#125;            +    The next pane <span class="built_in">by</span> number</span><br><span class="line">&#123;previous&#125;        -    The previous pane <span class="built_in">by</span> number</span><br><span class="line">&#123;<span class="built_in">top</span>&#125;                  The <span class="built_in">top</span> pane</span><br><span class="line">&#123;<span class="built_in">bottom</span>&#125;               The <span class="built_in">bottom</span> pane</span><br><span class="line">&#123;<span class="built_in">left</span>&#125;                 The leftmost pane</span><br><span class="line">&#123;<span class="built_in">right</span>&#125;                The rightmost pane</span><br><span class="line">&#123;<span class="built_in">top</span>-<span class="built_in">left</span>&#125;             The <span class="built_in">top</span>-<span class="built_in">left</span> pane</span><br><span class="line">&#123;<span class="built_in">top</span>-<span class="built_in">right</span>&#125;            The <span class="built_in">top</span>-<span class="built_in">right</span> pane</span><br><span class="line">&#123;<span class="built_in">bottom</span>-<span class="built_in">left</span>&#125;          The <span class="built_in">bottom</span>-<span class="built_in">left</span> pane</span><br><span class="line">&#123;<span class="built_in">bottom</span>-<span class="built_in">right</span>&#125;         The <span class="built_in">bottom</span>-<span class="built_in">right</span> pane</span><br><span class="line">&#123;up-of&#125;                The pane above the active pane</span><br><span class="line">&#123;down-of&#125;              The pane below the active pane</span><br><span class="line">&#123;<span class="built_in">left</span>-of&#125;              The pane to the <span class="built_in">left</span> of the active pane</span><br><span class="line">&#123;<span class="built_in">right</span>-of&#125;             The pane to the <span class="built_in">right</span> of the active pane</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>+</code> <code>-</code> 可以紧跟offset的数值来指定偏移量，例如 <code>select-window -t:+2</code></p>
+</li>
+</ul>
+<p>另外还有一些全局token，</p>
+<ul>
+<li><code>&#123;mouse&#125;</code>   <code>=</code> 表示，用来指定最近出现鼠标事件的对象</li>
+<li><code>&#123;marked&#125;</code> <code>~</code>  表示，用来指定被标记的窗格</li>
+</ul>
+<p>会话，窗口，和窗格都有一个唯一的ID，会话使用 <code>$</code> 窗口使用 <code>@</code>  窗格使用 <code>%</code> ，这些ID在对象存在的生命周期内都不会改变。这些ID可以通过 <code>session_id</code> <code>window_id</code> <code>pane_id</code> 这些方式显示出来，也可以通过 <code>display-message</code>  <code>list-sessions</code> <code>list-windows</code> <code>list-panes</code> 这些命令来显示。通过快捷键 <code>i</code> 来出发<code>display-message</code> 可以看到对应的ID格式为：<code> &#123;session_id&#125;- &#123;pane_id&#125;-&#123;window_id&#125;</code></p>
+<p><img src="https://qiniu.kangqingfei.cn/typora/img/image-20240128222912887.png@wt" alt="image-20240128222912887"></p>
+<p>在一些指令后面可以指定参数用来传递给shell，例如：<code>new-window &#39;vi ~/.tmux.conf&#39;</code> 就会在打开一个新窗口的同时打开vim。</p>
+<h3 id="CLIENTS-AND-SESSIONS"><a href="#CLIENTS-AND-SESSIONS" class="headerlink" title="CLIENTS AND SESSIONS"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#CLIENTS_AND_SESSIONS">CLIENTS AND SESSIONS</a></h3><p>主要介绍 客户端（client）和会话（session）的一些常用操作，这些操作可以通过<code>list-command</code>来查看。客户端是用户的终端，必须关联到一个会话才能进行操作。客户端可以关联到同一个会话。 每个会话有一个或多个窗口。每个窗口可以关联到一个或多个会话，并由多个窗格组成。</p>
+<p>客户端和会话支持的命令如下：</p>
+<ul>
+<li>attach-session</li>
+<li>detach-client</li>
+<li>has-session</li>
+<li>kill-server</li>
+<li>kill-session</li>
+<li>list-clients</li>
+<li>list-commands</li>
+<li>list-sessions</li>
+<li>lock-client</li>
+<li>lock-session</li>
+<li>new-session</li>
+<li>refresh-client</li>
+<li>rename-session</li>
+<li>server-access</li>
+<li>show-messages</li>
+<li>source-file</li>
+<li>start-server</li>
+<li>suspend-client</li>
+<li>switch-client</li>
+</ul>
+<h3 id="WINDOWS-AND-PANES"><a href="#WINDOWS-AND-PANES" class="headerlink" title="WINDOWS AND PANES"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#WINDOWS_AND_PANES">WINDOWS AND PANES</a></h3><p>每个窗口都可以由一个或多个窗格组成，默认窗口和窗格都是从<code>0</code> 开始标号的。一个窗格可以存在多个模式：</p>
+<ul>
+<li>复制模式，用于选定并复制窗格内的内容</li>
+<li>查看模式，当执行的命令产生很多的输出时会进入该模式，例如：<code>list-keys</code></li>
+<li>选择模式，用于在列表中选择条目，该模式可以通过以下命令进入：<code>choose-buffer</code> <code>choose-client </code>  <code>choose-tree</code></li>
+</ul>
+<p>复制模式支持两种按键绑定，通过 <code>mode-keys</code> 选项来配置 <code>copy-mode</code> 代指 emacs <code>copy-mode-vi</code> 代指 <code>vi</code>，具体快捷键可以通过<code>list-keys</code>来查看。</p>
+<p>窗口和窗格主要支持以下的命令：</p>
+<ul>
+<li><code>copy-mode</code> 进入复制模式</li>
+<li>select-layout 选定窗格布局</li>
+<li>break-pane</li>
+<li>capture-pane</li>
+<li>choose-client</li>
+<li>choose-tree</li>
+<li>customize-mode</li>
+<li>display-panes</li>
+<li>find-window</li>
+<li>join-pane</li>
+<li>kill-pane</li>
+<li>kill-window</li>
+<li>last-pane</li>
+<li>last-window</li>
+<li>link-window</li>
+<li>list-panes</li>
+<li>list-windows</li>
+<li>move-pane</li>
+<li>move-window</li>
+<li>new-window</li>
+<li>next-layout</li>
+<li>next-window</li>
+<li>pipe-pane</li>
+<li>previous-layout</li>
+<li>previous-window</li>
+<li>rename-window</li>
+<li>resize-pane</li>
+<li>resize-window</li>
+<li>respawn-pane</li>
+<li>respawn-window</li>
+<li>rotate-window</li>
+<li>select-layout</li>
+<li>select-pane</li>
+<li>select-window</li>
+<li>split-window</li>
+<li>swap-pane</li>
+<li>swap-window</li>
+<li>unlink-window</li>
+</ul>
+<h3 id="KEY-BINDINGS"><a href="#KEY-BINDINGS" class="headerlink" title="KEY BINDINGS"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#KEY_BINDINGS">KEY BINDINGS</a></h3><ul>
+<li>bind-key 用来配置快捷键，<code>-r</code> 表示这个按键可以重复</li>
+<li>list-keys 列出按键配置</li>
+<li>send-keys 向目标输入按键</li>
+<li>send-prefix 向目标发送前缀键</li>
+<li>unbind-key 取消绑定按键</li>
+</ul>
+<h3 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#OPTIONS">OPTIONS</a></h3><p>通过选项可以配置tmux 的外观和行为，包括：server options, session options, window options, pane options。可以通过 <code>set-options</code> 来配置也可以通过<code>show-options -s|w|p </code> 来查看。</p>
+<h3 id="HOOKS"><a href="#HOOKS" class="headerlink" title="HOOKS"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#HOOKS">HOOKS</a></h3><p>钩子用于指定特定命令执行，或者状态改变之后的一些操作</p>
+<h3 id="MOUSE-SUPPORT"><a href="#MOUSE-SUPPORT" class="headerlink" title="MOUSE SUPPORT"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#MOUSE_SUPPORT">MOUSE SUPPORT</a></h3><p>鼠标支持相关</p>
+<h3 id="FORMATS"><a href="#FORMATS" class="headerlink" title="FORMATS"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#FORMATS">FORMATS</a></h3><p>一些支持 -F 选项的命令的显示配置，可以在这里查到可以显示的内置变量，例如</p>
+<p> <code>#T</code> 为pane的标题，<code>#P</code> 为pane的index ,<code>#D</code> 为pane的ID</p>
+<p><code>#H</code> 为hostname <code>#S</code> 为会话名 <code>#F</code> 为窗口标记 <code>#I</code> 为窗口index <code>W</code> 为窗口名字</p>
+<h3 id="STYLES"><a href="#STYLES" class="headerlink" title="STYLES"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#STYLES">STYLES</a></h3><p>用于指定样式，包括：</p>
+<p> fg bg align fill list range push-default, pop-default</p>
+<h3 id="NAMES-AND-TITLES"><a href="#NAMES-AND-TITLES" class="headerlink" title="NAMES AND TITLES"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#NAMES_AND_TITLES">NAMES AND TITLES</a></h3><p>窗口和会话有名字，只有窗格有 标题</p>
+<h3 id="GLOBAL-AND-SESSION-ENVIRONMENT"><a href="#GLOBAL-AND-SESSION-ENVIRONMENT" class="headerlink" title="GLOBAL AND SESSION ENVIRONMENT"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#GLOBAL_AND_SESSION_ENVIRONMENT">GLOBAL AND SESSION ENVIRONMENT</a></h3><p>一些用于传递信息的变量</p>
+<p>set-environment</p>
+<p>show-environment</p>
+<h3 id="STATUS-LINE"><a href="#STATUS-LINE" class="headerlink" title="STATUS LINE"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#STATUS_LINE">STATUS LINE</a></h3><p>用于显示终端状态的状态栏，支持以下符号 <code>* - # ! ~ M Z</code></p>
+<h3 id="BUFFERS"><a href="#BUFFERS" class="headerlink" title="BUFFERS"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#BUFFERS">BUFFERS</a></h3><p>剪贴板的管理</p>
+<h3 id="MISCELLANEOUS"><a href="#MISCELLANEOUS" class="headerlink" title="MISCELLANEOUS"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#MISCELLANEOUS">MISCELLANEOUS</a></h3><p>其他组件</p>
+<h3 id="EXIT-MESSAGES"><a href="#EXIT-MESSAGES" class="headerlink" title="EXIT MESSAGES"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#EXIT_MESSAGES">EXIT MESSAGES</a></h3><p>客户端段开时的提示</p>
+<h3 id="TERMINFO-EXTENSIONS"><a href="#TERMINFO-EXTENSIONS" class="headerlink" title="TERMINFO EXTENSIONS"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#TERMINFO_EXTENSIONS">TERMINFO EXTENSIONS</a></h3><p>一些扩展</p>
+<h3 id="CONTROL-MODE"><a href="#CONTROL-MODE" class="headerlink" title="CONTROL MODE"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#CONTROL_MODE">CONTROL MODE</a></h3><p>应用程序控制接口</p>
+<h3 id="ENVIRONMENT"><a href="#ENVIRONMENT" class="headerlink" title="ENVIRONMENT"></a><a target="_blank" rel="noopener" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#ENVIRONMENT">ENVIRONMENT</a></h3><p>与tmux有关的环境变量</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/02/15/tmux-advance/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">tmux advance usage</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2024 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/require-2.1.6.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>
