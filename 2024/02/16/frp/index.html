@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>reserve proxy by frp | kblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用背景在没有公网IP的情况下需要将运营商内网的服务暴露到外网访问就需要使用到反向代理。需要有一台能够被公网访问的机器，局域网内的机器主动与公网机器建立tcp连接。公网机器处理用户的请求，并把流量转发给局域网机器。这种原理与服务发现类似，而 FRP就优雅地实现了该功能。 frp 使用go语言编写，只有一个服务端文件和一个客户端文件加上配置文件就能快速部署，非常优雅。frp使用go语言编写，内嵌了一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="reserve proxy by frp">
+<meta property="og:url" content="http://kangqingfei.cn/2024/02/16/frp/index.html">
+<meta property="og:site_name" content="kblog">
+<meta property="og:description" content="使用背景在没有公网IP的情况下需要将运营商内网的服务暴露到外网访问就需要使用到反向代理。需要有一台能够被公网访问的机器，局域网内的机器主动与公网机器建立tcp连接。公网机器处理用户的请求，并把流量转发给局域网机器。这种原理与服务发现类似，而 FRP就优雅地实现了该功能。 frp 使用go语言编写，只有一个服务端文件和一个客户端文件加上配置文件就能快速部署，非常优雅。frp使用go语言编写，内嵌了一">
+<meta property="og:locale">
+<meta property="og:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240216000432208.png@wt">
+<meta property="og:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240216000840853.png@wt">
+<meta property="og:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240216000930878.png@wt">
+<meta property="og:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240216001654604.png@wt">
+<meta property="og:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240216001356268.png@wt">
+<meta property="og:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240216000620345.png@wt">
+<meta property="article:published_time" content="2024-02-15T17:04:24.000Z">
+<meta property="article:modified_time" content="2024-02-15T17:04:39.355Z">
+<meta property="article:author" content="kangqingfei">
+<meta property="article:tag" content="frp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qiniu.kangqingfei.cn/typora/img/image-20240216000432208.png@wt">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="kblog" type="application/atom+xml">
+</head>
+<style>
+    .pace .pace-progress {
+    	background: #1E92FB; /*进度条颜色*/
+    	height: 2px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+    .profilepic:hover { /*头像动画效果*/
+    -webkit-animation: shake 1s;
+    animation: shake 1s;
+    };
+</style>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						<li>分类</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about.html">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/ARM/" style="font-size: 11.43px;">ARM</a> <a href="/tags/Altium-Designer/" style="font-size: 11.43px;">Altium Designer</a> <a href="/tags/BananaPro/" style="font-size: 17.14px;">BananaPro</a> <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/DHCP/" style="font-size: 10px;">DHCP</a> <a href="/tags/DL/" style="font-size: 10px;">DL</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Docker-%E5%85%A5%E9%97%A8/" style="font-size: 10px;">Docker 入门</a> <a href="/tags/HG255D/" style="font-size: 10px;">HG255D</a> <a href="/tags/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/LRS/" style="font-size: 10px;">LRS</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/OpenWrt/" style="font-size: 11.43px;">OpenWrt</a> <a href="/tags/QML/" style="font-size: 10px;">QML</a> <a href="/tags/Qt/" style="font-size: 11.43px;">Qt</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/VPS/" style="font-size: 10px;">VPS</a> <a href="/tags/XHR2/" style="font-size: 10px;">XHR2</a> <a href="/tags/archlinux/" style="font-size: 11.43px;">archlinux</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/cplusplus/" style="font-size: 10px;">cplusplus</a> <a href="/tags/cpp/" style="font-size: 11.43px;">cpp</a> <a href="/tags/frp/" style="font-size: 10px;">frp</a> <a href="/tags/g/" style="font-size: 10px;">g++</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/hackintosh/" style="font-size: 10px;">hackintosh</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 15.71px;">hexo</a> <a href="/tags/i3/" style="font-size: 10px;">i3</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/job/" style="font-size: 18.57px;">job</a> <a href="/tags/kindle/" style="font-size: 10px;">kindle</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/linux/" style="font-size: 11.43px;">linux</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/media/" style="font-size: 10px;">media</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/network/" style="font-size: 11.43px;">network</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/note/" style="font-size: 14.29px;">note</a> <a href="/tags/root-fs/" style="font-size: 10px;">root-fs</a> <a href="/tags/sort/" style="font-size: 10px;">sort</a> <a href="/tags/tencent/" style="font-size: 11.43px;">tencent</a> <a href="/tags/tmux/" style="font-size: 12.86px;">tmux</a> <a href="/tags/typora/" style="font-size: 11.43px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 11.43px;">ubuntu</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 12.86px;">动态规划</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 10px;">后缀数组</a> <a href="/tags/%E5%A4%B4%E6%9D%A1/" style="font-size: 10px;">头条</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14.29px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F/" style="font-size: 10px;">安全 渗透</a> <a href="/tags/%E5%B0%81%E8%A3%85/" style="font-size: 10px;">封装</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 15.71px;">嵌入式</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 20px;">毕设</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 10px;">汇总</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 10px;">笔试题</a> <a href="/tags/%E7%BB%98%E5%9B%BE/" style="font-size: 10px;">绘图</a> <a href="/tags/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" style="font-size: 10px;">编辑距离</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 10px;">背包问题</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basis/">basis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/config/">config</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jobs/">jobs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li></ul>
+					</div>
+				</section>
+				
+
+				
+
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+			
+				<img src="/assest/images/kqf.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about.html">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/kangqf" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@kangqingfei.cn" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-frp" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/02/16/frp/" class="article-date">
+  	<time datetime="2024-02-15T17:04:24.000Z" itemprop="datePublished">2024-02-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      reserve proxy by frp
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/frp/" rel="tag">frp</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tools/">tools</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="使用背景"><a href="#使用背景" class="headerlink" title="使用背景"></a>使用背景</h2><p>在没有公网IP的情况下需要将运营商内网的服务暴露到外网访问就需要使用到反向代理。需要有一台能够被公网访问的机器，局域网内的机器主动与公网机器建立tcp连接。公网机器处理用户的请求，并把流量转发给局域网机器。这种原理与服务发现类似，而 <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp"><code>FRP</code></a>就优雅地实现了该功能。</p>
+<p>frp 使用go语言编写，只有一个服务端文件和一个客户端文件加上配置文件就能快速部署，非常优雅。frp使用go语言编写，内嵌了一个 vue 的页面，方便在网页看到对应的流量转发和服务注册情况。</p>
+<span id="more"></span>
+
+<h2 id="FRP-服务端配置"><a href="#FRP-服务端配置" class="headerlink" title="FRP 服务端配置"></a>FRP 服务端配置</h2><figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">bindPort</span> = <span class="number">7100</span>  <span class="comment"># 服务端监听的端口</span></span><br><span class="line"><span class="comment"># transport.heartbeatTimeout = 90 # 默认的心跳超时时间，超过这个时间没有收到心跳认为客户端以及断开</span></span><br><span class="line"><span class="comment"># transport.tcpKeepalive = 7200 # tcp连接的保活时间，超过这个时间tcp要重新建立连接</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 虚拟主机端口配置</span></span><br><span class="line"><span class="attr">vhostHTTPPort</span> = <span class="number">8888</span> <span class="comment"># 可以 proxy_pass 用户请求到客户端，当客户端type 是 http 时</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鉴权配置</span></span><br><span class="line"><span class="comment"># auth.method = &quot;token&quot; # 支持 token 以及 OIDC</span></span><br><span class="line"><span class="attr">auth.token</span> = <span class="string">&quot;xxxxx&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ssh 跳板配置</span></span><br><span class="line"><span class="attr">sshTunnelGateway.bindPort</span> = <span class="number">2222</span> <span class="comment"># 网关端口，frp监听的，客户端ssh连接时需指定</span></span><br><span class="line"><span class="attr">sshTunnelGateway.privateKeyFile</span> = <span class="string">&quot;./ssh/id_rsa&quot;</span> <span class="comment"># ssh网关对客户端鉴权的私钥，默认为空使用自动生成的</span></span><br><span class="line"><span class="attr">sshTunnelGateway.autoGenPrivateKeyPath</span> = <span class="string">&quot;./ssh/frp_autogen_ssh_key&quot;</span> <span class="comment">#  默认是 ./.autogen_ssh_key frp自动生成的密钥文件目录</span></span><br><span class="line"><span class="attr">sshTunnelGateway.authorizedKeysFile</span> = <span class="string">&quot;./ssh/authorized_keys&quot;</span> <span class="comment"># 指定受信的公钥</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 管理后台配置</span></span><br><span class="line"><span class="comment"># webServer.addr = &quot;127.0.0.1&quot; # 地址</span></span><br><span class="line"><span class="attr">webServer.port</span> = <span class="number">8880</span> <span class="comment"># 端口</span></span><br><span class="line"><span class="attr">webServer.user</span> = <span class="string">&quot;xxx&quot;</span> <span class="comment"># 用户名，可选</span></span><br><span class="line"><span class="attr">webServer.password</span> = <span class="string">&quot;xxx&quot;</span> <span class="comment"># 密码，可选</span></span><br></pre></td></tr></table></figure>
+
+<p>所有的配置项可以参考： <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/dev/conf/frps_full_example.toml">https://github.com/fatedier/frp/blob/dev/conf/frps_full_example.toml</a></p>
+<p><code>./frps -c frps.toml</code> 来启动服务端。</p>
+<h3 id="NGINX-配置"><a href="#NGINX-配置" class="headerlink" title="NGINX 配置"></a>NGINX 配置</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># mobile sub domain</span><br><span class="line">upstream frps_dashboard <span class="punctuation">&#123;</span></span><br><span class="line">    server localhost<span class="punctuation">:</span><span class="number">8880</span> weight=<span class="number">5</span>;</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">server <span class="punctuation">&#123;</span></span><br><span class="line">    listen <span class="number">443</span> ssl;</span><br><span class="line">    listen <span class="punctuation">[</span><span class="punctuation">:</span><span class="punctuation">:</span><span class="punctuation">]</span><span class="punctuation">:</span><span class="number">443</span> ssl;</span><br><span class="line"></span><br><span class="line">    ssl_certificate       /xxx/kangqingfei.cn.pem;</span><br><span class="line">    ssl_certificate_key  /xxx/kangqingfei.cn.key;</span><br><span class="line">    ssl_session_timeout <span class="number">1</span>d;</span><br><span class="line">    ssl_session_cache shared<span class="punctuation">:</span>MozSSL<span class="punctuation">:</span><span class="number">10</span>m;</span><br><span class="line">    ssl_session_tickets off;</span><br><span class="line"></span><br><span class="line">    ssl_protocols         TLSv1<span class="number">.1</span> TLSv1<span class="number">.2</span> TLSv1<span class="number">.3</span>;</span><br><span class="line">    ssl_ciphers           ECDHE-ECDSA-AES128-GCM-SHA256<span class="punctuation">:</span>ECDHE-RSA-AES128-GCM-SHA256<span class="punctuation">:</span>ECDHE-ECDSA-AES256-GCM-SHA384<span class="punctuation">:</span>ECDHE-RSA-AES256-GCM-SHA384<span class="punctuation">:</span>ECDHE-ECDSA-CHACHA20-POLY1305<span class="punctuation">:</span>ECDHE-RSA-CHACHA20-POLY1305<span class="punctuation">:</span>DHE-RSA-AES128-GCM-SHA256<span class="punctuation">:</span>DHE-RSA-AES256-GCM-SHA384;</span><br><span class="line">    ssl_prefer_server_ciphers off;</span><br><span class="line">    #listen <span class="number">80</span>;</span><br><span class="line">    server_name mobile.kangqingfei.cn;</span><br><span class="line">    root /usr/share/nginx/;</span><br><span class="line"></span><br><span class="line">    location = /admin/ <span class="punctuation">&#123;</span></span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header  X-Real-IP        $remote_addr;</span><br><span class="line">        proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-NginX-Proxy <span class="literal"><span class="keyword">true</span></span>;</span><br><span class="line"></span><br><span class="line">        rewrite ^/admin/(.*)$ /$<span class="number">1</span> break;</span><br><span class="line">        proxy_pass http<span class="punctuation">:</span><span class="comment">//frps_dashboard;</span></span><br><span class="line">        #proxy_pass http<span class="punctuation">:</span><span class="comment">//127.0.0.1:8880/;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">    location ^~ /static/ <span class="punctuation">&#123;</span></span><br><span class="line">        proxy_pass http<span class="punctuation">:</span><span class="comment">//frps_dashboard;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">    location ^~ /api/ <span class="punctuation">&#123;</span></span><br><span class="line">        proxy_pass http<span class="punctuation">:</span><span class="comment">//frps_dashboard;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">    location / <span class="punctuation">&#123;</span></span><br><span class="line">        proxy_pass http<span class="punctuation">:</span><span class="comment">//127.0.0.1:8888;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">server <span class="punctuation">&#123;</span></span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    server_name mobile.kangqingfei.cn;</span><br><span class="line">    rewrite ^(.*)$ https<span class="punctuation">:</span><span class="comment">//$host$1 permanent;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h3><p>CentOS 8 SELinux 需要配置防火墙才能访问对应的端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先查看哪些端口被占用了</span></span><br><span class="line">firewall-cmd --permanent --list-all</span><br><span class="line"><span class="comment"># 开启端口映射并重启防火墙</span></span><br><span class="line">firewall-cmd --permanent --add-port=7100/tcp</span><br><span class="line">systemctl restart firewalld.service <span class="comment"># 或者 firewall-cmd --reload</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 端口分配</span></span><br><span class="line">2201: mbp16</span><br><span class="line">2202: desktop macos catalina</span><br><span class="line">2203: oppo findx5 termux</span><br><span class="line">2204: desktop linux</span><br><span class="line">2205: xps13 macos catalina</span><br><span class="line">2206: rk3399_device1 ubuntu</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="FRP-客户端配置"><a href="#FRP-客户端配置" class="headerlink" title="FRP 客户端配置"></a>FRP 客户端配置</h2><figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user</span> = <span class="string">&quot;rk3399&quot;</span> <span class="comment"># 指定客户机的名字，在管理后台会以 &#123;user&#125;.&#123;proxy&#125; 命名一条连接</span></span><br><span class="line"></span><br><span class="line"><span class="attr">serverAddr</span> = <span class="string">&quot;127.0.0.1&quot;</span> <span class="comment"># 服务端的IP，也可以使用域名，例如 mobile.kangqingfei.cn</span></span><br><span class="line"><span class="attr">serverPort</span> = <span class="number">7100</span> <span class="comment"># 服务端监听的端口</span></span><br><span class="line"><span class="attr">auth.token</span> = <span class="string">&quot;xxxx&quot;</span> <span class="comment"># 注册到服务端时需要鉴权的密钥</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端的管理后台配置</span></span><br><span class="line"><span class="attr">webServer.addr</span> = <span class="string">&quot;192.168.2.102&quot;</span></span><br><span class="line"><span class="attr">webServer.port</span> = <span class="number">7400</span></span><br><span class="line"><span class="attr">webServer.user</span> = <span class="string">&quot;admin&quot;</span></span><br><span class="line"><span class="attr">webServer.password</span> = <span class="string">&quot;admin&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span>  <span class="comment"># 注册一个服务，可以注册多个</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;python web&quot;</span> <span class="comment"># 名字</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">&quot;tcp&quot;</span> <span class="comment"># 协议类型</span></span><br><span class="line"><span class="attr">localIP</span> = <span class="string">&quot;127.0.0.1&quot;</span> <span class="comment"># 指定注册的地址，可以是局域网的其他机器</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">8000</span> <span class="comment"># 需要被反代的本地端口</span></span><br><span class="line"><span class="attr">remotePort</span> = <span class="number">7200</span> <span class="comment"># 服务端访问需要使用的端口，如果是0 就会使用随机分配的端口</span></span><br><span class="line"><span class="attr">customDomains</span> = [<span class="string">&quot;mobile.kangqingfei.cn&quot;</span>] <span class="comment"># 可以用来区分不同的服务</span></span><br></pre></td></tr></table></figure>
+
+<p>还有一些带宽等相关配置可以参考：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/dev/conf/frpc_full_example.toml">https://github.com/fatedier/frp/blob/dev/conf/frpc_full_example.toml</a> </p>
+<p><code>./frpc -c frpc.toml</code> 来启动客户端。</p>
+<p><img src="https://qiniu.kangqingfei.cn/typora/img/image-20240216000432208.png@wt" alt="image-20240216000432208"></p>
+<p>然后访问 mobile.kangqingfei.cn:7200 就能访问到局域网内的 8000 端口的python服务了</p>
+<p><img src="https://qiniu.kangqingfei.cn/typora/img/image-20240216000840853.png@wt" alt="image-20240216000840853"></p>
+<p><img src="https://qiniu.kangqingfei.cn/typora/img/image-20240216000930878.png@wt" alt="image-20240216000930878"></p>
+<p>同样可以用来代理ssh服务</p>
+<p><img src="https://qiniu.kangqingfei.cn/typora/img/image-20240216001654604.png@wt" alt="image-20240216001654604"></p>
+<p>另外还支持反代 dns，udp， http，socket 等协议。</p>
+<h2 id="FRP-管理后台"><a href="#FRP-管理后台" class="headerlink" title="FRP 管理后台"></a>FRP 管理后台</h2><p>客户端，主要进行配置的热更新</p>
+<p><img src="https://qiniu.kangqingfei.cn/typora/img/image-20240216001356268.png@wt" alt="image-20240216001356268"></p>
+<p>服务端，主要查看当前注册的连接</p>
+<p><img src="https://qiniu.kangqingfei.cn/typora/img/image-20240216000620345.png@wt" alt="image-20240216000620345"></p>
+<h2 id="FRP-实现-SSH-跳板"><a href="#FRP-实现-SSH-跳板" class="headerlink" title="FRP 实现 SSH 跳板"></a>FRP 实现 SSH 跳板</h2><p>SSH Tunnel Gateway，通常用来作为外网到内容ssh的跳板机，对连接进行审计和鉴权（例如两步验证）。这就需要客户端A拥有 到跳板机B的连接权限，再检查客户端到目标机器C的连接权限。</p>
+<h3 id="ssh-跳板机逻辑"><a href="#ssh-跳板机逻辑" class="headerlink" title="ssh 跳板机逻辑"></a>ssh 跳板机逻辑</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 网关 B配置</span></span><br><span class="line">sshTunnelGateway.bindPort = 2222</span><br><span class="line">sshTunnelGateway.privateKeyFile = <span class="string">&quot;~/.ssh/id_rsa&quot;</span> <span class="comment"># 使用向目标机器登陆的私钥，如果为空则使用autoGenPrivateKeyPath</span></span><br><span class="line">sshTunnelGateway.autoGenPrivateKeyPath = <span class="string">&quot;~/.ssh/frp_autogen_ssh_key&quot;</span> <span class="comment"># 如果privateKeyFile为空，将使用这个作为私钥发起登陆，这个也为空就自动生成</span></span><br><span class="line">sshTunnelGateway.authorizedKeysFile = <span class="string">&quot;~/.ssh/authorized_keys&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>被代理机器（任意小鸡）C 发起代理（开启后门）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反代tcp or ssh</span></span><br><span class="line"></span><br><span class="line">ssh -R :80:&#123;local_ip:port&#125; v0@&#123;frps_address&#125; -p &#123;frps_ssh_listen_port&#125; &#123;tcp|http|https|stcp|tcpmux&#125; --remote_port &#123;real_remote_port&#125; --proxy_name &#123;proxy_name&#125; --token &#123;frp_token&#125;</span><br><span class="line"></span><br><span class="line">ssh -R :80:localhost:22 v0@cd.kangqingfei.cn -p 2222 tcp --token xxxx  --remote_port 2206 --proxy_name rk3399  <span class="comment">#这个 v0 目前貌似没啥作用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 被代理机器显示</span></span><br><span class="line">User: qingfei.kang@xxx</span><br><span class="line">ProxyName: qingfei.kang@xxx.sshtunnel-tcp-7a2c5a22</span><br><span class="line">Type: tcp</span><br><span class="line">RemoteAddress: :2201</span><br></pre></td></tr></table></figure>
+
+<p>网关B登录</p>
+<p><code>ssh -p 2201  qingfei.kang@127.0.0.1</code>  验证ok</p>
+<p>客户端 A 登录</p>
+<p><code>ssh  -t root@cd.kangqingfei.cn ssh -p 2201 qingfei.kang@127.0.0.1</code>   验证ok</p>
+<p><code>ssh qingfei.kang@cd.kangqingfei.cn -p 2201</code>  直接连接，验证ok</p>
+<h3 id="反代-http"><a href="#反代-http" class="headerlink" title="反代 http"></a>反代 http</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ssh -R :80:127.0.0.1:8080 v0@&#123;frp address&#125; -p 2200 http --proxy_name <span class="string">&quot;test-http&quot;</span>  --custom_domain test-http.frps.com</span><br><span class="line"></span><br><span class="line">ssh -R :80:localhost:8000 v0@cd.kangqingfei.cn -p 2222 http --token xxx   --custom_domain cd.kangqingfei.cn  <span class="comment"># 绑定域名+端口 可以用于映射不同服务，但是端口不能变</span></span><br><span class="line"></span><br><span class="line">ssh -R :80:localhost:8000 v0@cd.kangqingfei.cn -p 2222 http --token xxx   --custom_domain 127.0.0.1 <span class="comment"># 必须绑定，不然无法 proxy_pass</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/02/15/tmux-manual/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">tmux user manual</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="share">
+	<!-- baidu_share Button BEGIN -->
+	<div class="bdsharebuttonbox">
+   	<a href="#" class="bds_more" data-cmd="more"></a>
+   	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+   	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+   	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+   	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+   	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+	<script>
+ 	window._bd_share_config={
+ 		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+ 	</script>
+	<!-- baidu_share Button END -->
+</div>
+
+
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+    </div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2024 kangqingfei
+    	</div>
+    	<div class="footer-right">
+    		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    	</div>
+    </div>
+    <div class="visit">
+      <span id="site-visit">站点访问量:
+        <span id="busuanzi_value_site_pv"></span> /
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+      <span id="page-visit">, 本页阅读量:
+        <span id="busuanzi_value_page_pv"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/require-2.1.6.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部">T<i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部">B<i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>
